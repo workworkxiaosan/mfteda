@@ -13,7 +13,7 @@
 
 ## 更新流程
 
-1. 改 `content.json`（加洞察文章 = 在 `insights` 數組加一條，4 語言都填）。
+1. 改 `content.json`（加洞察/新聞文章 = 在 `insights` 數組加一條，4 語言都填；若帶 `slug` 和 `body`（每語言是段落數組），會自動生成詳情頁 `insights/{slug}.html`，列表「閱讀更多」自動連到該頁；配圖放 `assets/img/news/` 並設 `image` 字段）。
 2. `python3 build.py`。
 3. `git add -A && git commit -m "..." && git push`。
 4. GitHub Actions 自動構建部署（`.github/workflows/deploy.yml`），約 1 分鐘後線上生效。

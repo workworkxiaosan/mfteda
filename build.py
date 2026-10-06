@@ -445,7 +445,7 @@ def render_insights(lang):
         </div>
         <h3>{esc(a['title'][lang])}</h3>
         <p>{esc(a['excerpt'][lang])}</p>
-        <a class="read-more" href="#">{esc(ins['readMore'])}{icon('arrow')}</a>
+        <a class="read-more" href="{f'insights/{a["slug"]}.html' if a.get('slug') else '#'}">{esc(ins['readMore'])}{icon('arrow')}</a>
       </div>''' for a in C['insights'])
     body = page_hero(lang, 'insights') + f'''
 <section class="section-spacing">
@@ -454,6 +454,42 @@ def render_insights(lang):
   </div>
 </section>'''
     return page_shell('insights', lang, ins['title'], ins['subtitle'], body)
+
+def render_insight_article(lang, a):
+    """單篇文章詳情頁（insights/{slug}.html），C['insights'] 中帶 slug+body 的條目。"""
+    ins = I18N[lang]['insights']
+    # 詳情頁在 insights/ 子目錄，資產路徑多一層 ../
+    dprefix = '../' + ('../' if lang != DEFAULT else '') + 'assets/'
+    body_html = ''
+    for para in a['body'][lang]:
+        body_html += f'<p style="line-height:1.875;margin-bottom:1.25rem;color:hsl(var(--foreground));">{esc(para)}</p>'
+    img_html = ''
+    if a.get('image'):
+        img_html = f'<img src="{dprefix}img/news/{a["image"]}" alt="{esc(a["title"][lang])}" style="width:100%;border-radius:12px;margin:1.5rem 0;">'
+    body = f'''
+<section class="page-hero">
+  <div class="container-institutional">
+    <div class="reveal max-w-5 mx-auto">
+      <div class="insight-meta" style="justify-content:center;">
+        <span class="badge">{esc(a['category'][lang])}</span>
+        <span class="date">{icon('calendar')}{a['date']}</span>
+      </div>
+      <h1 class="institutional-heading" style="font-size:clamp(1.75rem,3.5vw,2.5rem);">{esc(a['title'][lang])}</h1>
+    </div>
+  </div>
+</section>
+<section class="section-spacing" style="padding-top:0;">
+  <div class="container-institutional">
+    <div class="max-w-5 mx-auto institutional-card" style="padding:clamp(1.5rem,4vw,3rem);">
+      {img_html}
+      <div>{body_html}</div>
+      <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid hsl(var(--border));">
+        <a class="read-more" href="../insights.html">{icon('arrow')} {esc({'zh-TW': '返回研究洞察', 'zh-CN': '返回研究洞察', 'en': 'Back to Insights', 'pt': 'Voltar aos Insights'}[lang])}</a>
+      </div>
+    </div>
+  </div>
+</section>'''
+    return page_shell('insights', lang, a['title'][lang], a['excerpt'][lang], body)
 
 # ---------------- 合作夥伴 ----------------
 def render_partners(lang):
@@ -589,6 +625,7 @@ def build():
 
     count = 2
     urls = []
+    articles = [a for a in C['insights'] if a.get('slug') and a.get('body')]
     for lang in LANGS:
         outdir = DIST if lang == DEFAULT else os.path.join(DIST, lang)
         os.makedirs(outdir, exist_ok=True)
@@ -598,6 +635,13 @@ def build():
             with open(os.path.join(outdir, name), 'w', encoding='utf-8') as f:
                 f.write(html_out)
             urls.append((page, lang))
+            count += 1
+        for a in articles:
+            adir = os.path.join(outdir, 'insights')
+            os.makedirs(adir, exist_ok=True)
+            with open(os.path.join(adir, f'{a["slug"]}.html'), 'w', encoding='utf-8') as f:
+                f.write(render_insight_article(lang, a))
+            urls.append((f'insights/{a["slug"]}', lang))
             count += 1
 
     # sitemap.xml（含 hreflang alternates）
