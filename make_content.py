@@ -52,7 +52,7 @@ content = {
     "languages": languages,
     "default_lang": "zh-TW",
     "site_name": "澳門財經科技與教育發展學會",
-    "site_name_en": "Macao FinTech and Education Develpment Association",
+    "site_name_en": "Macao Financial Technology and Education Development Association",
     "site_url": "https://mfteda.org",
     "email": "mfteda2020@163.com",
     "social": {"facebook": "#", "linkedin": "#", "twitter": "#"},
