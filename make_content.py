@@ -55,7 +55,7 @@ policies = [
                  "en": "A landing platform for tech enterprises jointly built by DSEDT, FDCT and IPIM, with the first batch of tech companies settled in, alongside the launch of the \"Macao Investment Promotion Ambassador\" programme.",
                  "pt": "Plataforma de instalação de empresas tecnológicas construída conjuntamente pela DSEDT, FDCT e IPIM, com a primeira leva de empresas já instalada, e lançamento do programa \"Embaixador de Promoção de Investimento de Macau\"."},
      "url": "https://www.gsef.gov.mo/zh/posts/11928"},
-    {"region": "macao", "year": "長期",
+    {"region": "macao", "year": {"zh-TW": "長期", "zh-CN": "长期", "en": "Ongoing", "pt": "Contínuo"},
      "title": {"zh-TW": "投資者一站式服務", "zh-CN": "投资者一站式服务",
                "en": "One-Stop Service for Investors", "pt": "Serviço de Balcão Único para Investidores"},
      "summary": {"zh-TW": "招商投資促進局提供專人跟進落戶、協調成立公司手續等一站式服務。",

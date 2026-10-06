@@ -31,3 +31,4 @@
 - 社交鏈接（FB/LinkedIn/Twitter）在 `content.json` 的 `social` 字段，目前是 `#`。
 - 聯繫表單為前端演示（原站如此），未接後端；如需真正收集留言可接 Formspree 等服務。
 - 原站遺留問題已修復：社區篇/副刊封面對調、關於我們「。。」雙句號、/mission 空路由。
+- 繁簡校對規範（2026-10）：繁體用港澳寫法——「平台/了解/群體/臨床/港澳台」的 台/了/群/床 均為正字（OpenCC s2t 會誤報為臺/瞭/羣/牀）；機構名按語言版本書寫（zh-CN 頁 og:site_name/JSON-LD 用簡體「澳门财经科技与教育发展学会」）。複查工具：`python3 scan_tcsc.py`（掃 i18n.json/content.json/make_content.py/build.py 及 dist/ 頁面，白名單過濾上述誤報）。列表排序：insights 按 date 降序、projects 按 year 降序、首頁最新研究取 date 降序前 3。

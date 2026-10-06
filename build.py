@@ -186,10 +186,12 @@ def page_shell(page, lang, title, description, body):
     canonical = abs_url(page, lang)
     og_image = C.get('site_url', 'https://mfteda.org').rstrip('/') + '/assets/img/og-cover.jpg'
     og_locale = {'zh-TW': 'zh_TW', 'zh-CN': 'zh_CN', 'en': 'en_US', 'pt': 'pt_PT'}[lang]
+    # 機構名按各自語言版本書寫（簡體頁用簡體學會名）
+    site_name = '澳门财经科技与教育发展学会' if lang == 'zh-CN' else C['site_name']
     jsonld = ''
     if page == 'index':
         jsonld = f'''<script type="application/ld+json">
-  {{"@context":"https://schema.org","@type":"Organization","name":"{C['site_name']}","alternateName":"{C['site_name_en']}","url":"{C.get('site_url','https://mfteda.org')}","logo":"{C.get('site_url','https://mfteda.org')}/assets/img/logo.png","email":"{C['email']}"}}
+  {{"@context":"https://schema.org","@type":"Organization","name":"{site_name}","alternateName":"{C['site_name_en']}","url":"{C.get('site_url','https://mfteda.org')}","logo":"{C.get('site_url','https://mfteda.org')}/assets/img/logo.png","email":"{C['email']}"}}
   </script>'''
     return f'''<!doctype html>
 <html lang="{lang}">
@@ -200,7 +202,7 @@ def page_shell(page, lang, title, description, body):
   <meta name="description" content="{esc(description)}">
   <link rel="canonical" href="{canonical}">
   <meta property="og:type" content="{'website' if page == 'index' else 'article'}">
-  <meta property="og:site_name" content="MFTEDA {esc(C['site_name'])}">
+  <meta property="og:site_name" content="MFTEDA {esc(site_name)}">
   <meta property="og:locale" content="{og_locale}">
   <meta property="og:title" content="{esc(title)}">
   <meta property="og:description" content="{esc(description)}">
@@ -416,14 +418,17 @@ def render_research(lang):
 # ---------------- 重點項目 ----------------
 def render_projects(lang):
     pj = I18N[lang]['projects']
+    # 按年份降序（近→遠）排列時間線
+    projects = sorted((pj[f'project{i}'] for i in range(1, 4)),
+                      key=lambda p: int(p['year']), reverse=True)
     items = ''.join(f'''
       <div class="timeline-item reveal">
-        <span class="timeline-year">{esc(pj[f'project{i}']['year'])}</span>
+        <span class="timeline-year">{esc(p['year'])}</span>
         <div class="institutional-card timeline-card">
-          <h3>{esc(pj[f'project{i}']['title'])}</h3>
-          <p>{esc(pj[f'project{i}']['description'])}</p>
+          <h3>{esc(p['title'])}</h3>
+          <p>{esc(p['description'])}</p>
         </div>
-      </div>''' for i in range(1, 4))
+      </div>''' for p in projects)
     body = page_hero(lang, 'projects') + f'''
 <section class="section-spacing">
   <div class="container-institutional">
@@ -471,7 +476,7 @@ def render_insights(lang):
         <h3>{esc(a['title'][lang])}</h3>
         <p>{esc(a['excerpt'][lang])}</p>
         <a class="read-more" href="{f'insights/{a["slug"]}.html' if a.get('slug') else '#'}">{esc(ins['readMore'])}{icon('arrow')}</a>
-      </div>''' for a in C['insights'])
+      </div>''' for a in sorted(C['insights'], key=lambda x: x['date'], reverse=True))
     body = page_hero(lang, 'insights') + f'''
 <section class="section-spacing">
   <div class="container-institutional">
@@ -548,7 +553,7 @@ def render_policy(lang):
         cards = ''.join(f'''
       <div class="institutional-card insight-card reveal">
         <div class="insight-meta">
-          <span class="badge">{esc(p['year'])}</span>
+          <span class="badge">{esc(p['year'][lang] if isinstance(p['year'], dict) else p['year'])}</span>
         </div>
         <h3>{esc(p['title'][lang])}</h3>
         <p>{esc(p['summary'][lang])}</p>
