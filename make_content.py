@@ -37,8 +37,8 @@ focus_cards = [
 ]
 
 # 出版物封面圖對應
-book_covers = {"university": "book-university.png", "community": "book-community.png",
-               "youth": "book-youth.png", "supplement": "book-supplement.png"}
+book_covers = {"university": "book-university.webp", "community": "book-community.webp",
+               "youth": "book-youth.webp", "supplement": "book-supplement.webp"}
 
 # 語言切換器顯示名稱
 languages = [
@@ -53,6 +53,7 @@ content = {
     "default_lang": "zh-TW",
     "site_name": "澳門財經科技與教育發展學會",
     "site_name_en": "Macao FinTech and Education Develpment Association",
+    "site_url": "https://mfteda.org",
     "email": "mfteda2020@163.com",
     "social": {"facebook": "#", "linkedin": "#", "twitter": "#"},
     "partners_href": {

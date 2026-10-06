@@ -41,6 +41,13 @@ def asset(path, current_lang):
     prefix = '../' if current_lang != DEFAULT else ''
     return prefix + 'assets/' + path
 
+def abs_url(page, lang):
+    """某語言某頁面的絕對 URL（canonical/OG/sitemap 用）。"""
+    base = C.get('site_url', 'https://mfteda.org').rstrip('/')
+    name = 'index.html' if page == 'index' else f'{page}.html'
+    path = name if lang == DEFAULT else f'{lang}/{name}'
+    return f'{base}/{path}'
+
 # ---------------- SVG 圖標 ----------------
 def icon(name, cls=''):
     P = {
@@ -176,6 +183,14 @@ def page_shell(page, lang, title, description, body):
     lang_links = ''.join(
         f'<link rel="alternate" hreflang="{l}" href="{page_href(page, l, lang)}">'
         for l in LANGS)
+    canonical = abs_url(page, lang)
+    og_image = C.get('site_url', 'https://mfteda.org').rstrip('/') + '/assets/img/og-cover.jpg'
+    og_locale = {'zh-TW': 'zh_TW', 'zh-CN': 'zh_CN', 'en': 'en_US', 'pt': 'pt_PT'}[lang]
+    jsonld = ''
+    if page == 'index':
+        jsonld = f'''<script type="application/ld+json">
+  {{"@context":"https://schema.org","@type":"Organization","name":"{C['site_name']}","alternateName":"{C['site_name_en']}","url":"{C.get('site_url','https://mfteda.org')}","logo":"{C.get('site_url','https://mfteda.org')}/assets/img/logo.png","email":"{C['email']}"}}
+  </script>'''
     return f'''<!doctype html>
 <html lang="{lang}">
 <head>
@@ -183,6 +198,18 @@ def page_shell(page, lang, title, description, body):
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>{esc(title)} - MFTEDA</title>
   <meta name="description" content="{esc(description)}">
+  <link rel="canonical" href="{canonical}">
+  <meta property="og:type" content="{'website' if page == 'index' else 'article'}">
+  <meta property="og:site_name" content="MFTEDA {esc(C['site_name'])}">
+  <meta property="og:locale" content="{og_locale}">
+  <meta property="og:title" content="{esc(title)}">
+  <meta property="og:description" content="{esc(description)}">
+  <meta property="og:url" content="{canonical}">
+  <meta property="og:image" content="{og_image}">
+  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{esc(title)}">
+  <meta name="twitter:description" content="{esc(description)}">
+  <meta name="twitter:image" content="{og_image}">
   <link rel="icon" type="image/png" href="{asset('img/logo.png', lang)}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
@@ -190,6 +217,7 @@ def page_shell(page, lang, title, description, body):
   <link rel="stylesheet" href="{css}">
   <noscript><style>.reveal{{opacity:1 !important;transform:none !important;}}</style></noscript>
   {lang_links}
+  {jsonld}
 </head>
 <body>
 {header(page, lang)}
@@ -222,7 +250,7 @@ def render_index(lang):
         <p class="text-muted-foreground" style="line-height:1.625;">{esc(card['description'][lang])}</p>
       </div>'''
     body = f'''
-<section class="hero" style="background-image:url('{asset('img/hero-bg.jpg', lang)}')">
+<section class="hero" style="background-image:url('{asset('img/hero-bg.webp', lang)}')">
   <div class="container-institutional">
     <div class="reveal">
       <h1>{esc(hero['headline'])}</h1>
@@ -384,8 +412,8 @@ def render_projects(lang):
 # ---------------- 出版物 ----------------
 def render_publications(lang):
     pb = I18N[lang]['publications']
-    covers = {'university': 'book-university.png', 'community': 'book-community.png',
-              'youth': 'book-youth.png', 'supplement': 'book-supplement.png'}
+    covers = {'university': 'book-university.webp', 'community': 'book-community.webp',
+              'youth': 'book-youth.webp', 'supplement': 'book-supplement.webp'}
     cards = ''.join(f'''
       <div class="institutional-card book-card reveal">
         <img class="book-cover" src="{asset('img/' + covers[k], lang)}" alt="{esc(pb[k]['title'])}">
@@ -538,7 +566,29 @@ def build():
     shutil.copytree(os.path.join(ROOT, 'assets'), os.path.join(DIST, 'assets'))
     with open(os.path.join(DIST, 'CNAME'), 'w') as f:
         f.write('mfteda.org\n')
-    count = 0
+
+    # robots.txt
+    with open(os.path.join(DIST, 'robots.txt'), 'w') as f:
+        f.write('User-agent: *\nAllow: /\n\nSitemap: https://mfteda.org/sitemap.xml\n')
+
+    # 404 頁（GitHub Pages 自動使用根目錄 404.html）
+    not_found_body = f'''
+<section class="page-hero">
+  <div class="container-institutional">
+    <div class="reveal">
+      <h1 class="institutional-heading">404</h1>
+      <p class="sub text-muted-foreground">{esc({'zh-TW': '頁面不存在或已被移動', 'zh-CN': '页面不存在或已被移动', 'en': 'The page you are looking for does not exist or has been moved.', 'pt': 'A página que procura não existe ou foi movida.'}[DEFAULT])}</p>
+      <div class="cta-row" style="margin-top:2rem;">
+        <a class="btn btn-primary" href="index.html">{esc({'zh-TW': '返回首頁', 'zh-CN': '返回首页', 'en': 'Back to Home', 'pt': 'Voltar ao Início'}[DEFAULT])}{icon('arrow')}</a>
+      </div>
+    </div>
+  </div>
+</section>'''
+    with open(os.path.join(DIST, '404.html'), 'w', encoding='utf-8') as f:
+        f.write(page_shell('index', DEFAULT, '404', 'Page not found', not_found_body))
+
+    count = 2
+    urls = []
     for lang in LANGS:
         outdir = DIST if lang == DEFAULT else os.path.join(DIST, lang)
         os.makedirs(outdir, exist_ok=True)
@@ -547,8 +597,26 @@ def build():
             name = 'index.html' if page == 'index' else f'{page}.html'
             with open(os.path.join(outdir, name), 'w', encoding='utf-8') as f:
                 f.write(html_out)
+            urls.append((page, lang))
             count += 1
-    print(f'OK: generated {count} pages -> {DIST}')
+
+    # sitemap.xml（含 hreflang alternates）
+    xhtml = 'xmlns:xhtml="http://www.w3.org/1999/xhtml"'
+    items = []
+    for page, lang in urls:
+        loc = abs_url(page, lang)
+        alts = ''.join(
+            f'\n      <xhtml:link rel="alternate" hreflang="{l}" href="{abs_url(page, l)}"/>'
+            for l in LANGS)
+        items.append(f'''  <url>
+      <loc>{loc}</loc>{alts}
+      <xhtml:link rel="alternate" hreflang="x-default" href="{abs_url(page, DEFAULT)}"/>
+  </url>''')
+    with open(os.path.join(DIST, 'sitemap.xml'), 'w', encoding='utf-8') as f:
+        f.write(f'<?xml version="1.0" encoding="UTF-8"?>\n'
+                f'<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9" {xhtml}>\n'
+                + '\n'.join(items) + '\n</urlset>\n')
+    print(f'OK: generated {count} files -> {DIST}')
 
 if __name__ == '__main__':
     build()

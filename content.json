@@ -24,6 +24,7 @@
   "default_lang": "zh-TW",
   "site_name": "澳門財經科技與教育發展學會",
   "site_name_en": "Macao FinTech and Education Develpment Association",
+  "site_url": "https://mfteda.org",
   "email": "mfteda2020@163.com",
   "social": {
     "facebook": "#",
@@ -998,9 +999,9 @@
     }
   ],
   "book_covers": {
-    "university": "book-university.png",
-    "community": "book-community.png",
-    "youth": "book-youth.png",
-    "supplement": "book-supplement.png"
+    "university": "book-university.webp",
+    "community": "book-community.webp",
+    "youth": "book-youth.webp",
+    "supplement": "book-supplement.webp"
   }
 }
