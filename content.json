@@ -39,7 +39,7 @@
     "partner5": "https://www.usj.edu.mo",
     "partner6": "https://www.jisu.edu.cn",
     "partner7": "#",
-    "partner8": "#"
+    "partner8": "https://www.facebook.com/MacauLiveAssociation/"
   },
   "i18n": {
     "zh-TW": {
@@ -51,7 +51,8 @@
         "publications": "出版物",
         "insights": "研究洞察",
         "partners": "合作夥伴",
-        "contact": "聯繫我們"
+        "contact": "聯繫我們",
+        "policy": "招商政策"
       },
       "hero": {
         "headline": "以研究驅動決策，連接澳門與世界",
@@ -191,10 +192,10 @@
         "title": "友好單位及戰略合作夥伴",
         "subtitle": "我們的合作網絡",
         "partner1": "澳門經濟及科技發展局",
-        "partner2": "澳門貿易投資促進局",
+        "partner2": "招商投資促進局",
         "partner3": "中國社會科學院法學研究所",
         "partner4": "澳門理工大學",
-        "partner5": "澳門聖若瑟大學",
+        "partner5": "聖若瑟大學",
         "partner6": "吉林外國語大學",
         "partner7": "澳門中西創新研究院",
         "partner8": "澳門直播協會"
@@ -246,7 +247,8 @@
         "publications": "出版物",
         "insights": "研究洞察",
         "partners": "合作伙伴",
-        "contact": "联系我们"
+        "contact": "联系我们",
+        "policy": "招商政策"
       },
       "hero": {
         "headline": "以研究驱动决策，连接澳门与世界",
@@ -386,10 +388,10 @@
         "title": "友好单位及战略合作伙伴",
         "subtitle": "我们的合作网络",
         "partner1": "澳门经济及科技发展局",
-        "partner2": "澳门贸易投资促进局",
+        "partner2": "招商投资促进局",
         "partner3": "中国社会科学院法学研究所",
         "partner4": "澳门理工大学",
-        "partner5": "澳门圣若瑟大学",
+        "partner5": "圣若瑟大学",
         "partner6": "吉林外国语大学",
         "partner7": "澳门中西创新研究院",
         "partner8": "澳门直播协会"
@@ -441,7 +443,8 @@
         "publications": "Publications",
         "insights": "Insights",
         "partners": "Partners",
-        "contact": "Contact"
+        "contact": "Contact",
+        "policy": "Investment Policies"
       },
       "hero": {
         "headline": "Research-driven decisions, connecting Macao with the world",
@@ -581,7 +584,7 @@
         "title": "Friendly Institutions & Strategic Partners",
         "subtitle": "Our collaboration network",
         "partner1": "Macao Economic and Technological Development Bureau",
-        "partner2": "Macao Trade and Investment Promotion Institute",
+        "partner2": "Commerce and Investment Promotion Institute",
         "partner3": "Institute of Law, Chinese Academy of Social Sciences",
         "partner4": "Macao Polytechnic University",
         "partner5": "University of Saint Joseph",
@@ -636,7 +639,8 @@
         "publications": "Publicações",
         "insights": "Insights",
         "partners": "Parceiros",
-        "contact": "Contacto"
+        "contact": "Contacto",
+        "policy": "Políticas de Investimento"
       },
       "hero": {
         "headline": "Decisões orientadas por pesquisa, conectando Macau ao mundo",
@@ -996,6 +1000,212 @@
         "en": "Promoting regional integration and cross-border cooperation",
         "pt": "Promovendo integração regional e cooperação transfronteiriça"
       }
+    }
+  ],
+  "policies": [
+    {
+      "region": "macao",
+      "year": "2025–2026",
+      "title": {
+        "zh-TW": "政府產業基金及科技成果轉化引導基金",
+        "zh-CN": "政府产业基金及科技成果转化引导基金",
+        "en": "Government Industrial Fund and Technology Achievement Transformation Guidance Fund",
+        "pt": "Fundo Industrial do Governo e Fundo Orientador para a Transformação de Conquistas Científicas"
+      },
+      "summary": {
+        "zh-TW": "政府牽頭設立產業基金與科技成果轉化引導基金，以「政府+民間共同投資」模式吸引高新科技企業及項目落戶澳門。",
+        "zh-CN": "政府牵头设立产业基金与科技成果转化引导基金，以「政府+民间共同投资」模式吸引高新科技企业及项目落户澳门。",
+        "en": "Government-led industrial fund and technology transformation guidance fund, attracting high-tech enterprises and projects to Macao through a \"government + private co-investment\" model.",
+        "pt": "Fundo industrial liderado pelo Governo e fundo orientador de transformação tecnológica, atraindo empresas e projetos de alta tecnologia para Macau através do modelo de \"coinvestimento governo + privado\"."
+      },
+      "url": "https://www.gov.mo/zh-hant/news/1191808/"
+    },
+    {
+      "region": "macao",
+      "year": "2025",
+      "title": {
+        "zh-TW": "澳門科技研發產業園",
+        "zh-CN": "澳门科技研发产业园",
+        "en": "Macao Science and Technology Research and Development Industrial Park",
+        "pt": "Parque Industrial de Investigação e Desenvolvimento Tecnológico de Macau"
+      },
+      "summary": {
+        "zh-TW": "聚焦生物醫藥、集成電路、數字科技、航天科技四大領域的科創園區，定位為內地優質科企出海陣地與海外前沿科技項目落戶服務站。",
+        "zh-CN": "聚焦生物医药、集成电路、数字科技、航天科技四大领域的科创园区，定位为内地优质科企出海阵地与海外前沿科技项目落户服务站。",
+        "en": "An innovation park focused on biomedicine, integrated circuits, digital technology and aerospace technology, serving as a launchpad for mainland tech firms going global and a landing base for overseas frontier projects.",
+        "pt": "Parque de inovação focado em biomedicina, circuitos integrados, tecnologia digital e aeroespacial, servindo de base para empresas tecnológicas do continente se internacionalizarem e para projetos estrangeiros se instalarem."
+      },
+      "url": "https://www.dsedt.gov.mo/zh_MO/web/public/pg_stipc"
+    },
+    {
+      "region": "macao",
+      "year": "2025",
+      "title": {
+        "zh-TW": "支持澳門首店經濟發展計劃",
+        "zh-CN": "支持澳门首店经济发展计划",
+        "en": "Programme for Supporting the Development of Macao First-Store Economy",
+        "pt": "Programa de Apoio ao Desenvolvimento da Economia de Primeiras Lojas de Macau"
+      },
+      "summary": {
+        "zh-TW": "向國際品牌及內地、港澳台品牌在澳門開設首間實體店提供啟動及經營開支資助，進駐指定社區設疊加資助。",
+        "zh-CN": "向国际品牌及内地、港澳台品牌在澳门开设首间实体店提供启动及经营开支资助，进驻指定社区设叠加资助。",
+        "en": "Subsidies for international brands and brands from the mainland, Hong Kong, Macao and Taiwan opening their first physical store in Macao, with additional support for designated communities.",
+        "pt": "Subsídios para marcas internacionais e do continente, Hong Kong, Macau e Taiwan abrirem a sua primeira loja física em Macau, com apoio adicional em comunidades designadas."
+      },
+      "url": "https://www.ipim.gov.mo/zh-hant/investment-promotion/programme-for-supporting-the-development-of-macao-first-store-economy"
+    },
+    {
+      "region": "macao",
+      "year": "2025",
+      "title": {
+        "zh-TW": "會議及展覽激勵計劃",
+        "zh-CN": "会议及展览激励计划",
+        "en": "MICE Incentive Measures",
+        "pt": "Medidas de Incentivo a Convenções e Exposições"
+      },
+      "summary": {
+        "zh-TW": "資助在澳門舉辦的會展活動，涵蓋澳門與橫琴「一會展兩地」模式，每項活動資助上限300萬澳門元。",
+        "zh-CN": "资助在澳门举办的会展活动，涵盖澳门与横琴「一会展两地」模式，每项活动资助上限300万澳门元。",
+        "en": "Funding for MICE events held in Macao, covering the \"one event, two venues\" model between Macao and Hengqin, up to MOP 3 million per event.",
+        "pt": "Financiamento de eventos MICE realizados em Macau, incluindo o modelo \"um evento, dois locais\" entre Macau e Hengqin, até 3 milhões de patacas por evento."
+      },
+      "url": "https://www.ipim.gov.mo/zh-hant/mice/the-incentive-measures/"
+    },
+    {
+      "region": "macao",
+      "year": "2026",
+      "title": {
+        "zh-TW": "澳門國際科技產業中心",
+        "zh-CN": "澳门国际科技产业中心",
+        "en": "Macao International Technology Industry Center",
+        "pt": "Centro Internacional da Indústria Tecnológica de Macau"
+      },
+      "summary": {
+        "zh-TW": "由經科局、科技基金、招商投資促進局共建的科企落戶載體，首批科技企業已進駐，同場啟動「澳門招商大使」計劃。",
+        "zh-CN": "由经科局、科技基金、招商投资促进局共建的科企落户载体，首批科技企业已进驻，同场启动「澳门招商大使」计划。",
+        "en": "A landing platform for tech enterprises jointly built by DSEDT, FDCT and IPIM, with the first batch of tech companies settled in, alongside the launch of the \"Macao Investment Promotion Ambassador\" programme.",
+        "pt": "Plataforma de instalação de empresas tecnológicas construída conjuntamente pela DSEDT, FDCT e IPIM, com a primeira leva de empresas já instalada, e lançamento do programa \"Embaixador de Promoção de Investimento de Macau\"."
+      },
+      "url": "https://www.gsef.gov.mo/zh/posts/11928"
+    },
+    {
+      "region": "macao",
+      "year": "長期",
+      "title": {
+        "zh-TW": "投資者一站式服務",
+        "zh-CN": "投资者一站式服务",
+        "en": "One-Stop Service for Investors",
+        "pt": "Serviço de Balcão Único para Investidores"
+      },
+      "summary": {
+        "zh-TW": "招商投資促進局提供專人跟進落戶、協調成立公司手續等一站式服務。",
+        "zh-CN": "招商投资促进局提供专人跟进落户、协调成立公司手续等一站式服务。",
+        "en": "IPIM provides one-stop services including dedicated follow-up for investors and coordination of company incorporation procedures.",
+        "pt": "O IPIM oferece serviços de balcão único, incluindo acompanhamento personalizado e coordenação dos procedimentos de constituição de empresas."
+      },
+      "url": "https://www.gov.mo/zh-hant/services/ps-1417/"
+    },
+    {
+      "region": "hengqin",
+      "year": "2022起",
+      "title": {
+        "zh-TW": "企業所得稅15%優惠",
+        "zh-CN": "企业所得税15%优惠",
+        "en": "15% Corporate Income Tax Incentive",
+        "pt": "Incentivo de Imposto sobre Rendimento Empresarial de 15%"
+      },
+      "summary": {
+        "zh-TW": "設在橫琴深合區、以優惠目錄產業為主營業務並實質性運營的企業，減按15%徵收企業所得稅。",
+        "zh-CN": "设在横琴深合区、以优惠目录产业为主营业务并实质性运营的企业，减按15%征收企业所得税。",
+        "en": "Enterprises established in the Hengqin Cooperation Zone with substantive operations in encouraged industries enjoy a reduced 15% corporate income tax rate.",
+        "pt": "Empresas estabelecidas na Zona de Cooperação de Hengqin, com operações substantivas em indústrias incentivadas, beneficiam de uma taxa reduzida de 15% de imposto sobre o rendimento."
+      },
+      "url": "https://www.hengqin.gov.cn/lab/zccx/gjzc/content/post_3510124.html"
+    },
+    {
+      "region": "hengqin",
+      "year": "2026–2027",
+      "title": {
+        "zh-TW": "個人所得稅優惠延續（澳人澳稅）",
+        "zh-CN": "个人所得税优惠延续（澳人澳税）",
+        "en": "Extension of Individual Income Tax Incentives (Macao Tax for Macao Residents)",
+        "pt": "Extensão dos Incentivos de Imposto sobre Rendimento Individual (Regime Fiscal de Macau para Residentes)"
+      },
+      "summary": {
+        "zh-TW": "在合作區工作的境內外高端緊缺人才個稅超過15%部分免徵；澳門居民個稅超過澳門稅負部分免徵。財稅〔2026〕2號。",
+        "zh-CN": "在合作区工作的境内外高端紧缺人才个税超过15%部分免征；澳门居民个税超过澳门税负部分免征。财税〔2026〕2号。",
+        "en": "High-end and urgently needed talents working in the zone are exempt from individual income tax above 15%; Macao residents are exempt from tax exceeding the Macao tax burden. Caishui [2026] No. 2.",
+        "pt": "Talentos de alto nível e escassos que trabalhem na zona ficam isentos do imposto individual acima de 15%; residentes de Macau ficam isentos da parcela que exceda a carga fiscal de Macau. Caishui [2026] n.º 2."
+      },
+      "url": "https://www.hengqin.gov.cn/invest-hengqin/hqzx/news/zcdt/content/post_3878127.html"
+    },
+    {
+      "region": "hengqin",
+      "year": "2025",
+      "title": {
+        "zh-TW": "橫琴深合區產業發展規劃（2025–2029年）",
+        "zh-CN": "横琴深合区产业发展规划（2025–2029年）",
+        "en": "Hengqin Cooperation Zone Industrial Development Plan (2025–2029)",
+        "pt": "Plano de Desenvolvimento Industrial da Zona de Cooperação de Hengqin (2025–2029)"
+      },
+      "summary": {
+        "zh-TW": "構建科技研發和高端製造、中醫藥等澳門品牌工業、文旅會展商貿、現代金融四大產業片區，2029年「四新」產業增加值佔GDP約65%。",
+        "zh-CN": "构建科技研发和高端制造、中医药等澳门品牌工业、文旅会展商贸、现代金融四大产业片区，2029年「四新」产业增加值占GDP约65%。",
+        "en": "Builds four industrial clusters: tech R&D and high-end manufacturing, Macao-branded industries such as traditional Chinese medicine, cultural tourism, MICE and commerce, and modern finance; \"four new\" industries to account for about 65% of GDP by 2029.",
+        "pt": "Constrói quatro clusters industriais: I&D tecnológica e manufactura avançada, indústrias de marca de Macau como a medicina tradicional chinesa, turismo cultural, convenções e comércio, e finanças modernas; as \"quatro novas\" indústrias representarão cerca de 65% do PIB em 2029."
+      },
+      "url": "https://www.gdhmo.gov.cn/ygazdhzpt/content/post_97158.html"
+    },
+    {
+      "region": "hengqin",
+      "year": "2025",
+      "title": {
+        "zh-TW": "生物醫藥大健康產業扶持實施細則",
+        "zh-CN": "生物医药大健康产业扶持实施细则",
+        "en": "Implementation Rules for Supporting the Biomedicine and Big Health Industry",
+        "pt": "Regras de Implementação de Apoio à Indústria Biomédica e de Grande Saúde"
+      },
+      "summary": {
+        "zh-TW": "對標桿項目落戶、研發、臨床、註冊等環節給予專項資金支持，直接對接澳門「1+4」產業策略。",
+        "zh-CN": "对标杆项目落户、研发、临床、注册等环节给予专项资金支持，直接对接澳门「1+4」产业策略。",
+        "en": "Special funding for landmark projects covering settlement, R&D, clinical trials and registration, directly aligned with Macao's \"1+4\" industrial strategy.",
+        "pt": "Financiamento especial para projetos emblemáticos nas fases de instalação, I&D, ensaios clínicos e registo, alinhado com a estratégia industrial \"1+4\" de Macau."
+      },
+      "url": "https://www.hengqin.gov.cn/macao_zh_hans/zwgk/zcfg/gfxwj/content/post_3801996.html"
+    },
+    {
+      "region": "hengqin",
+      "year": "2025",
+      "title": {
+        "zh-TW": "金融產業高質量發展扶持辦法",
+        "zh-CN": "金融产业高质量发展扶持办法",
+        "en": "Measures for Supporting High-Quality Development of the Financial Industry",
+        "pt": "Medidas de Apoio ao Desenvolvimento de Alta Qualidade da Indústria Financeira"
+      },
+      "summary": {
+        "zh-TW": "對落戶合作區的金融機構、金融科技企業給予落戶獎勵、租金補貼、業務發展扶持，配合澳門現代金融產業發展。",
+        "zh-CN": "对落户合作区的金融机构、金融科技企业给予落户奖励、租金补贴、业务发展扶持，配合澳门现代金融产业发展。",
+        "en": "Settlement rewards, rent subsidies and business development support for financial institutions and fintech enterprises in the zone, complementing Macao's modern finance industry.",
+        "pt": "Prémios de instalação, subsídios de renda e apoio ao desenvolvimento de negócios para instituições financeiras e empresas fintech na zona, complementando a indústria financeira moderna de Macau."
+      },
+      "url": "https://www.hengqin.gov.cn/macao_zh_hans/zwgk/zcfg/gfxwj/content/post_3863296.html"
+    },
+    {
+      "region": "hengqin",
+      "year": "2024起",
+      "title": {
+        "zh-TW": "澳門青年創新創業扶持",
+        "zh-CN": "澳门青年创新创业扶持",
+        "en": "Support for Macao Youth Innovation and Entrepreneurship",
+        "pt": "Apoio à Inovação e ao Empreendedorismo dos Jovens de Macau"
+      },
+      "summary": {
+        "zh-TW": "經認定的澳門青年創業企業可享辦公場地租金扶持與創業獎勵，澳青創新創業基地享活動扶持。",
+        "zh-CN": "经认定的澳门青年创业企业可享办公场地租金扶持与创业奖励，澳青创新创业基地享活动扶持。",
+        "en": "Recognised Macao youth startups can receive office rent support and entrepreneurship rewards, with activity support for Macao youth innovation and entrepreneurship bases.",
+        "pt": "Startups de jovens de Macau reconhecidas podem beneficiar de apoio à renda de escritórios e prémios de empreendedorismo, com apoio a actividades nas bases de inovação e empreendedorismo juvenil."
+      },
+      "url": "https://www.hengqin.gov.cn/macao_zh_hans/zwgk/tzgg/gg/content/post_3834693.html"
     }
   ],
   "book_covers": {

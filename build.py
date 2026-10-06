@@ -16,7 +16,7 @@ C = json.load(open(os.path.join(ROOT, 'content.json'), encoding='utf-8'))
 I18N = C['i18n']
 LANGS = [l['code'] for l in C['languages']]
 DEFAULT = C['default_lang']
-PAGES = ['index', 'about', 'research', 'projects', 'publications', 'insights', 'partners', 'contact']
+PAGES = ['index', 'about', 'research', 'projects', 'publications', 'insights', 'partners', 'policy', 'contact']
 
 def esc(s): return html.escape(str(s), quote=True)
 
@@ -249,6 +249,20 @@ def render_index(lang):
         <h3 style="font-family:var(--font-sans);font-size:1.5rem;font-weight:600;margin-bottom:1rem;">{esc(card['title'][lang])}</h3>
         <p class="text-muted-foreground" style="line-height:1.625;">{esc(card['description'][lang])}</p>
       </div>'''
+    ins = I18N[lang]['insights']
+    latest_insights = ''
+    for a in sorted(C['insights'], key=lambda x: x['date'], reverse=True)[:3]:
+        href = f'insights/{a["slug"]}.html' if a.get('slug') else 'insights.html'
+        latest_insights += f'''
+      <div class="institutional-card insight-card reveal">
+        <div class="insight-meta">
+          <span class="badge">{esc(a['category'][lang])}</span>
+          <span class="date">{icon('calendar')}{a['date']}</span>
+        </div>
+        <h3>{esc(a['title'][lang])}</h3>
+        <p>{esc(a['excerpt'][lang])}</p>
+        <a class="read-more" href="{href}">{esc(ins['readMore'])}{icon('arrow')}</a>
+      </div>'''
     body = f'''
 <section class="hero" style="background-image:url('{asset('img/hero-bg.webp', lang)}')">
   <div class="container-institutional">
@@ -270,6 +284,15 @@ def render_index(lang):
       <p class="text-lg text-muted-foreground max-w-2 mx-auto">{esc({'zh-TW': '通過戰略研究與政策創新推動澳門發展', 'zh-CN': '通过战略研究与政策创新推动澳门发展', 'en': "Driving Macao's development through strategic research and policy innovation", 'pt': 'Impulsionando o desenvolvimento de Macau através de pesquisa estratégica e inovação política'}[lang])}</p>
     </div>
     <div class="grid grid-3">{cards}</div>
+  </div>
+</section>
+<section class="section-spacing bg-muted-50">
+  <div class="container-institutional">
+    <div class="text-center mb-16 reveal">
+      <h2 class="institutional-subheading mb-4">{esc({'zh-TW': '最新研究', 'zh-CN': '最新研究', 'en': 'Latest Research', 'pt': 'Investigação Recente'}[lang])}</h2>
+      <a class="read-more" href="{page_href('insights', lang, lang)}">{esc({'zh-TW': '查看全部', 'zh-CN': '查看全部', 'en': 'View All', 'pt': 'Ver Tudo'}[lang])}{icon('arrow')}</a>
+    </div>
+    <div class="grid grid-3">{latest_insights}</div>
   </div>
 </section>
 <section class="section-spacing cta-band">
@@ -509,6 +532,51 @@ def render_partners(lang):
 </section>'''
     return page_shell('partners', lang, pt['title'], pt['subtitle'], body)
 
+# ---------------- 招商政策 ----------------
+def render_policy(lang):
+    hero_title = {'zh-TW': '招商政策', 'zh-CN': '招商政策', 'en': 'Investment Policies', 'pt': 'Políticas de Investimento'}[lang]
+    hero_sub = {'zh-TW': '轉載澳門及橫琴最新招商引資政策，助力企業把握灣區機遇',
+                'zh-CN': '转载澳门及横琴最新招商引资政策，助力企业把握湾区机遇',
+                'en': "The latest investment promotion policies from Macao and Hengqin, helping enterprises seize Greater Bay Area opportunities",
+                'pt': 'As mais recentes políticas de promoção de investimento de Macau e Hengqin, ajudando as empresas a aproveitar as oportunidades da Grande Baía'}[lang]
+    section_titles = {
+        'macao': {'zh-TW': '澳門特區政策', 'zh-CN': '澳门特区政策', 'en': 'Macao SAR Policies', 'pt': 'Políticas da RAE de Macau'},
+        'hengqin': {'zh-TW': '橫琴粵澳深度合作區政策', 'zh-CN': '横琴粤澳深度合作区政策', 'en': 'Guangdong-Macao In-Depth Cooperation Zone in Hengqin Policies', 'pt': 'Políticas da Zona de Cooperação Aprofundada Guangdong-Macau em Hengqin'}}
+    more = {'zh-TW': '了解詳情', 'zh-CN': '了解详情', 'en': 'Learn More', 'pt': 'Saber Mais'}[lang]
+    sections_html = ''
+    for region in ('macao', 'hengqin'):
+        cards = ''.join(f'''
+      <div class="institutional-card insight-card reveal">
+        <div class="insight-meta">
+          <span class="badge">{esc(p['year'])}</span>
+        </div>
+        <h3>{esc(p['title'][lang])}</h3>
+        <p>{esc(p['summary'][lang])}</p>
+        <a class="read-more" href="{p['url']}" target="_blank" rel="noopener">{esc(more)}{icon('arrow')}</a>
+      </div>''' for p in C['policies'] if p['region'] == region)
+        sections_html += f'''
+<section class="section-spacing{' bg-muted-50' if region == 'hengqin' else ''}">
+  <div class="container-institutional">
+    <h2 class="institutional-subheading text-center mb-12 reveal">{esc(section_titles[region][lang])}</h2>
+    <div class="grid grid-3">{cards}
+    </div>
+  </div>
+</section>'''
+    body = f'''
+<section class="page-hero">
+  <div class="container-institutional">
+    <div class="reveal">
+      <h1 class="institutional-heading">{esc(hero_title)}</h1>
+      <p class="sub text-muted-foreground">{esc(hero_sub)}</p>
+    </div>
+  </div>
+</section>{sections_html}'''
+    desc = {'zh-TW': '澳門及橫琴粵澳深度合作區最新招商引資政策匯編',
+            'zh-CN': '澳门及横琴粤澳深度合作区最新招商引资政策汇编',
+            'en': "Latest investment promotion policies from Macao SAR and the Guangdong-Macao In-Depth Cooperation Zone in Hengqin",
+            'pt': 'Compilação das mais recentes políticas de promoção de investimento da RAE de Macau e da Zona de Cooperação Aprofundada Guangdong-Macau em Hengqin'}[lang]
+    return page_shell('policy', lang, hero_title, desc, body)
+
 # ---------------- 聯繫我們 ----------------
 def render_contact(lang):
     ct = I18N[lang]['contact']
@@ -596,7 +664,8 @@ def render_contact(lang):
 # ---------------- 構建 ----------------
 RENDERERS = {'index': render_index, 'about': render_about, 'research': render_research,
              'projects': render_projects, 'publications': render_publications,
-             'insights': render_insights, 'partners': render_partners, 'contact': render_contact}
+             'insights': render_insights, 'partners': render_partners, 'policy': render_policy,
+             'contact': render_contact}
 
 def build():
     if os.path.exists(DIST): shutil.rmtree(DIST)
