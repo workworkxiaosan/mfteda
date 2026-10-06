@@ -1,0 +1,1006 @@
+{
+  "languages": [
+    {
+      "code": "zh-TW",
+      "label": "繁體中文",
+      "flag": "🇲🇴"
+    },
+    {
+      "code": "zh-CN",
+      "label": "简体中文",
+      "flag": "🇨🇳"
+    },
+    {
+      "code": "en",
+      "label": "English",
+      "flag": "🇬🇧"
+    },
+    {
+      "code": "pt",
+      "label": "Português",
+      "flag": "🇵🇹"
+    }
+  ],
+  "default_lang": "zh-TW",
+  "site_name": "澳門財經科技與教育發展學會",
+  "site_name_en": "Macao FinTech and Education Develpment Association",
+  "email": "mfteda2020@163.com",
+  "social": {
+    "facebook": "#",
+    "linkedin": "#",
+    "twitter": "#"
+  },
+  "partners_href": {
+    "partner1": "https://www.dsedt.gov.mo",
+    "partner2": "https://www.ipim.gov.mo",
+    "partner3": "http://www.iolaw.cssn.cn",
+    "partner4": "https://www.mpu.edu.mo",
+    "partner5": "https://www.usj.edu.mo",
+    "partner6": "https://www.jisu.edu.cn",
+    "partner7": "#",
+    "partner8": "#"
+  },
+  "i18n": {
+    "zh-TW": {
+      "nav": {
+        "home": "首頁",
+        "about": "關於我們",
+        "research": "研究領域",
+        "projects": "重點項目",
+        "publications": "出版物",
+        "insights": "研究洞察",
+        "partners": "合作夥伴",
+        "contact": "聯繫我們"
+      },
+      "hero": {
+        "headline": "以研究驅動決策，連接澳門與世界",
+        "subtitle": "澳門財經科技與教育發展學會致力於推動澳門特區多元化、可持續、高質量發展",
+        "cta1": "了解更多",
+        "cta2": "研究領域",
+        "cta3": "聯繫我們"
+      },
+      "about": {
+        "title": "關於我們",
+        "subtitle": "推動澳門多元化發展的非營利智庫",
+        "description1": "澳門財經科技與教育發展學會 宗旨：立足澳门、背靠祖国、面向世界，积极响应中央支持澳门经济适度多元发展、融入国家发展大局的战略部署，着力服务金融创新、电子商务、商业出海、\"文化+科技\"融合及粤港澳大湾区合作；促进澳门现代金融业创新发展，深化跨境金融合作，助力澳门建设国际金融中心；广泛联系社会各界，协助深化澳门与内地、葡语国家在经济、金融、科技、教育、文化等多领域的务实合作，拓展中葡平台内涵，服务\"一带一路\"建设及\"双循环\"新发展格局；推动科技研发与成果转化，加快培育高新技术产业，支持人工智能、数字经济和金融科技等领域产学研深度融合，提升澳门国际人才竞争力； 大力扶植澳门文化产业发展，推动\"文化+科技\"融合创新，开发数字文创、非遗科技化应用、沉浸式文旅体验等新业态，助力澳门打造\"文化之城\"及多元文化共存的交流合作基地； 为澳门经济适度多元、可持续、高质量发展贡献力量，推动澳门更好融入国家大局在更高水平对外开放中发挥精准联系人作用，实现共同繁荣进步，智慧助力中华民族伟大复兴。",
+        "description2": "我們專注於國家戰略、\"一帶一路\"合作、雙循環發展、中葡平台合作以及更高水平的對外開放。",
+        "focusAreas": "重點領域",
+        "area1": "金融創新",
+        "area2": "電子商務",
+        "area3": "商業全球化",
+        "area4": "文化與科技融合",
+        "area5": "大灣區合作",
+        "initiatives": "主要倡議",
+        "initiative1": "現代金融發展",
+        "initiative2": "跨境金融合作",
+        "initiative3": "科學研究與技術商業化",
+        "initiative4": "人工智能與數字經濟",
+        "initiative5": "金融科技創新",
+        "initiative6": "人才發展",
+        "initiative7": "澳門文化產業創新"
+      },
+      "mission": {
+        "title": "使命與宗旨",
+        "subtitle": "我們的願景與戰略目標",
+        "visionTitle": "願景",
+        "visionText": "成為推動澳門特區發展、服務國家戰略、促進國際交流的領先智庫。",
+        "missionTitle": "使命",
+        "missionText": "通過高質量研究、政策建議和國際合作，推動澳門經濟多元化發展，促進大灣區融合，加強中葡平台合作。",
+        "objectivesTitle": "戰略目標",
+        "objective1": "推動現代金融與數字經濟發展",
+        "objective2": "促進跨境合作與區域治理",
+        "objective3": "支持政策創新與制度整合",
+        "objective4": "培養專業人才與學術交流"
+      },
+      "research": {
+        "title": "研究領域",
+        "subtitle": "我們的核心研究方向",
+        "area1": {
+          "title": "數字經濟",
+          "description": "探索數字化轉型、電子商務和數字金融創新"
+        },
+        "area2": {
+          "title": "人民幣國際化",
+          "description": "研究人民幣跨境使用和國際金融合作"
+        },
+        "area3": {
+          "title": "ESG與可持續發展",
+          "description": "推動環境、社會和治理標準在金融領域的應用"
+        },
+        "area4": {
+          "title": "低空經濟",
+          "description": "研究無人機、城市空中交通等新興產業"
+        },
+        "area5": {
+          "title": "橫琴粵澳深度合作區制度整合",
+          "description": "探索橫琴深合區的制度創新與政策協調"
+        },
+        "area6": {
+          "title": "區域治理",
+          "description": "研究大灣區協同治理與跨境合作機制"
+        },
+        "area7": {
+          "title": "自由貿易港監管",
+          "description": "分析自由貿易港海關監管與國際對標"
+        },
+        "area8": {
+          "title": "現代金融",
+          "description": "推動金融科技、綠色金融和普惠金融發展"
+        },
+        "area9": {
+          "title": "文化與科技",
+          "description": "探索文化產業與科技創新的融合發展"
+        },
+        "area10": {
+          "title": "跨境合作",
+          "description": "促進中葡平台合作與國際經貿往來"
+        },
+        "area11": {
+          "title": "政策創新",
+          "description": "研究政策制定、評估與優化機制"
+        }
+      },
+      "projects": {
+        "title": "重點項目",
+        "subtitle": "我們的代表性成果",
+        "project1": {
+          "year": "2020",
+          "title": "澳門特別行政區居民稅法知識讀本系列",
+          "description": "編撰出版面向不同群體的稅法知識普及讀本，包括大學篇、社區篇、青少年篇和副刊。"
+        },
+        "project2": {
+          "year": "2021",
+          "title": "海南自由貿易港海關監管創新研究",
+          "description": "參與HNSK(ZD)21-182項目，研究海南自貿港海關監管制度創新。"
+        },
+        "project3": {
+          "year": "2023",
+          "title": "海南自由貿易港海關監管國際比較與監管對標研究",
+          "description": "參與HNSK(ZD)23-207項目，開展國際海關監管比較研究與對標分析。"
+        }
+      },
+      "publications": {
+        "title": "出版物",
+        "subtitle": "《澳門特別行政區居民稅法知識讀本》系列",
+        "university": {
+          "title": "大學篇",
+          "description": "面向大學生的稅法知識普及讀本"
+        },
+        "community": {
+          "title": "社區篇",
+          "description": "面向社區居民的稅法知識普及讀本"
+        },
+        "youth": {
+          "title": "青少年篇",
+          "description": "面向青少年的稅法知識普及讀本"
+        },
+        "supplement": {
+          "title": "副刊",
+          "description": "稅法知識補充材料"
+        },
+        "readOnline": "在線閱讀",
+        "downloadPDF": "下載PDF"
+      },
+      "insights": {
+        "title": "研究洞察",
+        "subtitle": "最新研究成果與政策分析",
+        "readMore": "閱讀更多"
+      },
+      "partners": {
+        "title": "友好單位及戰略合作夥伴",
+        "subtitle": "我們的合作網絡",
+        "partner1": "澳門經濟及科技發展局",
+        "partner2": "澳門貿易投資促進局",
+        "partner3": "中國社會科學院法學研究所",
+        "partner4": "澳門理工大學",
+        "partner5": "澳門聖若瑟大學",
+        "partner6": "吉林外國語大學",
+        "partner7": "澳門中西創新研究院",
+        "partner8": "澳門直播協會"
+      },
+      "contact": {
+        "title": "聯繫我們",
+        "subtitle": "我們期待與您合作",
+        "orgName": "澳門財經科技與教育發展學會",
+        "email": "電子郵件",
+        "contactForm": "聯繫表單",
+        "cooperationForm": "合作諮詢",
+        "name": "姓名",
+        "namePlaceholder": "請輸入您的姓名",
+        "emailLabel": "電子郵件",
+        "emailPlaceholder": "請輸入您的電子郵件",
+        "message": "留言",
+        "messagePlaceholder": "請輸入您的留言",
+        "organization": "機構名稱",
+        "organizationPlaceholder": "請輸入您的機構名稱",
+        "inquiryType": "諮詢類型",
+        "inquiryTypePlaceholder": "請選擇諮詢類型",
+        "submit": "提交",
+        "submitting": "提交中...",
+        "successMessage": "表單提交成功",
+        "errorRequired": "此欄位為必填項",
+        "errorEmail": "請輸入有效的電子郵件地址",
+        "inquiryTypes": {
+          "research": "研究合作",
+          "consulting": "諮詢服務",
+          "partnership": "戰略合作",
+          "other": "其他"
+        }
+      },
+      "footer": {
+        "description": "澳門財經科技與教育發展學會致力於推動澳門特區多元化、可持續、高質量發展，服務國家戰略，促進國際交流。",
+        "quickLinks": "快速鏈接",
+        "publications": "出版物",
+        "partners": "合作夥伴",
+        "copyright": "版權所有",
+        "allRightsReserved": "保留所有權利"
+      }
+    },
+    "zh-CN": {
+      "nav": {
+        "home": "首页",
+        "about": "关于我们",
+        "research": "研究领域",
+        "projects": "重点项目",
+        "publications": "出版物",
+        "insights": "研究洞察",
+        "partners": "合作伙伴",
+        "contact": "联系我们"
+      },
+      "hero": {
+        "headline": "以研究驱动决策，连接澳门与世界",
+        "subtitle": "澳门财经科技与教育发展学会致力于推动澳门特区多元化、可持续、高质量发展",
+        "cta1": "了解更多",
+        "cta2": "研究领域",
+        "cta3": "联系我们"
+      },
+      "about": {
+        "title": "关于我们",
+        "subtitle": "推动澳门多元化发展的非营利智库",
+        "description1": "澳門財經科技與教育發展學會 宗旨：立足澳门、背靠祖国、面向世界，积极响应中央支持澳门经济适度多元发展、融入国家发展大局的战略部署，着力服务金融创新、电子商务、商业出海、\"文化+科技\"融合及粤港澳大湾区合作；促进澳门现代金融业创新发展，深化跨境金融合作，助力澳门建设国际金融中心；广泛联系社会各界，协助深化澳门与内地、葡语国家在经济、金融、科技、教育、文化等多领域的务实合作，拓展中葡平台内涵，服务\"一带一路\"建设及\"双循环\"新发展格局；推动科技研发与成果转化，加快培育高新技术产业，支持人工智能、数字经济和金融科技等领域产学研深度融合，提升澳门国际人才竞争力； 大力扶植澳门文化产业发展，推动\"文化+科技\"融合创新，开发数字文创、非遗科技化应用、沉浸式文旅体验等新业态，助力澳门打造\"文化之城\"及多元文化共存的交流合作基地； 为澳门经济适度多元、可持续、高质量发展贡献力量，推动澳门更好融入国家大局在更高水平对外开放中发挥精准联系人作用，实现共同繁荣进步，智慧助力中华民族伟大复兴。",
+        "description2": "我们专注于国家战略、\"一带一路\"合作、双循环发展、中葡平台合作以及更高水平的对外开放。",
+        "focusAreas": "重点领域",
+        "area1": "金融创新",
+        "area2": "电子商务",
+        "area3": "商业全球化",
+        "area4": "文化与科技融合",
+        "area5": "大湾区合作",
+        "initiatives": "主要倡议",
+        "initiative1": "现代金融发展",
+        "initiative2": "跨境金融合作",
+        "initiative3": "科学研究与技术商业化",
+        "initiative4": "人工智能与数字经济",
+        "initiative5": "金融科技创新",
+        "initiative6": "人才发展",
+        "initiative7": "澳门文化产业创新"
+      },
+      "mission": {
+        "title": "使命与宗旨",
+        "subtitle": "我们的愿景与战略目标",
+        "visionTitle": "愿景",
+        "visionText": "成为推动澳门特区发展、服务国家战略、促进国际交流的领先智库。",
+        "missionTitle": "使命",
+        "missionText": "通过高质量研究、政策建议和国际合作，推动澳门经济多元化发展，促进大湾区融合，加强中葡平台合作。",
+        "objectivesTitle": "战略目标",
+        "objective1": "推动现代金融与数字经济发展",
+        "objective2": "促进跨境合作与区域治理",
+        "objective3": "支持政策创新与制度整合",
+        "objective4": "培养专业人才与学术交流"
+      },
+      "research": {
+        "title": "研究领域",
+        "subtitle": "我们的核心研究方向",
+        "area1": {
+          "title": "数字经济",
+          "description": "探索数字化转型、电子商务和数字金融创新"
+        },
+        "area2": {
+          "title": "人民币国际化",
+          "description": "研究人民币跨境使用和国际金融合作"
+        },
+        "area3": {
+          "title": "ESG与可持续发展",
+          "description": "推动环境、社会和治理标准在金融领域的应用"
+        },
+        "area4": {
+          "title": "低空经济",
+          "description": "研究无人机、城市空中交通等新兴产业"
+        },
+        "area5": {
+          "title": "横琴粤澳深度合作区制度整合",
+          "description": "探索横琴深合区的制度创新与政策协调"
+        },
+        "area6": {
+          "title": "区域治理",
+          "description": "研究大湾区协同治理与跨境合作机制"
+        },
+        "area7": {
+          "title": "自由贸易港监管",
+          "description": "分析自由贸易港海关监管与国际对标"
+        },
+        "area8": {
+          "title": "现代金融",
+          "description": "推动金融科技、绿色金融和普惠金融发展"
+        },
+        "area9": {
+          "title": "文化与科技",
+          "description": "探索文化产业与科技创新的融合发展"
+        },
+        "area10": {
+          "title": "跨境合作",
+          "description": "促进中葡平台合作与国际经贸往来"
+        },
+        "area11": {
+          "title": "政策创新",
+          "description": "研究政策制定、评估与优化机制"
+        }
+      },
+      "projects": {
+        "title": "重点项目",
+        "subtitle": "我们的代表性成果",
+        "project1": {
+          "year": "2020",
+          "title": "澳门特别行政区居民税法知识读本系列",
+          "description": "编撰出版面向不同群体的税法知识普及读本，包括大学篇、社区篇、青少年篇和副刊。"
+        },
+        "project2": {
+          "year": "2021",
+          "title": "海南自由贸易港海关监管创新研究",
+          "description": "参与HNSK(ZD)21-182项目，研究海南自贸港海关监管制度创新。"
+        },
+        "project3": {
+          "year": "2023",
+          "title": "海南自由贸易港海关监管国际比较与监管对标研究",
+          "description": "参与HNSK(ZD)23-207项目，开展国际海关监管比较研究与对标分析。"
+        }
+      },
+      "publications": {
+        "title": "出版物",
+        "subtitle": "《澳门特别行政区居民税法知识读本》系列",
+        "university": {
+          "title": "大学篇",
+          "description": "面向大学生的税法知识普及读本"
+        },
+        "community": {
+          "title": "社区篇",
+          "description": "面向社区居民的税法知识普及读本"
+        },
+        "youth": {
+          "title": "青少年篇",
+          "description": "面向青少年的税法知识普及读本"
+        },
+        "supplement": {
+          "title": "副刊",
+          "description": "税法知识补充材料"
+        },
+        "readOnline": "在线阅读",
+        "downloadPDF": "下载PDF"
+      },
+      "insights": {
+        "title": "研究洞察",
+        "subtitle": "最新研究成果与政策分析",
+        "readMore": "阅读更多"
+      },
+      "partners": {
+        "title": "友好单位及战略合作伙伴",
+        "subtitle": "我们的合作网络",
+        "partner1": "澳门经济及科技发展局",
+        "partner2": "澳门贸易投资促进局",
+        "partner3": "中国社会科学院法学研究所",
+        "partner4": "澳门理工大学",
+        "partner5": "澳门圣若瑟大学",
+        "partner6": "吉林外国语大学",
+        "partner7": "澳门中西创新研究院",
+        "partner8": "澳门直播协会"
+      },
+      "contact": {
+        "title": "联系我们",
+        "subtitle": "我们期待与您合作",
+        "orgName": "澳门财经科技与教育发展学会",
+        "email": "电子邮件",
+        "contactForm": "联系表单",
+        "cooperationForm": "合作咨询",
+        "name": "姓名",
+        "namePlaceholder": "请输入您的姓名",
+        "emailLabel": "电子邮件",
+        "emailPlaceholder": "请输入您的电子邮件",
+        "message": "留言",
+        "messagePlaceholder": "请输入您的留言",
+        "organization": "机构名称",
+        "organizationPlaceholder": "请输入您的机构名称",
+        "inquiryType": "咨询类型",
+        "inquiryTypePlaceholder": "请选择咨询类型",
+        "submit": "提交",
+        "submitting": "提交中...",
+        "successMessage": "表单提交成功",
+        "errorRequired": "此栏位为必填项",
+        "errorEmail": "请输入有效的电子邮件地址",
+        "inquiryTypes": {
+          "research": "研究合作",
+          "consulting": "咨询服务",
+          "partnership": "战略合作",
+          "other": "其他"
+        }
+      },
+      "footer": {
+        "description": "澳门财经科技与教育发展学会致力于推动澳门特区多元化、可持续、高质量发展，服务国家战略，促进国际交流。",
+        "quickLinks": "快速链接",
+        "publications": "出版物",
+        "partners": "合作伙伴",
+        "copyright": "版权所有",
+        "allRightsReserved": "保留所有权利"
+      }
+    },
+    "en": {
+      "nav": {
+        "home": "Home",
+        "about": "About Us",
+        "research": "Research Areas",
+        "projects": "Key Projects",
+        "publications": "Publications",
+        "insights": "Insights",
+        "partners": "Partners",
+        "contact": "Contact"
+      },
+      "hero": {
+        "headline": "Research-driven decisions, connecting Macao with the world",
+        "subtitle": "MFTEDA is committed to promoting diversified, sustainable, and high-quality development of Macao SAR",
+        "cta1": "Learn More",
+        "cta2": "Research Areas",
+        "cta3": "Contact Us"
+      },
+      "about": {
+        "title": "About Us",
+        "subtitle": "A non-profit think tank driving Macao's diversified development",
+        "description1": "Macao Finance, Technology and Education Development Association Purpose: Based in Macao, backed by the motherland, and facing the world, we actively respond to the central government's strategic deployment to support the moderately diversified economic development of Macao and integrate into the overall national development. We focus on serving financial innovation, e-commerce, business globalization, \"culture + technology\" integration, and Guangdong-Hong Kong-Macao Greater Bay Area cooperation; promoting the innovative development of Macao's modern financial industry, deepening cross-border financial cooperation, and helping Macao build an international financial center; extensively connecting with all sectors of society to assist in deepening practical cooperation between Macao, the mainland, and Portuguese-speaking countries in economy, finance, technology, education, culture, and other fields, expanding the connotation of the Sino-Portuguese platform, and serving the construction of the \"Belt and Road\" and the new development pattern of \"dual circulation\"; promoting scientific and technological research and development and the transformation of achievements, accelerating the cultivation of high-tech industries, supporting the deep integration of industry, academia, and research in fields such as artificial intelligence, digital economy, and financial technology, and enhancing Macao's international talent competitiveness; vigorously supporting the development of Macao's cultural industry, promoting the innovative integration of \"culture + technology\", developing new business formats such as digital cultural creation, technological application of intangible cultural heritage, and immersive cultural tourism experiences, and helping Macao build a \"City of Culture\" and an exchange and cooperation base where diverse cultures coexist; contributing to the moderately diversified, sustainable, and high-quality development of Macao's economy, promoting Macao to better integrate into the overall national development, playing the role of a precise contact person in a higher level of opening up, achieving common prosperity and progress, and wisely assisting the great rejuvenation of the Chinese nation.",
+        "description2": "We focus on national strategy, Belt and Road cooperation, dual circulation, China-Portuguese platform cooperation, and higher-level opening up.",
+        "focusAreas": "Focus Areas",
+        "area1": "Financial Innovation",
+        "area2": "E-commerce",
+        "area3": "Business Globalization",
+        "area4": "Culture & Technology Integration",
+        "area5": "Greater Bay Area Cooperation",
+        "initiatives": "Key Initiatives",
+        "initiative1": "Modern Finance Development",
+        "initiative2": "Cross-border Financial Cooperation",
+        "initiative3": "Scientific Research & Technology Commercialization",
+        "initiative4": "AI & Digital Economy",
+        "initiative5": "Fintech Innovation",
+        "initiative6": "Talent Development",
+        "initiative7": "Macao Cultural Industry Innovation"
+      },
+      "mission": {
+        "title": "Mission & Purpose",
+        "subtitle": "Our vision and strategic objectives",
+        "visionTitle": "Vision",
+        "visionText": "To become a leading think tank driving Macao SAR development, serving national strategy, and promoting international exchange.",
+        "missionTitle": "Mission",
+        "missionText": "Through high-quality research, policy recommendations, and international cooperation, we promote Macao's economic diversification, Greater Bay Area integration, and China-Portuguese platform cooperation.",
+        "objectivesTitle": "Strategic Objectives",
+        "objective1": "Promote modern finance and digital economy development",
+        "objective2": "Facilitate cross-border cooperation and regional governance",
+        "objective3": "Support policy innovation and institutional integration",
+        "objective4": "Cultivate professional talent and academic exchange"
+      },
+      "research": {
+        "title": "Research Areas",
+        "subtitle": "Our core research directions",
+        "area1": {
+          "title": "Digital Economy",
+          "description": "Exploring digital transformation, e-commerce, and digital finance innovation"
+        },
+        "area2": {
+          "title": "RMB Internationalization",
+          "description": "Researching cross-border RMB usage and international financial cooperation"
+        },
+        "area3": {
+          "title": "ESG and Sustainable Development",
+          "description": "Promoting environmental, social, and governance standards in finance"
+        },
+        "area4": {
+          "title": "Low-Altitude Economy",
+          "description": "Studying drones, urban air mobility, and emerging industries"
+        },
+        "area5": {
+          "title": "Institutional Integration of Hengqin Guangdong-Macao Deep Cooperation Zone",
+          "description": "Exploring institutional innovation and policy coordination in Hengqin"
+        },
+        "area6": {
+          "title": "Regional Governance",
+          "description": "Researching Greater Bay Area collaborative governance and cross-border mechanisms"
+        },
+        "area7": {
+          "title": "Free Trade Port Regulation",
+          "description": "Analyzing customs regulation and international benchmarking for free trade ports"
+        },
+        "area8": {
+          "title": "Modern Finance",
+          "description": "Promoting fintech, green finance, and inclusive finance development"
+        },
+        "area9": {
+          "title": "Culture & Technology",
+          "description": "Exploring integration of cultural industries and technological innovation"
+        },
+        "area10": {
+          "title": "Cross-Border Cooperation",
+          "description": "Facilitating China-Portuguese platform cooperation and international trade"
+        },
+        "area11": {
+          "title": "Policy Innovation",
+          "description": "Researching policy formulation, evaluation, and optimization mechanisms"
+        }
+      },
+      "projects": {
+        "title": "Key Projects",
+        "subtitle": "Our representative achievements",
+        "project1": {
+          "year": "2020",
+          "title": "Macao SAR Resident Tax Law Knowledge Series",
+          "description": "Published tax law knowledge books for different audiences, including university, community, youth, and supplement editions."
+        },
+        "project2": {
+          "year": "2021",
+          "title": "Hainan Free Trade Port Customs Regulation Innovation Research",
+          "description": "Participated in HNSK(ZD)21-182 project, researching customs regulation innovation in Hainan FTP."
+        },
+        "project3": {
+          "year": "2023",
+          "title": "Hainan Free Trade Port Customs Regulation International Comparison & Regulatory Alignment Research",
+          "description": "Participated in HNSK(ZD)23-207 project, conducting international customs regulation comparison and benchmarking analysis."
+        }
+      },
+      "publications": {
+        "title": "Publications",
+        "subtitle": "Resident Tax Law Knowledge Series",
+        "university": {
+          "title": "University Edition",
+          "description": "Tax law knowledge book for university students"
+        },
+        "community": {
+          "title": "Community Edition",
+          "description": "Tax law knowledge book for community residents"
+        },
+        "youth": {
+          "title": "Youth Edition",
+          "description": "Tax law knowledge book for young people"
+        },
+        "supplement": {
+          "title": "Supplement Edition",
+          "description": "Supplementary tax law knowledge materials"
+        },
+        "readOnline": "Read Online",
+        "downloadPDF": "Download PDF"
+      },
+      "insights": {
+        "title": "Research Insights",
+        "subtitle": "Latest research findings and policy analysis",
+        "readMore": "Read More"
+      },
+      "partners": {
+        "title": "Friendly Institutions & Strategic Partners",
+        "subtitle": "Our collaboration network",
+        "partner1": "Macao Economic and Technological Development Bureau",
+        "partner2": "Macao Trade and Investment Promotion Institute",
+        "partner3": "Institute of Law, Chinese Academy of Social Sciences",
+        "partner4": "Macao Polytechnic University",
+        "partner5": "University of Saint Joseph",
+        "partner6": "Jilin International Studies University",
+        "partner7": "Macao East-West Innovation Institute",
+        "partner8": "Macao Live Streaming Association"
+      },
+      "contact": {
+        "title": "Contact Us",
+        "subtitle": "We look forward to collaborating with you",
+        "orgName": "Macao Finance, Technology and Education Development Association",
+        "email": "Email",
+        "contactForm": "Contact Form",
+        "cooperationForm": "Cooperation Inquiry",
+        "name": "Name",
+        "namePlaceholder": "Enter your name",
+        "emailLabel": "Email",
+        "emailPlaceholder": "Enter your email",
+        "message": "Message",
+        "messagePlaceholder": "Enter your message",
+        "organization": "Organization",
+        "organizationPlaceholder": "Enter your organization name",
+        "inquiryType": "Inquiry Type",
+        "inquiryTypePlaceholder": "Select inquiry type",
+        "submit": "Submit",
+        "submitting": "Submitting...",
+        "successMessage": "Form submitted successfully",
+        "errorRequired": "This field is required",
+        "errorEmail": "Please enter a valid email address",
+        "inquiryTypes": {
+          "research": "Research Collaboration",
+          "consulting": "Consulting Services",
+          "partnership": "Strategic Partnership",
+          "other": "Other"
+        }
+      },
+      "footer": {
+        "description": "MFTEDA is committed to promoting diversified, sustainable, and high-quality development of Macao SAR, serving national strategy, and promoting international exchange.",
+        "quickLinks": "Quick Links",
+        "publications": "Publications",
+        "partners": "Partners",
+        "copyright": "Copyright",
+        "allRightsReserved": "All rights reserved"
+      }
+    },
+    "pt": {
+      "nav": {
+        "home": "Início",
+        "about": "Sobre Nós",
+        "research": "Áreas de Pesquisa",
+        "projects": "Projetos Principais",
+        "publications": "Publicações",
+        "insights": "Insights",
+        "partners": "Parceiros",
+        "contact": "Contacto"
+      },
+      "hero": {
+        "headline": "Decisões orientadas por pesquisa, conectando Macau ao mundo",
+        "subtitle": "MFTEDA está comprometida em promover o desenvolvimento diversificado, sustentável e de alta qualidade da RAE de Macau",
+        "cta1": "Saiba Mais",
+        "cta2": "Áreas de Pesquisa",
+        "cta3": "Contacte-nos"
+      },
+      "about": {
+        "title": "Sobre Nós",
+        "subtitle": "Um think tank sem fins lucrativos impulsionando o desenvolvimento diversificado de Macau",
+        "description1": "Associação de Desenvolvimento de Finanças, Tecnologia e Educação de Macau Propósito: Com base em Macau, apoiada pela pátria e voltada para o mundo, respondemos ativamente à implantação estratégica do governo central para apoiar o desenvolvimento económico moderadamente diversificado de Macau e integrar-se no desenvolvimento nacional geral. Focamo-nos em servir a inovação financeira, comércio eletrónico, globalização de negócios, integração \"cultura + tecnologia\" e cooperação na Grande Baía Guangdong-Hong Kong-Macau; promover o desenvolvimento inovador da indústria financeira moderna de Macau, aprofundar a cooperação financeira transfronteiriça e ajudar Macau a construir um centro financeiro internacional; conectar extensivamente com todos os setores da sociedade para ajudar a aprofundar a cooperação prática entre Macau, o continente e os países de língua portuguesa em economia, finanças, tecnologia, educação, cultura e outros campos, expandindo a conotação da plataforma Sino-Portuguesa e servindo a construção da \"Iniciativa Cinturão e Rota\" e o novo padrão de desenvolvimento de \"dupla circulação\"; promover a pesquisa e desenvolvimento científico e tecnológico e a transformação de conquistas, acelerar o cultivo de indústrias de alta tecnologia, apoiar a profunda integração da indústria, academia e pesquisa em campos como inteligência artificial, economia digital e tecnologia financeira, e aumentar a competitividade internacional de talentos de Macau; apoiar vigorosamente o desenvolvimento da indústria cultural de Macau, promover a integração inovadora de \"cultura + tecnologia\", desenvolver novos formatos de negócios como criação cultural digital, aplicação tecnológica de património cultural imaterial e experiências imersivas de turismo cultural, e ajudar Macau a construir uma \"Cidade da Cultura\" e uma base de intercâmbio e cooperação onde diversas culturas coexistem; contribuindo para o desenvolvimento moderadamente diversificado, sustentável e de alta qualidade da economia de Macau, promovendo Macau a integrar-se melhor no desenvolvimento nacional geral, desempenhando o papel de um contacto preciso num nível superior de abertura, alcançando prosperidade e progresso comuns, e auxiliando sabiamente o grande rejuvenescimento da nação chinesa.",
+        "description2": "Focamos na estratégia nacional, cooperação da Iniciativa Cinturão e Rota, dupla circulação, cooperação da plataforma China-Países de Língua Portuguesa e abertura de nível superior.",
+        "focusAreas": "Áreas de Foco",
+        "area1": "Inovação Financeira",
+        "area2": "Comércio Eletrónico",
+        "area3": "Globalização Empresarial",
+        "area4": "Integração Cultura & Tecnologia",
+        "area5": "Cooperação da Grande Baía",
+        "initiatives": "Iniciativas Principais",
+        "initiative1": "Desenvolvimento de Finanças Modernas",
+        "initiative2": "Cooperação Financeira Transfronteiriça",
+        "initiative3": "Pesquisa Científica & Comercialização de Tecnologia",
+        "initiative4": "IA & Economia Digital",
+        "initiative5": "Inovação Fintech",
+        "initiative6": "Desenvolvimento de Talentos",
+        "initiative7": "Inovação da Indústria Cultural de Macau"
+      },
+      "mission": {
+        "title": "Missão e Propósito",
+        "subtitle": "Nossa visão e objetivos estratégicos",
+        "visionTitle": "Visão",
+        "visionText": "Tornar-se um think tank líder impulsionando o desenvolvimento da RAE de Macau, servindo a estratégia nacional e promovendo o intercâmbio internacional.",
+        "missionTitle": "Missão",
+        "missionText": "Através de pesquisa de alta qualidade, recomendações políticas e cooperação internacional, promovemos a diversificação económica de Macau, integração da Grande Baía e cooperação da plataforma China-Países de Língua Portuguesa.",
+        "objectivesTitle": "Objetivos Estratégicos",
+        "objective1": "Promover o desenvolvimento de finanças modernas e economia digital",
+        "objective2": "Facilitar a cooperação transfronteiriça e governança regional",
+        "objective3": "Apoiar a inovação política e integração institucional",
+        "objective4": "Cultivar talentos profissionais e intercâmbio académico"
+      },
+      "research": {
+        "title": "Áreas de Pesquisa",
+        "subtitle": "Nossas direções de pesquisa principais",
+        "area1": {
+          "title": "Economia Digital",
+          "description": "Explorando transformação digital, comércio eletrónico e inovação financeira digital"
+        },
+        "area2": {
+          "title": "Internacionalização do RMB",
+          "description": "Pesquisando uso transfronteiriço do RMB e cooperação financeira internacional"
+        },
+        "area3": {
+          "title": "ESG e Desenvolvimento Sustentável",
+          "description": "Promovendo padrões ambientais, sociais e de governança nas finanças"
+        },
+        "area4": {
+          "title": "Economia de Baixa Altitude",
+          "description": "Estudando drones, mobilidade aérea urbana e indústrias emergentes"
+        },
+        "area5": {
+          "title": "Integração Institucional da Zona de Cooperação Profunda Hengqin Guangdong-Macau",
+          "description": "Explorando inovação institucional e coordenação política em Hengqin"
+        },
+        "area6": {
+          "title": "Governança Regional",
+          "description": "Pesquisando governança colaborativa da Grande Baía e mecanismos transfronteiriços"
+        },
+        "area7": {
+          "title": "Regulação de Porto de Livre Comércio",
+          "description": "Analisando regulação aduaneira e benchmarking internacional para portos de livre comércio"
+        },
+        "area8": {
+          "title": "Finanças Modernas",
+          "description": "Promovendo desenvolvimento de fintech, finanças verdes e finanças inclusivas"
+        },
+        "area9": {
+          "title": "Cultura & Tecnologia",
+          "description": "Explorando integração de indústrias culturais e inovação tecnológica"
+        },
+        "area10": {
+          "title": "Cooperação Transfronteiriça",
+          "description": "Facilitando cooperação da plataforma China-Países de Língua Portuguesa e comércio internacional"
+        },
+        "area11": {
+          "title": "Inovação Política",
+          "description": "Pesquisando formulação, avaliação e mecanismos de otimização de políticas"
+        }
+      },
+      "projects": {
+        "title": "Projetos Principais",
+        "subtitle": "Nossas conquistas representativas",
+        "project1": {
+          "year": "2020",
+          "title": "Série de Conhecimento da Lei Fiscal para Residentes da RAE de Macau",
+          "description": "Publicados livros de conhecimento da lei fiscal para diferentes públicos, incluindo edições universitária, comunitária, juvenil e suplementar."
+        },
+        "project2": {
+          "year": "2021",
+          "title": "Pesquisa de Inovação em Regulação Aduaneira do Porto de Livre Comércio de Hainan",
+          "description": "Participou no projeto HNSK(ZD)21-182, pesquisando inovação em regulação aduaneira no Porto de Livre Comércio de Hainan."
+        },
+        "project3": {
+          "year": "2023",
+          "title": "Comparação Internacional e Alinhamento Regulatório da Regulação Aduaneira do Porto de Livre Comércio de Hainan",
+          "description": "Participou no projeto HNSK(ZD)23-207, conduzindo comparação internacional de regulação aduaneira e análise de benchmarking."
+        }
+      },
+      "publications": {
+        "title": "Publicações",
+        "subtitle": "Série de Conhecimento da Lei Fiscal para Residentes",
+        "university": {
+          "title": "Edição Universitária",
+          "description": "Livro de conhecimento da lei fiscal para estudantes universitários"
+        },
+        "community": {
+          "title": "Edição Comunitária",
+          "description": "Livro de conhecimento da lei fiscal para residentes da comunidade"
+        },
+        "youth": {
+          "title": "Edição Juvenil",
+          "description": "Livro de conhecimento da lei fiscal para jovens"
+        },
+        "supplement": {
+          "title": "Edição Suplementar",
+          "description": "Materiais suplementares de conhecimento da lei fiscal"
+        },
+        "readOnline": "Ler Online",
+        "downloadPDF": "Baixar PDF"
+      },
+      "insights": {
+        "title": "Insights de Pesquisa",
+        "subtitle": "Últimas descobertas de pesquisa e análise política",
+        "readMore": "Ler Mais"
+      },
+      "partners": {
+        "title": "Instituições Amigas & Parceiros Estratégicos",
+        "subtitle": "Nossa rede de colaboração",
+        "partner1": "Gabinete de Desenvolvimento Económico e Tecnológico de Macau",
+        "partner2": "Instituto de Promoção do Comércio e do Investimento de Macau",
+        "partner3": "Instituto de Direito, Academia Chinesa de Ciências Sociais",
+        "partner4": "Universidade Politécnica de Macau",
+        "partner5": "Universidade de São José",
+        "partner6": "Universidade de Estudos Internacionais de Jilin",
+        "partner7": "Instituto de Inovação Leste-Oeste de Macau",
+        "partner8": "Associação de Transmissão ao Vivo de Macau"
+      },
+      "contact": {
+        "title": "Contacte-nos",
+        "subtitle": "Esperamos colaborar consigo",
+        "orgName": "Associação de Desenvolvimento de Finanças, Tecnologia e Educação de Macau",
+        "email": "Email",
+        "contactForm": "Formulário de Contacto",
+        "cooperationForm": "Consulta de Cooperação",
+        "name": "Nome",
+        "namePlaceholder": "Digite seu nome",
+        "emailLabel": "Email",
+        "emailPlaceholder": "Digite seu email",
+        "message": "Mensagem",
+        "messagePlaceholder": "Digite sua mensagem",
+        "organization": "Organização",
+        "organizationPlaceholder": "Digite o nome da sua organização",
+        "inquiryType": "Tipo de Consulta",
+        "inquiryTypePlaceholder": "Selecione o tipo de consulta",
+        "submit": "Enviar",
+        "submitting": "Enviando...",
+        "successMessage": "Formulário enviado com sucesso",
+        "errorRequired": "Este campo é obrigatório",
+        "errorEmail": "Por favor, digite um endereço de email válido",
+        "inquiryTypes": {
+          "research": "Colaboração em Pesquisa",
+          "consulting": "Serviços de Consultoria",
+          "partnership": "Parceria Estratégica",
+          "other": "Outro"
+        }
+      },
+      "footer": {
+        "description": "MFTEDA está comprometida em promover o desenvolvimento diversificado, sustentável e de alta qualidade da RAE de Macau, servindo a estratégia nacional e promovendo o intercâmbio internacional.",
+        "quickLinks": "Links Rápidos",
+        "publications": "Publicações",
+        "partners": "Parceiros",
+        "copyright": "Direitos Autorais",
+        "allRightsReserved": "Todos os direitos reservados"
+      }
+    }
+  },
+  "insights": [
+    {
+      "date": "2026-03-15",
+      "category": {
+        "zh-TW": "數字經濟",
+        "zh-CN": "数字经济",
+        "en": "Digital Economy",
+        "pt": "Economia Digital"
+      },
+      "title": {
+        "zh-TW": "澳門數字經濟發展趨勢",
+        "zh-CN": "澳门数字经济发展趋势",
+        "en": "Digital Economy Trends in Macao",
+        "pt": "Tendências da Economia Digital em Macau"
+      },
+      "excerpt": {
+        "zh-TW": "分析澳門特區數字化轉型的機遇與挑戰",
+        "zh-CN": "分析澳门特区数字化转型的机遇与挑战",
+        "en": "Analysis of digital transformation opportunities and challenges in Macao SAR",
+        "pt": "Análise de oportunidades e desafios da transformação digital na RAE de Macau"
+      }
+    },
+    {
+      "date": "2026-03-10",
+      "category": {
+        "zh-TW": "區域合作",
+        "zh-CN": "区域合作",
+        "en": "Regional Cooperation",
+        "pt": "Cooperação Regional"
+      },
+      "title": {
+        "zh-TW": "大灣區融合發展策略",
+        "zh-CN": "大湾区融合发展策略",
+        "en": "Greater Bay Area Integration Strategies",
+        "pt": "Estratégias de Integração da Grande Baía"
+      },
+      "excerpt": {
+        "zh-TW": "提升澳門在大灣區角色的政策建議",
+        "zh-CN": "提升澳门在大湾区角色的政策建议",
+        "en": "Policy recommendations for enhancing Macao's role in the Greater Bay Area",
+        "pt": "Recomendações políticas para fortalecer o papel de Macau na Grande Baía"
+      }
+    },
+    {
+      "date": "2026-03-05",
+      "category": {
+        "zh-TW": "可持續金融",
+        "zh-CN": "可持续金融",
+        "en": "Sustainable Finance",
+        "pt": "Finanças Sustentáveis"
+      },
+      "title": {
+        "zh-TW": "ESG投資機遇",
+        "zh-CN": "ESG投资机遇",
+        "en": "ESG Investment Opportunities",
+        "pt": "Oportunidades de Investimento ESG"
+      },
+      "excerpt": {
+        "zh-TW": "探索可持續投資趨勢與綠色金融倡議",
+        "zh-CN": "探索可持续投资趋势与绿色金融倡议",
+        "en": "Exploring sustainable investment trends and green finance initiatives",
+        "pt": "Explorando tendências de investimento sustentável e iniciativas de finanças verdes"
+      }
+    },
+    {
+      "date": "2026-02-28",
+      "category": {
+        "zh-TW": "現代金融",
+        "zh-CN": "现代金融",
+        "en": "Modern Finance",
+        "pt": "Finanças Modernas"
+      },
+      "title": {
+        "zh-TW": "人民幣國際化進展",
+        "zh-CN": "人民币国际化进展",
+        "en": "RMB Internationalization Progress",
+        "pt": "Progresso da Internacionalização do RMB"
+      },
+      "excerpt": {
+        "zh-TW": "人民幣跨境使用與金融合作的最新進展",
+        "zh-CN": "人民币跨境使用与金融合作的最新进展",
+        "en": "Latest developments in cross-border RMB usage and financial cooperation",
+        "pt": "Últimos desenvolvimentos no uso transfronteiriço do RMB e cooperação financeira"
+      }
+    },
+    {
+      "date": "2026-02-20",
+      "category": {
+        "zh-TW": "創新",
+        "zh-CN": "创新",
+        "en": "Innovation",
+        "pt": "Inovação"
+      },
+      "title": {
+        "zh-TW": "文化與科技創新",
+        "zh-CN": "文化与科技创新",
+        "en": "Culture and Technology Innovation",
+        "pt": "Inovação em Cultura e Tecnologia"
+      },
+      "excerpt": {
+        "zh-TW": "科技如何改變澳門文化產業",
+        "zh-CN": "科技如何改变澳门文化产业",
+        "en": "How technology is transforming Macao's cultural industries",
+        "pt": "Como a tecnologia está transformando as indústrias culturais de Macau"
+      }
+    },
+    {
+      "date": "2026-02-15",
+      "category": {
+        "zh-TW": "政策研究",
+        "zh-CN": "政策研究",
+        "en": "Policy Research",
+        "pt": "Pesquisa Política"
+      },
+      "title": {
+        "zh-TW": "自由貿易港監管最佳實踐",
+        "zh-CN": "自由贸易港监管最佳实践",
+        "en": "Free Trade Port Regulation Best Practices",
+        "pt": "Melhores Práticas de Regulação de Porto de Livre Comércio"
+      },
+      "excerpt": {
+        "zh-TW": "海關監管框架的國際比較",
+        "zh-CN": "海关监管框架的国际比较",
+        "en": "International comparison of customs regulation frameworks",
+        "pt": "Comparação internacional de estruturas de regulação aduaneira"
+      }
+    }
+  ],
+  "focus_cards": [
+    {
+      "icon": "trending",
+      "title": {
+        "zh-TW": "現代金融",
+        "zh-CN": "现代金融",
+        "en": "Modern Finance",
+        "pt": "Finanças Modernas"
+      },
+      "description": {
+        "zh-TW": "推動金融科技創新與跨境金融合作",
+        "zh-CN": "推动金融科技创新与跨境金融合作",
+        "en": "Driving fintech innovation and cross-border financial cooperation",
+        "pt": "Impulsionando inovação fintech e cooperação financeira transfronteiriça"
+      }
+    },
+    {
+      "icon": "globe",
+      "title": {
+        "zh-TW": "數字經濟",
+        "zh-CN": "数字经济",
+        "en": "Digital Economy",
+        "pt": "Economia Digital"
+      },
+      "description": {
+        "zh-TW": "探索人工智能、電子商務與數字化轉型",
+        "zh-CN": "探索人工智能、电子商务与数字化转型",
+        "en": "Exploring AI, e-commerce, and digital transformation",
+        "pt": "Explorando IA, comércio eletrónico e transformação digital"
+      }
+    },
+    {
+      "icon": "users",
+      "title": {
+        "zh-TW": "大灣區合作",
+        "zh-CN": "大湾区合作",
+        "en": "Greater Bay Area Cooperation",
+        "pt": "Cooperação da Grande Baía"
+      },
+      "description": {
+        "zh-TW": "促進區域融合與跨境合作",
+        "zh-CN": "促进区域融合与跨境合作",
+        "en": "Promoting regional integration and cross-border cooperation",
+        "pt": "Promovendo integração regional e cooperação transfronteiriça"
+      }
+    }
+  ],
+  "book_covers": {
+    "university": "book-university.png",
+    "community": "book-community.png",
+    "youth": "book-youth.png",
+    "supplement": "book-supplement.png"
+  }
+}
