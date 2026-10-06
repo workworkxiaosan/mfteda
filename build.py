@@ -414,6 +414,8 @@ def render_publications(lang):
     pb = I18N[lang]['publications']
     covers = {'university': 'book-university.webp', 'community': 'book-community.webp',
               'youth': 'book-youth.webp', 'supplement': 'book-supplement.webp'}
+    pdfs = {'university': 'book-university.pdf', 'community': 'book-community.pdf',
+            'youth': 'book-youth.pdf', 'supplement': 'book-supplement.pdf'}
     cards = ''.join(f'''
       <div class="institutional-card book-card reveal">
         <img class="book-cover" src="{asset('img/' + covers[k], lang)}" alt="{esc(pb[k]['title'])}">
@@ -421,8 +423,8 @@ def render_publications(lang):
           <h3>{esc(pb[k]['title'])}</h3>
           <p>{esc(pb[k]['description'])}</p>
           <div class="book-actions">
-            <button type="button" class="btn btn-primary" onclick="window.open('#','_blank')">{esc(pb['readOnline'])}</button>
-            <button type="button" class="btn btn-outline" onclick="window.open('#','_blank')">{esc(pb['downloadPDF'])}</button>
+            <a class="btn btn-primary" href="{asset('pdf/' + pdfs[k], lang)}" target="_blank" rel="noopener">{esc(pb['readOnline'])}</a>
+            <a class="btn btn-outline" href="{asset('pdf/' + pdfs[k], lang)}" download="{esc(pb[k]['title'])}.pdf">{esc(pb['downloadPDF'])}</a>
           </div>
         </div>
       </div>''' for k in ['university', 'community', 'youth', 'supplement'])

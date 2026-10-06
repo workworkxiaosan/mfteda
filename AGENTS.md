@@ -24,7 +24,7 @@
 - 域名 `mfteda.org`：A 記錄指向 GitHub Pages（185.199.108.153/109.153/110.153/111.153），`www` CNAME → `workworkxiaosan.github.io`；DNS 在 Hostinger hPanel 管理。
 - GitHub 倉庫：`workworkxiaosan/mfteda`（本機 gh CLI 已登錄 workworkxiaosan）。
 - 默認語言繁中在根路徑（如 `/about.html`），與原站 URL 一致。
-- 出版物「在線閱讀/下載PDF」按鈕目前是佔位（`#`），拿到真實 PDF 後放到 `dist` 對應位置並在 `build.py` 的 `render_publications` 中替換鏈接。
+- 出版物 PDF 已上線：`assets/pdf/book-*.pdf`（4 本稅法讀本，約 70MB），「在線閱讀」新標籤頁打開，「下載PDF」直接下載。要替換版本只需覆蓋同名文件。
 - 社交鏈接（FB/LinkedIn/Twitter）在 `content.json` 的 `social` 字段，目前是 `#`。
 - 聯繫表單為前端演示（原站如此），未接後端；如需真正收集留言可接 Formspree 等服務。
 - 原站遺留問題已修復：社區篇/副刊封面對調、關於我們「。。」雙句號、/mission 空路由。
