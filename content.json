@@ -35,11 +35,15 @@
     "partner1": "https://www.dsedt.gov.mo",
     "partner2": "https://www.ipim.gov.mo",
     "partner3": "http://www.iolaw.cssn.cn",
-    "partner4": "https://www.mpu.edu.mo",
-    "partner5": "https://www.usj.edu.mo",
-    "partner6": "https://www.jisu.edu.cn",
-    "partner7": "#",
-    "partner8": "https://www.facebook.com/MacauLiveAssociation/"
+    "partner4": "https://www.bjql.org.cn",
+    "partner5": "https://www.bnu.edu.cn",
+    "partner6": "https://www.gzhu.edu.cn",
+    "partner7": "https://www.mpu.edu.mo",
+    "partner8": "https://www.usj.edu.mo",
+    "partner9": "https://www.jisu.edu.cn",
+    "partner10": "https://www.instagram.com/macau.hall.de.cultura/",
+    "partner11": "#",
+    "partner12": "https://www.facebook.com/MacauLiveAssociation/"
   },
   "i18n": {
     "zh-TW": {
@@ -194,11 +198,15 @@
         "partner1": "澳門經濟及科技發展局",
         "partner2": "招商投資促進局",
         "partner3": "中國社會科學院法學研究所",
-        "partner4": "澳門理工大學",
-        "partner5": "聖若瑟大學",
-        "partner6": "吉林外國語大學",
-        "partner7": "澳門中西創新研究院",
-        "partner8": "澳門直播協會"
+        "partner4": "北京市歸國華僑聯合會",
+        "partner5": "北京師範大學",
+        "partner6": "廣州大學",
+        "partner7": "澳門理工大學",
+        "partner8": "聖若瑟大學",
+        "partner9": "吉林外國語大學",
+        "partner10": "文化公所",
+        "partner11": "澳門中西創新研究院",
+        "partner12": "澳門直播協會"
       },
       "contact": {
         "title": "聯繫我們",
@@ -390,11 +398,15 @@
         "partner1": "澳门经济及科技发展局",
         "partner2": "招商投资促进局",
         "partner3": "中国社会科学院法学研究所",
-        "partner4": "澳门理工大学",
-        "partner5": "圣若瑟大学",
-        "partner6": "吉林外国语大学",
-        "partner7": "澳门中西创新研究院",
-        "partner8": "澳门直播协会"
+        "partner4": "北京市归国华侨联合会",
+        "partner5": "北京师范大学",
+        "partner6": "广州大学",
+        "partner7": "澳门理工大学",
+        "partner8": "圣若瑟大学",
+        "partner9": "吉林外国语大学",
+        "partner10": "文化公所",
+        "partner11": "澳门中西创新研究院",
+        "partner12": "澳门直播协会"
       },
       "contact": {
         "title": "联系我们",
@@ -586,11 +598,15 @@
         "partner1": "Macao Economic and Technological Development Bureau",
         "partner2": "Commerce and Investment Promotion Institute",
         "partner3": "Institute of Law, Chinese Academy of Social Sciences",
-        "partner4": "Macao Polytechnic University",
-        "partner5": "University of Saint Joseph",
-        "partner6": "Jilin International Studies University",
-        "partner7": "Macao East-West Innovation Institute",
-        "partner8": "Macao Live Streaming Association"
+        "partner4": "Beijing Federation of Returned Overseas Chinese",
+        "partner5": "Beijing Normal University",
+        "partner6": "Guangzhou University",
+        "partner7": "Macao Polytechnic University",
+        "partner8": "University of Saint Joseph",
+        "partner9": "Jilin International Studies University",
+        "partner10": "Macau Hall of Culture",
+        "partner11": "Macao East-West Innovation Institute",
+        "partner12": "Macao Live Streaming Association"
       },
       "contact": {
         "title": "Contact Us",
@@ -782,11 +798,15 @@
         "partner1": "Gabinete de Desenvolvimento Económico e Tecnológico de Macau",
         "partner2": "Instituto de Promoção do Comércio e do Investimento de Macau",
         "partner3": "Instituto de Direito, Academia Chinesa de Ciências Sociais",
-        "partner4": "Universidade Politécnica de Macau",
-        "partner5": "Universidade de São José",
-        "partner6": "Universidade de Estudos Internacionais de Jilin",
-        "partner7": "Instituto de Inovação Leste-Oeste de Macau",
-        "partner8": "Associação de Transmissão ao Vivo de Macau"
+        "partner4": "Federação dos Chineses Ultramarinos Retornados de Pequim",
+        "partner5": "Universidade Normal de Pequim",
+        "partner6": "Universidade de Guangzhou",
+        "partner7": "Universidade Politécnica de Macau",
+        "partner8": "Universidade de São José",
+        "partner9": "Universidade de Estudos Internacionais de Jilin",
+        "partner10": "Hall de Cultura de Macau",
+        "partner11": "Instituto de Inovação Leste-Oeste de Macau",
+        "partner12": "Associação de Transmissão ao Vivo de Macau"
       },
       "contact": {
         "title": "Contacte-nos",

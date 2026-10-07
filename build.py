@@ -528,7 +528,7 @@ def render_partners(lang):
     cards = ''.join(f'''
       <a class="institutional-card partner-card reveal" href="{hrefs[f'partner{i}']}"{' target="_blank" rel="noopener"' if hrefs[f'partner{i}'] != '#' else ''} style="display:block;">
         <h3>{esc(pt[f'partner{i}'])}</h3>
-      </a>''' for i in range(1, 9))
+      </a>''' for i in range(1, 13))
     body = page_hero(lang, 'partners') + f'''
 <section class="section-spacing">
   <div class="container-institutional">
