@@ -32,3 +32,4 @@
 - 聯繫表單為前端演示（原站如此），未接後端；如需真正收集留言可接 Formspree 等服務。
 - 原站遺留問題已修復：社區篇/副刊封面對調、關於我們「。。」雙句號、/mission 空路由。
 - 繁簡校對規範（2026-10）：繁體用港澳寫法——「平台/了解/群體/臨床/港澳台」的 台/了/群/床 均為正字（OpenCC s2t 會誤報為臺/瞭/羣/牀）；機構名按語言版本書寫（zh-CN 頁 og:site_name/JSON-LD 用簡體「澳门财经科技与教育发展学会」）。複查工具：`python3 scan_tcsc.py`（掃 i18n.json/content.json/make_content.py/build.py 及 dist/ 頁面，白名單過濾上述誤報）。列表排序：insights 按 date 降序、projects 按 year 降序、首頁最新研究取 date 降序前 3。
+- 社評專欄（2026-10）：insights 條目加 `column: true` 會被抽到洞察列表頁頂部的「社評專欄」section（4語言標題內置於 build.py，橫向大卡片 `.column-card` 樣式在 style.css）；可選 `author`（`{"name": 4語言, "title": 4語言}`，詳情頁標題下方署名）與 `source`（`{"name": 4語言, "url": ...}`，詳情頁正文末尾「原文載於《…》」鏈接，target=_blank）。首篇：會長楊誠澳門日報社論，slug `macao-strategic-pivot-shock-absorber`。

@@ -467,6 +467,34 @@ def render_publications(lang):
 # ---------------- 研究洞察 ----------------
 def render_insights(lang):
     ins = I18N[lang]['insights']
+    column_title = {'zh-TW': '社評專欄', 'zh-CN': '社评专栏', 'en': 'Op-Ed Column', 'pt': 'Coluna de Opinião'}[lang]
+    all_sorted = sorted(C['insights'], key=lambda x: x['date'], reverse=True)
+    column_cards = ''
+    for a in (x for x in all_sorted if x.get('column')):
+        href = f'insights/{a["slug"]}.html' if a.get('slug') else '#'
+        author_html = ''
+        if a.get('author'):
+            author_html = f'<span class="column-card-author">{esc(a["author"]["name"][lang])} · {esc(a["author"]["title"][lang])}</span>'
+        column_cards += f'''
+      <a class="institutional-card column-card reveal" href="{href}">
+        <div class="insight-meta">
+          <span class="badge">{esc(a['category'][lang])}</span>
+          <span class="date">{icon('calendar')}{a['date']}</span>
+        </div>
+        <h3>{esc(a['title'][lang])}</h3>
+        <p>{esc(a['excerpt'][lang])}</p>
+        <div class="column-card-meta">{author_html}<span class="read-more">{esc(ins['readMore'])}{icon('arrow')}</span></div>
+      </a>'''
+    column_section = ''
+    if column_cards:
+        column_section = f'''
+<section class="section-spacing bg-muted-50">
+  <div class="container-institutional">
+    <h2 class="institutional-subheading text-center mb-12 reveal">{esc(column_title)}</h2>
+    <div class="max-w-5 mx-auto grid" style="gap:1.5rem;">{column_cards}
+    </div>
+  </div>
+</section>'''
     cards = ''.join(f'''
       <div class="institutional-card insight-card reveal">
         <div class="insight-meta">
@@ -476,8 +504,8 @@ def render_insights(lang):
         <h3>{esc(a['title'][lang])}</h3>
         <p>{esc(a['excerpt'][lang])}</p>
         <a class="read-more" href="{f'insights/{a["slug"]}.html' if a.get('slug') else '#'}">{esc(ins['readMore'])}{icon('arrow')}</a>
-      </div>''' for a in sorted(C['insights'], key=lambda x: x['date'], reverse=True))
-    body = page_hero(lang, 'insights') + f'''
+      </div>''' for a in all_sorted if not a.get('column'))
+    body = page_hero(lang, 'insights') + column_section + f'''
 <section class="section-spacing">
   <div class="container-institutional">
     <div class="grid grid-3">{cards}</div>
@@ -496,6 +524,17 @@ def render_insight_article(lang, a):
     img_html = ''
     if a.get('image'):
         img_html = f'<img src="{dprefix}img/news/{a["image"]}" alt="{esc(a["title"][lang])}" style="width:100%;border-radius:12px;margin:1.5rem 0;">'
+    author_html = ''
+    if a.get('author'):
+        author_html = f'<p class="article-author"><strong>{esc(a["author"]["name"][lang])}</strong>｜{esc(a["author"]["title"][lang])}</p>'
+    source_html = ''
+    if a.get('source'):
+        prefix = {'zh-TW': '原文載於', 'zh-CN': '原文载于', 'en': 'Originally published in', 'pt': 'Originalmente publicado em'}[lang]
+        src_name = a['source']['name'][lang]
+        quoted = f'《{src_name}》' if lang.startswith('zh') else src_name
+        source_html = f'''<div class="article-source">
+        {esc(prefix)} <a href="{esc(a["source"]["url"])}" target="_blank" rel="noopener">{esc(quoted)}</a>
+      </div>'''
     body = f'''
 <section class="page-hero">
   <div class="container-institutional">
@@ -505,6 +544,7 @@ def render_insight_article(lang, a):
         <span class="date">{icon('calendar')}{a['date']}</span>
       </div>
       <h1 class="institutional-heading" style="font-size:clamp(1.75rem,3.5vw,2.5rem);">{esc(a['title'][lang])}</h1>
+      {author_html}
     </div>
   </div>
 </section>
@@ -513,6 +553,7 @@ def render_insight_article(lang, a):
     <div class="max-w-5 mx-auto institutional-card" style="padding:clamp(1.5rem,4vw,3rem);">
       {img_html}
       <div>{body_html}</div>
+      {source_html}
       <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid hsl(var(--border));">
         <a class="read-more" href="../insights.html">{icon('arrow')} {esc({'zh-TW': '返回研究洞察', 'zh-CN': '返回研究洞察', 'en': 'Back to Insights', 'pt': 'Voltar aos Insights'}[lang])}</a>
       </div>

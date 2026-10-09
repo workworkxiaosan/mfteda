@@ -265,6 +265,18 @@ html[lang="en"] .hero h1, html[lang="pt"] .hero h1 { font-size: 1.5rem; line-hei
 .read-more:hover svg { transform: translateX(4px); }
 .insight-card { display: flex; flex-direction: column; }
 
+/* ---------- 社評專欄 ---------- */
+.column-card { display: block; padding: clamp(1.5rem, 3vw, 2.5rem); border-left: 4px solid hsl(var(--secondary)); transition: transform .2s, box-shadow .2s; }
+.column-card:hover { transform: translateY(-2px); box-shadow: 0 10px 25px -5px rgb(0 0 0 / .1); }
+.column-card h3 { font-family: var(--font-sans); font-size: 1.5rem; font-weight: 600; margin-bottom: .75rem; color: hsl(var(--foreground)); }
+.column-card p { color: hsl(var(--muted-foreground)); line-height: 1.75; margin-bottom: 1.25rem; }
+.column-card-meta { display: flex; align-items: center; justify-content: space-between; gap: 1rem; flex-wrap: wrap; }
+.column-card-author { font-size: .875rem; color: hsl(var(--muted-foreground)); }
+.article-author { text-align: center; margin-top: 1rem; font-size: .9375rem; color: hsl(var(--muted-foreground)); }
+.article-author strong { color: hsl(var(--foreground)); font-weight: 600; }
+.article-source { margin-top: 2rem; padding-top: 1.5rem; border-top: 1px solid hsl(var(--border)); font-size: .9375rem; color: hsl(var(--muted-foreground)); }
+.article-source a { color: hsl(var(--primary)); font-weight: 500; }
+
 /* ---------- 合作夥伴 ---------- */
 .partner-card { display: flex; align-items: center; justify-content: center; text-align: center; min-height: 7rem; }
 .partner-card h3 { font-family: var(--font-sans); font-size: 1.125rem; font-weight: 600; }
