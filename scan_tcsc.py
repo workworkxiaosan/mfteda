@@ -8,7 +8,9 @@ t2s = OpenCC('t2s')
 
 # 白名單：這些 s2t/t2s 差異是台灣標準偏好或異體字，所涉字符在港澳繁體中均為正字，
 # 不代表混入另一種字體（真正的簡體字如 发/门 不在其中）。
-DIFF_WHITELIST = {('了', '瞭'), ('台', '臺'), ('群', '羣'), ('床', '牀')}
+# 秘/峰 為港澳正字（祕/峯為異體）；范/杰 為人名正字（如「范凱杰」為其本人公佈寫法，范作姓氏繁體仍作范）。
+DIFF_WHITELIST = {('了', '瞭'), ('台', '臺'), ('群', '羣'), ('床', '牀'),
+                  ('秘', '祕'), ('峰', '峯'), ('范', '範'), ('杰', '傑')}
 # 語言切換器固定顯示對方語言的標籤（如繁體頁出現「简体中文」屬正常）
 TEXT_WHITELIST = {'简体中文', '繁體中文', 'English', 'Português'}
 
@@ -53,8 +55,8 @@ for fname in ['make_content.py', 'build.py']:
 
 # 3) dist/ 生成頁面：根目錄 *.html 為 zh-TW，zh-CN/*.html 為 zh-CN
 import glob, os
-for pattern, lang in [('dist/*.html', 'zh-TW'), ('dist/insights/*.html', 'zh-TW'),
-                      ('dist/zh-CN/*.html', 'zh-CN'), ('dist/zh-CN/insights/*.html', 'zh-CN')]:
+for pattern, lang in [('dist/*.html', 'zh-TW'), ('dist/insights/*.html', 'zh-TW'), ('dist/news/*.html', 'zh-TW'),
+                      ('dist/zh-CN/*.html', 'zh-CN'), ('dist/zh-CN/insights/*.html', 'zh-CN'), ('dist/zh-CN/news/*.html', 'zh-CN')]:
     for f in sorted(glob.glob(pattern)):
         src = open(f, encoding='utf-8').read()
         # 去掉語言切換器標籤再掃描

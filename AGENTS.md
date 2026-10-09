@@ -20,7 +20,7 @@
 
 ## 關鍵事實
 
-- 頁面共 9 個（`PAGES`）：index/about/research/projects/publications/insights/partners/policy/contact。「招商政策」頁（policy）內容在 `content.json` 的 `policies` 數組（region: macao/hengqin，每項含 year、title/summary 4語言、url），更新政策只改這裡；導航鍵 `nav.policy` 由 `make_content.py` 注入 i18n。
+- 頁面共 10 個（`PAGES`）：index/about/research/projects/publications/insights/news/partners/policy/contact。「招商政策」頁（policy）內容在 `content.json` 的 `policies` 數組（region: macao/hengqin，每項含 year、title/summary 4語言、url），更新政策只改這裡；導航鍵 `nav.policy` 由 `make_content.py` 注入 i18n。
 - 合作夥伴更名記錄（2026-10）：partner2「澳門貿易投資促進局」→「招商投資促進局」（en: Commerce and Investment Promotion Institute，IPIM 縮寫沿用，鏈接不變）；partner5「澳門聖若瑟大學」→「聖若瑟大學」（法定名不含「澳門」）；partner8 澳門直播協會 href 改為官方 Facebook（https://www.facebook.com/MacauLiveAssociation/，官網域名已失效）。
 
 - 每頁自動帶 canonical / Open Graph / Twitter Card 標籤（分享圖 `assets/img/og-cover.jpg`），首頁帶 Organization JSON-LD。`content.json` 的 `site_url` 是絕對 URL 的基準，換域名時改它。
@@ -33,3 +33,4 @@
 - 原站遺留問題已修復：社區篇/副刊封面對調、關於我們「。。」雙句號、/mission 空路由。
 - 繁簡校對規範（2026-10）：繁體用港澳寫法——「平台/了解/群體/臨床/港澳台」的 台/了/群/床 均為正字（OpenCC s2t 會誤報為臺/瞭/羣/牀）；機構名按語言版本書寫（zh-CN 頁 og:site_name/JSON-LD 用簡體「澳门财经科技与教育发展学会」）。複查工具：`python3 scan_tcsc.py`（掃 i18n.json/content.json/make_content.py/build.py 及 dist/ 頁面，白名單過濾上述誤報）。列表排序：insights 按 date 降序、projects 按 year 降序、首頁最新研究取 date 降序前 3。
 - 社評專欄（2026-10）：insights 條目加 `column: true` 會被抽到洞察列表頁頂部的「社評專欄」section（4語言標題內置於 build.py，橫向大卡片 `.column-card` 樣式在 style.css）；可選 `author`（`{"name": 4語言, "title": 4語言}`，詳情頁標題下方署名）與 `source`（`{"name": 4語言, "url": ...}`，詳情頁正文末尾「原文載於《…》」鏈接，target=_blank）。首篇：會長楊誠澳門日報社論，slug `macao-strategic-pivot-shock-absorber`。
+- 新聞動態（2026-10）：第 10 個頁面 `news`（PAGES 中在 insights 之後；導航鍵 `nav.news` 由 make_content.py 注入）。新聞 = 在 make_content.py 的 `news` 數組加一條（`date/slug/category/title/excerpt/source/body` 4語言，`source.url` 為原文媒體鏈接），build.py 自動生成列表頁 `news.html`（按 date 降序，卡片 meta 含來源媒體名）與詳情頁 `news/{slug}.html`（末尾「原文出處」鏈接；無配圖，OG 圖用默認 og-cover）；首頁「最新動態」section 自動取 date 降序前 3。錄入後照舊跑 `make_content.py && build.py`。繁簡校對白名單在 scan_tcsc.py 的 DIFF_WHITELIST（含港澳正字 秘/峰、人名 范/杰 等 OpenCC 異體誤報）。

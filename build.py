@@ -16,7 +16,7 @@ C = json.load(open(os.path.join(ROOT, 'content.json'), encoding='utf-8'))
 I18N = C['i18n']
 LANGS = [l['code'] for l in C['languages']]
 DEFAULT = C['default_lang']
-PAGES = ['index', 'about', 'research', 'projects', 'publications', 'insights', 'partners', 'policy', 'contact']
+PAGES = ['index', 'about', 'research', 'projects', 'publications', 'insights', 'news', 'partners', 'policy', 'contact']
 
 def esc(s): return html.escape(str(s), quote=True)
 
@@ -160,6 +160,7 @@ def footer(lang, pre=''):
         <ul>
           <li><a href="{hp('publications')}">{esc(nav['publications'])}</a></li>
           <li><a href="{hp('insights')}">{esc(nav['insights'])}</a></li>
+          <li><a href="{hp('news')}">{esc(nav['news'])}</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -268,6 +269,19 @@ def render_index(lang):
         <p>{esc(a['excerpt'][lang])}</p>
         <a class="read-more" href="{href}">{esc(ins['readMore'])}{icon('arrow')}</a>
       </div>'''
+    latest_news = ''
+    for a in sorted(C['news'], key=lambda x: x['date'], reverse=True)[:3]:
+        latest_news += f'''
+      <div class="institutional-card insight-card reveal">
+        <div class="insight-meta">
+          <span class="badge">{esc(a['category'][lang])}</span>
+          <span class="date">{icon('calendar')}{a['date']}</span>
+          <span class="source">{esc(a['source']['name'][lang])}</span>
+        </div>
+        <h3>{esc(a['title'][lang])}</h3>
+        <p>{esc(a['excerpt'][lang])}</p>
+        <a class="read-more" href="news/{a['slug']}.html">{esc(ins['readMore'])}{icon('arrow')}</a>
+      </div>'''
     body = f'''
 <section class="hero" style="background-image:url('{asset('img/hero-bg.webp', lang)}')">
   <div class="container-institutional">
@@ -298,6 +312,15 @@ def render_index(lang):
       <a class="read-more" href="{page_href('insights', lang, lang)}">{esc({'zh-TW': '查看全部', 'zh-CN': '查看全部', 'en': 'View All', 'pt': 'Ver Tudo'}[lang])}{icon('arrow')}</a>
     </div>
     <div class="grid grid-3">{latest_insights}</div>
+  </div>
+</section>
+<section class="section-spacing">
+  <div class="container-institutional">
+    <div class="text-center mb-16 reveal">
+      <h2 class="institutional-subheading mb-4">{esc({'zh-TW': '最新動態', 'zh-CN': '最新动态', 'en': 'Latest News', 'pt': 'Últimas Notícias'}[lang])}</h2>
+      <a class="read-more" href="{page_href('news', lang, lang)}">{esc({'zh-TW': '查看全部', 'zh-CN': '查看全部', 'en': 'View All', 'pt': 'Ver Tudo'}[lang])}{icon('arrow')}</a>
+    </div>
+    <div class="grid grid-3">{latest_news}</div>
   </div>
 </section>
 <section class="section-spacing cta-band">
@@ -576,6 +599,81 @@ def render_insight_article(lang, a):
     return page_shell('insights', lang, a['title'][lang], a['excerpt'][lang], body,
                       depth=1, url_path=f'insights/{a["slug"]}', og_image=og)
 
+# ---------------- 新聞動態 ----------------
+NEWS_SOURCE_PREFIX = {'zh-TW': '原文出處', 'zh-CN': '原文出处', 'en': 'Source', 'pt': 'Fonte'}
+
+def render_news(lang):
+    ins = I18N[lang]['insights']
+    hero_title = {'zh-TW': '新聞動態', 'zh-CN': '新闻动态', 'en': 'News', 'pt': 'Notícias'}[lang]
+    hero_sub = {'zh-TW': '本會最新公開動態與媒體報道',
+                'zh-CN': '本会最新公开动态与媒体报道',
+                'en': 'Latest updates and media coverage of MFTEDA',
+                'pt': 'Últimas novidades e cobertura mediática da MFTEDA'}[lang]
+    cards = ''.join(f'''
+      <div class="institutional-card insight-card reveal">
+        <div class="insight-meta">
+          <span class="badge">{esc(a['category'][lang])}</span>
+          <span class="date">{icon('calendar')}{a['date']}</span>
+          <span class="source">{esc(a['source']['name'][lang])}</span>
+        </div>
+        <h3>{esc(a['title'][lang])}</h3>
+        <p>{esc(a['excerpt'][lang])}</p>
+        <a class="read-more" href="news/{a['slug']}.html">{esc(ins['readMore'])}{icon('arrow')}</a>
+      </div>''' for a in sorted(C['news'], key=lambda x: x['date'], reverse=True))
+    body = f'''
+<section class="page-hero">
+  <div class="container-institutional">
+    <div class="reveal">
+      <h1 class="institutional-heading">{esc(hero_title)}</h1>
+      <p class="sub text-muted-foreground">{esc(hero_sub)}</p>
+    </div>
+  </div>
+</section>
+<section class="section-spacing">
+  <div class="container-institutional">
+    <div class="grid grid-3">{cards}</div>
+  </div>
+</section>'''
+    return page_shell('news', lang, hero_title, hero_sub, body)
+
+def render_news_article(lang, a):
+    """單篇新聞詳情頁（news/{slug}.html），C['news'] 條目（無配圖，OG 圖用默認 og-cover）。"""
+    ins = I18N[lang]['insights']
+    body_html = ''.join(
+        f'<p style="line-height:1.875;margin-bottom:1.25rem;color:hsl(var(--foreground));">{esc(para)}</p>'
+        for para in a['body'][lang])
+    src_name = a['source']['name'][lang]
+    quoted = f'《{src_name}》' if lang.startswith('zh') else src_name
+    source_html = f'''<div class="article-source">
+        {esc(NEWS_SOURCE_PREFIX[lang])} <a href="{esc(a['source']['url'])}" target="_blank" rel="noopener">{esc(quoted)}</a>
+      </div>'''
+    body = f'''
+<section class="page-hero">
+  <div class="container-institutional">
+    <div class="reveal max-w-5 mx-auto">
+      <div class="insight-meta" style="justify-content:center;">
+        <span class="badge">{esc(a['category'][lang])}</span>
+        <span class="date">{icon('calendar')}{a['date']}</span>
+        <span class="source">{esc(a['source']['name'][lang])}</span>
+      </div>
+      <h1 class="institutional-heading" style="font-size:clamp(1.75rem,3.5vw,2.5rem);">{esc(a['title'][lang])}</h1>
+    </div>
+  </div>
+</section>
+<section class="section-spacing" style="padding-top:0;">
+  <div class="container-institutional">
+    <div class="max-w-5 mx-auto institutional-card" style="padding:clamp(1.5rem,4vw,3rem);">
+      <div>{body_html}</div>
+      {source_html}
+      <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid hsl(var(--border));">
+        <a class="read-more" href="../news.html">{icon('arrow')} {esc({'zh-TW': '返回新聞動態', 'zh-CN': '返回新闻动态', 'en': 'Back to News', 'pt': 'Voltar às Notícias'}[lang])}</a>
+      </div>
+    </div>
+  </div>
+</section>'''
+    return page_shell('news', lang, a['title'][lang], a['excerpt'][lang], body,
+                      depth=1, url_path=f'news/{a["slug"]}')
+
 # ---------------- 合作夥伴 ----------------
 def render_partners(lang):
     pt = I18N[lang]['partners']
@@ -733,7 +831,7 @@ def render_contact(lang):
 # ---------------- 構建 ----------------
 RENDERERS = {'index': render_index, 'about': render_about, 'research': render_research,
              'projects': render_projects, 'publications': render_publications,
-             'insights': render_insights, 'partners': render_partners, 'policy': render_policy,
+             'insights': render_insights, 'news': render_news, 'partners': render_partners, 'policy': render_policy,
              'contact': render_contact}
 
 def build():
@@ -782,6 +880,13 @@ def build():
             with open(os.path.join(adir, f'{a["slug"]}.html'), 'w', encoding='utf-8') as f:
                 f.write(render_insight_article(lang, a))
             urls.append((f'insights/{a["slug"]}', lang))
+            count += 1
+        for a in C['news']:
+            ndir = os.path.join(outdir, 'news')
+            os.makedirs(ndir, exist_ok=True)
+            with open(os.path.join(ndir, f'{a["slug"]}.html'), 'w', encoding='utf-8') as f:
+                f.write(render_news_article(lang, a))
+            urls.append((f'news/{a["slug"]}', lang))
             count += 1
 
     # sitemap.xml（含 hreflang alternates）

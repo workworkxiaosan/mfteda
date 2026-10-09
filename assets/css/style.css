@@ -253,6 +253,7 @@ html[lang="en"] .hero h1, html[lang="pt"] .hero h1 { font-size: 1.5rem; line-hei
 .insight-meta { display: flex; align-items: center; gap: 1rem; margin-bottom: 1.5rem; font-size: .875rem; color: hsl(var(--muted-foreground)); flex-wrap: wrap; }
 .insight-meta .date { display: inline-flex; align-items: center; gap: .375rem; white-space: nowrap; }
 .insight-meta .date svg { width: 1rem; height: 1rem; }
+.insight-meta .source { white-space: nowrap; font-weight: 500; }
 .badge {
   display: inline-flex; align-items: center; border-radius: 9999px; padding: .25rem .75rem;
   font-size: .75rem; font-weight: 600;
