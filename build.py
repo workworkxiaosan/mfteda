@@ -93,22 +93,23 @@ ABOUT_INITIATIVE_ICONS = ['trending', 'handshake', 'book', 'cpu', 'dollar', 'use
 SOCIAL = [('facebook', 'Facebook'), ('linkedin', 'LinkedIn'), ('twitter', 'Twitter')]
 
 # ---------------- 頁頭 / 頁尾 ----------------
-def header(page, lang):
+def header(page, lang, pre=''):
     nav = I18N[lang]['nav']
-    logo = asset('img/logo.png', lang)
+    logo = pre + asset('img/logo.png', lang)
+    hp = lambda p: pre + page_href(p, lang, lang)
     links = ''.join(
-        f'<a href="{page_href(p, lang, lang)}" class="{"active" if p == page else ""}">{esc(nav[p if p != "index" else "home"])}</a>'
+        f'<a href="{hp(p)}" class="{"active" if p == page else ""}">{esc(nav[p if p != "index" else "home"])}</a>'
         for p in PAGES)
     lang_btn_label = next(l['label'] for l in C['languages'] if l['code'] == lang)
     lang_items = ''.join(
-        f'<a href="{page_href(page, l["code"], lang)}" class="{"current" if l["code"] == lang else ""}">{l["flag"]} {esc(l["label"])}</a>'
+        f'<a href="{pre + page_href(page, l["code"], lang)}" class="{"current" if l["code"] == lang else ""}">{l["flag"]} {esc(l["label"])}</a>'
         for l in C['languages'])
     mlinks = ''.join(
-        f'<a href="{page_href(p, lang, lang)}" class="mnav {"active" if p == page else ""}">{esc(nav[p if p != "index" else "home"])}</a>'
+        f'<a href="{hp(p)}" class="mnav {"active" if p == page else ""}">{esc(nav[p if p != "index" else "home"])}</a>'
         for p in PAGES)
     return f'''<header class="site-header">
   <div class="container-institutional">
-    <a href="{page_href('index', lang, lang)}" class="logo-link"><img src="{logo}" alt="MFTEDA Logo"></a>
+    <a href="{hp('index')}" class="logo-link"><img src="{logo}" alt="MFTEDA Logo"></a>
     <nav class="main-nav">{links}</nav>
     <div class="header-actions">
       <div class="lang-switch">
@@ -131,11 +132,12 @@ def header(page, lang):
   </div>
 </aside>'''
 
-def footer(lang):
+def footer(lang, pre=''):
     nav = I18N[lang]['nav']
     ft = I18N[lang]['footer']
     partners = I18N[lang]['partners']
-    logo = asset('img/logo.png', lang)
+    logo = pre + asset('img/logo.png', lang)
+    hp = lambda p: pre + page_href(p, lang, lang)
     social = ''.join(f'<a href="{C["social"][s]}" aria-label="{label}">{icon(s)}</a>' for s, label in SOCIAL)
     return f'''<footer class="site-footer">
   <div class="container-institutional section-spacing">
@@ -148,16 +150,16 @@ def footer(lang):
       <div class="footer-col">
         <h4>{esc(ft['quickLinks'])}</h4>
         <ul>
-          <li><a href="{page_href('index', lang, lang)}">{esc(nav['home'])}</a></li>
-          <li><a href="{page_href('about', lang, lang)}">{esc(nav['about'])}</a></li>
-          <li><a href="{page_href('research', lang, lang)}">{esc(nav['research'])}</a></li>
+          <li><a href="{hp('index')}">{esc(nav['home'])}</a></li>
+          <li><a href="{hp('about')}">{esc(nav['about'])}</a></li>
+          <li><a href="{hp('research')}">{esc(nav['research'])}</a></li>
         </ul>
       </div>
       <div class="footer-col">
         <h4>{esc(ft['publications'])}</h4>
         <ul>
-          <li><a href="{page_href('publications', lang, lang)}">{esc(nav['publications'])}</a></li>
-          <li><a href="{page_href('insights', lang, lang)}">{esc(nav['insights'])}</a></li>
+          <li><a href="{hp('publications')}">{esc(nav['publications'])}</a></li>
+          <li><a href="{hp('insights')}">{esc(nav['insights'])}</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -177,13 +179,14 @@ def footer(lang):
   </div>
 </footer>'''
 
-def page_shell(page, lang, title, description, body):
-    css = asset('css/style.css', lang)
-    js = asset('js/main.js', lang)
+def page_shell(page, lang, title, description, body, depth=0, url_path=None):
+    pre = '../' * depth
+    css = pre + asset('css/style.css', lang)
+    js = pre + asset('js/main.js', lang)
     lang_links = ''.join(
-        f'<link rel="alternate" hreflang="{l}" href="{page_href(page, l, lang)}">'
+        f'<link rel="alternate" hreflang="{l}" href="{abs_url(url_path or page, l)}">'
         for l in LANGS)
-    canonical = abs_url(page, lang)
+    canonical = abs_url(url_path or page, lang)
     og_image = C.get('site_url', 'https://mfteda.org').rstrip('/') + '/assets/img/og-cover.jpg'
     og_locale = {'zh-TW': 'zh_TW', 'zh-CN': 'zh_CN', 'en': 'en_US', 'pt': 'pt_PT'}[lang]
     # 機構名按各自語言版本書寫（簡體頁用簡體學會名）
@@ -212,7 +215,7 @@ def page_shell(page, lang, title, description, body):
   <meta name="twitter:title" content="{esc(title)}">
   <meta name="twitter:description" content="{esc(description)}">
   <meta name="twitter:image" content="{og_image}">
-  <link rel="icon" type="image/png" href="{asset('img/logo.png', lang)}">
+  <link rel="icon" type="image/png" href="{pre + asset('img/logo.png', lang)}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -222,11 +225,11 @@ def page_shell(page, lang, title, description, body):
   {jsonld}
 </head>
 <body>
-{header(page, lang)}
+{header(page, lang, pre)}
 <main>
 {body}
 </main>
-{footer(lang)}
+{footer(lang, pre)}
 <script src="{js}" defer></script>
 </body>
 </html>'''
@@ -560,7 +563,8 @@ def render_insight_article(lang, a):
     </div>
   </div>
 </section>'''
-    return page_shell('insights', lang, a['title'][lang], a['excerpt'][lang], body)
+    return page_shell('insights', lang, a['title'][lang], a['excerpt'][lang], body,
+                      depth=1, url_path=f'insights/{a["slug"]}')
 
 # ---------------- 合作夥伴 ----------------
 def render_partners(lang):
