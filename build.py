@@ -580,10 +580,19 @@ def render_insight_article(lang, a):
 def render_partners(lang):
     pt = I18N[lang]['partners']
     hrefs = C['partners_href']
-    cards = ''.join(f'''
+    cards = ''
+    for i in range(1, 13):
+        logo_path = os.path.join(ROOT, 'assets', 'img', 'partners', f'partner{i}.webp')
+        logo_html = ''
+        if os.path.exists(logo_path):
+            logo_html = (f'<div class="partner-logo">'
+                         f'<img src="{asset(f"img/partners/partner{i}.webp", lang)}" alt="{esc(pt[f"partner{i}"])}" loading="lazy">'
+                         f'</div>')
+        cards += f'''
       <a class="institutional-card partner-card reveal" href="{hrefs[f'partner{i}']}"{' target="_blank" rel="noopener"' if hrefs[f'partner{i}'] != '#' else ''} style="display:block;">
+        {logo_html}
         <h3>{esc(pt[f'partner{i}'])}</h3>
-      </a>''' for i in range(1, 13))
+      </a>'''
     body = page_hero(lang, 'partners') + f'''
 <section class="section-spacing">
   <div class="container-institutional">
