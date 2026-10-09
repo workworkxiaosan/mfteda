@@ -281,8 +281,8 @@ html[lang="en"] .hero h1, html[lang="pt"] .hero h1 { font-size: 1.5rem; line-hei
 /* ---------- 合作夥伴 ---------- */
 .partner-card { display: flex; flex-direction: column; align-items: center; justify-content: center; text-align: center; min-height: 11rem; gap: 1rem; }
 .partner-card h3 { font-family: var(--font-sans); font-size: 1.125rem; font-weight: 600; }
-.partner-logo { display: flex; align-items: center; justify-content: center; height: 4.5rem; }
-.partner-logo img { max-height: 4.5rem; max-width: 100%; object-fit: contain; }
+.partner-logo { display: flex; align-items: center; justify-content: center; height: 3.15rem; }
+.partner-logo img { max-height: 3.15rem; max-width: 70%; object-fit: contain; }
 
 /* ---------- 關於我們 ---------- */
 .purpose-card {

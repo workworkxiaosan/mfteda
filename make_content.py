@@ -548,7 +548,7 @@ content = {
         "partner8": "https://www.usj.edu.mo",
         "partner9": "https://www.jisu.edu.cn",
         "partner10": "http://macau-publish.com/",
-        "partner11": "#",
+        "partner11": "https://www.mmc.edu.mo",
         "partner12": "https://www.facebook.com/MacauLiveAssociation/",
     },
     "i18n": i18n,

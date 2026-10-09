@@ -42,7 +42,7 @@
     "partner8": "https://www.usj.edu.mo",
     "partner9": "https://www.jisu.edu.cn",
     "partner10": "http://macau-publish.com/",
-    "partner11": "#",
+    "partner11": "https://www.mmc.edu.mo",
     "partner12": "https://www.facebook.com/MacauLiveAssociation/"
   },
   "i18n": {
@@ -206,7 +206,7 @@
         "partner8": "聖若瑟大學",
         "partner9": "吉林外國語大學",
         "partner10": "文化公所",
-        "partner11": "澳門中西創新研究院",
+        "partner11": "中西創新學院",
         "partner12": "澳門直播協會"
       },
       "contact": {
@@ -407,7 +407,7 @@
         "partner8": "圣若瑟大学",
         "partner9": "吉林外国语大学",
         "partner10": "文化公所",
-        "partner11": "澳门中西创新研究院",
+        "partner11": "中西创新学院",
         "partner12": "澳门直播协会"
       },
       "contact": {
@@ -608,7 +608,7 @@
         "partner8": "University of Saint Joseph",
         "partner9": "Jilin International Studies University",
         "partner10": "Macau Hall of Culture",
-        "partner11": "Macao East-West Innovation Institute",
+        "partner11": "Macau Millennium College",
         "partner12": "Macao Live Streaming Association"
       },
       "contact": {
@@ -809,7 +809,7 @@
         "partner8": "Universidade de São José",
         "partner9": "Universidade de Estudos Internacionais de Jilin",
         "partner10": "Hall de Cultura de Macau",
-        "partner11": "Instituto de Inovação Leste-Oeste de Macau",
+        "partner11": "Instituto Milénio de Macau",
         "partner12": "Associação de Transmissão ao Vivo de Macau"
       },
       "contact": {

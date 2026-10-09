@@ -21,7 +21,7 @@
 ## 關鍵事實
 
 - 頁面共 10 個（`PAGES`）：index/about/research/projects/publications/insights/news/partners/policy/contact。「招商政策」頁（policy）內容在 `content.json` 的 `policies` 數組（region: macao/hengqin，每項含 year、title/summary 4語言、url），更新政策只改這裡；導航鍵 `nav.policy` 由 `make_content.py` 注入 i18n。
-- 合作夥伴更名記錄（2026-10）：partner2「澳門貿易投資促進局」→「招商投資促進局」（en: Commerce and Investment Promotion Institute，IPIM 縮寫沿用，鏈接不變）；partner5「澳門聖若瑟大學」→「聖若瑟大學」（法定名不含「澳門」）；partner8 澳門直播協會 href 改為官方 Facebook（https://www.facebook.com/MacauLiveAssociation/，官網域名已失效）。
+- 合作夥伴更名記錄（2026-10）：partner2「澳門貿易投資促進局」→「招商投資促進局」（en: Commerce and Investment Promotion Institute，IPIM 縮寫沿用，鏈接不變）；partner5「澳門聖若瑟大學」→「聖若瑟大學」（法定名不含「澳門」）；partner8 澳門直播協會 href 改為官方 Facebook（https://www.facebook.com/MacauLiveAssociation/，官網域名已失效）；partner11「澳門中西創新研究院」→「中西創新學院」（用戶確認；en: Macau Millennium College，pt: Instituto Milénio de Macau，href 改為官網 https://www.mmc.edu.mo，已配校徽 partner11.webp）。12 家夥伴全部配 LOGO（`assets/img/partners/partner{N}.webp`，名稱正上方，`.partner-logo` 高 3.15rem）。
 
 - 每頁自動帶 canonical / Open Graph / Twitter Card 標籤（分享圖 `assets/img/og-cover.jpg`），首頁帶 Organization JSON-LD。`content.json` 的 `site_url` 是絕對 URL 的基準，換域名時改它。
 - 域名 `mfteda.org`：A 記錄指向 GitHub Pages（185.199.108.153/109.153/110.153/111.153），`www` CNAME → `workworkxiaosan.github.io`；DNS 在 Hostinger hPanel 管理。
