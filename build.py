@@ -179,7 +179,7 @@ def footer(lang, pre=''):
   </div>
 </footer>'''
 
-def page_shell(page, lang, title, description, body, depth=0, url_path=None):
+def page_shell(page, lang, title, description, body, depth=0, url_path=None, og_image=None):
     pre = '../' * depth
     css = pre + asset('css/style.css', lang)
     js = pre + asset('js/main.js', lang)
@@ -187,7 +187,7 @@ def page_shell(page, lang, title, description, body, depth=0, url_path=None):
         f'<link rel="alternate" hreflang="{l}" href="{abs_url(url_path or page, l)}">'
         for l in LANGS)
     canonical = abs_url(url_path or page, lang)
-    og_image = C.get('site_url', 'https://mfteda.org').rstrip('/') + '/assets/img/og-cover.jpg'
+    og_image = og_image or (C.get('site_url', 'https://mfteda.org').rstrip('/') + '/assets/img/og-cover.jpg')
     og_locale = {'zh-TW': 'zh_TW', 'zh-CN': 'zh_CN', 'en': 'en_US', 'pt': 'pt_PT'}[lang]
     # 機構名按各自語言版本書寫（簡體頁用簡體學會名）
     site_name = '澳门财经科技与教育发展学会' if lang == 'zh-CN' else C['site_name']
@@ -522,8 +522,15 @@ def render_insight_article(lang, a):
     # 詳情頁在 insights/ 子目錄，資產路徑多一層 ../
     dprefix = '../' + ('../' if lang != DEFAULT else '') + 'assets/'
     body_html = ''
-    for para in a['body'][lang]:
+    fig = {img['after']: img for img in a.get('images', [])}
+    for idx, para in enumerate(a['body'][lang], 1):
         body_html += f'<p style="line-height:1.875;margin-bottom:1.25rem;color:hsl(var(--foreground));">{esc(para)}</p>'
+        if idx in fig:
+            im = fig[idx]
+            body_html += (f'<figure style="margin:2rem 0;">'
+                          f'<img src="{dprefix}img/news/{im["file"]}" alt="{esc(im["caption"][lang])}" loading="lazy" style="width:100%;border-radius:12px;">'
+                          f'<figcaption style="text-align:center;font-size:.875rem;color:hsl(var(--muted-foreground));margin-top:.75rem;">{esc(im["caption"][lang])}</figcaption>'
+                          f'</figure>')
     img_html = ''
     if a.get('image'):
         img_html = f'<img src="{dprefix}img/news/{a["image"]}" alt="{esc(a["title"][lang])}" style="width:100%;border-radius:12px;margin:1.5rem 0;">'
@@ -563,8 +570,11 @@ def render_insight_article(lang, a):
     </div>
   </div>
 </section>'''
+    og = None
+    if a.get('images'):
+        og = C.get('site_url', 'https://mfteda.org').rstrip('/') + '/assets/img/news/' + a['images'][0]['file']
     return page_shell('insights', lang, a['title'][lang], a['excerpt'][lang], body,
-                      depth=1, url_path=f'insights/{a["slug"]}')
+                      depth=1, url_path=f'insights/{a["slug"]}', og_image=og)
 
 # ---------------- 合作夥伴 ----------------
 def render_partners(lang):
