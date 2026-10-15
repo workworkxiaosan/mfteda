@@ -41,12 +41,13 @@
     "partner7": "https://www.mpu.edu.mo",
     "partner8": "https://www.usj.edu.mo",
     "partner9": "https://www.jisu.edu.cn",
-    "partner10": "http://macau-publish.com/",
-    "partner11": "https://www.mmc.edu.mo",
-    "partner12": "https://www.facebook.com/MacauLiveAssociation/",
-    "partner13": "https://www.sensetime.com",
-    "partner14": "https://nexmatrixs.com",
-    "partner15": "https://www.ccem.com.mo/"
+    "partner10": "https://www.changdian2001.com/",
+    "partner11": "http://macau-publish.com/",
+    "partner12": "https://www.mmc.edu.mo",
+    "partner13": "https://www.facebook.com/MacauLiveAssociation/",
+    "partner14": "https://www.sensetime.com",
+    "partner15": "https://nexmatrixs.com",
+    "partner16": "https://www.ccem.com.mo/"
   },
   "i18n": {
     "zh-TW": {
@@ -63,7 +64,7 @@
         "news": "新聞動態"
       },
       "hero": {
-        "headline": "以研究驅動決策，讓澳門成為中國與葡語、西語、法語、「一帶一路」沿線國家和地區鏈接的橋樑",
+        "headline": "以研究驅動決策，讓澳門成為中國與葡語、西語、法語、\n「一帶一路」沿線國家和地區鏈接的橋樑",
         "subtitle": "澳門財經科技與教育發展學會致力於推動澳門特區多元化、可持續、高質量發展",
         "cta1": "了解更多",
         "cta2": "研究領域",
@@ -148,6 +149,10 @@
         "area11": {
           "title": "政策創新",
           "description": "研究政策制定、評估與優化機制"
+        },
+        "area12": {
+          "title": "信任傳遞成本研究",
+          "description": "研究跨境合作中的信任建立與傳遞機制及其成本，助力企業降低出海風險"
         }
       },
       "projects": {
@@ -208,17 +213,20 @@
         "partner7": "澳門理工大學",
         "partner8": "聖若瑟大學",
         "partner9": "吉林外國語大學",
-        "partner10": "文化公所",
-        "partner11": "中西創新學院",
-        "partner12": "澳門直播協會",
-        "partner13": "商湯科技",
-        "partner14": "澳門海易通達科技有限公司",
-        "partner15": "數智建造（廣東橫琴）科技有限公司"
+        "partner10": "長春電子科技學院",
+        "partner11": "文化公所",
+        "partner12": "中西創新學院",
+        "partner13": "澳門直播協會",
+        "partner14": "商湯科技",
+        "partner15": "澳門海易通達科技有限公司",
+        "partner16": "數智建造（廣東橫琴）科技有限公司"
       },
       "contact": {
         "title": "聯繫我們",
         "subtitle": "我們期待與您合作",
         "orgName": "澳門財經科技與教育發展學會",
+        "address": "地址",
+        "addressValue": "澳門湖畔南街中國與葡語國家商貿合作服務平台綜合體辦公樓B1 直播服務中心",
         "email": "電子郵件",
         "contactForm": "聯繫表單",
         "cooperationForm": "合作諮詢",
@@ -267,7 +275,7 @@
         "news": "新闻动态"
       },
       "hero": {
-        "headline": "以研究驱动决策，让澳门成为中国与葡语、西语、法语、\"一带一路\"沿线国家和地区链接的桥梁",
+        "headline": "以研究驱动决策，让澳门成为中国与葡语、西语、法语、\n\"一带一路\"沿线国家和地区链接的桥梁",
         "subtitle": "澳门财经科技与教育发展学会致力于推动澳门特区多元化、可持续、高质量发展",
         "cta1": "了解更多",
         "cta2": "研究领域",
@@ -352,6 +360,10 @@
         "area11": {
           "title": "政策创新",
           "description": "研究政策制定、评估与优化机制"
+        },
+        "area12": {
+          "title": "信任传递成本研究",
+          "description": "研究跨境合作中的信任建立与传递机制及其成本，助力企业降低出海风险"
         }
       },
       "projects": {
@@ -412,17 +424,20 @@
         "partner7": "澳门理工大学",
         "partner8": "圣若瑟大学",
         "partner9": "吉林外国语大学",
-        "partner10": "文化公所",
-        "partner11": "中西创新学院",
-        "partner12": "澳门直播协会",
-        "partner13": "商汤科技",
-        "partner14": "澳门海易通达科技有限公司",
-        "partner15": "数智建造（广东横琴）科技有限公司"
+        "partner10": "长春电子科技学院",
+        "partner11": "文化公所",
+        "partner12": "中西创新学院",
+        "partner13": "澳门直播协会",
+        "partner14": "商汤科技",
+        "partner15": "澳门海易通达科技有限公司",
+        "partner16": "数智建造（广东横琴）科技有限公司"
       },
       "contact": {
         "title": "联系我们",
         "subtitle": "我们期待与您合作",
         "orgName": "澳门财经科技与教育发展学会",
+        "address": "地址",
+        "addressValue": "澳门湖畔南街中国与葡语国家商贸合作服务平台综合体办公楼B1 直播服务中心",
         "email": "电子邮件",
         "contactForm": "联系表单",
         "cooperationForm": "合作咨询",
@@ -471,7 +486,7 @@
         "news": "News"
       },
       "hero": {
-        "headline": "Research-driven decisions, making Macao a bridge linking China with Portuguese-, Spanish- and French-speaking countries and the countries and regions along the Belt and Road",
+        "headline": "Research-driven decisions, making Macao a bridge linking China with Portuguese-, Spanish- and French-speaking countries\nand the countries and regions along the Belt and Road",
         "subtitle": "MFTEDA is committed to promoting diversified, sustainable, and high-quality development of Macao SAR",
         "cta1": "Learn More",
         "cta2": "Research Areas",
@@ -556,6 +571,10 @@
         "area11": {
           "title": "Policy Innovation",
           "description": "Researching policy formulation, evaluation, and optimization mechanisms"
+        },
+        "area12": {
+          "title": "Trust Transfer Cost Research",
+          "description": "Studying trust-building and trust-transfer mechanisms and their costs in cross-border cooperation to help enterprises reduce going-global risks"
         }
       },
       "projects": {
@@ -616,17 +635,20 @@
         "partner7": "Macao Polytechnic University",
         "partner8": "University of Saint Joseph",
         "partner9": "Jilin International Studies University",
-        "partner10": "Macau Hall of Culture",
-        "partner11": "Macau Millennium College",
-        "partner12": "Macao Live Streaming Association",
-        "partner13": "SenseTime",
-        "partner14": "Macao NexMatrix Technology Limited",
-        "partner15": "Digital Construction (Guangdong Hengqin) Technology Co., Ltd."
+        "partner10": "Changchun College of Electronic Technology",
+        "partner11": "Macau Hall of Culture",
+        "partner12": "Macau Millennium College",
+        "partner13": "Macao Live Streaming Association",
+        "partner14": "SenseTime",
+        "partner15": "Macao NexMatrix Technology Limited",
+        "partner16": "Digital Construction (Guangdong Hengqin) Technology Co., Ltd."
       },
       "contact": {
         "title": "Contact Us",
         "subtitle": "We look forward to collaborating with you",
         "orgName": "Macao Financial Technology and Education Development Association",
+        "address": "Address",
+        "addressValue": "Live Streaming Service Center, B1, Office Building, China-Portuguese-speaking Countries Commercial and Trade Cooperation Service Platform Complex, Rua Nam Van Sul, Macao",
         "email": "Email",
         "contactForm": "Contact Form",
         "cooperationForm": "Cooperation Inquiry",
@@ -675,7 +697,7 @@
         "news": "Notícias"
       },
       "hero": {
-        "headline": "Decisões orientadas por pesquisa, fazendo de Macau uma ponte entre a China e os países de língua portuguesa, espanhola e francesa e os países e regiões ao longo de «Uma Faixa, Uma Rota»",
+        "headline": "Decisões orientadas por pesquisa, fazendo de Macau uma ponte entre a China e os países de língua portuguesa, espanhola e francesa\ne os países e regiões ao longo de «Uma Faixa, Uma Rota»",
         "subtitle": "MFTEDA está comprometida em promover o desenvolvimento diversificado, sustentável e de alta qualidade da RAE de Macau",
         "cta1": "Saiba Mais",
         "cta2": "Áreas de Pesquisa",
@@ -760,6 +782,10 @@
         "area11": {
           "title": "Inovação Política",
           "description": "Pesquisando formulação, avaliação e mecanismos de otimização de políticas"
+        },
+        "area12": {
+          "title": "Investigação sobre Custos de Transferência de Confiança",
+          "description": "Estudo dos mecanismos de construção e transferência de confiança e respetivos custos na cooperação transfronteiriça"
         }
       },
       "projects": {
@@ -820,17 +846,20 @@
         "partner7": "Universidade Politécnica de Macau",
         "partner8": "Universidade de São José",
         "partner9": "Universidade de Estudos Internacionais de Jilin",
-        "partner10": "Hall de Cultura de Macau",
-        "partner11": "Instituto Milénio de Macau",
-        "partner12": "Associação de Transmissão ao Vivo de Macau",
-        "partner13": "SenseTime",
-        "partner14": "Macau NexMatrix Tecnologia Limitada",
-        "partner15": "Digital Construction (Guangdong Hengqin) Technology Co., Ltd."
+        "partner10": "Instituto de Tecnologia Eletrónica de Changchun",
+        "partner11": "Hall de Cultura de Macau",
+        "partner12": "Instituto Milénio de Macau",
+        "partner13": "Associação de Transmissão ao Vivo de Macau",
+        "partner14": "SenseTime",
+        "partner15": "Macau NexMatrix Tecnologia Limitada",
+        "partner16": "Digital Construction (Guangdong Hengqin) Technology Co., Ltd."
       },
       "contact": {
         "title": "Contacte-nos",
         "subtitle": "Esperamos colaborar consigo",
         "orgName": "Associação de Desenvolvimento de Finanças, Tecnologia e Educação de Macau",
+        "address": "Endereço",
+        "addressValue": "Centro de Serviços de Transmissão em Direto, B1, Edifício de Escritórios do Complexo da Plataforma de Serviços para a Cooperação Comercial entre a China e os Países de Língua Portuguesa, Rua Nam Van Sul, Macau",
         "email": "Email",
         "contactForm": "Formulário de Contacto",
         "cooperationForm": "Consulta de Cooperação",

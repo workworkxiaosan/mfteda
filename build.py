@@ -41,7 +41,7 @@ def asset(path, current_lang):
     prefix = '../' if current_lang != DEFAULT else ''
     return prefix + 'assets/' + path
 
-LOGO_V = '?v=20261016'
+ASSET_V = '?v=20261016'
 
 def abs_url(page, lang):
     """某語言某頁面的絕對 URL（canonical/OG/sitemap 用）。"""
@@ -57,6 +57,7 @@ def icon(name, cls=''):
         'globe': '<circle cx="12" cy="12" r="10"/><line x1="2" y1="12" x2="22" y2="12"/><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"/>',
         'users': '<path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/><circle cx="9" cy="7" r="4"/><path d="M23 21v-2a4 4 0 0 0-3-3.87"/><path d="M16 3.13a4 4 0 0 1 0 7.75"/>',
         'mail': '<path d="M4 4h16c1.1 0 2 .9 2 2v12c0 1.1-.9 2-2 2H4c-1.1 0-2-.9-2-2V6c0-1.1.9-2 2-2z"/><polyline points="22,6 12,13 2,6"/>',
+        'pin': '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
         'calendar': '<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
         'arrow': '<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>',
         'menu': '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>',
@@ -89,7 +90,7 @@ def icon(name, cls=''):
             f'stroke-linecap="round" stroke-linejoin="round" aria-hidden="true">{P[name]}</svg>')
 
 # 研究領域 11 張卡片對應圖標（與原站 lucide 圖標風格一致）
-RESEARCH_ICONS = ['cpu', 'dollar', 'leaf', 'plane', 'landmark', 'network', 'ship', 'trending', 'sparkles', 'handshake', 'file']
+RESEARCH_ICONS = ['cpu', 'dollar', 'leaf', 'plane', 'landmark', 'network', 'ship', 'trending', 'sparkles', 'handshake', 'file', 'check']
 ABOUT_AREA_ICONS = ['dollar', 'globe', 'trending', 'sparkles', 'users']
 ABOUT_INITIATIVE_ICONS = ['trending', 'handshake', 'book', 'cpu', 'dollar', 'users', 'sparkles']
 SOCIAL = [('facebook', 'Facebook'), ('linkedin', 'LinkedIn'), ('twitter', 'Twitter')]
@@ -97,7 +98,7 @@ SOCIAL = [('facebook', 'Facebook'), ('linkedin', 'LinkedIn'), ('twitter', 'Twitt
 # ---------------- 頁頭 / 頁尾 ----------------
 def header(page, lang, pre=''):
     nav = I18N[lang]['nav']
-    logo = pre + asset('img/logo.png', lang) + LOGO_V
+    logo = pre + asset('img/logo.png', lang) + ASSET_V
     hp = lambda p: pre + page_href(p, lang, lang)
     links = ''.join(
         f'<a href="{hp(p)}" class="{"active" if p == page else ""}">{esc(nav[p if p != "index" else "home"])}</a>'
@@ -138,7 +139,7 @@ def footer(lang, pre=''):
     nav = I18N[lang]['nav']
     ft = I18N[lang]['footer']
     partners = I18N[lang]['partners']
-    logo = pre + asset('img/logo.png', lang) + LOGO_V
+    logo = pre + asset('img/logo.png', lang) + ASSET_V
     hp = lambda p: pre + page_href(p, lang, lang)
     social = ''.join(f'<a href="{C["social"][s]}" aria-label="{label}">{icon(s)}</a>' for s, label in SOCIAL)
     return f'''<footer class="site-footer">
@@ -184,8 +185,8 @@ def footer(lang, pre=''):
 
 def page_shell(page, lang, title, description, body, depth=0, url_path=None, og_image=None):
     pre = '../' * depth
-    css = pre + asset('css/style.css', lang)
-    js = pre + asset('js/main.js', lang)
+    css = pre + asset('css/style.css', lang) + ASSET_V
+    js = pre + asset('js/main.js', lang) + ASSET_V
     lang_links = ''.join(
         f'<link rel="alternate" hreflang="{l}" href="{abs_url(url_path or page, l)}">'
         for l in LANGS)
@@ -218,7 +219,7 @@ def page_shell(page, lang, title, description, body, depth=0, url_path=None, og_
   <meta name="twitter:title" content="{esc(title)}">
   <meta name="twitter:description" content="{esc(description)}">
   <meta name="twitter:image" content="{og_image}">
-  <link rel="icon" type="image/png" href="{pre + asset('img/logo.png', lang) + LOGO_V}">
+  <link rel="icon" type="image/png" href="{pre + asset('img/logo.png', lang) + ASSET_V}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
@@ -288,7 +289,7 @@ def render_index(lang):
 <section class="hero" style="background-image:url('{asset('img/hero-bg.webp', lang)}')">
   <div class="container-institutional">
     <div class="reveal">
-      <h1>{esc(hero['headline'])}</h1>
+      <h1>{esc(hero['headline']).replace(chr(10), '<br>')}</h1>
       <p class="sub">{esc(hero['subtitle'])}</p>
       <div class="cta-row">
         <a class="btn btn-primary" href="{page_href('about', lang, lang)}">{esc(hero['cta1'])}{icon('arrow')}</a>
@@ -434,7 +435,7 @@ def render_research(lang):
         <div class="icon-badge sm">{icon(RESEARCH_ICONS[i-1])}</div>
         <h3>{esc(rs[f'area{i}']['title'])}</h3>
         <p>{esc(rs[f'area{i}']['description'])}</p>
-      </div>''' for i in range(1, 12))
+      </div>''' for i in range(1, 13))
     body = page_hero(lang, 'research') + f'''
 <section class="section-spacing">
   <div class="container-institutional">
@@ -693,7 +694,7 @@ def render_partners(lang):
     pt = I18N[lang]['partners']
     hrefs = C['partners_href']
     cards = ''
-    for i in range(1, 16):
+    for i in range(1, 17):
         logo_path = os.path.join(ROOT, 'assets', 'img', 'partners', f'partner{i}.webp')
         logo_html = ''
         if os.path.exists(logo_path):
@@ -771,6 +772,10 @@ def render_contact(lang):
       <div class="institutional-card reveal">
         <div class="contact-info">
           <h3>{esc(ct['orgName'])}</h3>
+          <div class="info-row">
+            <div class="label">{icon('pin')}<span>{esc(ct['address'])}</span></div>
+            <span>{esc(ct['addressValue'])}</span>
+          </div>
           <div class="info-row">
             <div class="label">{icon('mail')}<span>{esc(ct['email'])}</span></div>
             <a href="mailto:{C['email']}">{C['email']}</a>
