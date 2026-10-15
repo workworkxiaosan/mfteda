@@ -573,7 +573,7 @@ content = {
         "partner12": "https://www.facebook.com/MacauLiveAssociation/",
         "partner13": "https://www.sensetime.com",
         "partner14": "https://nexmatrixs.com",
-        "partner15": "#",
+        "partner15": "https://www.ccem.com.mo/",
     },
     "i18n": i18n,
     "insights": insights,
