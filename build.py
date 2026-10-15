@@ -691,7 +691,7 @@ def render_partners(lang):
     pt = I18N[lang]['partners']
     hrefs = C['partners_href']
     cards = ''
-    for i in range(1, 13):
+    for i in range(1, 16):
         logo_path = os.path.join(ROOT, 'assets', 'img', 'partners', f'partner{i}.webp')
         logo_html = ''
         if os.path.exists(logo_path):

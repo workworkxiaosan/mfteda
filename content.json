@@ -43,7 +43,10 @@
     "partner9": "https://www.jisu.edu.cn",
     "partner10": "http://macau-publish.com/",
     "partner11": "https://www.mmc.edu.mo",
-    "partner12": "https://www.facebook.com/MacauLiveAssociation/"
+    "partner12": "https://www.facebook.com/MacauLiveAssociation/",
+    "partner13": "https://www.sensetime.com",
+    "partner14": "https://nexmatrixs.com",
+    "partner15": "#"
   },
   "i18n": {
     "zh-TW": {
@@ -207,7 +210,10 @@
         "partner9": "吉林外國語大學",
         "partner10": "文化公所",
         "partner11": "中西創新學院",
-        "partner12": "澳門直播協會"
+        "partner12": "澳門直播協會",
+        "partner13": "商湯科技",
+        "partner14": "澳門海易通達科技有限公司",
+        "partner15": "數智建造（廣東橫琴）科技有限公司"
       },
       "contact": {
         "title": "聯繫我們",
@@ -408,7 +414,10 @@
         "partner9": "吉林外国语大学",
         "partner10": "文化公所",
         "partner11": "中西创新学院",
-        "partner12": "澳门直播协会"
+        "partner12": "澳门直播协会",
+        "partner13": "商汤科技",
+        "partner14": "澳门海易通达科技有限公司",
+        "partner15": "数智建造（广东横琴）科技有限公司"
       },
       "contact": {
         "title": "联系我们",
@@ -609,7 +618,10 @@
         "partner9": "Jilin International Studies University",
         "partner10": "Macau Hall of Culture",
         "partner11": "Macau Millennium College",
-        "partner12": "Macao Live Streaming Association"
+        "partner12": "Macao Live Streaming Association",
+        "partner13": "SenseTime",
+        "partner14": "Macao NexMatrix Technology Limited",
+        "partner15": "Digital Construction (Guangdong Hengqin) Technology Co., Ltd."
       },
       "contact": {
         "title": "Contact Us",
@@ -810,7 +822,10 @@
         "partner9": "Universidade de Estudos Internacionais de Jilin",
         "partner10": "Hall de Cultura de Macau",
         "partner11": "Instituto Milénio de Macau",
-        "partner12": "Associação de Transmissão ao Vivo de Macau"
+        "partner12": "Associação de Transmissão ao Vivo de Macau",
+        "partner13": "SenseTime",
+        "partner14": "Macau NexMatrix Tecnologia Limitada",
+        "partner15": "Digital Construction (Guangdong Hengqin) Technology Co., Ltd."
       },
       "contact": {
         "title": "Contacte-nos",
