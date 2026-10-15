@@ -2620,6 +2620,21 @@
         "en": "Fostering a \"One-Person Company\" startup ecosystem powered by SenseTime Raccoon AI",
         "pt": "Promovendo um ecossistema de empresas unipessoais (OPC) com as capacidades de IA da SenseTime Raccoon"
       }
+    },
+    {
+      "icon": "building",
+      "title": {
+        "zh-TW": "中國基建企業出海數字化應用系統培訓中心",
+        "zh-CN": "中国基建企业出海数字化应用系统培训中心",
+        "en": "Digital Systems Training Center for Chinese Infrastructure Enterprises Going Global",
+        "pt": "Centro de Formação em Sistemas Digitais para a Internacionalização de Empresas Chinesas de Infraestruturas"
+      },
+      "description": {
+        "zh-TW": "由數智建造（廣東橫琴）科技有限公司支持運營，助力基建企業數字化出海",
+        "zh-CN": "由数智建造（广东横琴）科技有限公司支持运营，助力基建企业数字化出海",
+        "en": "Operated with support from Digital Construction (Guangdong Hengqin) Technology Co., Ltd., empowering infrastructure enterprises to expand globally through digitalization",
+        "pt": "Operado com o apoio da Digital Construction (Guangdong Hengqin) Technology Co., Ltd., apoiando a expansão internacional das empresas de infraestruturas através da digitalização"
+      }
     }
   ],
   "policies": [
