@@ -41,6 +41,8 @@ def asset(path, current_lang):
     prefix = '../' if current_lang != DEFAULT else ''
     return prefix + 'assets/' + path
 
+LOGO_V = '?v=20261016'
+
 def abs_url(page, lang):
     """某語言某頁面的絕對 URL（canonical/OG/sitemap 用）。"""
     base = C.get('site_url', 'https://mfteda.org').rstrip('/')
@@ -95,7 +97,7 @@ SOCIAL = [('facebook', 'Facebook'), ('linkedin', 'LinkedIn'), ('twitter', 'Twitt
 # ---------------- 頁頭 / 頁尾 ----------------
 def header(page, lang, pre=''):
     nav = I18N[lang]['nav']
-    logo = pre + asset('img/logo.png', lang)
+    logo = pre + asset('img/logo.png', lang) + LOGO_V
     hp = lambda p: pre + page_href(p, lang, lang)
     links = ''.join(
         f'<a href="{hp(p)}" class="{"active" if p == page else ""}">{esc(nav[p if p != "index" else "home"])}</a>'
@@ -136,7 +138,7 @@ def footer(lang, pre=''):
     nav = I18N[lang]['nav']
     ft = I18N[lang]['footer']
     partners = I18N[lang]['partners']
-    logo = pre + asset('img/logo.png', lang)
+    logo = pre + asset('img/logo.png', lang) + LOGO_V
     hp = lambda p: pre + page_href(p, lang, lang)
     social = ''.join(f'<a href="{C["social"][s]}" aria-label="{label}">{icon(s)}</a>' for s, label in SOCIAL)
     return f'''<footer class="site-footer">
@@ -216,7 +218,7 @@ def page_shell(page, lang, title, description, body, depth=0, url_path=None, og_
   <meta name="twitter:title" content="{esc(title)}">
   <meta name="twitter:description" content="{esc(description)}">
   <meta name="twitter:image" content="{og_image}">
-  <link rel="icon" type="image/png" href="{pre + asset('img/logo.png', lang)}">
+  <link rel="icon" type="image/png" href="{pre + asset('img/logo.png', lang) + LOGO_V}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
