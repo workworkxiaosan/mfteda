@@ -34,7 +34,7 @@
   "partners_href": {
     "partner1": "https://www.dsedt.gov.mo",
     "partner2": "https://www.ipim.gov.mo",
-    "partner3": "http://www.iolaw.cssn.cn",
+    "partner3": "http://iolaw.cssn.cn",
     "partner4": "https://www.bjql.org.cn",
     "partner5": "https://www.bnu.edu.cn",
     "partner6": "https://www.gzhu.edu.cn",
@@ -43,7 +43,7 @@
     "partner9": "https://www.jisu.edu.cn",
     "partner10": "https://www.changdian2001.com/",
     "partner11": "http://macau-publish.com/",
-    "partner12": "https://www.mmc.edu.mo",
+    "partner12": "https://mmc.edu.mo",
     "partner13": "https://www.facebook.com/MacauLiveAssociation/",
     "partner14": "https://www.sensetime.com",
     "partner15": "https://nexmatrixs.com",
@@ -105,7 +105,7 @@
       },
       "research": {
         "title": "研究領域",
-        "subtitle": "我們的核心研究方向",
+        "subtitle": "聚焦數字經濟、人民幣國際化、ESG與可持續發展等十二大方向，以研究驅動決策，服務澳門與國家發展",
         "area1": {
           "title": "數字經濟",
           "description": "探索數字化轉型、電子商務和數字金融創新"
@@ -157,7 +157,7 @@
       },
       "projects": {
         "title": "重點項目",
-        "subtitle": "我們的代表性成果",
+        "subtitle": "本會在稅法普及、青年培育、產學研轉化與中葡平台建設等領域的代表性項目，以務實成果回饋澳門、輻射灣區",
         "project1": {
           "year": "2020",
           "title": "澳門特別行政區居民稅法知識讀本系列",
@@ -198,12 +198,12 @@
       },
       "insights": {
         "title": "研究洞察",
-        "subtitle": "最新研究成果與政策分析",
+        "subtitle": "本會智庫研究與社評專欄，聚焦澳門財經科技前沿、橫琴深合區動態與中葡平台機遇的深度分析",
         "readMore": "閱讀更多"
       },
       "partners": {
         "title": "友好單位及戰略合作夥伴",
-        "subtitle": "我們的合作網絡",
+        "subtitle": "匯聚政府部門、高等院校、研究機構、社團與企業的十六家夥伴，構建覆蓋澳門、橫琴與大灣區的產學研協作網絡",
         "partner1": "澳門經濟及科技發展局",
         "partner2": "招商投資促進局",
         "partner3": "中國社會科學院法學研究所",
@@ -316,7 +316,7 @@
       },
       "research": {
         "title": "研究领域",
-        "subtitle": "我们的核心研究方向",
+        "subtitle": "聚焦数字经济、人民币国际化、ESG与可持续发展等十二大方向，以研究驱动决策，服务澳门与国家发展",
         "area1": {
           "title": "数字经济",
           "description": "探索数字化转型、电子商务和数字金融创新"
@@ -368,7 +368,7 @@
       },
       "projects": {
         "title": "重点项目",
-        "subtitle": "我们的代表性成果",
+        "subtitle": "本会在税法普及、青年培育、产学研转化与中葡平台建设等领域的代表性项目，以务实成果回馈澳门、辐射湾区",
         "project1": {
           "year": "2020",
           "title": "澳门特别行政区居民税法知识读本系列",
@@ -409,12 +409,12 @@
       },
       "insights": {
         "title": "研究洞察",
-        "subtitle": "最新研究成果与政策分析",
+        "subtitle": "本会智库研究与社评专栏，聚焦澳门财经科技前沿、横琴深合区动态与中葡平台机遇的深度分析",
         "readMore": "阅读更多"
       },
       "partners": {
         "title": "友好单位及战略合作伙伴",
-        "subtitle": "我们的合作网络",
+        "subtitle": "汇聚政府部门、高等院校、研究机构、社团与企业的十六家伙伴，构建覆盖澳门、横琴与大湾区的产学研协作网络",
         "partner1": "澳门经济及科技发展局",
         "partner2": "招商投资促进局",
         "partner3": "中国社会科学院法学研究所",
@@ -527,7 +527,7 @@
       },
       "research": {
         "title": "Research Areas",
-        "subtitle": "Our core research directions",
+        "subtitle": "Twelve core research directions, from digital economy and RMB internationalization to ESG and sustainability, serving Macao and the nation",
         "area1": {
           "title": "Digital Economy",
           "description": "Exploring digital transformation, e-commerce, and digital finance innovation"
@@ -579,7 +579,7 @@
       },
       "projects": {
         "title": "Key Projects",
-        "subtitle": "Our representative achievements",
+        "subtitle": "Flagship projects in tax-law literacy, youth development, technology transfer and Sino-Portuguese platform building, delivering results for Macao",
         "project1": {
           "year": "2020",
           "title": "Macao SAR Resident Tax Law Knowledge Series",
@@ -620,12 +620,12 @@
       },
       "insights": {
         "title": "Research Insights",
-        "subtitle": "Latest research findings and policy analysis",
+        "subtitle": "Think-tank research and op-eds on Macao's fintech frontier, the Hengqin Cooperation Zone and the China-Portuguese platform",
         "readMore": "Read More"
       },
       "partners": {
         "title": "Friendly Institutions & Strategic Partners",
-        "subtitle": "Our collaboration network",
+        "subtitle": "Sixteen partners spanning government, universities, research institutes, associations and enterprises across Macao, Hengqin and the Greater Bay Area",
         "partner1": "Macao Economic and Technological Development Bureau",
         "partner2": "Commerce and Investment Promotion Institute",
         "partner3": "Institute of Law, Chinese Academy of Social Sciences",
@@ -738,7 +738,7 @@
       },
       "research": {
         "title": "Áreas de Pesquisa",
-        "subtitle": "Nossas direções de pesquisa principais",
+        "subtitle": "Doze áreas de investigação — da economia digital e internacionalização do RMB ao ESG e à sustentabilidade — ao serviço de Macau e do país",
         "area1": {
           "title": "Economia Digital",
           "description": "Explorando transformação digital, comércio eletrónico e inovação financeira digital"
@@ -790,7 +790,7 @@
       },
       "projects": {
         "title": "Projetos Principais",
-        "subtitle": "Nossas conquistas representativas",
+        "subtitle": "Projetos emblemáticos em literacia fiscal, formação de jovens, transferência de tecnologia e plataforma sino-lusófona ao serviço de Macau",
         "project1": {
           "year": "2020",
           "title": "Série de Conhecimento da Lei Fiscal para Residentes da RAE de Macau",
@@ -831,12 +831,12 @@
       },
       "insights": {
         "title": "Insights de Pesquisa",
-        "subtitle": "Últimas descobertas de pesquisa e análise política",
+        "subtitle": "Investigação de think tank e artigos de opinião sobre a fronteira fintech de Macau, a Zona de Cooperação de Hengqin e a plataforma sino-lusófona",
         "readMore": "Ler Mais"
       },
       "partners": {
         "title": "Instituições Amigas & Parceiros Estratégicos",
-        "subtitle": "Nossa rede de colaboração",
+        "subtitle": "Dezasseis parceiros — governo, universidades, institutos de investigação, associações e empresas — em Macau, Hengqin e na Grande Baía",
         "partner1": "Gabinete de Desenvolvimento Económico e Tecnológico de Macau",
         "partner2": "Instituto de Promoção do Comércio e do Investimento de Macau",
         "partner3": "Instituto de Direito, Academia Chinesa de Ciências Sociais",
@@ -2791,7 +2791,12 @@
     },
     {
       "region": "hengqin",
-      "year": "2022起",
+      "year": {
+        "zh-TW": "2022起",
+        "zh-CN": "2022起",
+        "en": "Since 2022",
+        "pt": "Desde 2022"
+      },
       "title": {
         "zh-TW": "企業所得稅15%優惠",
         "zh-CN": "企业所得税15%优惠",
@@ -2876,7 +2881,12 @@
     },
     {
       "region": "hengqin",
-      "year": "2024起",
+      "year": {
+        "zh-TW": "2024起",
+        "zh-CN": "2024起",
+        "en": "Since 2024",
+        "pt": "Desde 2024"
+      },
       "title": {
         "zh-TW": "澳門青年創新創業扶持",
         "zh-CN": "澳门青年创新创业扶持",

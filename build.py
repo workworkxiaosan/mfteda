@@ -8,7 +8,8 @@ MFTEDA 官網靜態站生成器
 
 更新網站內容 = 改 content.json → 重新執行 python3 build.py。
 """
-import json, html, os, shutil
+import json, html, os, shutil, subprocess, unicodedata
+from datetime import date
 
 ROOT = os.path.dirname(os.path.abspath(__file__))
 DIST = os.path.join(ROOT, 'dist')
@@ -41,7 +42,59 @@ def asset(path, current_lang):
     prefix = '../' if current_lang != DEFAULT else ''
     return prefix + 'assets/' + path
 
-ASSET_V = '?v=20261016'
+ASSET_V = '?v=20261016b'
+BUILD_DATE = date.today().isoformat()
+
+_IMG_SIZE_CACHE = {}
+def img_size(relpath):
+    """讀取 assets/ 下圖片的真實尺寸（供 <img> width/height 屬性防 CLS）。
+    優先 PIL，失敗則調 macOS 自帶 sips；都讀不到返回 None，絕不中斷構建。"""
+    if relpath in _IMG_SIZE_CACHE:
+        return _IMG_SIZE_CACHE[relpath]
+    size = None
+    p = os.path.join(ROOT, 'assets', relpath)
+    try:
+        from PIL import Image
+        with Image.open(p) as im:
+            size = im.size
+    except Exception:
+        try:
+            out = subprocess.run(['sips', '-g', 'pixelWidth', '-g', 'pixelHeight', p],
+                                 capture_output=True, text=True, timeout=15).stdout
+            w = h = None
+            for ln in out.splitlines():
+                if 'pixelWidth:' in ln:
+                    w = int(ln.split(':')[1].strip())
+                elif 'pixelHeight:' in ln:
+                    h = int(ln.split(':')[1].strip())
+            if w and h:
+                size = (w, h)
+        except Exception:
+            size = None
+    _IMG_SIZE_CACHE[relpath] = size
+    return size
+
+def img_wh_attrs(relpath):
+    """返回 ' width="W" height="H"' 屬性串；讀不到尺寸返回空串。"""
+    s = img_size(relpath)
+    return f' width="{s[0]}" height="{s[1]}"' if s else ''
+
+def text_width(s):
+    """顯示寬度：全角字符計 2，半角計 1。"""
+    return sum(2 if unicodedata.east_asian_width(ch) in ('W', 'F') else 1 for ch in str(s))
+
+def truncate_title(s, max_w=60):
+    """標題顯示寬度超過 max_w（≈30 個全角字符）時截斷並加省略號。"""
+    if text_width(s) <= max_w:
+        return s
+    out, w = [], 0
+    for ch in s:
+        cw = 2 if unicodedata.east_asian_width(ch) in ('W', 'F') else 1
+        if w + cw > max_w:
+            break
+        out.append(ch)
+        w += cw
+    return ''.join(out).rstrip() + '…'
 
 def abs_url(page, lang):
     """某語言某頁面的絕對 URL（canonical/OG/sitemap 用）。"""
@@ -60,6 +113,7 @@ def icon(name, cls=''):
         'pin': '<path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0 1 18 0z"/><circle cx="12" cy="10" r="3"/>',
         'calendar': '<rect x="3" y="4" width="18" height="18" rx="2" ry="2"/><line x1="16" y1="2" x2="16" y2="6"/><line x1="8" y1="2" x2="8" y2="6"/><line x1="3" y1="10" x2="21" y2="10"/>',
         'arrow': '<line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/>',
+        'arrow-left': '<line x1="19" y1="12" x2="5" y2="12"/><polyline points="12 19 5 12 12 5"/>',
         'menu': '<line x1="3" y1="6" x2="21" y2="6"/><line x1="3" y1="12" x2="21" y2="12"/><line x1="3" y1="18" x2="21" y2="18"/>',
         'close': '<line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/>',
         'check': '<polyline points="20 6 9 17 4 12"/>',
@@ -96,19 +150,24 @@ ABOUT_INITIATIVE_ICONS = ['trending', 'handshake', 'book', 'cpu', 'dollar', 'use
 SOCIAL = [('facebook', 'Facebook'), ('linkedin', 'LinkedIn'), ('twitter', 'Twitter')]
 
 # ---------------- 頁頭 / 頁尾 ----------------
+SKIP_LINK = {'zh-TW': '跳至主要內容', 'zh-CN': '跳至主要内容', 'en': 'Skip to main content', 'pt': 'Pular para o conteúdo principal'}
+MENU_LABEL = {'zh-TW': '菜單', 'zh-CN': '菜单', 'en': 'Menu', 'pt': 'Menu'}
+CLOSE_LABEL = {'zh-TW': '關閉', 'zh-CN': '关闭', 'en': 'Close', 'pt': 'Fechar'}
+
 def header(page, lang, pre=''):
     nav = I18N[lang]['nav']
-    logo = pre + asset('img/logo.png', lang) + ASSET_V
+    logo = pre + asset('img/logo-sm.png', lang) + ASSET_V
     hp = lambda p: pre + page_href(p, lang, lang)
+    cur = lambda p: ' aria-current="page"' if p == page else ''
     links = ''.join(
-        f'<a href="{hp(p)}" class="{"active" if p == page else ""}">{esc(nav[p if p != "index" else "home"])}</a>'
+        f'<a href="{hp(p)}" class="{"active" if p == page else ""}"{cur(p)}>{esc(nav[p if p != "index" else "home"])}</a>'
         for p in PAGES)
     lang_btn_label = next(l['label'] for l in C['languages'] if l['code'] == lang)
     lang_items = ''.join(
         f'<a href="{pre + page_href(page, l["code"], lang)}" class="{"current" if l["code"] == lang else ""}">{l["flag"]} {esc(l["label"])}</a>'
         for l in C['languages'])
     mlinks = ''.join(
-        f'<a href="{hp(p)}" class="mnav {"active" if p == page else ""}">{esc(nav[p if p != "index" else "home"])}</a>'
+        f'<a href="{hp(p)}" class="mnav {"active" if p == page else ""}"{cur(p)}>{esc(nav[p if p != "index" else "home"])}</a>'
         for p in PAGES)
     return f'''<header class="site-header">
   <div class="container-institutional">
@@ -119,14 +178,14 @@ def header(page, lang, pre=''):
         <button type="button" aria-haspopup="true">{icon('globe')}{esc(lang_btn_label)}</button>
         <div class="dropdown">{lang_items}</div>
       </div>
-      <button class="menu-toggle" id="menu-toggle" aria-label="Menu">{icon('menu')}</button>
+      <button class="menu-toggle" id="menu-toggle" aria-expanded="false" aria-controls="mobile-panel" aria-label="{esc(MENU_LABEL[lang])}">{icon('menu')}</button>
     </div>
   </div>
 </header>
 <div class="panel-overlay" id="panel-overlay"></div>
-<aside class="mobile-panel" id="mobile-panel">
+<aside class="mobile-panel" id="mobile-panel" aria-hidden="true">
   <div style="display:flex;justify-content:flex-end;margin-bottom:1rem;">
-    <button class="menu-toggle" onclick="document.getElementById('mobile-panel').classList.remove('open');document.getElementById('panel-overlay').classList.remove('open');" aria-label="Close">{icon('close')}</button>
+    <button class="menu-toggle" onclick="document.getElementById('mobile-panel').classList.remove('open');document.getElementById('panel-overlay').classList.remove('open');" aria-label="{esc(CLOSE_LABEL[lang])}">{icon('close')}</button>
   </div>
   {mlinks}
   <div class="lang-switch" style="margin-top:1rem;">
@@ -139,16 +198,20 @@ def footer(lang, pre=''):
     nav = I18N[lang]['nav']
     ft = I18N[lang]['footer']
     partners = I18N[lang]['partners']
-    logo = pre + asset('img/logo.png', lang) + ASSET_V
+    logo = pre + asset('img/logo-sm.png', lang) + ASSET_V
     hp = lambda p: pre + page_href(p, lang, lang)
-    social = ''.join(f'<a href="{C["social"][s]}" aria-label="{label}">{icon(s)}</a>' for s, label in SOCIAL)
+    # href 為 '#' 的社交鏈接不渲染（未開通賬號時整行消失）
+    social_links = [(s, label) for s, label in SOCIAL if C['social'].get(s, '#') != '#']
+    brand_inner = f'<img src="{logo}" alt="MFTEDA Logo">'
+    if social_links:
+        social = ''.join(f'<a href="{C["social"][s]}" aria-label="{label}">{icon(s)}</a>' for s, label in social_links)
+        brand_inner += f'\n        <div class="social-row">{social}</div>'
+    address = I18N[lang]['contact']['addressValue']
     return f'''<footer class="site-footer">
   <div class="container-institutional section-spacing">
     <div class="footer-grid">
-      <div class="footer-col">
-        <img src="{logo}" alt="MFTEDA Logo">
-        <p class="desc">{esc(ft['description'])}</p>
-        <div class="social-row">{social}</div>
+      <div class="footer-col footer-brand-col">
+        {brand_inner}
       </div>
       <div class="footer-col">
         <h4>{esc(ft['quickLinks'])}</h4>
@@ -156,6 +219,8 @@ def footer(lang, pre=''):
           <li><a href="{hp('index')}">{esc(nav['home'])}</a></li>
           <li><a href="{hp('about')}">{esc(nav['about'])}</a></li>
           <li><a href="{hp('research')}">{esc(nav['research'])}</a></li>
+          <li><a href="{hp('projects')}">{esc(nav['projects'])}</a></li>
+          <li><a href="{hp('contact')}">{esc(nav['contact'])}</a></li>
         </ul>
       </div>
       <div class="footer-col">
@@ -164,16 +229,17 @@ def footer(lang, pre=''):
           <li><a href="{hp('publications')}">{esc(nav['publications'])}</a></li>
           <li><a href="{hp('insights')}">{esc(nav['insights'])}</a></li>
           <li><a href="{hp('news')}">{esc(nav['news'])}</a></li>
+          <li><a href="{hp('policy')}">{esc(nav['policy'])}</a></li>
         </ul>
       </div>
       <div class="footer-col">
-        <h4>{esc(ft['partners'])}</h4>
+        <h4><a href="{hp('partners')}">{esc(ft['partners'])}</a></h4>
         <ul>
           <li><span>{esc(partners['partner1'])}</span></li>
           <li><span>{esc(partners['partner2'])}</span></li>
           <li><span>{esc(partners['partner3'])}</span></li>
-          <li><span>{esc(partners['partner4'])}</span></li>
         </ul>
+        <p class="footer-address">{icon('pin')}<span>{esc(address)}</span></p>
       </div>
     </div>
   </div>
@@ -183,54 +249,108 @@ def footer(lang, pre=''):
   </div>
 </footer>'''
 
-def page_shell(page, lang, title, description, body, depth=0, url_path=None, og_image=None):
+def page_shell(page, lang, title, description, body, depth=0, url_path=None, og_image=None,
+               og_type='website', article_meta=None, og_image_dims=None, extra_head='', noindex=False):
     pre = '../' * depth
     css = pre + asset('css/style.css', lang) + ASSET_V
     js = pre + asset('js/main.js', lang) + ASSET_V
-    lang_links = ''.join(
-        f'<link rel="alternate" hreflang="{l}" href="{abs_url(url_path or page, l)}">'
-        for l in LANGS)
     canonical = abs_url(url_path or page, lang)
-    og_image = og_image or (C.get('site_url', 'https://mfteda.org').rstrip('/') + '/assets/img/og-cover.jpg')
+    base = C.get('site_url', 'https://mfteda.org').rstrip('/')
+    default_og = base + '/assets/img/og-cover.jpg'
+    og_image = og_image or default_og
+    if og_image_dims is None and og_image == default_og:
+        og_image_dims = (1200, 630)
     og_locale = {'zh-TW': 'zh_TW', 'zh-CN': 'zh_CN', 'en': 'en_US', 'pt': 'pt_PT'}[lang]
     # 機構名按各自語言版本書寫（簡體頁用簡體學會名）
     site_name = '澳门财经科技与教育发展学会' if lang == 'zh-CN' else C['site_name']
+    full_name = I18N[lang]['contact']['orgName']
+    # <title>：首頁用「學會全稱 MFTEDA」品牌格式；文章標題顯示寬度超過 ≈30 個全角字符時截斷；其餘維持「標題 - MFTEDA」
+    if page == 'index' and not noindex:
+        title_tag = f'{full_name} MFTEDA'
+    else:
+        tt = truncate_title(title) if article_meta else title
+        title_tag = f'{tt} - MFTEDA'
+    og_title = title_tag if page == 'index' else title
+    # canonical / hreflang / JSON-LD：noindex 頁（404）一律不輸出
+    meta_links = ''
+    if not noindex:
+        meta_links = f'  <link rel="canonical" href="{canonical}">\n'
+        meta_links += '\n'.join(
+            f'  <link rel="alternate" hreflang="{l}" href="{abs_url(url_path or page, l)}">'
+            for l in LANGS)
+        meta_links += f'\n  <link rel="alternate" hreflang="x-default" href="{abs_url(url_path or page, DEFAULT)}">'
+    robots_meta = '  <meta name="robots" content="noindex">\n' if noindex else ''
     jsonld = ''
-    if page == 'index':
-        jsonld = f'''<script type="application/ld+json">
-  {{"@context":"https://schema.org","@type":"Organization","name":"{site_name}","alternateName":"{C['site_name_en']}","url":"{C.get('site_url','https://mfteda.org')}","logo":"{C.get('site_url','https://mfteda.org')}/assets/img/logo.png","email":"{C['email']}"}}
-  </script>'''
+    if page == 'index' and not noindex:
+        org = {"@context": "https://schema.org", "@type": "Organization",
+               "name": site_name, "alternateName": C['site_name_en'], "url": base,
+               "logo": f"{base}/assets/img/logo.png", "email": C['email'],
+               "address": {"@type": "PostalAddress",
+                           "streetAddress": I18N[lang]['contact']['addressValue'],
+                           "addressLocality": "Macao", "addressCountry": "MO"}}
+        jsonld = '  <script type="application/ld+json">\n  ' + json.dumps(org, ensure_ascii=False) + '\n  </script>'
+    elif article_meta:
+        if article_meta.get('author'):
+            author_obj = {"@type": "Person", "name": article_meta['author']}
+        else:
+            author_obj = {"@type": "Organization", "name": site_name}
+        article_ld = {"@context": "https://schema.org", "@type": "NewsArticle",
+                      "headline": title, "datePublished": article_meta['date'],
+                      "author": author_obj,
+                      "publisher": {"@type": "Organization", "name": site_name,
+                                    "logo": {"@type": "ImageObject", "url": f"{base}/assets/img/logo.png"}},
+                      "image": [article_meta.get('image') or og_image],
+                      "mainEntityOfPage": canonical}
+        crumb_ld = {"@context": "https://schema.org", "@type": "BreadcrumbList",
+                    "itemListElement": [
+                        {"@type": "ListItem", "position": 1, "name": t(lang, 'nav', 'home'), "item": abs_url('index', lang)},
+                        {"@type": "ListItem", "position": 2, "name": t(lang, 'nav', page), "item": abs_url(page, lang)},
+                        {"@type": "ListItem", "position": 3, "name": title, "item": canonical}]}
+        jsonld = ('  <script type="application/ld+json">\n  ' + json.dumps(article_ld, ensure_ascii=False) + '\n  </script>\n'
+                  '  <script type="application/ld+json">\n  ' + json.dumps(crumb_ld, ensure_ascii=False) + '\n  </script>')
+    article_og = ''
+    if article_meta:
+        article_og = f'  <meta property="article:published_time" content="{esc(article_meta["date"])}">\n'
+        if article_meta.get('author'):
+            article_og += f'  <meta property="article:author" content="{esc(article_meta["author"])}">\n'
+        article_og += f'  <meta property="article:section" content="{esc(article_meta["section"])}">\n'
+    og_dims = ''
+    if og_image_dims:
+        og_dims = (f'  <meta property="og:image:width" content="{og_image_dims[0]}">\n'
+                   f'  <meta property="og:image:height" content="{og_image_dims[1]}">\n')
+    extra = f'  {extra_head}\n' if extra_head else ''
     return f'''<!doctype html>
 <html lang="{lang}">
 <head>
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>{esc(title)} - MFTEDA</title>
+{robots_meta}  <title>{esc(title_tag)}</title>
   <meta name="description" content="{esc(description)}">
-  <link rel="canonical" href="{canonical}">
-  <meta property="og:type" content="{'website' if page == 'index' else 'article'}">
+{meta_links}
+  <meta property="og:type" content="{og_type}">
   <meta property="og:site_name" content="MFTEDA {esc(site_name)}">
   <meta property="og:locale" content="{og_locale}">
-  <meta property="og:title" content="{esc(title)}">
+  <meta property="og:title" content="{esc(og_title)}">
   <meta property="og:description" content="{esc(description)}">
   <meta property="og:url" content="{canonical}">
   <meta property="og:image" content="{og_image}">
-  <meta name="twitter:card" content="summary_large_image">
-  <meta name="twitter:title" content="{esc(title)}">
+{og_dims}  <meta property="og:image:alt" content="{esc(og_title)}">
+{article_og}  <meta name="twitter:card" content="summary_large_image">
+  <meta name="twitter:title" content="{esc(og_title)}">
   <meta name="twitter:description" content="{esc(description)}">
   <meta name="twitter:image" content="{og_image}">
-  <link rel="icon" type="image/png" href="{pre + asset('img/logo.png', lang) + ASSET_V}">
+  <link rel="icon" type="image/png" href="{pre + asset('img/logo-sm.png', lang) + ASSET_V}">
   <link rel="preconnect" href="https://fonts.googleapis.com">
   <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
   <link href="https://fonts.googleapis.com/css2?family=Playfair+Display:wght@400;500;600;700&family=DM+Sans:wght@400;500;600;700&display=swap" rel="stylesheet">
   <link rel="stylesheet" href="{css}">
   <noscript><style>.reveal{{opacity:1 !important;transform:none !important;}}</style></noscript>
-  {lang_links}
-  {jsonld}
+{extra}{jsonld}
 </head>
 <body>
+<a class="skip-link" href="#main">{esc(SKIP_LINK[lang])}</a>
 {header(page, lang, pre)}
-<main>
+<main id="main">
 {body}
 </main>
 {footer(lang, pre)}
@@ -249,6 +369,52 @@ def page_hero(lang, section):
 </section>'''
 
 # ---------------- 首頁 ----------------
+# 首頁 hero 世界地圖上的大洲動態連線 SVG（viewBox 與 hero-bg.webp 同尺寸，preserveAspectRatio slice 與 background-size:cover 行為一致，
+# 因此節點始終對齊地圖上的各大洲。弧線均以澳門（東亞節點）為起點向外輻射，寓意「從澳門出發鏈接世界」）
+HERO_LINKS = '''  <svg class="hero-links" viewBox="0 0 1536 2752" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
+    <g>
+      <path class="link-base" d="M1106 1238 Q903 1049 700 1120"/>
+      <path class="link-base" d="M1106 1238 Q948 1199 790 1380"/>
+      <path class="link-base" d="M1106 1238 Q1010 1164 915 1230"/>
+      <path class="link-base" d="M1106 1238 Q703 969 300 1180"/>
+      <path class="link-base" d="M1106 1238 Q768 1159 430 1520"/>
+      <path class="link-base" d="M1106 1238 Q1118 1269 1130 1420"/>
+      <path class="link-base" d="M1106 1238 Q1193 1289 1280 1560"/>
+      <path class="link-base" d="M700 1120 Q565 1170 430 1520"/>
+      <path class="link-base" d="M700 1120 Q745 1160 790 1380"/>
+    </g>
+    <g>
+      <path class="link-pulse" pathLength="1000" d="M1106 1238 Q903 1049 700 1120"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-1.4s" d="M1106 1238 Q948 1199 790 1380"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-2.6s" d="M1106 1238 Q1010 1164 915 1230"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-3.8s" d="M1106 1238 Q703 969 300 1180"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-5s" d="M1106 1238 Q768 1159 430 1520"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-0.9s" d="M1106 1238 Q1118 1269 1130 1420"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-2s" d="M1106 1238 Q1193 1289 1280 1560"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-3.2s" d="M700 1120 Q565 1170 430 1520"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-4.5s" d="M700 1120 Q745 1160 790 1380"/>
+    </g>
+    <g>
+      <circle class="node-ring" cx="1106" cy="1238" r="16"/>
+      <circle class="node-ring" cx="1106" cy="1238" r="16" style="animation-delay:-1.6s"/>
+      <circle class="node-core" cx="1106" cy="1238" r="16"/>
+      <circle class="node-ring" cx="700" cy="1120" r="12" style="animation-delay:-0.4s"/>
+      <circle class="node-core" cx="700" cy="1120" r="12"/>
+      <circle class="node-ring" cx="790" cy="1380" r="12" style="animation-delay:-0.8s"/>
+      <circle class="node-core" cx="790" cy="1380" r="12"/>
+      <circle class="node-ring" cx="915" cy="1230" r="12" style="animation-delay:-1.2s"/>
+      <circle class="node-core" cx="915" cy="1230" r="12"/>
+      <circle class="node-ring" cx="300" cy="1180" r="12" style="animation-delay:-2s"/>
+      <circle class="node-core" cx="300" cy="1180" r="12"/>
+      <circle class="node-ring" cx="430" cy="1520" r="12" style="animation-delay:-2.4s"/>
+      <circle class="node-core" cx="430" cy="1520" r="12"/>
+      <circle class="node-ring" cx="1130" cy="1420" r="12" style="animation-delay:-2.8s"/>
+      <circle class="node-core" cx="1130" cy="1420" r="12"/>
+      <circle class="node-ring" cx="1280" cy="1560" r="12" style="animation-delay:-1s"/>
+      <circle class="node-core" cx="1280" cy="1560" r="12"/>
+    </g>
+  </svg>'''
+
 def render_index(lang):
     hero = I18N[lang]['hero']
     cards = ''
@@ -285,8 +451,10 @@ def render_index(lang):
         <p>{esc(a['excerpt'][lang])}</p>
         <a class="read-more" href="news/{a['slug']}.html">{esc(ins['readMore'])}{icon('arrow')}</a>
       </div>'''
+    hero_bg = asset('img/hero-bg.webp', lang) + ASSET_V
     body = f'''
-<section class="hero" style="background-image:url('{asset('img/hero-bg.webp', lang)}')">
+<section class="hero" style="background-image:url('{hero_bg}')">
+{HERO_LINKS}
   <div class="container-institutional">
     <div class="reveal">
       <h1>{esc(hero['headline']).replace(chr(10), '<br>')}</h1>
@@ -339,7 +507,8 @@ def render_index(lang):
             'zh-CN': '澳门财经科技与教育发展学会致力于推动澳门特区多元化、可持续、高质量发展',
             'en': 'MFTEDA is committed to promoting diversified, sustainable, and high-quality development of Macao SAR',
             'pt': 'MFTEDA está comprometida em promover o desenvolvimento diversificado, sustentável e de alta qualidade da RAE de Macau'}[lang]
-    return page_shell('index', lang, t(lang, 'nav', 'home'), desc, body)
+    return page_shell('index', lang, t(lang, 'nav', 'home'), desc, body,
+                      extra_head=f'<link rel="preload" as="image" href="{hero_bg}">')
 
 # ---------------- 關於我們 ----------------
 def render_about(lang):
@@ -354,8 +523,13 @@ def render_about(lang):
         if sep:
             head, rest = first.split(sep, 1)
             chunks[0] = rest.strip()
-    # 末段結尾統一為單個句號（修復原站「。。」問題）
-    chunks[-1] = chunks[-1].rstrip('。') + '。'
+    # 末段結尾統一為單個句號（修復原站「。。」問題）；西文頁保留英文句號，避免「.。」混雜
+    if lang.startswith('zh'):
+        chunks[-1] = chunks[-1].rstrip('。') + '。'
+    else:
+        chunks[-1] = chunks[-1].rstrip('。')
+        if not chunks[-1].endswith(('.', '!', '?')):
+            chunks[-1] += '.'
     paras = ''.join(
         f'<p>{esc(p)}{esc("；" if i < len(chunks) - 1 else "")}</p>'
         for i, p in enumerate(chunks))
@@ -433,7 +607,7 @@ def render_research(lang):
     cards = ''.join(f'''
       <div class="institutional-card research-card reveal">
         <div class="icon-badge sm">{icon(RESEARCH_ICONS[i-1])}</div>
-        <h3>{esc(rs[f'area{i}']['title'])}</h3>
+        <h2>{esc(rs[f'area{i}']['title'])}</h2>
         <p>{esc(rs[f'area{i}']['description'])}</p>
       </div>''' for i in range(1, 13))
     body = page_hero(lang, 'research') + f'''
@@ -475,7 +649,7 @@ def render_publications(lang):
             'youth': 'book-youth.pdf', 'supplement': 'book-supplement.pdf'}
     cards = ''.join(f'''
       <div class="institutional-card book-card reveal">
-        <img class="book-cover" src="{asset('img/' + covers[k], lang)}" alt="{esc(pb[k]['title'])}">
+        <img class="book-cover" src="{asset('img/' + covers[k], lang)}" alt="{esc(pb[k]['title'])}" loading="lazy">
         <div class="book-body">
           <h3>{esc(pb[k]['title'])}</h3>
           <p>{esc(pb[k]['description'])}</p>
@@ -524,7 +698,13 @@ def render_insights(lang):
     </div>
   </div>
 </section>'''
-    cards = ''.join(f'''
+    cards = ''
+    for a in (x for x in all_sorted if not x.get('column')):
+        # 無 slug 的條目沒有詳情頁，不輸出「閱讀更多」鏈接
+        read_more = ''
+        if a.get('slug'):
+            read_more = f'<a class="read-more" href="insights/{a["slug"]}.html">{esc(ins["readMore"])}{icon("arrow")}</a>'
+        cards += f'''
       <div class="institutional-card insight-card reveal">
         <div class="insight-meta">
           <span class="badge">{esc(a['category'][lang])}</span>
@@ -532,8 +712,8 @@ def render_insights(lang):
         </div>
         <h3>{esc(a['title'][lang])}</h3>
         <p>{esc(a['excerpt'][lang])}</p>
-        <a class="read-more" href="{f'insights/{a["slug"]}.html' if a.get('slug') else '#'}">{esc(ins['readMore'])}{icon('arrow')}</a>
-      </div>''' for a in all_sorted if not a.get('column'))
+        {read_more}
+      </div>'''
     body = page_hero(lang, 'insights') + column_section + f'''
 <section class="section-spacing">
   <div class="container-institutional">
@@ -554,15 +734,16 @@ def render_insight_article(lang, a):
         if idx in fig:
             im = fig[idx]
             body_html += (f'<figure style="margin:2rem 0;">'
-                          f'<img src="{dprefix}img/news/{im["file"]}" alt="{esc(im["caption"][lang])}" loading="lazy" style="width:100%;border-radius:12px;">'
+                          f'<img src="{dprefix}img/news/{im["file"]}" alt="{esc(im["caption"][lang])}" loading="lazy"{img_wh_attrs("img/news/" + im["file"])} style="width:100%;border-radius:12px;">'
                           f'<figcaption style="text-align:center;font-size:.875rem;color:hsl(var(--muted-foreground));margin-top:.75rem;">{esc(im["caption"][lang])}</figcaption>'
                           f'</figure>')
     img_html = ''
     if a.get('image'):
-        img_html = f'<img src="{dprefix}img/news/{a["image"]}" alt="{esc(a["title"][lang])}" style="width:100%;border-radius:12px;margin:1.5rem 0;">'
+        img_html = f'<img src="{dprefix}img/news/{a["image"]}" alt="{esc(a["title"][lang])}"{img_wh_attrs("img/news/" + a["image"])} style="width:100%;border-radius:12px;margin:1.5rem 0;">'
     author_html = ''
     if a.get('author'):
-        author_html = f'<p class="article-author"><strong>{esc(a["author"]["name"][lang])}</strong>｜{esc(a["author"]["title"][lang])}</p>'
+        sep = '｜' if lang.startswith('zh') else ' | '
+        author_html = f'<p class="article-author"><strong>{esc(a["author"]["name"][lang])}</strong>{sep}{esc(a["author"]["title"][lang])}</p>'
     source_html = ''
     if a.get('source'):
         prefix = {'zh-TW': '原文載於', 'zh-CN': '原文载于', 'en': 'Originally published in', 'pt': 'Originalmente publicado em'}[lang]
@@ -591,16 +772,23 @@ def render_insight_article(lang, a):
       <div>{body_html}</div>
       {source_html}
       <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid hsl(var(--border));">
-        <a class="read-more" href="../insights.html">{icon('arrow')} {esc({'zh-TW': '返回研究洞察', 'zh-CN': '返回研究洞察', 'en': 'Back to Insights', 'pt': 'Voltar aos Insights'}[lang])}</a>
+        <a class="read-more" href="../insights.html">{icon('arrow-left')} {esc({'zh-TW': '返回研究洞察', 'zh-CN': '返回研究洞察', 'en': 'Back to Insights', 'pt': 'Voltar aos Insights'}[lang])}</a>
       </div>
     </div>
   </div>
 </section>'''
     og = None
+    og_dims = None
     if a.get('images'):
         og = C.get('site_url', 'https://mfteda.org').rstrip('/') + '/assets/img/news/' + a['images'][0]['file']
+        og_dims = img_size('img/news/' + a['images'][0]['file'])
+    meta = {'date': a['date'],
+            'author': a['author']['name'][lang] if a.get('author') else None,
+            'section': a['category'][lang],
+            'image': og}
     return page_shell('insights', lang, a['title'][lang], a['excerpt'][lang], body,
-                      depth=1, url_path=f'insights/{a["slug"]}', og_image=og)
+                      depth=1, url_path=f'insights/{a["slug"]}', og_image=og,
+                      og_type='article', article_meta=meta, og_image_dims=og_dims)
 
 # ---------------- 新聞動態 ----------------
 NEWS_SOURCE_PREFIX = {'zh-TW': '原文出處', 'zh-CN': '原文出处', 'en': 'Source', 'pt': 'Fonte'}
@@ -608,10 +796,10 @@ NEWS_SOURCE_PREFIX = {'zh-TW': '原文出處', 'zh-CN': '原文出处', 'en': 'S
 def render_news(lang):
     ins = I18N[lang]['insights']
     hero_title = {'zh-TW': '新聞動態', 'zh-CN': '新闻动态', 'en': 'News', 'pt': 'Notícias'}[lang]
-    hero_sub = {'zh-TW': '本會最新公開動態與媒體報道',
-                'zh-CN': '本会最新公开动态与媒体报道',
-                'en': 'Latest updates and media coverage of MFTEDA',
-                'pt': 'Últimas novidades e cobertura mediática da MFTEDA'}[lang]
+    hero_sub = {'zh-TW': '本會最新公開動態、活動紀實與媒體報道，見證澳門財經科技與教育智庫的實踐足跡',
+                'zh-CN': '本会最新公开动态、活动纪实与媒体报道，见证澳门财经科技与教育智库的实践足迹',
+                'en': "Latest news, event coverage and media reports from MFTEDA, Macao's think tank for financial technology and education",
+                'pt': 'Últimas notícias, reportagens de eventos e cobertura mediática da MFTEDA, think tank de Macau'}[lang]
     cards = ''.join(f'''
       <div class="institutional-card insight-card reveal">
         <div class="insight-meta">
@@ -619,7 +807,7 @@ def render_news(lang):
           <span class="date">{icon('calendar')}{a['date']}</span>
           <span class="source">{esc(a['source']['name'][lang])}</span>
         </div>
-        <h3>{esc(a['title'][lang])}</h3>
+        <h2>{esc(a['title'][lang])}</h2>
         <p>{esc(a['excerpt'][lang])}</p>
         <a class="read-more" href="news/{a['slug']}.html">{esc(ins['readMore'])}{icon('arrow')}</a>
       </div>''' for a in sorted(C['news'], key=lambda x: x['date'], reverse=True))
@@ -651,7 +839,7 @@ def render_news_article(lang, a):
         if idx in fig:
             im = fig[idx]
             body_html += (f'<figure style="margin:2rem 0;">'
-                          f'<img src="{dprefix}img/news/{im["file"]}" alt="{esc(im["caption"][lang])}" loading="lazy" style="width:100%;border-radius:12px;">'
+                          f'<img src="{dprefix}img/news/{im["file"]}" alt="{esc(im["caption"][lang])}" loading="lazy"{img_wh_attrs("img/news/" + im["file"])} style="width:100%;border-radius:12px;">'
                           f'<figcaption style="text-align:center;font-size:.875rem;color:hsl(var(--muted-foreground));margin-top:.75rem;">{esc(im["caption"][lang])}</figcaption>'
                           f'</figure>')
     src_name = a['source']['name'][lang]
@@ -678,16 +866,23 @@ def render_news_article(lang, a):
       <div>{body_html}</div>
       {source_html}
       <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid hsl(var(--border));">
-        <a class="read-more" href="../news.html">{icon('arrow')} {esc({'zh-TW': '返回新聞動態', 'zh-CN': '返回新闻动态', 'en': 'Back to News', 'pt': 'Voltar às Notícias'}[lang])}</a>
+        <a class="read-more" href="../news.html">{icon('arrow-left')} {esc({'zh-TW': '返回新聞動態', 'zh-CN': '返回新闻动态', 'en': 'Back to News', 'pt': 'Voltar às Notícias'}[lang])}</a>
       </div>
     </div>
   </div>
 </section>'''
     og = None
+    og_dims = None
     if a.get('images'):
         og = C.get('site_url', 'https://mfteda.org').rstrip('/') + '/assets/img/news/' + a['images'][0]['file']
+        og_dims = img_size('img/news/' + a['images'][0]['file'])
+    meta = {'date': a['date'],
+            'author': None,
+            'section': a['category'][lang],
+            'image': og}
     return page_shell('news', lang, a['title'][lang], a['excerpt'][lang], body,
-                      depth=1, url_path=f'news/{a["slug"]}', og_image=og)
+                      depth=1, url_path=f'news/{a["slug"]}', og_image=og,
+                      og_type='article', article_meta=meta, og_image_dims=og_dims)
 
 # ---------------- 合作夥伴 ----------------
 def render_partners(lang):
@@ -704,7 +899,7 @@ def render_partners(lang):
         cards += f'''
       <a class="institutional-card partner-card reveal" href="{hrefs[f'partner{i}']}"{' target="_blank" rel="noopener"' if hrefs[f'partner{i}'] != '#' else ''} style="display:block;">
         {logo_html}
-        <h3>{esc(pt[f'partner{i}'])}</h3>
+        <h2>{esc(pt[f'partner{i}'])}</h2>
       </a>'''
     body = page_hero(lang, 'partners') + f'''
 <section class="section-spacing">
@@ -762,7 +957,15 @@ def render_policy(lang):
 # ---------------- 聯繫我們 ----------------
 def render_contact(lang):
     ct = I18N[lang]['contact']
-    social = ''.join(f'<a href="{C["social"][s]}" aria-label="{label}">{icon(s)}</a>' for s, label in SOCIAL)
+    # href 為 '#' 的社交鏈接不渲染；全部為 '#' 時整個「關注我們」行不輸出
+    social_links = [(s, label) for s, label in SOCIAL if C['social'].get(s, '#') != '#']
+    social_row = ''
+    if social_links:
+        social = ''.join(f'<a href="{C["social"][s]}" aria-label="{label}">{icon(s)}</a>' for s, label in social_links)
+        social_row = f'''<div class="info-row">
+            <span style="font-weight:500;color:hsl(var(--muted-foreground));display:block;margin-bottom:.75rem;">{esc({'zh-TW': '關注我們', 'zh-CN': '关注我们', 'en': 'Follow Us', 'pt': 'Siga-nos'}[lang])}</span>
+            <div class="social-row">{social}</div>
+          </div>'''
     inquiry_opts = ''.join(f'<option value="{k}">{esc(v)}</option>' for k, v in ct['inquiryTypes'].items())
     err_req, err_email, submitting = esc(ct['errorRequired']), esc(ct['errorEmail']), esc(ct['submitting'])
     body = page_hero(lang, 'contact') + f'''
@@ -780,62 +983,59 @@ def render_contact(lang):
             <div class="label">{icon('mail')}<span>{esc(ct['email'])}</span></div>
             <a href="mailto:{C['email']}">{C['email']}</a>
           </div>
-          <div class="info-row">
-            <span style="font-weight:500;color:hsl(var(--muted-foreground));display:block;margin-bottom:.75rem;">{esc({'zh-TW': '關注我們', 'zh-CN': '关注我们', 'en': 'Follow Us', 'pt': 'Siga-nos'}[lang])}</span>
-            <div class="social-row">{social}</div>
-          </div>
+          {social_row}
         </div>
       </div>
       <div class="institutional-card reveal" data-tabs>
-        <div class="tabs">
-          <button type="button" data-tab="contact" class="active">{esc(ct['contactForm'])}</button>
-          <button type="button" data-tab="cooperation">{esc(ct['cooperationForm'])}</button>
+        <div class="tabs" role="tablist">
+          <button type="button" data-tab="contact" class="active" role="tab" id="tab-contact" aria-selected="true" aria-controls="pane-contact">{esc(ct['contactForm'])}</button>
+          <button type="button" data-tab="cooperation" role="tab" id="tab-cooperation" aria-selected="false" aria-controls="pane-cooperation">{esc(ct['cooperationForm'])}</button>
         </div>
-        <form class="ajax-form tab-pane active" data-pane="contact" data-err-required="{err_req}" data-err-email="{err_email}" data-submitting="{submitting}" novalidate>
+        <form class="ajax-form tab-pane active" data-pane="contact" role="tabpanel" id="pane-contact" aria-labelledby="tab-contact" data-err-required="{err_req}" data-err-email="{err_email}" data-submitting="{submitting}" novalidate>
           <div class="form-group">
             <label for="c-name">{esc(ct['name'])}</label>
-            <input id="c-name" name="name" type="text" placeholder="{esc(ct['namePlaceholder'])}" required>
-            <p class="err-msg" data-for="name"></p>
+            <input id="c-name" name="name" type="text" placeholder="{esc(ct['namePlaceholder'])}" required aria-describedby="err-c-name">
+            <p class="err-msg" data-for="name" id="err-c-name"></p>
           </div>
           <div class="form-group">
             <label for="c-email">{esc(ct['emailLabel'])}</label>
-            <input id="c-email" name="email" type="email" placeholder="{esc(ct['emailPlaceholder'])}" required>
-            <p class="err-msg" data-for="email"></p>
+            <input id="c-email" name="email" type="email" placeholder="{esc(ct['emailPlaceholder'])}" required aria-describedby="err-c-email">
+            <p class="err-msg" data-for="email" id="err-c-email"></p>
           </div>
           <div class="form-group">
             <label for="c-message">{esc(ct['message'])}</label>
-            <textarea id="c-message" name="message" placeholder="{esc(ct['messagePlaceholder'])}" required></textarea>
-            <p class="err-msg" data-for="message"></p>
+            <textarea id="c-message" name="message" placeholder="{esc(ct['messagePlaceholder'])}" required aria-describedby="err-c-message"></textarea>
+            <p class="err-msg" data-for="message" id="err-c-message"></p>
           </div>
           <button type="submit" class="btn btn-primary">{esc(ct['submit'])}</button>
-          <div class="form-toast">{icon('check')}{esc(ct['successMessage'])}</div>
+          <div class="form-toast" role="status" aria-live="polite">{icon('check')}{esc(ct['successMessage'])}</div>
         </form>
-        <form class="ajax-form tab-pane" data-pane="cooperation" data-err-required="{err_req}" data-err-email="{err_email}" data-submitting="{submitting}" novalidate>
+        <form class="ajax-form tab-pane" data-pane="cooperation" role="tabpanel" id="pane-cooperation" aria-labelledby="tab-cooperation" data-err-required="{err_req}" data-err-email="{err_email}" data-submitting="{submitting}" novalidate>
           <div class="form-group">
             <label for="o-org">{esc(ct['organization'])}</label>
-            <input id="o-org" name="organization" type="text" placeholder="{esc(ct['organizationPlaceholder'])}" required>
-            <p class="err-msg" data-for="organization"></p>
+            <input id="o-org" name="organization" type="text" placeholder="{esc(ct['organizationPlaceholder'])}" required aria-describedby="err-o-org">
+            <p class="err-msg" data-for="organization" id="err-o-org"></p>
           </div>
           <div class="form-group">
             <label for="o-type">{esc(ct['inquiryType'])}</label>
-            <select id="o-type" name="inquiryType" required>
+            <select id="o-type" name="inquiryType" required aria-describedby="err-o-type">
               <option value="">{esc(ct['inquiryTypePlaceholder'])}</option>
               {inquiry_opts}
             </select>
-            <p class="err-msg" data-for="inquiryType"></p>
+            <p class="err-msg" data-for="inquiryType" id="err-o-type"></p>
           </div>
           <div class="form-group">
             <label for="o-email">{esc(ct['emailLabel'])}</label>
-            <input id="o-email" name="email" type="email" placeholder="{esc(ct['emailPlaceholder'])}" required>
-            <p class="err-msg" data-for="email"></p>
+            <input id="o-email" name="email" type="email" placeholder="{esc(ct['emailPlaceholder'])}" required aria-describedby="err-o-email">
+            <p class="err-msg" data-for="email" id="err-o-email"></p>
           </div>
           <div class="form-group">
             <label for="o-message">{esc(ct['message'])}</label>
-            <textarea id="o-message" name="message" placeholder="{esc(ct['messagePlaceholder'])}" required></textarea>
-            <p class="err-msg" data-for="message"></p>
+            <textarea id="o-message" name="message" placeholder="{esc(ct['messagePlaceholder'])}" required aria-describedby="err-o-message"></textarea>
+            <p class="err-msg" data-for="message" id="err-o-message"></p>
           </div>
           <button type="submit" class="btn btn-primary">{esc(ct['submit'])}</button>
-          <div class="form-toast">{icon('check')}{esc(ct['successMessage'])}</div>
+          <div class="form-toast" role="status" aria-live="polite">{icon('check')}{esc(ct['successMessage'])}</div>
         </form>
       </div>
     </div>
@@ -878,7 +1078,7 @@ def build():
   </div>
 </section>'''
     with open(os.path.join(DIST, '404.html'), 'w', encoding='utf-8') as f:
-        f.write(page_shell('index', DEFAULT, '404', 'Page not found', not_found_body))
+        f.write(page_shell('index', DEFAULT, '404', 'Page not found', not_found_body, noindex=True))
 
     count = 2
     urls = []
@@ -891,33 +1091,34 @@ def build():
             name = 'index.html' if page == 'index' else f'{page}.html'
             with open(os.path.join(outdir, name), 'w', encoding='utf-8') as f:
                 f.write(html_out)
-            urls.append((page, lang))
+            urls.append((page, lang, BUILD_DATE))
             count += 1
         for a in articles:
             adir = os.path.join(outdir, 'insights')
             os.makedirs(adir, exist_ok=True)
             with open(os.path.join(adir, f'{a["slug"]}.html'), 'w', encoding='utf-8') as f:
                 f.write(render_insight_article(lang, a))
-            urls.append((f'insights/{a["slug"]}', lang))
+            urls.append((f'insights/{a["slug"]}', lang, a['date']))
             count += 1
         for a in C['news']:
             ndir = os.path.join(outdir, 'news')
             os.makedirs(ndir, exist_ok=True)
             with open(os.path.join(ndir, f'{a["slug"]}.html'), 'w', encoding='utf-8') as f:
                 f.write(render_news_article(lang, a))
-            urls.append((f'news/{a["slug"]}', lang))
+            urls.append((f'news/{a["slug"]}', lang, a['date']))
             count += 1
 
-    # sitemap.xml（含 hreflang alternates）
+    # sitemap.xml（含 hreflang alternates；lastmod：詳情頁用條目日期，列表頁用構建日期）
     xhtml = 'xmlns:xhtml="http://www.w3.org/1999/xhtml"'
     items = []
-    for page, lang in urls:
+    for page, lang, lastmod in urls:
         loc = abs_url(page, lang)
         alts = ''.join(
             f'\n      <xhtml:link rel="alternate" hreflang="{l}" href="{abs_url(page, l)}"/>'
             for l in LANGS)
         items.append(f'''  <url>
-      <loc>{loc}</loc>{alts}
+      <loc>{loc}</loc>
+      <lastmod>{lastmod}</lastmod>{alts}
       <xhtml:link rel="alternate" hreflang="x-default" href="{abs_url(page, DEFAULT)}"/>
   </url>''')
     with open(os.path.join(DIST, 'sitemap.xml'), 'w', encoding='utf-8') as f:

@@ -4,19 +4,35 @@
   document.documentElement.classList.add('js');
 
   /* ---------- 語言切換下拉 ---------- */
+  function closeLangSwitch(o, refocus) {
+    o.classList.remove('open');
+    var ob = o.querySelector('button');
+    if (ob) {
+      ob.setAttribute('aria-expanded', 'false');
+      if (refocus && o.contains(document.activeElement)) ob.focus();
+    }
+  }
   document.querySelectorAll('.lang-switch').forEach(function (sw) {
     var btn = sw.querySelector('button');
+    btn.setAttribute('aria-expanded', 'false');
     btn.addEventListener('click', function (e) {
       e.stopPropagation();
       document.querySelectorAll('.lang-switch.open').forEach(function (o) {
-        if (o !== sw) o.classList.remove('open');
+        if (o !== sw) closeLangSwitch(o, false);
       });
       sw.classList.toggle('open');
+      btn.setAttribute('aria-expanded', sw.classList.contains('open') ? 'true' : 'false');
     });
   });
   document.addEventListener('click', function () {
     document.querySelectorAll('.lang-switch.open').forEach(function (o) {
-      o.classList.remove('open');
+      closeLangSwitch(o, false);
+    });
+  });
+  document.addEventListener('keydown', function (e) {
+    if (e.key !== 'Escape' && e.key !== 'Esc') return;
+    document.querySelectorAll('.lang-switch.open').forEach(function (o) {
+      closeLangSwitch(o, true);
     });
   });
 
@@ -24,16 +40,29 @@
   var panel = document.getElementById('mobile-panel');
   var overlay = document.getElementById('panel-overlay');
   var toggle = document.getElementById('menu-toggle');
-  function closePanel() {
-    if (panel) { panel.classList.remove('open'); overlay.classList.remove('open'); }
+  function setPanel(open) {
+    if (!panel) return;
+    panel.classList.toggle('open', open);
+    if (overlay) overlay.classList.toggle('open', open);
+    panel.setAttribute('aria-hidden', open ? 'false' : 'true');
+    if (toggle) toggle.setAttribute('aria-expanded', open ? 'true' : 'false');
+    document.body.style.overflow = open ? 'hidden' : '';
   }
+  function closePanel() { setPanel(false); }
   if (toggle && panel) {
-    toggle.addEventListener('click', function () {
-      panel.classList.add('open');
-      overlay.classList.add('open');
-    });
+    toggle.setAttribute('aria-expanded', 'false');
+    panel.setAttribute('aria-hidden', 'true');
+    toggle.addEventListener('click', function () { setPanel(true); });
     overlay.addEventListener('click', closePanel);
     panel.querySelectorAll('a').forEach(function (a) { a.addEventListener('click', closePanel); });
+    /* 面板內關閉按鈕的內聯 onclick 只移除 class，這裡補齊 aria 與滾動鎖定同步 */
+    panel.querySelectorAll('.menu-toggle').forEach(function (b) { b.addEventListener('click', closePanel); });
+    document.addEventListener('keydown', function (e) {
+      if ((e.key === 'Escape' || e.key === 'Esc') && panel.classList.contains('open')) {
+        closePanel();
+        toggle.focus();
+      }
+    });
   }
 
   /* ---------- 進場動畫 ---------- */
@@ -58,14 +87,31 @@
 
   /* ---------- 聯繫頁 Tabs ---------- */
   document.querySelectorAll('[data-tabs]').forEach(function (tabsRoot) {
-    var btns = tabsRoot.querySelectorAll('.tabs button');
+    var btns = Array.prototype.slice.call(tabsRoot.querySelectorAll('.tabs button'));
     var panes = tabsRoot.querySelectorAll('.tab-pane');
+    function activate(btn) {
+      btns.forEach(function (b) {
+        b.classList.remove('active');
+        b.setAttribute('aria-selected', 'false');
+      });
+      panes.forEach(function (p) { p.classList.remove('active'); });
+      btn.classList.add('active');
+      btn.setAttribute('aria-selected', 'true');
+      tabsRoot.querySelector('.tab-pane[data-pane="' + btn.dataset.tab + '"]').classList.add('active');
+    }
     btns.forEach(function (btn) {
-      btn.addEventListener('click', function () {
-        btns.forEach(function (b) { b.classList.remove('active'); });
-        panes.forEach(function (p) { p.classList.remove('active'); });
-        btn.classList.add('active');
-        tabsRoot.querySelector('.tab-pane[data-pane="' + btn.dataset.tab + '"]').classList.add('active');
+      btn.addEventListener('click', function () { activate(btn); });
+    });
+    /* 左右方向鍵切換；role="tab" 由模板側注入 */
+    tabsRoot.querySelectorAll('[role="tab"]').forEach(function (tab) {
+      tab.addEventListener('keydown', function (e) {
+        if (e.key !== 'ArrowLeft' && e.key !== 'ArrowRight') return;
+        e.preventDefault();
+        var i = btns.indexOf(tab);
+        if (i === -1 || !btns.length) return;
+        var next = (i + (e.key === 'ArrowRight' ? 1 : btns.length - 1)) % btns.length;
+        btns[next].focus();
+        activate(btns[next]);
       });
     });
   });
@@ -85,6 +131,7 @@
           msg = form.dataset.errEmail || '請輸入有效的電子郵件地址';
         }
         field.classList.toggle('error', !!msg);
+        if (msg) { field.setAttribute('aria-invalid', 'true'); } else { field.removeAttribute('aria-invalid'); }
         if (err) err.textContent = msg;
         if (msg) valid = false;
       });
@@ -106,6 +153,7 @@
     form.querySelectorAll('input, textarea').forEach(function (field) {
       field.addEventListener('input', function () {
         field.classList.remove('error');
+        field.removeAttribute('aria-invalid');
         var err = form.querySelector('.err-msg[data-for="' + field.name + '"]');
         if (err) err.textContent = '';
       });
