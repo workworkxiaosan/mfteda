@@ -6,8 +6,8 @@
 
 - `content.json` — 全部網站內容的唯一母本（4 語言、研究洞察文章、焦點卡片、夥伴鏈接）。**更新內容只改這裡**。
 - `make_content.py` — 由 `.scrape/i18n.json` 等生成 `content.json` 的腳本（一次性遷移用，平時不用跑）。
-- `build.py` — 讀 `content.json` 生成 36 個靜態頁面到 `dist/`（含 `dist/CNAME`）。語言目錄：繁中在根目錄，其他在 `zh-CN/`、`en/`、`pt/`。
-- `assets/` — 源頭樣式/腳本/圖片，`build.py` 會拷貝進 `dist/`。圖片一律用 webp（已壓縮）；`og-cover.jpg` 是社交分享圖（1200×630）。學會 LOGO 為 `assets/img/logo.png`（2026-10-16 起為正確版海豚標識：海豚+綠浪+中英文會名，透明底 776×640，頁頭/頁尾/favicon/JSON-LD 共用此文件）；og-cover 內嵌同款 LOGO 白卡，換 LOGO 時需同步重繪 og-cover。
+- `build.py` — 讀 `content.json` 生成全部靜態頁面到 `dist/`（現 106 個文件，含 `dist/CNAME`）。語言目錄：繁中在根目錄，其他在 `zh-CN/`、`en/`、`pt/`。
+- `assets/` — 源頭樣式/腳本/圖片，`build.py` 會拷貝進 `dist/`。圖片一律用 webp（已壓縮）；`og-cover.jpg` 是社交分享圖（1200×630）。學會 LOGO 原圖為 `assets/img/logo.png`（2026-10-16 起為正確版海豚標識：海豚+綠浪+中英文會名，透明底 776×640，僅供 JSON-LD/og-cover 使用）；**頁頭/頁尾/favicon 用 `assets/img/logo-sm.png`**（155×128 透明底，21KB，由原圖 `sips -z 128 155` 生成，換 LOGO 時需同步重新生成小圖並重繪 og-cover）。
 - `dist/` — 生成物，**不要手改**，已被 .gitignore 忽略。除 36 個頁面外還自動生成 `robots.txt`、`sitemap.xml`（含 4 語言 hreflang）、`404.html`。
 - `.scrape/` — 原 Hostinger Horizons 站點的抓取備份（原站已下線前的參考資料）。
 
@@ -21,8 +21,11 @@
 ## 關鍵事實
 
 - 頁面共 10 個（`PAGES`）：index/about/research/projects/publications/insights/news/partners/policy/contact。「招商政策」頁（policy）內容在 `content.json` 的 `policies` 數組（region: macao/hengqin，每項含 year、title/summary 4語言、url），更新政策只改這裡；導航鍵 `nav.policy` 由 `make_content.py` 注入 i18n。
-- 合作夥伴更名記錄（2026-10）：partner2「澳門貿易投資促進局」→「招商投資促進局」（en: Commerce and Investment Promotion Institute，IPIM 縮寫沿用，鏈接不變）；partner5「澳門聖若瑟大學」→「聖若瑟大學」（法定名不含「澳門」）；partner8 澳門直播協會 href 改為官方 Facebook（https://www.facebook.com/MacauLiveAssociation/，官網域名已失效）；partner11「澳門中西創新研究院」→「中西創新學院」（用戶確認；en: Macau Millennium College，pt: Instituto Milénio de Macau，href 改為官網 https://www.mmc.edu.mo，已配校徽 partner11.webp）。12 家夥伴全部配 LOGO（`assets/img/partners/partner{N}.webp`，名稱正上方，`.partner-logo` 高 3.15rem）。
-- 合作夥伴新增（2026-10-15）：partner13 商湯科技（https://www.sensetime.com）、partner14 澳門海易通達科技有限公司（NexMatrix，https://nexmatrixs.com）、partner15 數智建造（廣東橫琴）科技有限公司（無獨立官網，按用戶指示鏈接指向中國建築工程（澳門）有限公司官網 https://www.ccem.com.mo/，卡片配中國建築工程（澳門）標識 partner15.webp）。partner10 插入「長春電子科技學院」（https://www.changdian2001.com/，校徽 partner10.webp；用戶指定放第三行第二列，原 partner10-15 順延為 11-16）。共 16 家：政府2→研究1→僑務1→高校6→社團2→企業3，全部配 LOGO。`build.py` 的 `render_partners` 循環上限需隨總數手動調整（現為 range(1, 16)）。
+- 合作夥伴更名記錄（2026-10）：partner2「澳門貿易投資促進局」→「招商投資促進局」（en: Commerce and Investment Promotion Institute，IPIM 縮寫沿用，鏈接不變）；partner5「澳門聖若瑟大學」→「聖若瑟大學」（法定名不含「澳門」）；partner8 澳門直播協會 href 改為官方 Facebook（https://www.facebook.com/MacauLiveAssociation/，官網域名已失效）；partner11「澳門中西創新研究院」→「中西創新學院」（用戶確認；en: Macau Millennium College，pt: Instituto Milénio de Macau，href 為裸域 https://mmc.edu.mo——www 子域 SSL 證書不匹配）。死鏈修復（2026-10-16）：partner3 法學所鏈接去 www 子域（http://iolaw.cssn.cn，www 子域 NXDOMAIN）。全部夥伴配 LOGO（`assets/img/partners/partner{N}.webp`，名稱正上方，`.partner-logo` 高 3.15rem）。
+- 合作夥伴新增（2026-10-15）：partner13 商湯科技（https://www.sensetime.com）、partner14 澳門海易通達科技有限公司（NexMatrix，https://nexmatrixs.com）、partner15 數智建造（廣東橫琴）科技有限公司（無獨立官網，按用戶指示鏈接指向中國建築工程（澳門）有限公司官網 https://www.ccem.com.mo/，卡片配中國建築工程（澳門）標識 partner15.webp）。partner10 插入「長春電子科技學院」（https://www.changdian2001.com/，校徽 partner10.webp；用戶指定放第三行第二列，原 partner10-15 順延為 11-16）。共 16 家：政府2→研究1→僑務1→高校6→社團2→企業3，全部配 LOGO。`build.py` 的 `render_partners` 循環上限需隨總數手動調整（現為 range(1, 17)）。
+- 緩存破除（重要）：`build.py` 常量 `ASSET_V`（形如 '?v=20261016b'）附加在 CSS/JS/LOGO/hero-bg 引用後。**凡改動 style.css、main.js 或任何圖片，必須更新 ASSET_V**，否則用戶瀏覽器（尤其微信內置）會顯示舊版。
+- 首頁 hero 大洲動態連線（2026-10-16）：`build.py` 的 `HERO_LINKS` 常量注入 `<svg class="hero-links">`（viewBox 0 0 1536 2752 與 hero-bg.webp 同尺寸，`preserveAspectRatio="xMidYMid slice"` 與 background-size:cover 對齊，節點坐標對應地圖大洲位置，弧線以澳門為樞紐輻射）；動畫樣式在 style.css `.hero-links` 區塊（脈衝 heroLinkFlow、節點漣漪 heroNodeRipple，`prefers-reduced-motion` 時關閉）。換 hero-bg 圖需重新標定節點坐標。
+- 2026-10-16 全站審計優化約定：導航斷點 1280px（1280–1439 為緊湊檔）；頁腳品牌列 `.footer-brand-col` 無使命段落（數據保留在 content.json 供 meta description 用）；社交鏈接為 `#` 時不渲染；insights 無 slug 不出「閱讀更多」；卡片標題在 research/news/partners 頁用 h2（CSS 選擇器為 h2,h3 雙寫）；CI（deploy.yml）需 `pip install pillow` 以供 build.py 注入圖片 width/height（本地 PIL 或 sips 兜底，讀不到尺寸不報錯）。
 
 - 每頁自動帶 canonical / Open Graph / Twitter Card 標籤（分享圖 `assets/img/og-cover.jpg`），首頁帶 Organization JSON-LD。`content.json` 的 `site_url` 是絕對 URL 的基準，換域名時改它。
 - 域名 `mfteda.org`：A 記錄指向 GitHub Pages（185.199.108.153/109.153/110.153/111.153），`www` CNAME → `workworkxiaosan.github.io`；DNS 在 Hostinger hPanel 管理。
