@@ -2,6 +2,8 @@
 """Assemble content.json: i18n.json + insights articles + homepage focus cards."""
 import json
 
+from news_data import NEWS_WX, OPED_HUMANITIES, YOUTH_OFFICIAL
+
 i18n = json.load(open('.scrape/i18n.json', encoding='utf-8'))
 
 # 新增「招商政策」導航頁（build.py PAGES 含 policy，nav 需有對應鍵）
@@ -506,6 +508,19 @@ news = [
         ],
      }},
 ]
+
+# 社評專欄第二篇：田一輝《人文經濟學促澳文商融合》（news_data.py，含配圖與署名）
+insights.append(OPED_HUMANITIES)
+
+# 就業培訓條目換官方公眾號稿（正文/source/配圖以 news_data.YOUTH_OFFICIAL 為準）
+for a in news:
+    if a['slug'] == YOUTH_OFFICIAL['slug']:
+        a['source'] = YOUTH_OFFICIAL['source']
+        a['body'] = YOUTH_OFFICIAL['body']
+        a['images'] = YOUTH_OFFICIAL['images']
+
+# 微信公眾號官方稿件 7 篇（news_data.py，含配圖）
+news.extend(NEWS_WX)
 
 # 首頁三大重點領域卡片
 focus_cards = [

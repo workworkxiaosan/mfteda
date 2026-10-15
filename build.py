@@ -637,11 +637,20 @@ def render_news(lang):
     return page_shell('news', lang, hero_title, hero_sub, body)
 
 def render_news_article(lang, a):
-    """單篇新聞詳情頁（news/{slug}.html），C['news'] 條目（無配圖，OG 圖用默認 og-cover）。"""
+    """單篇新聞詳情頁（news/{slug}.html），C['news'] 條目。可選 images 配圖（與 insights 文章相同語法，src 統一存為 file）。"""
     ins = I18N[lang]['insights']
-    body_html = ''.join(
-        f'<p style="line-height:1.875;margin-bottom:1.25rem;color:hsl(var(--foreground));">{esc(para)}</p>'
-        for para in a['body'][lang])
+    # 詳情頁在 news/ 子目錄，資產路徑多一層 ../
+    dprefix = '../' + ('../' if lang != DEFAULT else '') + 'assets/'
+    body_html = ''
+    fig = {img['after']: img for img in a.get('images', [])}
+    for idx, para in enumerate(a['body'][lang], 1):
+        body_html += f'<p style="line-height:1.875;margin-bottom:1.25rem;color:hsl(var(--foreground));">{esc(para)}</p>'
+        if idx in fig:
+            im = fig[idx]
+            body_html += (f'<figure style="margin:2rem 0;">'
+                          f'<img src="{dprefix}img/news/{im["file"]}" alt="{esc(im["caption"][lang])}" loading="lazy" style="width:100%;border-radius:12px;">'
+                          f'<figcaption style="text-align:center;font-size:.875rem;color:hsl(var(--muted-foreground));margin-top:.75rem;">{esc(im["caption"][lang])}</figcaption>'
+                          f'</figure>')
     src_name = a['source']['name'][lang]
     quoted = f'《{src_name}》' if lang.startswith('zh') else src_name
     source_html = f'''<div class="article-source">
@@ -671,8 +680,11 @@ def render_news_article(lang, a):
     </div>
   </div>
 </section>'''
+    og = None
+    if a.get('images'):
+        og = C.get('site_url', 'https://mfteda.org').rstrip('/') + '/assets/img/news/' + a['images'][0]['file']
     return page_shell('news', lang, a['title'][lang], a['excerpt'][lang], body,
-                      depth=1, url_path=f'news/{a["slug"]}')
+                      depth=1, url_path=f'news/{a["slug"]}', og_image=og)
 
 # ---------------- 合作夥伴 ----------------
 def render_partners(lang):

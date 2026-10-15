@@ -1,3 +1,4 @@
 dist/
 .scrape/
 .DS_Store
+.news-src/
