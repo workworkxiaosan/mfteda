@@ -7,7 +7,7 @@
 - `content.json` — 全部網站內容的唯一母本（4 語言、研究洞察文章、焦點卡片、夥伴鏈接）。**更新內容只改這裡**。
 - `make_content.py` — 由 `.scrape/i18n.json` 等生成 `content.json` 的腳本（一次性遷移用，平時不用跑）。
 - `build.py` — 讀 `content.json` 生成 36 個靜態頁面到 `dist/`（含 `dist/CNAME`）。語言目錄：繁中在根目錄，其他在 `zh-CN/`、`en/`、`pt/`。
-- `assets/` — 源頭樣式/腳本/圖片，`build.py` 會拷貝進 `dist/`。圖片一律用 webp（已壓縮）；`og-cover.jpg` 是社交分享圖（1200×630）。學會 LOGO 為 `assets/img/logo.png`（2026-10-15 起換為新海豚標識，透明底 544×401，頁頭/頁尾/favicon/JSON-LD 共用此文件）；og-cover 內嵌同款 LOGO 白卡，換 LOGO 時需同步重繪 og-cover。
+- `assets/` — 源頭樣式/腳本/圖片，`build.py` 會拷貝進 `dist/`。圖片一律用 webp（已壓縮）；`og-cover.jpg` 是社交分享圖（1200×630）。學會 LOGO 為 `assets/img/logo.png`（2026-10-16 起為正確版海豚標識：海豚+綠浪+中英文會名，透明底 776×640，頁頭/頁尾/favicon/JSON-LD 共用此文件）；og-cover 內嵌同款 LOGO 白卡，換 LOGO 時需同步重繪 og-cover。
 - `dist/` — 生成物，**不要手改**，已被 .gitignore 忽略。除 36 個頁面外還自動生成 `robots.txt`、`sitemap.xml`（含 4 語言 hreflang）、`404.html`。
 - `.scrape/` — 原 Hostinger Horizons 站點的抓取備份（原站已下線前的參考資料）。
 
