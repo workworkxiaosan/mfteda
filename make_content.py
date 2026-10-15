@@ -522,7 +522,7 @@ for a in news:
 # 微信公眾號官方稿件 7 篇（news_data.py，含配圖）
 news.extend(NEWS_WX)
 
-# 首頁三大重點領域卡片
+# 首頁五大重點領域卡片
 focus_cards = [
     {"icon": "trending", "title": {"zh-TW": "現代金融", "zh-CN": "现代金融", "en": "Modern Finance", "pt": "Finanças Modernas"},
      "description": {"zh-TW": "推動金融科技創新與跨境金融合作", "zh-CN": "推动金融科技创新与跨境金融合作", "en": "Driving fintech innovation and cross-border financial cooperation", "pt": "Impulsionando inovação fintech e cooperação financeira transfronteiriça"}},
@@ -530,6 +530,10 @@ focus_cards = [
      "description": {"zh-TW": "探索人工智能、電子商務與數字化轉型", "zh-CN": "探索人工智能、电子商务与数字化转型", "en": "Exploring AI, e-commerce, and digital transformation", "pt": "Explorando IA, comércio eletrónico e transformação digital"}},
     {"icon": "users", "title": {"zh-TW": "大灣區合作", "zh-CN": "大湾区合作", "en": "Greater Bay Area Cooperation", "pt": "Cooperação da Grande Baía"},
      "description": {"zh-TW": "促進區域融合與跨境合作", "zh-CN": "促进区域融合与跨境合作", "en": "Promoting regional integration and cross-border cooperation", "pt": "Promovendo integração regional e cooperação transfronteiriça"}},
+    {"icon": "cpu", "title": {"zh-TW": "科技成果轉化服務中心", "zh-CN": "科技成果转化服务中心", "en": "Technology Transfer Services Center", "pt": "Centro de Serviços de Transferência de Tecnologia"},
+     "description": {"zh-TW": "鏈接高校科研與產業需求，加速科技成果落地轉化", "zh-CN": "链接高校科研与产业需求，加速科技成果落地转化", "en": "Connecting university research with industry needs to accelerate the commercialization of scientific achievements", "pt": "Ligando a investigação universitária às necessidades da indústria para acelerar a comercialização de resultados científicos"}},
+    {"icon": "sparkles", "title": {"zh-TW": "商湯小浣熊OPC孵化中心", "zh-CN": "商汤小浣熊OPC孵化中心", "en": "SenseTime Raccoon OPC Incubation Center", "pt": "Centro de Incubação OPC SenseTime Raccoon"},
+     "description": {"zh-TW": "依託商湯小浣熊AI能力，培育「一人公司」創業新生態", "zh-CN": "依托商汤小浣熊AI能力，培育“一人公司”创业新生态", "en": "Fostering a \"One-Person Company\" startup ecosystem powered by SenseTime Raccoon AI", "pt": "Promovendo um ecossistema de empresas unipessoais (OPC) com as capacidades de IA da SenseTime Raccoon"}},
 ]
 
 # 出版物封面圖對應

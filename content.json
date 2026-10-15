@@ -2590,6 +2590,36 @@
         "en": "Promoting regional integration and cross-border cooperation",
         "pt": "Promovendo integração regional e cooperação transfronteiriça"
       }
+    },
+    {
+      "icon": "cpu",
+      "title": {
+        "zh-TW": "科技成果轉化服務中心",
+        "zh-CN": "科技成果转化服务中心",
+        "en": "Technology Transfer Services Center",
+        "pt": "Centro de Serviços de Transferência de Tecnologia"
+      },
+      "description": {
+        "zh-TW": "鏈接高校科研與產業需求，加速科技成果落地轉化",
+        "zh-CN": "链接高校科研与产业需求，加速科技成果落地转化",
+        "en": "Connecting university research with industry needs to accelerate the commercialization of scientific achievements",
+        "pt": "Ligando a investigação universitária às necessidades da indústria para acelerar a comercialização de resultados científicos"
+      }
+    },
+    {
+      "icon": "sparkles",
+      "title": {
+        "zh-TW": "商湯小浣熊OPC孵化中心",
+        "zh-CN": "商汤小浣熊OPC孵化中心",
+        "en": "SenseTime Raccoon OPC Incubation Center",
+        "pt": "Centro de Incubação OPC SenseTime Raccoon"
+      },
+      "description": {
+        "zh-TW": "依託商湯小浣熊AI能力，培育「一人公司」創業新生態",
+        "zh-CN": "依托商汤小浣熊AI能力，培育“一人公司”创业新生态",
+        "en": "Fostering a \"One-Person Company\" startup ecosystem powered by SenseTime Raccoon AI",
+        "pt": "Promovendo um ecossistema de empresas unipessoais (OPC) com as capacidades de IA da SenseTime Raccoon"
+      }
     }
   ],
   "policies": [
