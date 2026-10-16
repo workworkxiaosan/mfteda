@@ -372,30 +372,32 @@ def page_hero(lang, section):
 </section>'''
 
 # ---------------- 首頁 ----------------
-# 首頁 hero 世界地圖上的大洲動態連線 SVG（viewBox 與 hero-bg.webp 同尺寸，preserveAspectRatio slice 與 background-size:cover 行為一致，
-# 因此節點始終對齊地圖上的各大洲。弧線均以澳門（東亞節點）為起點向外輻射，寓意「從澳門出發鏈接世界」）
+# 首頁 hero 世界地圖上的大洲動態連線 SVG（viewBox 與 hero-bg.webp 同尺寸，preserveAspectRatio slice 與 background-size:cover 行為一致）。
+# 8 個節點與真實城市地理位置一一匹配（2026-10-17 按地圖海岸線逐城校準）：澳門 MAC(1293,1360) 為樞紐，
+# 紐約 NYC(262,1215)、聖保羅 SAO(450,1615)、巴黎 PAR(683,1179)、約翰內斯堡 JNB(790,1590)、
+# 安卡拉 ANK(915,1230)、迪拜 DXB(1005,1368)、悉尼 SYD(1422,1600)。弧線以澳門為起點向外輻射，寓意「從澳門出發鏈接世界」。
 HERO_LINKS = '''  <svg class="hero-links" viewBox="0 0 1536 2752" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
     <g>
       <path class="link-base" d="M1293 1360 Q988 1092 683 1179"/>
-      <path class="link-base" d="M1293 1360 Q1030 1344 768 1620"/>
+      <path class="link-base" d="M1293 1360 Q1042 1329 790 1590"/>
       <path class="link-base" d="M1293 1360 Q1104 1195 915 1230"/>
-      <path class="link-base" d="M1293 1360 Q768 1000 243 1231"/>
-      <path class="link-base" d="M1293 1360 Q850 1239 406 1638"/>
-      <path class="link-base" d="M1293 1360 Q1135 1279 976 1356"/>
-      <path class="link-base" d="M1293 1360 Q1392 1433 1490 1704"/>
-      <path class="link-base" d="M683 1179 Q545 1259 406 1638"/>
-      <path class="link-base" d="M683 1179 Q726 1288 768 1620"/>
+      <path class="link-base" d="M1293 1360 Q778 993 262 1215"/>
+      <path class="link-base" d="M1293 1360 Q872 1228 450 1615"/>
+      <path class="link-base" d="M1293 1360 Q1149 1285 1005 1368"/>
+      <path class="link-base" d="M1293 1360 Q1358 1381 1422 1600"/>
+      <path class="link-base" d="M683 1179 Q567 1248 450 1615"/>
+      <path class="link-base" d="M683 1179 Q737 1274 790 1590"/>
     </g>
     <g>
       <path class="link-pulse" pathLength="1000" d="M1293 1360 Q988 1092 683 1179"/>
-      <path class="link-pulse" pathLength="1000" style="animation-delay:-1.4s" d="M1293 1360 Q1030 1344 768 1620"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-1.4s" d="M1293 1360 Q1042 1329 790 1590"/>
       <path class="link-pulse" pathLength="1000" style="animation-delay:-2.6s" d="M1293 1360 Q1104 1195 915 1230"/>
-      <path class="link-pulse" pathLength="1000" style="animation-delay:-3.8s" d="M1293 1360 Q768 1000 243 1231"/>
-      <path class="link-pulse" pathLength="1000" style="animation-delay:-5s" d="M1293 1360 Q850 1239 406 1638"/>
-      <path class="link-pulse" pathLength="1000" style="animation-delay:-0.9s" d="M1293 1360 Q1135 1279 976 1356"/>
-      <path class="link-pulse" pathLength="1000" style="animation-delay:-2s" d="M1293 1360 Q1392 1433 1490 1704"/>
-      <path class="link-pulse" pathLength="1000" style="animation-delay:-3.2s" d="M683 1179 Q545 1259 406 1638"/>
-      <path class="link-pulse" pathLength="1000" style="animation-delay:-4.5s" d="M683 1179 Q726 1288 768 1620"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-3.8s" d="M1293 1360 Q778 993 262 1215"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-5s" d="M1293 1360 Q872 1228 450 1615"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-0.9s" d="M1293 1360 Q1149 1285 1005 1368"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-2s" d="M1293 1360 Q1358 1381 1422 1600"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-3.2s" d="M683 1179 Q567 1248 450 1615"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-4.5s" d="M683 1179 Q737 1274 790 1590"/>
     </g>
     <g>
       <circle class="node-ring" cx="1293" cy="1360" r="8"/>
@@ -403,18 +405,18 @@ HERO_LINKS = '''  <svg class="hero-links" viewBox="0 0 1536 2752" preserveAspect
       <circle class="node-core" cx="1293" cy="1360" r="8"/>
       <circle class="node-ring" cx="683" cy="1179" r="6" style="animation-delay:-0.4s"/>
       <circle class="node-core" cx="683" cy="1179" r="6"/>
-      <circle class="node-ring" cx="768" cy="1620" r="6" style="animation-delay:-0.8s"/>
-      <circle class="node-core" cx="768" cy="1620" r="6"/>
+      <circle class="node-ring" cx="790" cy="1590" r="6" style="animation-delay:-0.8s"/>
+      <circle class="node-core" cx="790" cy="1590" r="6"/>
       <circle class="node-ring" cx="915" cy="1230" r="6" style="animation-delay:-1.2s"/>
       <circle class="node-core" cx="915" cy="1230" r="6"/>
-      <circle class="node-ring" cx="243" cy="1231" r="6" style="animation-delay:-2s"/>
-      <circle class="node-core" cx="243" cy="1231" r="6"/>
-      <circle class="node-ring" cx="406" cy="1638" r="6" style="animation-delay:-2.4s"/>
-      <circle class="node-core" cx="406" cy="1638" r="6"/>
-      <circle class="node-ring" cx="976" cy="1356" r="6" style="animation-delay:-2.8s"/>
-      <circle class="node-core" cx="976" cy="1356" r="6"/>
-      <circle class="node-ring" cx="1490" cy="1704" r="6" style="animation-delay:-1s"/>
-      <circle class="node-core" cx="1490" cy="1704" r="6"/>
+      <circle class="node-ring" cx="262" cy="1215" r="6" style="animation-delay:-2s"/>
+      <circle class="node-core" cx="262" cy="1215" r="6"/>
+      <circle class="node-ring" cx="450" cy="1615" r="6" style="animation-delay:-2.4s"/>
+      <circle class="node-core" cx="450" cy="1615" r="6"/>
+      <circle class="node-ring" cx="1005" cy="1368" r="6" style="animation-delay:-2.8s"/>
+      <circle class="node-core" cx="1005" cy="1368" r="6"/>
+      <circle class="node-ring" cx="1422" cy="1600" r="6" style="animation-delay:-1s"/>
+      <circle class="node-core" cx="1422" cy="1600" r="6"/>
     </g>
   </svg>'''
 
