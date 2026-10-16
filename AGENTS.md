@@ -9,6 +9,7 @@
 - `build.py` — 讀 `content.json` 生成全部靜態頁面到 `dist/`（現 106 個文件，含 `dist/CNAME`）。語言目錄：繁中在根目錄，其他在 `zh-CN/`、`en/`、`pt/`。
 - `assets/` — 源頭樣式/腳本/圖片，`build.py` 會拷貝進 `dist/`。圖片一律用 webp（已壓縮）；`og-cover.jpg` 是社交分享圖（1200×630）。學會 LOGO 原圖為 `assets/img/logo.png`（2026-10-16 起為正確版海豚標識：海豚+綠浪+中英文會名，透明底 776×640，僅供 JSON-LD/og-cover 使用）；**頁頭/頁尾/favicon 用 `assets/img/logo-sm.png`**（155×128 透明底，21KB，由原圖 `sips -z 128 155` 生成，換 LOGO 時需同步重新生成小圖並重繪 og-cover）。
 - `dist/` — 生成物，**不要手改**，已被 .gitignore 忽略。除 36 個頁面外還自動生成 `robots.txt`、`sitemap.xml`（含 4 語言 hreflang）、`404.html`。
+- `game/` — 「濠江財富大亨」財經教育遊戲（index.html/style.css/game.js/manifest.json，獨立純前端應用），`build.py` 會拷貝進 `dist/game/`。研究領域頁「現代金融」卡片（area8，`data-mft-game` 屬性）點擊後由 `assets/js/game-launcher.js` 彈出 iframe 載入 `/game/index.html`；徽章文案 4 語言在 `build.py` 的 `render_research` 中。改動遊戲文件後照舊跑 `build.py` 並更新 `ASSET_V`。
 - `.scrape/` — 原 Hostinger Horizons 站點的抓取備份（原站已下線前的參考資料）。
 
 ## 更新流程

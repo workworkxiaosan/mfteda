@@ -42,7 +42,7 @@ def asset(path, current_lang):
     prefix = '../' if current_lang != DEFAULT else ''
     return prefix + 'assets/' + path
 
-ASSET_V = '?v=20261016b'
+ASSET_V = '?v=20261016c'
 BUILD_DATE = date.today().isoformat()
 
 _IMG_SIZE_CACHE = {}
@@ -605,7 +605,7 @@ def render_about(lang):
 def render_research(lang):
     rs = I18N[lang]['research']
     cards = ''.join(f'''
-      <div class="institutional-card research-card reveal">
+      <div class="institutional-card research-card reveal"{' data-mft-game' if i == 8 else ''}>
         <div class="icon-badge sm">{icon(RESEARCH_ICONS[i-1])}</div>
         <h2>{esc(rs[f'area{i}']['title'])}</h2>
         <p>{esc(rs[f'area{i}']['description'])}</p>
@@ -616,7 +616,12 @@ def render_research(lang):
     <div class="grid grid-3">{cards}</div>
   </div>
 </section>'''
-    return page_shell('research', lang, rs['title'], rs['subtitle'], body)
+    # area8「現代金融」卡片綁定「濠江財富大亨」遊戲彈窗（assets/js/game-launcher.js）
+    badge = {'zh-TW': '🎮 財智遊戲 · 立即試玩', 'zh-CN': '🎮 财智游戏 · 立即试玩',
+             'en': '🎮 Finance Game · Play Now', 'pt': '🎮 Jogo de Finanças · Jogar Agora'}[lang]
+    launcher = (f'<script src="{asset("js/game-launcher.js", lang)}{ASSET_V}" defer '
+                f'data-game-url="/game/index.html" data-badge="{esc(badge)}"></script>')
+    return page_shell('research', lang, rs['title'], rs['subtitle'], body, extra_head=launcher)
 
 # ---------------- 重點項目 ----------------
 def render_projects(lang):
@@ -1057,6 +1062,8 @@ def build():
     if os.path.exists(DIST): shutil.rmtree(DIST)
     os.makedirs(DIST)
     shutil.copytree(os.path.join(ROOT, 'assets'), os.path.join(DIST, 'assets'))
+    # 「濠江財富大亨」財經教育遊戲（/game/，由研究領域「現代金融」卡片彈出）
+    shutil.copytree(os.path.join(ROOT, 'game'), os.path.join(DIST, 'game'))
     with open(os.path.join(DIST, 'CNAME'), 'w') as f:
         f.write('mfteda.org\n')
 

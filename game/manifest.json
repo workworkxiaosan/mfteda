@@ -1,0 +1,20 @@
+{
+  "name": "濠江財富大亨",
+  "short_name": "濠江大亨",
+  "description": "玩轉濠江，財智雙贏 — 澳門財經科技與教育發展學會官方財經教育遊戲",
+  "lang": "zh-Hant",
+  "start_url": "./index.html",
+  "scope": "./",
+  "display": "standalone",
+  "orientation": "portrait",
+  "background_color": "#072a20",
+  "theme_color": "#0b3d2e",
+  "icons": [
+    {
+      "src": "data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 512 512'%3E%3Crect width='512' height='512' rx='96' fill='%230b3d2e'/%3E%3Ccircle cx='256' cy='256' r='200' fill='none' stroke='%23d4af37' stroke-width='18'/%3E%3Ctext x='256' y='330' font-size='220' text-anchor='middle' fill='%23d4af37' font-family='serif' font-weight='bold'%3E濠%3C/text%3E%3C/svg%3E",
+      "sizes": "512x512",
+      "type": "image/svg+xml",
+      "purpose": "any"
+    }
+  ]
+}

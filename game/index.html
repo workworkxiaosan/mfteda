@@ -1,0 +1,226 @@
+<!DOCTYPE html>
+<html lang="zh-Hant">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
+<meta name="theme-color" content="#0b3d2e">
+<title>濠江財富大亨 — Macau Fortune Tycoon</title>
+<link rel="manifest" href="manifest.json">
+<link rel="stylesheet" href="style.css">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b3d2e'/%3E%3Ctext x='32' y='44' font-size='36' text-anchor='middle' fill='%23d4af37' font-family='serif' font-weight='bold'%3E濠%3C/text%3E%3C/svg%3E">
+</head>
+<body>
+<div id="app">
+
+  <!-- ========== 歡迎頁 ========== -->
+  <section class="screen active" id="screen-welcome">
+    <div class="welcome-hero">
+      <div class="logo-arch">🏛️</div>
+      <h1 class="game-title">濠江財富大亨</h1>
+      <p class="game-subtitle">Macau Fortune Tycoon</p>
+      <p class="game-slogan">玩轉濠江，財智雙贏</p>
+      <button class="btn btn-gold btn-big" id="btn-welcome-start">開始遊戲</button>
+      <p class="welcome-note">10 萬澳門元虛擬本金 · 模擬 12 個月 · 邊玩邊學理財</p>
+    </div>
+  </section>
+
+  <!-- ========== 註冊頁 ========== -->
+  <section class="screen" id="screen-register">
+    <div class="card">
+      <h2>玩家註冊</h2>
+      <p class="muted">建立你的大亨檔案，成績將登上全澳排行榜！</p>
+      <label class="field-label" for="input-nickname">暱稱</label>
+      <input type="text" id="input-nickname" maxlength="12" placeholder="例如：大三巴菲特">
+      <label class="field-label" for="select-school">就讀學校</label>
+      <select id="select-school">
+        <option value="">請選擇學校</option>
+        <option>澳門大學</option>
+        <option>澳門科技大學</option>
+        <option>澳門城市大學</option>
+        <option>澳門理工大學</option>
+        <option>澳門旅遊大學</option>
+        <option>聖若瑟大學</option>
+        <option>澳門鏡湖護理學院</option>
+        <option>中學生</option>
+        <option>其他</option>
+      </select>
+      <button class="btn btn-gold btn-big" id="btn-register">確認註冊</button>
+    </div>
+  </section>
+
+  <!-- ========== 新手教學 ========== -->
+  <section class="screen" id="screen-tutorial">
+    <div class="card">
+      <h2>新手教學</h2>
+      <div id="tut-content"></div>
+      <div class="tut-dots" id="tut-dots"></div>
+      <div class="btn-row">
+        <button class="btn btn-ghost" id="btn-tut-skip">跳過</button>
+        <button class="btn btn-gold" id="btn-tut-next">下一步</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 主菜單 ========== -->
+  <section class="screen" id="screen-menu">
+    <div class="menu-header">
+      <div class="player-chip">
+        <span id="menu-nickname">玩家</span>
+        <span class="chip-sub" id="menu-school"></span>
+      </div>
+      <div class="level-chip">
+        <span id="menu-level-title">財智學徒</span>
+        <div class="xp-bar"><div class="xp-fill" id="menu-xp-fill"></div></div>
+      </div>
+    </div>
+    <div class="checkin-banner" id="menu-checkin-banner">
+      📅 連續簽到 <b id="menu-streak">0</b> 天 · 本金加成 <b id="menu-bonus">+0</b>
+      <button class="btn btn-small btn-gold" id="btn-open-checkin">簽到</button>
+    </div>
+    <div class="menu-buttons">
+      <button class="btn btn-gold btn-big" id="btn-new-game">🎲 開始新一局（12個月）</button>
+      <button class="btn btn-green btn-big hidden" id="btn-continue">▶️ 繼續上次遊戲</button>
+      <button class="btn btn-green" id="btn-daily">📆 每日挑戰（3個月快局）</button>
+      <button class="btn btn-green" id="btn-leaderboard">🏆 排行榜</button>
+      <button class="btn btn-green" id="btn-achievements">🎖️ 成就徽章</button>
+      <button class="btn btn-ghost" id="btn-reset-profile">重設玩家資料</button>
+    </div>
+  </section>
+
+  <!-- ========== 每日簽到彈窗 ========== -->
+  <div class="modal-mask hidden" id="modal-checkin">
+    <div class="modal-card">
+      <h2>每日簽到</h2>
+      <div class="checkin-fortune" id="checkin-fortune"></div>
+      <p>連續簽到 <b id="checkin-days">1</b> 天</p>
+      <p id="checkin-reward-line">獎勵：下一局本金加成券 <b class="gold-text" id="checkin-reward">+5,000</b></p>
+      <div class="checkin-week" id="checkin-week"></div>
+      <button class="btn btn-gold btn-big" id="btn-checkin-claim">領取獎勵</button>
+    </div>
+  </div>
+
+  <!-- ========== 通用確認彈窗 ========== -->
+  <div class="modal-mask hidden" id="modal-confirm">
+    <div class="modal-card">
+      <h2>確認</h2>
+      <p id="confirm-message"></p>
+      <button class="btn btn-gold btn-big" id="btn-confirm-yes">確認</button>
+      <button class="btn btn-ghost btn-big" id="btn-confirm-no">取消</button>
+    </div>
+  </div>
+
+  <!-- ========== 遊戲主畫面（新聞） ========== -->
+  <section class="screen" id="screen-game">
+    <div class="hud">
+      <span id="game-month-label">第 1 個月</span>
+      <span class="hud-networth" id="game-networth">$100,000</span>
+    </div>
+    <div class="news-card" id="game-news">
+      <div class="news-tag">📰 濠江快訊</div>
+      <h3 id="news-title"></h3>
+      <p id="news-desc"></p>
+      <div class="news-effects" id="news-effects"></div>
+    </div>
+    <div class="holdings-summary" id="holdings-list"></div>
+    <div class="btn-row-col">
+      <button class="btn btn-gold btn-big" id="btn-goto-trade">進入交易面板 →</button>
+      <button class="btn btn-ghost" id="btn-quit-save">儲存並返回主菜單</button>
+    </div>
+  </section>
+
+  <!-- ========== 交易面板 ========== -->
+  <section class="screen" id="screen-trade">
+    <div class="hud">
+      <span id="trade-month-label">第 1 個月 · 交易</span>
+      <span class="hud-networth">現金 <b id="trade-cash">$0</b></span>
+    </div>
+    <p class="muted small">調整各板塊投資金額（每格 $5,000），閒置現金享 0.1% 月息。</p>
+    <div id="trade-rows"></div>
+    <button class="btn btn-gold btn-big" id="btn-trade-confirm">確認本月配置 ✓</button>
+  </section>
+
+  <!-- ========== 快問快答 ========== -->
+  <section class="screen" id="screen-quiz">
+    <div class="quiz-head">
+      <span class="quiz-badge" id="quiz-level-badge">入門題</span>
+      <span class="quiz-timer" id="quiz-timer">30</span>
+    </div>
+    <div class="card quiz-card">
+      <h3 id="quiz-question"></h3>
+      <div id="quiz-options"></div>
+      <div class="quiz-feedback hidden" id="quiz-feedback"></div>
+      <button class="btn btn-gold hidden" id="btn-quiz-continue">繼續 →</button>
+    </div>
+  </section>
+
+  <!-- ========== 月結算 ========== -->
+  <section class="screen" id="screen-month-result">
+    <div class="card">
+      <h2 id="mr-title">第 1 個月結算</h2>
+      <div id="mr-rows"></div>
+      <div id="mr-bonus" class="hidden"></div>
+      <div class="mr-total">
+        <span>本月盈虧</span><b id="mr-profit"></b>
+      </div>
+      <div class="mr-total big">
+        <span>目前總資產</span><b id="mr-networth"></b>
+      </div>
+      <div class="chart-wrap"><canvas id="mr-chart" width="640" height="220"></canvas></div>
+      <button class="btn btn-gold btn-big" id="btn-mr-next">進入下一個月 →</button>
+    </div>
+  </section>
+
+  <!-- ========== 年終結算 ========== -->
+  <section class="screen" id="screen-year-result">
+    <div class="card rating-card" id="yr-card">
+      <div class="rating-grade" id="yr-rating">S</div>
+      <h2 id="yr-title">年終結算</h2>
+      <div class="yr-stats">
+        <div><span>最終總資產</span><b id="yr-final"></b></div>
+        <div><span>總回報率</span><b id="yr-return-rate"></b></div>
+        <div><span>答題正確率</span><b id="yr-quiz-rate"></b></div>
+      </div>
+      <div class="diagnosis" id="yr-diagnosis"></div>
+      <div id="yr-newach"></div>
+      <div id="yr-daily-compare" class="hidden"></div>
+      <div class="btn-row-col">
+        <button class="btn btn-gold btn-big" id="btn-yr-menu">返回主菜單</button>
+        <button class="btn btn-green" id="btn-yr-leaderboard">查看排行榜</button>
+      </div>
+    </div>
+  </section>
+
+  <!-- ========== 排行榜 ========== -->
+  <section class="screen" id="screen-leaderboard">
+    <div class="card">
+      <h2>排行榜</h2>
+      <div class="tabs">
+        <button class="tab active" id="lb-tab-all">全澳總榜</button>
+        <button class="tab" id="lb-tab-school">校際榜</button>
+        <button class="tab" id="lb-tab-me">個人最佳</button>
+      </div>
+      <div id="lb-list"></div>
+      <button class="btn btn-ghost" id="btn-lb-back">← 返回</button>
+    </div>
+  </section>
+
+  <!-- ========== 成就 ========== -->
+  <section class="screen" id="screen-achievements">
+    <div class="card">
+      <h2>成就徽章</h2>
+      <p class="muted small" id="ach-progress"></p>
+      <div id="ach-list"></div>
+      <button class="btn btn-ghost" id="btn-ach-back">← 返回</button>
+    </div>
+  </section>
+
+  <!-- Toast 容器 -->
+  <div id="toast-container"></div>
+
+  <footer class="app-footer">
+    澳門財經科技與教育發展學會 · 財經教育遊戲 · 全部為虛擬貨幣，投資有風險
+  </footer>
+</div>
+<script src="game.js"></script>
+</body>
+</html>
