@@ -42,7 +42,7 @@ def asset(path, current_lang):
     prefix = '../' if current_lang != DEFAULT else ''
     return prefix + 'assets/' + path
 
-ASSET_V = '?v=20261016c'
+ASSET_V = '?v=20261017a'
 BUILD_DATE = date.today().isoformat()
 
 _IMG_SIZE_CACHE = {}
