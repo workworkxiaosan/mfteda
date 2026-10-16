@@ -390,6 +390,7 @@ textarea { resize: vertical; min-height: 6rem; }
   color: hsl(var(--secondary)); padding: 1rem 1.25rem; border-radius: .5rem; font-weight: 500;
 }
 .form-toast.show { display: flex; }
+.form-toast svg { width: 1.25rem; height: 1.25rem; flex-shrink: 0; }
 
 /* ---------- 頁尾 ---------- */
 .site-footer { background: hsl(var(--muted)); border-top: 1px solid hsl(var(--border)); }
@@ -401,6 +402,8 @@ textarea { resize: vertical; min-height: 6rem; }
 .footer-col .logo-link img { height: 3rem; width: auto; margin-bottom: 1rem; }
 .footer-col p.desc { font-size: .875rem; color: hsl(var(--muted-foreground)); line-height: 1.625; }
 .footer-col .social-row { margin-top: 1.5rem; }
+.footer-address { display: flex; align-items: flex-start; gap: .5rem; margin-top: 1.25rem; font-size: .875rem; line-height: 1.7; color: hsl(var(--muted-foreground)); }
+.footer-address svg { width: 1rem; height: 1rem; flex-shrink: 0; margin-top: .25rem; }
 .footer-col h4 { font-family: var(--font-sans); font-size: .875rem; font-weight: 600; margin-bottom: 1rem; }
 .footer-col ul { list-style: none; }
 .footer-col ul li { margin-bottom: .75rem; }
