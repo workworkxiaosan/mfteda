@@ -1,11 +1,12 @@
 /*!
- * 「濠江財富大亨」官網整合腳本
- * 點擊「現代金融」卡片即彈出遊戲視窗（iframe 載入遊戲頁）。
+ * 「濠江財富大亨 / 濠港雙城大亨」官網整合腳本
+ * 點擊研究領域指定卡片即彈出對應遊戲視窗（iframe 載入遊戲頁）。
  * 無任何依賴，適用於靜態頁 / React / Vue 等各種技術棧。
  *
  * 卡片識別優先級：
- *   1. 帶 data-mft-game 屬性的元素（官網 build.py 已在「現代金融」卡片上輸出此屬性）
- *   2. 文字完全等於「現代金融」（或 data-card-text 指定文字）的卡片（兜底）
+ *   1. 帶 data-mft-game 屬性的元素（屬性值 = 遊戲 URL，可有多張卡片各自指向不同遊戲；
+ *      官網 build.py 已在「現代金融」「文化與科技」卡片上輸出此屬性）
+ *   2. 文字完全等於「現代金融」（或 data-card-text 指定文字）的卡片（兜底，單卡場景）
  */
 (function () {
   'use strict';
@@ -46,19 +47,20 @@
   style.textContent = css;
   (document.head || document.documentElement).appendChild(style);
 
-  /* ========== 彈窗 ========== */
+  /* ========== 彈窗（全站共用一個，切換卡片時換 src） ========== */
   var modal = null;
+  var currentUrl = null;
 
   function buildModal() {
     if (modal) return modal;
     modal = document.createElement('div');
     modal.id = 'mft-modal';
     modal.setAttribute('role', 'dialog');
-    modal.setAttribute('aria-label', '濠江財富大亨');
+    modal.setAttribute('aria-label', 'MFTEDA 教育遊戲');
     modal.innerHTML =
       '<div class="mft-frame-wrap">' +
       '<button id="mft-close" type="button" aria-label="關閉">✕</button>' +
-      '<iframe title="濠江財富大亨" allow="clipboard-write"></iframe>' +
+      '<iframe title="MFTEDA 教育遊戲" allow="clipboard-write"></iframe>' +
       '</div>';
     document.body.appendChild(modal);
     modal.addEventListener('click', function (e) {
@@ -71,10 +73,10 @@
     return modal;
   }
 
-  function openGame() {
+  function openGame(url) {
     var m = buildModal();
     var frame = m.querySelector('iframe');
-    if (!frame.src) frame.src = GAME_URL; // 首次打開才載入
+    if (currentUrl !== url) { frame.src = url; currentUrl = url; } // 換遊戲才重載
     m.classList.add('mft-open');
     document.body.classList.add('mft-locked');
   }
@@ -85,37 +87,10 @@
     document.body.classList.remove('mft-locked');
   }
 
-  /* ========== 尋找並武裝「現代金融」卡片 ========== */
-  function findCard() {
-    // 1. 顯式標記優先（官網構建時輸出 data-mft-game）
-    var marked = document.querySelector('[data-mft-game]');
-    if (marked) return marked;
-    // 2. 文字兜底：精確匹配文字完全等於 CARD_TEXT 的最深元素（通常是標題 h2/h3/div）
-    var all = document.querySelectorAll('h1,h2,h3,h4,h5,p,span,div,a,li');
-    var best = null;
-    for (var i = 0; i < all.length; i++) {
-      var el = all[i];
-      if (el.childElementCount === 0 && el.textContent.trim() === CARD_TEXT) {
-        best = el; // 不斷覆蓋，取最後（通常是最深的）一個
-      }
-    }
-    if (!best) return null;
-    // 向上找卡片容器：優先帶 card 類名的祖先，其次 <a>，最多向上 5 層
-    var node = best;
-    for (var depth = 0; depth < 5 && node && node !== document.body; depth++) {
-      var cls = (node.className && node.className.baseVal !== undefined)
-        ? node.className.baseVal : (node.className || '');
-      if (node.tagName === 'A' || /card|item|grid-cell|tile/i.test(cls)) return node;
-      node = node.parentElement;
-    }
-    return best.parentElement || best;
-  }
-
-  function armCard() {
-    if (document.body.dataset.mftArmed) return; // 冪等，避免重複綁定
-    var card = findCard();
-    if (!card) return;
-    document.body.dataset.mftArmed = '1';
+  /* ========== 尋找並武裝卡片 ========== */
+  function armCard(card, url) {
+    if (card.dataset.mftArmed) return; // 冪等，避免重複綁定
+    card.dataset.mftArmed = '1';
     card.classList.add('mft-card-armed');
     card.setAttribute('role', 'button');
     card.setAttribute('tabindex', '0');
@@ -129,23 +104,51 @@
     card.addEventListener('click', function (e) {
       e.preventDefault();
       e.stopPropagation();
-      openGame();
+      openGame(url);
     });
     card.addEventListener('keydown', function (e) {
-      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openGame(); }
+      if (e.key === 'Enter' || e.key === ' ') { e.preventDefault(); openGame(url); }
     });
+  }
+
+  function armAll() {
+    if (!document.body) return;
+    // 1. 顯式標記的卡片（屬性值為各自遊戲 URL；空值用默認）
+    var marked = document.querySelectorAll('[data-mft-game]');
+    for (var i = 0; i < marked.length; i++) {
+      armCard(marked[i], marked[i].getAttribute('data-mft-game') || GAME_URL);
+    }
+    if (marked.length) return;
+    // 2. 文字兜底（無標記時的單卡場景）：精確匹配文字完全等於 CARD_TEXT 的最深元素
+    var all = document.querySelectorAll('h1,h2,h3,h4,h5,p,span,div,a,li');
+    var best = null;
+    for (var j = 0; j < all.length; j++) {
+      var el = all[j];
+      if (el.childElementCount === 0 && el.textContent.trim() === CARD_TEXT) best = el;
+    }
+    if (!best) return;
+    // 向上找卡片容器：優先帶 card 類名的祖先，其次 <a>，最多向上 5 層
+    var node = best;
+    var card = best.parentElement || best;
+    for (var depth = 0; depth < 5 && node && node !== document.body; depth++) {
+      var cls = (node.className && node.className.baseVal !== undefined)
+        ? node.className.baseVal : (node.className || '');
+      if (node.tagName === 'A' || /card|item|grid-cell|tile/i.test(cls)) { card = node; break; }
+      node = node.parentElement;
+    }
+    armCard(card, GAME_URL);
   }
 
   /* ========== 啟動（含 SPA 動態渲染的輪詢兜底） ========== */
   var tries = 0;
   var timer = setInterval(function () {
     tries++;
-    if (document.body) armCard();
-    if (document.body && document.body.dataset.mftArmed || tries > 40) clearInterval(timer); // 最長約 20 秒
+    armAll();
+    if (tries > 40) clearInterval(timer); // 最長約 20 秒
   }, 500);
 
-  if (document.readyState !== 'loading') armCard();
-  else document.addEventListener('DOMContentLoaded', armCard);
+  if (document.readyState !== 'loading') armAll();
+  else document.addEventListener('DOMContentLoaded', armAll);
 
   // 暴露給頁面其他代碼手動調用（可選）
   window.MFTGame = { open: openGame, close: closeGame };
