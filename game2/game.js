@@ -1511,7 +1511,460 @@ const Engine = (function () {
   };
 })();
 
+/* ==================== 三點五、3D 地標模型系統（參數化 CSS 3D 建築套件） ==================== */
+/* 全部代碼生成，無外部圖片/模型文件。面元素統一 class="f"（LOD 細節件加 class="f dt"）。
+   坐標系：棋盤平面 x→右、y→下、z→上（離開平面）。每格 46px，模型佔位約 40×40。
+   性能紅線：每模型 ≤14 個面元素。 */
+
+const MODELS = (function () {
+
+  function F(x, y, w, h, c, tf, cls, extra) {
+    return '<div class="' + (cls || 'f') + '" style="left:' + x + 'px;top:' + y + 'px;width:' + w +
+      'px;height:' + h + 'px;background:' + c + ';' + (tf ? 'transform:' + tf + ';' : '') +
+      'transform-origin:0 0;' + (extra || '') + '"></div>';
+  }
+  // 長方體：頂面 + 南面 + 東面（3 面）
+  function B(x, y, z, w, d, h, c) {
+    return F(x, y, w, d, c, 'translateZ(' + h + 'px)') +
+      F(x, y + d, w, h, shade(c, -18), 'rotateX(90deg)') +
+      F(x + w, y, d, h, shade(c, -30), 'rotateY(-90deg)');
+  }
+  // 斜屋頂坡面（dir: 's' 南坡 / 'e' 東坡，1 面）
+  function R(x, y, z, len, span, c, dir, det) {
+    if (dir === 's') return F(x, y, span, len, shade(c, -12), 'translateZ(' + z + 'px) rotateX(55deg)', det ? 'f dt' : 'f');
+    return F(x, y, len, span, shade(c, -26), 'translateZ(' + z + 'px) rotateY(-55deg)', det ? 'f dt' : 'f');
+  }
+  // 圓柱（多面近似）：seg 側面 + 頂面圓盤
+  function C(x, y, z, r, h, c, seg) {
+    let out = '';
+    const step = 360 / seg;
+    const w = Math.max(3, Math.round(r * 1.1));
+    for (let i = 0; i < seg; i++) {
+      const a = i * step * Math.PI / 180;
+      out += F(Math.round(x + r * Math.cos(a)), Math.round(y + r * Math.sin(a)), w, h,
+        shade(c, -10 * (i % 3)), 'rotateZ(' + (i * step) + 'deg) rotateX(90deg)');
+    }
+    out += F(x - r, y - r, r * 2, r * 2, shade(c, 8), 'translateZ(' + h + 'px)', 'f', 'border-radius:50%;');
+    return out;
+  }
+  // 三角面（用 clip-path 造三角形，1 面）
+  function T(x, y, w, h, c, tf, det) {
+    return F(x, y, w, h, c, tf, det ? 'f dt' : 'f', 'clip-path:polygon(50% 0,0 100%,100% 100%);');
+  }
+  // 薄片（旗桿/立柱/拉索等，1 面）
+  function P(x, y, w, h, c, tf, det) {
+    return F(x, y, w, h, c, tf, det ? 'f dt' : 'f');
+  }
+
+  // 簡易顏色加深/提亮
+  function shade(hex, amt) {
+    const m = /^#?([0-9a-f]{6})$/i.exec(hex);
+    if (!m) return hex;
+    const n = parseInt(m[1], 16);
+    const r = Math.max(0, Math.min(255, (n >> 16) + amt));
+    const g = Math.max(0, Math.min(255, ((n >> 8) & 255) + amt));
+    const b = Math.max(0, Math.min(255, (n & 255) + amt));
+    return '#' + ((r << 16) | (g << 8) | b).toString(16).padStart(6, '0');
+  }
+
+  /* ---- 17 種建築原型（p: {c1 主色, c2 輔色, h 高度因子, opt}） ---- */
+  const ARCHETYPES = {
+    // 中式廟宇：紅牆 + 雙層翹簷屋頂
+    temple(p) {
+      const c = p.c1 || '#b03a2e', r = p.c2 || '#7a2d22';
+      return B(10, 20, 0, 20, 14, 8, c) +
+        R(8, 26, 12, 10, 24, r, 's') + R(20, 12, 12, 10, 24, r, 'e') +
+        R(12, 14, 18, 8, 16, shade(r, 12), 's', true) + R(20, 8, 18, 8, 16, shade(r, 12), 'e', true) +
+        P(18, 20, 2, 8, '#5a1f16', 'rotateX(90deg)');
+    },
+    // 牌坊立面（大三巴）：殘壁三角山花 + 階梯
+    facade(p) {
+      const c = p.c1 || '#b8a688';
+      return P(14, 22, 4, 10, shade(c, -20), 'rotateX(90deg)') +
+        P(10, 18, 12, 12, c, 'rotateX(90deg)') +
+        P(24, 18, 6, 9, shade(c, -12), 'rotateX(90deg)') +
+        T(12, 12, 10, 6, shade(c, -6), 'translateZ(2px) rotateX(90deg)') +
+        P(8, 28, 22, 3, shade(c, -30), 'rotateX(90deg)') +
+        P(6, 32, 26, 3, shade(c, -40), 'rotateX(90deg)');
+    },
+    // 教堂：方身 + 坡頂 + 尖塔
+    church(p) {
+      const c = p.c1 || '#e8dcc0', r = p.c2 || '#a03c30';
+      return B(10, 20, 0, 18, 13, 8, c) +
+        R(8, 25, 12, 9, 22, r, 's') +
+        B(24, 16, 8, 6, 6, 10, shade(c, -8)) +
+        T(24, 16, 6, 5, r, 'translateZ(18px) rotateX(90deg)') +
+        P(26, 14, 2, 4, r, 'translateZ(20px) rotateX(90deg)');
+    },
+    // 燈塔：白紅相間圓塔 + 頂燈
+    lighthouse(p) {
+      return C(18, 20, 0, 5, 16, '#f2f0e8', 5) +
+        P(14, 22, 10, 3, '#c0392b', 'rotateX(90deg) translateZ(2px)') +
+        B(14, 16, 16, 8, 8, 3, '#c0392b') +
+        P(17, 19, 3, 3, '#f7d774', 'translateZ(20px)', 'f', 'border-radius:50%;');
+    },
+    // 炮台城牆：矮牆 + 垛口 + 旗桿
+    fort(p) {
+      const c = p.c1 || '#9a8f7a';
+      return B(8, 18, 0, 26, 16, 6, c) +
+        P(9, 20, 4, 3, shade(c, -25), 'rotateX(90deg) translateZ(6px)') +
+        P(16, 20, 4, 3, shade(c, -25), 'rotateX(90deg) translateZ(6px)') +
+        P(23, 20, 4, 3, shade(c, -25), 'rotateX(90deg) translateZ(6px)') +
+        P(30, 20, 4, 3, shade(c, -25), 'rotateX(90deg) translateZ(6px)') +
+        P(20, 22, 1, 8, '#5a5040', 'rotateX(90deg) translateZ(6px)', true);
+    },
+    // 觀光高塔：漸收塔身 + 觀光層 + 針
+    tower(p) {
+      const c = p.c1 || '#d8dce2';
+      return B(16, 20, 0, 8, 8, 18, c) +
+        B(17, 21, 18, 6, 6, 10, shade(c, -10)) +
+        B(13, 17, 16, 14, 14, 3, p.c2 || '#8a94a6') +
+        P(19, 23, 2, 8, shade(c, -30), 'translateZ(28px) rotateX(90deg)');
+    },
+    // 現代館舍：玻璃方盒 + 斜頂
+    museum(p) {
+      const c = p.c1 || '#7fb3c9';
+      return B(9, 18, 0, 20, 14, 10, c) +
+        P(9, 32, 20, 3, 'rgba(255,255,255,.55)', 'rotateX(90deg) translateZ(3px)', true) +
+        P(29, 20, 14, 3, 'rgba(255,255,255,.45)', 'rotateY(-90deg) translateZ(3px)', true) +
+        R(7, 24, 13, 8, 24, p.c2 || '#4a6a7d', 's') +
+        B(26, 24, 0, 6, 8, 6, shade(c, -16));
+    },
+    // 葡式小屋：坡頂 + 白窗框
+    cottage(p) {
+      const c = p.c1 || '#9fd8c0', r = p.c2 || '#7a4a3a';
+      return B(10, 18, 0, 18, 13, 8, c) +
+        R(8, 24, 12, 10, 22, r, 's') + R(20, 12, 12, 10, 22, r, 'e') +
+        P(13, 31, 4, 4, '#ffffff', 'rotateX(90deg) translateZ(1px)', true) +
+        P(21, 31, 4, 4, '#ffffff', 'rotateX(90deg) translateZ(1px)', true);
+    },
+    // 斜拉橋：橋面 + 雙塔 + 拉索
+    bridge(p) {
+      const c = p.c1 || '#c8ccd4';
+      return P(4, 24, 34, 3, shade(c, -20), 'rotateX(90deg) translateZ(2px)') +
+        P(12, 18, 2, 12, c, 'rotateX(90deg)') +
+        P(28, 18, 2, 12, c, 'rotateX(90deg)') +
+        P(8, 20, 1, 8, shade(c, -35), 'rotateX(90deg) rotateZ(20deg)', true) +
+        P(18, 20, 1, 8, shade(c, -35), 'rotateX(90deg) rotateZ(-20deg)', true) +
+        P(24, 20, 1, 8, shade(c, -35), 'rotateX(90deg) rotateZ(20deg)', true) +
+        P(34, 20, 1, 8, shade(c, -35), 'rotateX(90deg) rotateZ(-20deg)', true);
+    },
+    // 纜車：支架 + 索道 + 吊艙
+    cablecar(p) {
+      const c = p.c1 || '#c95b3a';
+      return P(8, 24, 2, 12, '#6a6f78', 'rotateX(90deg) rotateZ(14deg)') +
+        P(32, 24, 2, 12, '#6a6f78', 'rotateX(90deg) rotateZ(-14deg)') +
+        P(8, 17, 26, 1, '#3a3f48', 'translateZ(10px)', true) +
+        B(20, 20, 6, 7, 6, 5, c);
+    },
+    // 山體大佛：綠山 + 蓮座 + 坐像（opt.noStatue → 純山）
+    buddha(p) {
+      const hill = B(6, 18, 0, 28, 16, 8, p.c2 || '#5a8a52') +
+        R(4, 24, 12, 10, 32, shade(p.c2 || '#5a8a52', -14), 's');
+      if (p.opt && p.opt.noStatue) return hill + P(18, 20, 3, 6, '#4a7a44', 'rotateX(90deg)', true);
+      return hill + C(17, 20, 8, 4, 3, '#b08a58', 4) +
+        B(15, 18, 11, 7, 7, 6, p.c1 || '#c09a68') +
+        P(17, 16, 3, 3, '#d8b888', 'translateZ(17px)', 'f', 'border-radius:50%;');
+    },
+    // 市集牌樓：門樓 + 燈籠 + 攤檔
+    market(p) {
+      const c = p.c1 || '#c0392b';
+      return P(10, 20, 2, 12, '#6a4a3a', 'rotateX(90deg)') +
+        P(28, 20, 2, 12, '#6a4a3a', 'rotateX(90deg)') +
+        P(8, 18, 24, 3, c, 'translateZ(10px)') +
+        P(13, 22, 3, 3, '#e8a03a', 'rotateX(90deg) translateZ(2px)', true) +
+        P(24, 22, 3, 3, '#e8a03a', 'rotateX(90deg) translateZ(2px)', true) +
+        B(14, 26, 0, 12, 8, 4, shade(c, -20));
+    },
+    // 鐘樓：磚紅高塔 + 鐘面
+    clocktower(p) {
+      const c = p.c1 || '#a85840';
+      return B(14, 16, 0, 10, 10, 18, c) +
+        P(16, 20, 5, 5, '#f2ead8', 'rotateX(90deg) translateZ(2px)', 'f', 'border-radius:50%;') +
+        T(13, 15, 12, 6, '#5a3a2a', 'translateZ(18px) rotateX(90deg)') +
+        B(12, 14, 18, 14, 14, 2, '#5a3a2a');
+    },
+    // 騎樓街：連排拱廊騎樓
+    arcade(p) {
+      const c = p.c1 || '#c9a06a';
+      return B(6, 18, 0, 12, 12, 9, c) +
+        B(18, 18, 0, 12, 12, 9, shade(c, -12)) +
+        P(6, 30, 24, 3, shade(c, -35), 'rotateX(90deg) translateZ(1px)') +
+        R(4, 22, 12, 9, 28, '#7a4a3a', 's') +
+        P(9, 30, 2, 4, '#3a3028', 'rotateX(90deg) translateZ(1px)', true) +
+        P(21, 30, 2, 4, '#3a3028', 'rotateX(90deg) translateZ(1px)', true);
+    },
+    // 大宅別墅：雙層露台 + 立柱
+    mansion(p) {
+      const c = p.c1 || '#e0c8a8', r = p.c2 || '#6a5a4a';
+      return B(8, 18, 0, 22, 14, 9, c) +
+        P(8, 30, 22, 2, shade(c, -25), 'rotateX(90deg) translateZ(4px)') +
+        P(11, 30, 2, 5, r, 'rotateX(90deg)', true) +
+        P(19, 30, 2, 5, r, 'rotateX(90deg)', true) +
+        P(27, 30, 2, 5, r, 'rotateX(90deg)', true) +
+        R(6, 23, 13, 10, 26, '#7a4a3a', 's');
+    },
+    // 海灘/離島：沙灘 + 棕櫚 + 浪花（opt.stilts → 棚屋）
+    beach(p) {
+      const sand = B(4, 20, 0, 32, 14, 3, p.c2 || '#e0c88a') +
+        P(4, 34, 32, 3, '#7ec8e3', 'rotateX(90deg)');
+      if (p.opt && p.opt.stilts) {
+        return sand + P(14, 22, 1, 6, '#6a5a4a', 'rotateX(90deg)', true) +
+          P(24, 22, 1, 6, '#6a5a4a', 'rotateX(90deg)', true) +
+          B(12, 18, 6, 14, 10, 5, p.c1 || '#b08a5a') +
+          R(10, 22, 14, 8, 18, '#7a4a3a', 's');
+      }
+      return sand +
+        P(16, 18, 2, 8, '#7a5a3a', 'rotateX(90deg)') +
+        P(13, 14, 4, 2, '#4a8a44', 'translateZ(8px) rotateZ(25deg)', true) +
+        P(17, 14, 4, 2, '#5a9a54', 'translateZ(9px) rotateZ(-20deg)', true) +
+        P(26, 24, 3, 2, '#8aba6a', 'rotateX(90deg)', true);
+    },
+    // 廣場噴泉：圓噴泉 + 雕塑（opt.water → 水面色帶）
+    plaza(p) {
+      const base = P(4, 26, 32, 8, p.c2 || '#c8c0b0', 'rotateX(90deg)');
+      if (p.opt && p.opt.water) {
+        return base + P(4, 30, 32, 5, '#3a7ca5', 'rotateX(90deg) translateZ(1px)') +
+          P(12, 22, 6, 4, '#8a94a6', 'rotateX(90deg)', true) +
+          P(24, 20, 5, 6, '#6a94b6', 'rotateX(90deg)', true);
+      }
+      return base + C(17, 20, 0, 5, 3, '#9ab6c9', 4) +
+        P(18, 21, 3, 5, p.c1 || '#d4af37', 'rotateX(90deg) translateZ(1px)');
+    }
+  };
+
+  // 70 個地標 → [原型, 主色, 輔色, 選項]（依 LANDMARKS 順序）
+  const LANDMARK_ARCH = [
+    ['plaza', '#d4af37', '#c8c0b0', null],      // 議事亭前地
+    ['facade', '#b8a688', null, null],          // 大三巴牌坊
+    ['temple', '#b03a2e', '#7a2d22', null],     // 哪吒廟
+    ['temple', '#a03a30', '#6a2820', null],     // 媽閣廟
+    ['mansion', '#c8b090', '#6a5a4a', null],    // 鄭家大屋
+    ['fort', '#9a8f7a', null, null],            // 大炮台
+    ['lighthouse', null, null, null],           // 東望洋燈塔
+    ['fort', '#8a8068', null, null],            // 舊城牆遺址
+    ['mansion', '#d8c8a0', '#6a5a4a', null],    // 盧家大屋
+    ['mansion', '#5a7a4a', '#3a5a30', null],    // 崗頂劇院
+    ['mansion', '#e0d0b0', '#6a5a4a', null],    // 何東圖書館
+    ['church', '#e8dcc0', '#8a3a30', null],     // 聖若瑟修院
+    ['church', '#f0e0b8', '#a03c30', null],     // 玫瑰堂
+    ['church', '#d8e0e8', '#7a3a30', null],     // 主教山
+    ['museum', '#8a6a9a', '#5a4a6a', null],     // 澳門博物館
+    ['arcade', '#c95b5b', null, null],          // 福隆新街
+    ['arcade', '#c9a06a', null, null],          // 十月初五街
+    ['arcade', '#b8a888', null, null],          // 關前正街
+    ['arcade', '#c99a7a', null, null],          // 草堆街
+    ['arcade', '#d0a880', null, null],          // 營地大街
+    ['arcade', '#b89060', null, null],          // 三盞燈
+    ['market', '#c0392b', null, null],          // 官也街
+    ['cottage', '#9fd8c0', '#7a4a3a', null],    // 龍環葡韻
+    ['church', '#f0d888', '#a03c30', null],     // 路環聖方濟各堂
+    ['temple', '#b55a3a', '#7a2d22', null],     // 氹仔天后宮
+    ['beach', '#6a5a4a', '#c0a878', null],      // 黑沙海灘
+    ['beach', '#6a5a3a', '#e0c88a', null],      // 竹灣
+    ['cottage', '#e8a0b0', '#7a4a3a', null],    // 九澳聖母村
+    ['tower', '#d8dce2', '#8a94a6', null],      // 澳門旅遊塔
+    ['museum', '#c0c8d8', '#5a6a8a', null],     // 澳門科學館
+    ['bridge', '#c8ccd4', null, null],          // 港珠澳大橋
+    ['arcade', '#d4b088', null, null],          // 新馬路
+    ['beach', '#5a8a52', '#c8e0b0', null],      // 白鴿巢公園（綠地棕櫚）
+    ['fort', '#7a7060', null, null],            // 賈梅士洞
+    ['cottage', '#a8d8e8', '#7a4a3a', null],    // 亞婆井前地
+    ['buddha', '#6a9a5a', '#5a8a52', { noStatue: true }], // 太平山頂
+    ['cablecar', '#5a7a3a', null, null],        // 山頂纜車
+    ['mansion', '#b8b0a0', '#5a5048', null],    // 大館
+    ['market', '#a83828', null, null],          // 中環街市
+    ['plaza', '#d4af37', '#b8b0a0', null],      // 金紫荊廣場
+    ['market', '#c0452a', null, null],          // 大坑（火龍）
+    ['plaza', null, '#c8c0b0', { water: true }],// 維多利亞港
+    ['market', '#b04838', null, null],          // 赤柱市集
+    ['beach', '#6a5a3a', '#f0d8a0', null],      // 淺水灣
+    ['beach', '#5a6a4a', '#e8d090', null],      // 石澳
+    ['clocktower', '#a85840', null, null],      // 尖沙咀鐘樓
+    ['plaza', '#f0d878', '#b0a890', null],      // 星光大道
+    ['market', '#c0392b', null, null],          // 廟街夜市
+    ['market', '#b04848', null, null],          // 旺角女人街
+    ['market', '#986838', null, null],          // 深水埗鴨寮街
+    ['temple', '#c0392b', '#8a2d22', null],     // 黃大仙祠
+    ['fort', '#8a7a5a', null, null],            // 九龍寨城公園
+    ['buddha', '#7a9a5a', '#4a7a42', { noStatue: true }], // 獅子山
+    ['museum', '#b03a3a', '#6a2a2a', null],     // 香港故宮文化博物館
+    ['museum', '#4a5a6a', '#2a3a4a', null],     // M+博物館
+    ['museum', '#c08050', '#7a5030', null],     // 香港文化博物館
+    ['museum', '#8898a8', '#485868', null],     // 香港歷史博物館
+    ['museum', '#e0e4ea', '#8a94a6', null],     // 香港太空館
+    ['museum', '#d0b8c8', '#7a5a70', null],     // 香港藝術館
+    ['buddha', '#c09a68', '#5a8a52', null],     // 天壇大佛
+    ['buddha', '#b89060', '#6a9a5a', null],     // 寶蓮禪寺
+    ['cablecar', '#3a7ca5', null, null],        // 昂坪 360 纜車
+    ['beach', '#4a7a4a', '#d8c890', null],      // 南丫島
+    ['beach', '#5a8a4a', '#e0d0a0', null],      // 長洲
+    ['beach', '#6a9a5a', '#d0c090', null],      // 坪洲
+    ['beach', '#b08a5a', '#c0b090', { stilts: true }], // 大澳漁村（棚屋）
+    ['beach', '#7a7a6a', '#b0a888', null],      // 西貢地質公園
+    ['beach', '#5a8a6a', '#a8c8a0', null],      // 香港濕地公園
+    ['temple', '#a83828', '#7a2d22', null],     // 沙田車公廟
+    ['arcade', '#9a8a6a', null, null]           // 屏山文物徑
+  ];
+
+  // 生成模型 HTML（面元素數量 = '<div' 出現次數）
+  function buildModelHTML(lmIndex) {
+    const def = LANDMARK_ARCH[lmIndex];
+    if (!def) return '';
+    const fn = ARCHETYPES[def[0]];
+    if (!fn) return '';
+    return fn({ c1: def[1], c2: def[2], opt: def[3] });
+  }
+
+  // 2D 俯視降級：原型剪影小圖標（簡單 SVG）
+  const ICON_PATHS = {
+    temple: 'M6 14 L16 6 L26 14 Z M9 14 v10 h14 v-10 z M12 18 h8 v6 h-8 z',
+    facade: 'M10 24 v-14 h4 v-3 h4 v3 h4 v14 z',
+    church: 'M9 24 v-12 h14 v12 z M14 12 v-6 h4 v6 z M15 3 h2 v4 h-2 z',
+    lighthouse: 'M13 24 v-16 h6 v16 z M12 8 h8 v3 h-8 z M14 4 h4 v3 h-4 z',
+    fort: 'M6 24 v-8 h4 v-3 h3 v3 h4 v-3 h3 v3 h4 v-3 h3 v3 h4 v8 z',
+    tower: 'M14 24 v-14 h4 v14 z M12 12 h8 v3 h-8 z M15 4 h2 v5 h-2 z',
+    museum: 'M7 24 v-10 h18 v10 z M5 14 L16 7 l11 7 z',
+    cottage: 'M8 24 v-9 h16 v9 z M6 15 L16 8 l10 7 z M12 18 h4 v4 h-4 z',
+    bridge: 'M4 20 h24 v2 h-24 z M10 20 v-10 h2 v10 z M22 20 v-10 h2 v10 z',
+    cablecar: 'M6 24 l3 -14 h2 l-3 14 z M24 24 l-3 -14 h-2 l3 14 z M13 14 h6 v5 h-6 z',
+    buddha: 'M5 24 q11 -16 22 0 z M13 13 a3 3 0 1 1 6 0 a3 3 0 1 1 -6 0',
+    market: 'M8 24 v-12 h2 v12 z M22 24 v-12 h2 v12 z M6 10 h20 v3 h-20 z',
+    clocktower: 'M13 24 v-16 h6 v16 z M14 11 a2 2 0 1 1 4 0 a2 2 0 1 1 -4 0 M11 8 L16 4 l5 4 z',
+    arcade: 'M6 24 v-10 h8 v10 z M18 24 v-10 h8 v10 z M4 14 L10 8 l6 6 z M16 14 l6 -6 l6 6 z',
+    mansion: 'M7 24 v-11 h18 v11 z M5 13 L16 6 l11 7 z M10 17 h2 v5 h-2 z M20 17 h2 v5 h-2 z',
+    beach: 'M4 22 q8 -3 14 0 q6 3 10 0 v3 h-24 z M12 20 v-8 h2 v8 z M10 12 q2 -4 4 0 q4 -2 2 2',
+    plaza: 'M8 22 a8 3 0 1 1 16 0 a8 3 0 1 1 -16 0 M15 22 v-8 h2 v8 z'
+  };
+  function iconSVG(lmIndex, color) {
+    const def = LANDMARK_ARCH[lmIndex];
+    const arch = def ? def[0] : 'museum';
+    return '<svg viewBox="0 0 32 28" class="lm-icon-svg"><path d="' + (ICON_PATHS[arch] || ICON_PATHS.museum) +
+      '" fill="' + (color || '#8a94a6') + '" fill-rule="evenodd"/></svg>';
+  }
+
+  return { ARCHETYPES: ARCHETYPES, LANDMARK_ARCH: LANDMARK_ARCH, buildModelHTML: buildModelHTML, iconSVG: iconSVG, shade: shade };
+})();
+
+/* ==================== 三點六、Q 版 SVG 人物頭像（15 位，代碼生成） ==================== */
+
+const AVATAR = (function () {
+
+  // 髮型路徑（覆蓋頭頂的色塊）
+  const HAIRS = {
+    flat:   'M10 22 Q10 8 24 8 Q38 8 38 22 L36 18 Q34 12 24 12 Q14 12 12 18 Z',
+    short:  'M10 22 Q10 9 24 9 Q38 9 38 22 L36 16 Q32 11 24 11 Q16 11 12 16 Z',
+    curly:  'M9 23 Q7 8 24 7 Q41 8 39 23 Q37 15 33 14 Q35 19 31 17 Q29 11 24 13 Q19 11 17 17 Q13 19 15 14 Q11 15 9 23 Z',
+    queue:  'M10 22 Q10 8 24 8 Q38 8 38 22 L36 16 Q34 10 24 10 Q14 10 12 16 Z M36 20 q4 10 2 16 l-3 -1 q2 -8 -1 -13 z',
+    spiky:  'M11 21 L13 12 L17 15 L20 8 L24 13 L28 7 L31 14 L35 11 L37 21 Q36 11 24 11 Q12 11 11 21 Z',
+    bun:    'M10 22 Q10 9 24 9 Q38 9 38 22 L36 16 Q34 11 24 11 Q14 11 12 16 Z M22 7 a4 3 0 1 1 8 0 a4 3 0 1 1 -8 0',
+    bruce:  'M11 20 Q12 9 24 9 Q37 9 37 20 L34 14 Q31 10 24 11 Q17 10 14 15 Z M12 17 q-2 4 0 7 l2 -2 z M36 17 q2 4 0 7 l-2 -2 z',
+    wave:   'M9 24 Q8 7 24 7 Q40 7 39 24 Q36 13 30 12 Q33 17 28 15 Q25 9 20 13 Q16 15 13 19 Q11 21 9 24 Z',
+    old:    'M12 21 Q13 11 24 11 Q35 11 36 21 L36 16 Q38 20 37 22 Q35 13 24 13 Q13 13 11 22 Z',
+    painter:'M10 22 Q10 9 24 9 Q38 9 38 22 L36 15 Q33 11 24 11 Q15 11 12 15 Z'
+  };
+
+  // 每位角色的配置：膚色/髮型/髮色/衣色/鬍/眉/配件
+  const CFG = {
+    zheng:  { skin: '#f0c8a0', hair: 'flat',   hc: '#2a2a2a', cloth: '#5a6a8a', beard: 'thin', acc: 'guapi+scroll' },
+    ricci:  { skin: '#f0d0b0', hair: 'flat',   hc: '#6a5a4a', cloth: '#4a4a5a', beard: 'long', acc: 'hat+cross' },
+    xian:   { skin: '#f0c8a0', hair: 'short',  hc: '#1a1a1a', cloth: '#3a4a6a', acc: 'note+baton' },
+    sun:    { skin: '#f0c8a0', hair: 'flat',   hc: '#1a1a1a', cloth: '#4a5568', beard: 'sun', brow: 'thick', acc: 'none' },
+    jin:    { skin: '#f0d0b0', hair: 'old',    hc: '#8a8a8a', cloth: '#6a5a4a', acc: 'glasses+book' },
+    mazu:   { skin: '#f0d0b8', hair: 'bun',    hc: '#1a1a1a', cloth: '#c0392b', acc: 'phoenix+ruyi' },
+    camoes: { skin: '#f0d0b0', hair: 'curly',  hc: '#5a4a3a', cloth: '#6a4a6a', acc: 'quill+ruff' },
+    lin:    { skin: '#f0c8a0', hair: 'flat',   hc: '#2a2a2a', cloth: '#3a4a5a', beard: 'long', acc: 'qing+beads' },
+    rong:   { skin: '#f0c8a0', hair: 'queue',  hc: '#1a1a1a', cloth: '#4a5a6a', acc: 'glasses+bowtie' },
+    hotung: { skin: '#f0d0b0', hair: 'flat',   hc: '#3a3a3a', cloth: '#2a3a4a', acc: 'suit+watch' },
+    rao:    { skin: '#f0d0b8', hair: 'old',    hc: '#b0b0b0', cloth: '#7a5a4a', beard: 'thin', acc: 'glasses+longbrow' },
+    bruce:  { skin: '#f0c8a0', hair: 'bruce',  hc: '#1a1a1a', cloth: '#d4a017', acc: 'fist' },
+    yip:    { skin: '#f0c8a0', hair: 'flat',   hc: '#2a2a2a', cloth: '#5a5048', acc: 'wingchun' },
+    anita:  { skin: '#f0d0b8', hair: 'wave',   hc: '#3a2a2a', cloth: '#ad1457', acc: 'earring+mic' },
+    gao:    { skin: '#f0c8a0', hair: 'painter',hc: '#4a4a4a', cloth: '#6a7a5a', beard: 'thin', acc: 'beret+brush' }
+  };
+
+  function beardSVG(kind, skin) {
+    if (!kind) return '';
+    if (kind === 'long') return '<path d="M18 32 Q17 40 24 43 Q31 40 30 32 Q28 36 24 36 Q20 36 18 32 Z" fill="#7a7a7a"/>';
+    if (kind === 'sun') return '<path d="M19 30 q2 2 5 2 q3 0 5 -2 l-1 3 q-2 2 -4 2 q-2 0 -4 -2 z M21 33 q1 3 3 3 q2 0 3 -3 z" fill="#3a3a3a"/>';
+    if (kind === 'thin') return '<path d="M19 31 q2 2 5 2 q3 0 5 -2 l-1 2 q-2 2 -4 2 q-2 0 -4 -2 z" fill="#5a5a5a"/>';
+    return '';
+  }
+
+  function accSVG(acc) {
+    switch (acc) {
+      case 'guapi+scroll':
+        return '<path d="M12 15 Q12 7 24 7 Q36 7 36 15 L36 12 Q36 5 24 5 Q12 5 12 12 Z" fill="#2a3a4a"/><rect x="20" y="4" width="8" height="3" rx="1" fill="#2a3a4a"/>' +
+          '<rect x="30" y="34" width="10" height="7" rx="1" fill="#f0e0b0" stroke="#b8a070"/><path d="M32 36 h6 M32 38 h6" stroke="#8a7a50" stroke-width=".6"/>';
+      case 'hat+cross':
+        return '<path d="M13 14 Q13 6 24 6 Q35 6 35 14 L35 17 Q24 12 13 17 Z" fill="#4a3a2a"/>' +
+          '<path d="M24 24 v6 M21 27 h6" stroke="#d4af37" stroke-width="1.4"/>';
+      case 'note+baton':
+        return '<path d="M33 30 q1 -2 2 0 q1 2 -1 2 q-2 0 -1 -2 M34.5 28 v5" stroke="#2a2a2a" stroke-width="1" fill="#2a2a2a"/>' +
+          '<path d="M12 34 l7 -5" stroke="#d8d0c0" stroke-width="1.2"/>';
+      case 'glasses+book':
+        return '<circle cx="19" cy="24" r="3.4" fill="none" stroke="#3a3a3a" stroke-width="1"/><circle cx="29" cy="24" r="3.4" fill="none" stroke="#3a3a3a" stroke-width="1"/><path d="M22.4 24 h3.2" stroke="#3a3a3a"/>' +
+          '<rect x="8" y="33" width="9" height="7" rx="1" fill="#a03a30"/><path d="M9.5 34.5 v4" stroke="#d8b0a0"/>';
+      case 'phoenix+ruyi':
+        return '<path d="M24 2 l2 4 h-4 z M20 4 l1 3 h-2 z M28 4 l-1 3 h2 z" fill="#d4af37"/><circle cx="24" cy="5" r="2" fill="#d4af37"/>' +
+          '<path d="M34 32 q3 -1 4 2 q-1 3 -3 2 q-2 -1 -1 -4" fill="none" stroke="#d4af37" stroke-width="1.4"/>';
+      case 'quill+ruff':
+        return '<path d="M16 36 Q24 33 32 36 L30 39 Q24 37 18 39 Z" fill="#f0ead8"/>' +
+          '<path d="M34 28 q4 -6 6 -8 q-1 5 -3 9 z" fill="#e8e0d0"/><path d="M34 28 l5 -7" stroke="#b0a890" stroke-width=".7"/>';
+      case 'qing+beads':
+        return '<rect x="13" y="5" width="22" height="6" rx="3" fill="#2a3a4a"/><circle cx="24" cy="5" r="2" fill="#c0392b"/>' +
+          '<circle cx="18" cy="36" r="1" fill="#d4af37"/><circle cx="21" cy="38" r="1" fill="#d4af37"/><circle cx="24" cy="39" r="1" fill="#d4af37"/><circle cx="27" cy="38" r="1" fill="#d4af37"/><circle cx="30" cy="36" r="1" fill="#d4af37"/>';
+      case 'glasses+bowtie':
+        return '<circle cx="19" cy="24" r="3.2" fill="none" stroke="#2a2a2a" stroke-width="1"/><circle cx="29" cy="24" r="3.2" fill="none" stroke="#2a2a2a" stroke-width="1"/><path d="M22.2 24 h3.6" stroke="#2a2a2a"/>' +
+          '<path d="M20 36 l4 -2 l4 2 l-4 2 z" fill="#a03a30"/>';
+      case 'suit+watch':
+        return '<path d="M20 36 l4 -3 l4 3 l-4 6 z" fill="#f0f0f0"/><path d="M23 34 h2 v5 h-2 z" fill="#8a2a2a"/>' +
+          '<circle cx="33" cy="37" r="2.4" fill="none" stroke="#d4af37" stroke-width="1.2"/><path d="M33 35.5 v1.5 l1 .8" stroke="#d4af37" stroke-width=".8"/>';
+      case 'glasses+longbrow':
+        return '<circle cx="19" cy="24" r="3.2" fill="none" stroke="#4a4a4a" stroke-width="1"/><circle cx="29" cy="24" r="3.2" fill="none" stroke="#4a4a4a" stroke-width="1"/><path d="M22.2 24 h3.6" stroke="#4a4a4a"/>' +
+          '<path d="M15 19 q3 -3 6 -1 M27 18 q3 -2 6 1" stroke="#e0e0e0" stroke-width="1.6" fill="none"/>';
+      case 'fist':
+        return '<circle cx="33" cy="36" r="3.4" fill="#f0c8a0" stroke="#c09a70"/>';
+      case 'wingchun':
+        return '<path d="M31 31 q4 -2 5 2 l-2 5 q-3 1 -4 -1 z" fill="#f0c8a0" stroke="#c09a70"/><path d="M33 32 v4" stroke="#c09a70" stroke-width=".8"/>';
+      case 'earring+mic':
+        return '<circle cx="13" cy="27" r="1.6" fill="#d4af37"/><circle cx="35" cy="27" r="1.6" fill="#d4af37"/>' +
+          '<rect x="32" y="30" width="3" height="8" rx="1.5" fill="#3a3f48"/><circle cx="33.5" cy="29" r="2.6" fill="#6a6f78"/>';
+      case 'beret+brush':
+        return '<ellipse cx="22" cy="9" rx="11" ry="4" fill="#5a4a3a"/><circle cx="24" cy="5" r="1.4" fill="#5a4a3a"/>' +
+          '<path d="M33 32 l5 -8" stroke="#8a6a4a" stroke-width="1.4"/><path d="M37 23 l2 -2 l1 3 z" fill="#3a3a3a"/>';
+      default:
+        return '';
+    }
+  }
+
+  // 生成 Q 版頭像 SVG（頭+肩，圓形構圖）
+  function avatarSVG(charId, size) {
+    const c = CFG[charId] || CFG.zheng;
+    const s = size || 48;
+    const hair = HAIRS[c.hair] || HAIRS.flat;
+    const browStroke = c.brow === 'thick' ? 1.8 : 1;
+    return '<svg viewBox="0 0 48 48" width="' + s + '" height="' + s + '" xmlns="http://www.w3.org/2000/svg">' +
+      '<circle cx="24" cy="24" r="23" fill="#f5ecd8"/>' +
+      '<path d="M10 46 Q12 36 24 36 Q36 36 38 46 Z" fill="' + c.cloth + '"/>' +
+      '<circle cx="24" cy="23" r="14" fill="' + c.skin + '"/>' +
+      '<path d="' + hair + '" fill="' + c.hc + '"/>' +
+      '<circle cx="19" cy="24" r="1.6" fill="#2a2a2a"/>' +
+      '<circle cx="29" cy="24" r="1.6" fill="#2a2a2a"/>' +
+      '<path d="M16 20 q2.5 -1.5 5 0 M27 20 q2.5 -1.5 5 0" stroke="#3a3a3a" stroke-width="' + browStroke + '" fill="none"/>' +
+      '<path d="M21 30 q3 2 6 0" stroke="#b0705a" stroke-width="1.2" fill="none"/>' +
+      beardSVG(c.beard, c.skin) +
+      accSVG(c.acc) +
+      '<circle cx="24" cy="24" r="23" fill="none" stroke="#c9bd97" stroke-width="1.5"/>' +
+      '</svg>';
+  }
+
+  return { avatarSVG: avatarSVG, CFG: CFG };
+})();
+
 /* ==================== 四、對外導出 ==================== */
+
+
 
 const MFT2 = {
   Engine: Engine,
@@ -1526,7 +1979,9 @@ const MFT2 = {
     STOCKS: Engine.STOCKS,
     STOCK_TIPS: Engine.STOCK_TIPS,
     MAP_SIZE: 99
-  }
+  },
+  MODELS: MODELS,
+  AVATAR: AVATAR
 };
 global.MFT2 = MFT2;
 if (typeof module !== 'undefined' && module.exports) module.exports = MFT2;
@@ -1704,9 +2159,13 @@ function tileInfoHTML(i, price, rent) {
 }
 function showTileInfo(i) {
   const t = G.state.layout.board[i];
-  if (t.type === 'landmark') recordLandmark(t.name);
+  let closeup = '';
+  if (t.type === 'landmark') {
+    recordLandmark(t.name);
+    closeup = '<div class="lm-closeup"><div class="lm-closeup-inner">' + MFT2.MODELS.buildModelHTML(t.lmId) + '</div></div>';
+  }
   const rent = (G.state && G.state.props[i]) ? ENGINE.calcRent(G.state, i) : undefined;
-  openModal(esc(t.name), tileInfoHTML(i, undefined, rent), [{ label: '知道了', onClick: closeModal }]);
+  openModal(esc(t.name), closeup + tileInfoHTML(i, undefined, rent), [{ label: '知道了', onClick: closeModal }]);
 }
 
 /* ---------- 地圖預覽小圖 ---------- */
@@ -1880,7 +2339,7 @@ function renderCharPick(container) {
     card.type = 'button';
     card.className = 'char-card' + (Setup.chars[i] === c.id ? ' on' : '');
     card.innerHTML =
-      '<div class="char-emoji" style="border-color:' + c.color + '">' + c.emoji + '</div>' +
+      '<div class="char-emoji" style="border-color:' + c.color + '">' + MFT2.AVATAR.avatarSVG(c.id, 36) + '</div>' +
       '<div class="char-name">' + c.name + '</div>' +
       '<div class="char-passive">' + c.passive + '</div>' +
       (takenBy >= 0 ? '<div class="char-taken">玩家 ' + (takenBy + 1) + '</div>' : '');
@@ -2065,6 +2524,10 @@ function applyCam() {
   world.style.setProperty('--cam-trans', G.fast ? '.2s' : '.4s'); // 快速模式過渡減半
   $('board-plane').classList.toggle('mode3d', Cam.is3d);
   $('btn-view-toggle').textContent = Cam.is3d ? '🗺️ 2D' : '🏔️ 3D';
+  // 性能 LOD：遠景縮放級別隱藏模型細節，極遠只留 2D 圖標
+  const vp = $('board-viewport');
+  vp.classList.toggle('lod-mid', Cam.s < 0.62);
+  vp.classList.toggle('lod-low', Cam.s < 0.38);
 }
 
 // 平滑移動鏡頭至指定格子居中（3D/2D 都生效）
@@ -2243,7 +2706,10 @@ function buildBoard() {
         '<div class="tile-name">' + esc(t.name) + '</div>' +
         '<div class="tile-price">$' + t.price + '</div>' +
         '<div class="tile-owner" id="tile-owner-' + i + '"></div>' +
-        '<div class="bldgs" id="bldgs-' + i + '"></div>';
+        '<div class="bldgs" id="bldgs-' + i + '"></div>' +
+        '<div class="lm-icon">' + MFT2.MODELS.iconSVG(t.lmId, DATA.GROUPS[t.group].color) + '</div>' +
+        '<div class="lm3d" id="lm-' + i + '"><div class="lm-inner">' + MFT2.MODELS.buildModelHTML(t.lmId) + '</div>' +
+        '<div class="lm-flag" id="lm-flag-' + i + '"></div></div>';
     } else {
       inner = '<div class="tile-icon">' + t.icon + '</div><div class="tile-name">' + esc(t.name) + '</div>';
     }
@@ -2252,13 +2718,15 @@ function buildBoard() {
     div.onclick = () => showTileInfo(i);
     plane.appendChild(div);
   });
-  // 棋子
+  // 大富翁式角色棋子：3D 圓柱底座（角色色）+ Q 版 SVG 頭像
   st.players.forEach(p => {
     const c = charOf(p.charId);
     const tok = document.createElement('div');
     tok.className = 'token3';
     tok.id = 'token-' + p.id;
-    tok.innerHTML = '<div class="token-peg" style="background:' + c.color + '">' + c.emoji + '</div><div class="token-shadow"></div>';
+    tok.innerHTML = '<div class="token-shadow"></div>' +
+      '<div class="token-base" style="background:linear-gradient(180deg,' + MFT2.MODELS.shade(c.color, 25) + ',' + c.color + ' 55%,' + MFT2.MODELS.shade(c.color, -35) + ')"></div>' +
+      '<div class="token-head">' + MFT2.AVATAR.avatarSVG(p.charId, 26) + '</div>';
     plane.appendChild(tok);
   });
   G.built = true;
@@ -2272,24 +2740,36 @@ function tileCenter(i) {
   };
 }
 
-function placeToken(pid, tileIdx, slot) {
+function placeToken(pid, tileIdx, slot, total) {
   const tok = $('token-' + pid);
   if (!tok) return;
   const c = tileCenter(tileIdx);
-  const offsets = [[-9, -9], [9, -9], [-9, 9], [9, 9], [0, 0]];
-  const off = offsets[(slot || pid) % offsets.length];
+  // 同格多棋子扇形排開
+  const n = Math.max(1, total || 1);
+  const ang = Math.PI * (0.5 + (n > 1 ? (slot / (n - 1) - 0.5) * 1.2 : 0));
+  const rad = n > 1 ? 9 : 0;
+  const off = [Math.cos(ang) * rad - (n > 1 ? 6 : 0), -Math.sin(ang) * rad + 6];
   tok.style.left = (c.x + off[0] - 13) + 'px';
-  tok.style.top = (c.y + off[1] - 13) + 'px';
+  tok.style.top = (c.y + off[1] - 20) + 'px';
 }
 
 /* ---------- 渲染 ---------- */
 function updateBoard() {
   const st = G.state;
+  // 同格棋子扇形錯位
+  const occupancy = {};
+  st.players.forEach(p => {
+    if (p.bankrupt) return;
+    (occupancy[p.pos] = occupancy[p.pos] || []).push(p.id);
+  });
   st.players.forEach((p, i) => {
     const tok = $('token-' + p.id);
     if (!tok) return;
     tok.style.display = p.bankrupt ? 'none' : '';
-    if (!p.bankrupt && !G.animating) placeToken(p.id, p.pos, i);
+    tok.classList.toggle('active', st.turnIndex === p.id && !st.over);
+    tok.classList.toggle('isAI-ghost', !!p.managed);
+    const slot = occupancy[p.pos] ? occupancy[p.pos].indexOf(p.id) : i;
+    if (!p.bankrupt && !G.animating) placeToken(p.id, p.pos, slot, (occupancy[p.pos] || []).length);
     if (G.lastPositions[p.id] !== p.pos) {
       const t = st.layout.board[p.pos];
       if (t.type === 'landmark') recordLandmark(t.name);
@@ -2317,6 +2797,18 @@ function updateBoard() {
           b.style.setProperty('--owner-color', charOf(st.players[prop.owner].charId).color);
           bx.appendChild(b);
         }
+      }
+    }
+    // 產權可視化：模型業主色光暈 + 屋頂小旗
+    const lm = $('lm-' + i);
+    if (lm) {
+      const oc = prop ? charOf(st.players[prop.owner].charId).color : null;
+      lm.classList.toggle('owned', !!prop);
+      if (oc) lm.style.setProperty('--oc', oc);
+      const flag = $('lm-flag-' + i);
+      if (flag) {
+        flag.style.display = prop ? '' : 'none';
+        if (oc) flag.style.setProperty('--oc', oc);
       }
     }
   }
@@ -2359,7 +2851,7 @@ function updatePlayersBar() {
     const assets = ENGINE.assetValue(st, p.id);
     const items = p.items.map(k => DATA.ITEMS[k].emoji).join('');
     div.innerHTML =
-      '<div class="pbar-emoji" style="background:' + c.color + '">' + c.emoji + '</div>' +
+      '<div class="pbar-emoji" style="background:' + c.color + '">' + MFT2.AVATAR.avatarSVG(p.charId, 26) + '</div>' +
       '<div class="pbar-info"><b>' + esc(p.name) + (p.isAI ? ' 🤖' : '') + '</b>' +
       '<span>' + (p.bankrupt ? '已破產' : money(p.money) + ' · 資產 ' + money(assets)) + '</span>' +
       '<span class="pbar-flags">' +
@@ -3037,7 +3529,7 @@ function maybeRunAI() {
 /* ---------- 教學卡（首次玩家一次性顯示，可滑動翻頁或一鍵關閉，不打斷遊戲） ---------- */
 const TUT_TIPS = [
   '👋 歡迎！兩顆四面骰（2–8 點）決定步數，行走時鏡頭自動拉近跟隨，邊走邊看清地名。右上角可切 2D/3D、關閉跟隨。',
-  '🏛️ 買下地標可向對手收租；相鄰自有物業連成「連排」租金再加倍（金帶標示）；集齊同色全組可加蓋建築再翻倍！',
+  '🏛️ 每個地標都有立體微縮模型，點格子可看放大特寫與知識；買地收租，相鄰物業連成「連排」租金再加倍（金帶標示）！',
   '📈 自己回合點「股市」買賣六檔板塊股，盛事會帶動板塊漲跌；「港澳銀行」存款每輪賺 2% 複利；「濠港交易所」有免費快訊！',
   '🏪 道具店買免租金牌/雙倍骰/轉向卡/搬遷卡（最多 2 件）；文脈卡答題學港澳文化，見過的知識全部收進文脈圖鑑！'
 ];
@@ -3074,7 +3566,7 @@ function showResult() {
     const c = charOf(r.charId);
     html += '<div class="result-row' + (r.id === st.winner ? ' winner' : '') + '">' +
       '<span class="result-rank">' + (idx + 1) + '</span>' +
-      '<span class="pbar-emoji" style="background:' + c.color + '">' + c.emoji + '</span>' +
+      '<span class="pbar-emoji" style="background:' + c.color + '">' + MFT2.AVATAR.avatarSVG(r.charId, 28) + '</span>' +
       '<span class="result-name">' + esc(r.name) + (r.bankrupt ? '（破產）' : '') + '</span>' +
       '<span class="result-assets">' + (r.bankrupt ? '—' : money(r.assets)) + '</span></div>';
   });
@@ -3175,7 +3667,7 @@ function renderLobbyChars() {
     card.type = 'button';
     card.className = 'char-card' + (Lobby.char === c.id ? ' on' : '');
     card.innerHTML =
-      '<div class="char-emoji" style="border-color:' + c.color + '">' + c.emoji + '</div>' +
+      '<div class="char-emoji" style="border-color:' + c.color + '">' + MFT2.AVATAR.avatarSVG(c.id, 36) + '</div>' +
       '<div class="char-name">' + c.name + '</div>' +
       '<div class="char-passive">' + c.passive + '</div>';
     card.onclick = () => {
@@ -3213,7 +3705,7 @@ function renderLobbyPlayers(players) {
   const box = $('lobby-players');
   box.innerHTML = players.map((p, i) => {
     const c = charOf(p.charId);
-    return '<div class="lobby-player"><span class="pbar-emoji" style="background:' + c.color + '">' + c.emoji +
+    return '<div class="lobby-player"><span class="pbar-emoji" style="background:' + c.color + '">' + MFT2.AVATAR.avatarSVG(p.charId, 26) +
       '</span><span>' + esc(p.name) + '</span>' + (i === 0 ? '<span class="muted">（房主）</span>' : '') + '</div>';
   }).join('');
 }
@@ -3273,6 +3765,7 @@ function wireOnline() {
     const p = G.state.players[playerId];
     if (p && !p.isAI && !p.bankrupt) {
       p.isAI = true;
+      p.managed = true;
       G.state.log.push('🔌 ' + p.name + ' 斷線，由 AI 託管。');
       MFT2Online.broadcast(G.state);
       render();

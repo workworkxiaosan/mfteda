@@ -962,3 +962,151 @@ body.bankrupt-flash #app { animation: bwFlash .9s ease; }
 
 /* 相機過渡時長變數（快速模式減半） */
 #board-world.smooth { transition: transform var(--cam-trans, .4s) ease; }
+
+/* ============================================================
+   v5：3D 地標模型 + Q 版人物棋子
+   ============================================================ */
+
+/* ---- 3D 地標模型（立於格上，不遮格名） ---- */
+.lm3d {
+  position: absolute;
+  left: 3px; top: 3px;
+  width: 40px; height: 40px;
+  transform-style: preserve-3d;
+  transform: translateZ(1px);
+  pointer-events: none;
+  z-index: 2;
+}
+.lm-inner { position: absolute; inset: 0; transform-style: preserve-3d; }
+.lm3d .f {
+  position: absolute;
+  backface-visibility: visible;
+}
+/* 格名/價格保持在模型之上可讀 */
+.tile3 .tile-name, .tile3 .tile-price, .tile3 .tile-band, .tile3 .tile-owner, .tile3 .bldgs { position: relative; z-index: 4; }
+/* 業主色光暈 */
+.lm3d.owned { filter: drop-shadow(0 0 5px var(--oc, #d4af37)); }
+/* 屋頂小旗（業主色） */
+.lm-flag {
+  position: absolute;
+  left: 30px; top: 2px;
+  width: 2px; height: 11px;
+  background: #8a8578;
+  display: none;
+  transform: translateZ(16px);
+  z-index: 5;
+}
+.lm-flag::after {
+  content: '';
+  position: absolute;
+  left: 2px; top: 0;
+  border: 4px solid transparent;
+  border-left: 8px solid var(--oc, #d4af37);
+}
+
+/* 2D 俯視：模型降級為平面圖標 */
+.lm-icon {
+  position: absolute;
+  right: 2px; bottom: 2px;
+  width: 16px; height: 14px;
+  display: none;
+  opacity: .85;
+  z-index: 3;
+}
+.lm-icon-svg { width: 100%; height: 100%; display: block; }
+#board-plane:not(.mode3d) .lm-icon { display: block; }
+#board-plane:not(.mode3d) .lm3d { display: none; }
+
+/* 性能 LOD：遠景隱細節、極遠只留剪影 */
+.lod-mid .lm3d .dt { display: none; }
+.lod-low .lm3d { display: none; }
+.lod-low .lm-icon { display: block; }
+
+/* 知識卡模型放大特寫 */
+.lm-closeup {
+  display: flex;
+  justify-content: center;
+  margin: 4px 0 10px;
+  padding: 10px;
+  background: linear-gradient(180deg, #dfe8f2, #c8d4e4);
+  border-radius: 12px;
+  perspective: 300px;
+}
+.lm-closeup-inner {
+  position: relative;
+  width: 40px; height: 40px;
+  transform-style: preserve-3d;
+  transform: rotateX(50deg) rotateZ(45deg) scale(2.1);
+  transform-origin: center;
+}
+.lm-closeup-inner .f { position: absolute; transform-origin: 0 0; }
+
+/* ---- 大富翁式角色棋子 ---- */
+.token3 {
+  position: absolute;
+  width: 26px; height: 34px;
+  z-index: 6;
+  pointer-events: none;
+  transition: left .2s ease, top .2s ease;
+  transform-style: preserve-3d;
+}
+.token-shadow {
+  position: absolute;
+  left: 2px; top: 28px;
+  width: 22px; height: 8px;
+  border-radius: 50%;
+  background: rgba(0,0,0,.35);
+  filter: blur(1px);
+  z-index: 1;
+}
+.token-base {
+  position: absolute;
+  left: 3px; top: 20px;
+  width: 20px; height: 12px;
+  border-radius: 50% / 40%;
+  border: 1.5px solid rgba(255,255,255,.75);
+  box-shadow: 0 3px 5px rgba(0,0,0,.4);
+  z-index: 2;
+}
+.token-head {
+  position: absolute;
+  left: 0; top: 0;
+  width: 26px; height: 26px;
+  border-radius: 50%;
+  border: 2px solid #fff;
+  background: #f5ecd8;
+  box-shadow: 0 2px 5px rgba(0,0,0,.45);
+  z-index: 3;
+  overflow: hidden;
+}
+.token-head svg { display: block; }
+.mode3d .token3 { transform: translateZ(14px); }
+
+/* 行走 squash & stretch 彈跳 */
+.token3.hop .token-head { animation: squashHop .3s ease; }
+.token3.hop .token-base { animation: baseHop .3s ease; }
+@keyframes squashHop {
+  0% { transform: translateY(0) scale(1, 1); }
+  35% { transform: translateY(-12px) scale(.85, 1.2); }
+  70% { transform: translateY(-3px) scale(1.1, .9); }
+  100% { transform: translateY(0) scale(1, 1); }
+}
+@keyframes baseHop {
+  0%, 100% { transform: scale(1, 1); }
+  50% { transform: scale(1.15, .8); }
+}
+
+/* 當前回合浮動光圈 */
+.token3.active .token-head { animation: activeGlow 1.2s ease-in-out infinite; }
+@keyframes activeGlow {
+  0%, 100% { box-shadow: 0 2px 5px rgba(0,0,0,.45), 0 0 0 0 rgba(212,175,55,.9); }
+  50% { box-shadow: 0 2px 5px rgba(0,0,0,.45), 0 0 0 7px rgba(212,175,55,0); }
+}
+
+/* 斷線託管棋子灰色半透明 */
+.token3.isAI-ghost { opacity: .55; filter: grayscale(.6); }
+
+/* 選角卡與面板頭像容器 */
+.char-emoji svg, .pbar-emoji svg { display: block; width: 100%; height: 100%; }
+.char-emoji { overflow: hidden; }
+.pbar-emoji { overflow: hidden; }
