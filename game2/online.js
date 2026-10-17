@@ -15,6 +15,17 @@ const CDN = 'https://unpkg.com/peerjs@1.5.4/dist/peerjs.min.js';
 const ID_PREFIX = 'mft2hk-';
 const MAX_PLAYERS = 5;
 
+// 穩定設備標識：斷線重連時房主據此認回原角色位
+function deviceId() {
+  let id = null;
+  try { id = localStorage.getItem('mft2_device'); } catch (e) { /* ignore */ }
+  if (!id) {
+    id = 'd' + Math.random().toString(36).slice(2, 10);
+    try { localStorage.setItem('mft2_device', id); } catch (e) { /* ignore */ }
+  }
+  return id;
+}
+
 function makeCode() {
   const chars = 'ABCDEFGHJKMNPQRSTUVWXYZ23456789'; // 去掉易混淆字符
   let code = '';
@@ -30,6 +41,7 @@ const MFT2Online = {
   onState: null,         // (state, myId) => {}  — 客戶端收到快照
   onIntent: null,        // (playerId, action) => {} — 房主收到客戶端意圖
   onPeerDropped: null,   // (playerId) => {} — 房主：某玩家斷線
+  onPeerRejoin: null,    // (playerId) => {} — 房主：斷線玩家認回原位
   onClosed: null,        // (msg) => {} — 連線中斷（客戶端失去房主 / 房主出錯）
 
   _peer: null,
@@ -109,10 +121,25 @@ MFT2Online.hostGame = function (profile) {
           }
           const id = MFT2Online._lobbyPlayers.length;
           conn._playerId = id;
-          MFT2Online._lobbyPlayers.push({ name: String(msg.name || '玩家').slice(0, 12), charId: msg.charId, conn: conn });
+          MFT2Online._lobbyPlayers.push({ name: String(msg.name || '玩家').slice(0, 12), charId: msg.charId, conn: conn, deviceId: msg.deviceId || null });
           MFT2Online._conns.push(conn);
           conn.send({ t: 'welcome', playerId: id });
           emitLobby();
+          return;
+        }
+        // 斷線重連：遊戲進行中，按 deviceId 認回原角色位，恢復控制權
+        if (msg.t === 'hello' && MFT2Online._started) {
+          const lp = MFT2Online._lobbyPlayers.find(p => p.deviceId && p.deviceId === msg.deviceId);
+          if (lp && typeof lp.playerId === 'number') {
+            conn._playerId = lp.playerId;
+            lp.conn = conn;
+            MFT2Online._conns.push(conn);
+            conn.send({ t: 'welcome', playerId: lp.playerId, rejoin: true });
+            if (MFT2Online.onPeerRejoin) MFT2Online.onPeerRejoin(lp.playerId);
+          } else {
+            conn.send({ t: 'reject', reason: '遊戲已開始，無法加入（同房間碼重進可認回原位）' });
+            setTimeout(() => { try { conn.close(); } catch (e) { /* ignore */ } }, 500);
+          }
           return;
         }
         // 遊戲內操作意圖 → 轉交 game.js（房主權威執行）
@@ -164,6 +191,7 @@ MFT2Online.startGame = function (opts) {
   const players = MFT2Online._lobbyPlayers;
   if (players.length < 2) return null;
   MFT2Online._started = true;
+  players.forEach((p, i) => { p.playerId = i; });
   const state = global.MFT2.Engine.createGame({
     players: players.map(p => ({ name: p.name, charId: p.charId, isAI: false })),
     difficulty: (opts && opts.difficulty) || 'P',
@@ -206,7 +234,7 @@ MFT2Online.joinGame = function (code, profile) {
       }, 10000);
 
       conn.on('open', () => {
-        conn.send({ t: 'hello', name: profile.name, charId: profile.charId });
+        conn.send({ t: 'hello', name: profile.name, charId: profile.charId, deviceId: deviceId() });
       });
       conn.on('data', msg => {
         if (!msg || typeof msg !== 'object') return;

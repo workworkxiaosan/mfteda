@@ -1816,6 +1816,54 @@ const MODELS = (function () {
     return fn({ c1: def[1], c2: def[2], opt: def[3] });
   }
 
+  // 加蓋 1–3 級：在原地標原型基礎上同風格「長高/加層」（色系一致）
+  function growHTML(lmIndex, level) {
+    const def = LANDMARK_ARCH[lmIndex];
+    if (!def || level < 1) return '';
+    const arch = def[0], c1 = def[1] || '#c9b98a', c2 = def[2] || '#7a4a3a';
+    let out = '';
+    for (let lv = 1; lv <= Math.min(3, level); lv++) {
+      const z = 10 + lv * 5;
+      switch (arch) {
+        case 'temple': // 加簷層
+          out += R(14 - lv, 24, 12 + lv * 5, 8, 16 + lv * 2, shade(c2, lv * 8), 's') +
+                 R(20, 14 - lv, 12 + lv * 5, 8, 16 + lv * 2, shade(c2, lv * 8), 'e');
+          break;
+        case 'tower': case 'clocktower': case 'lighthouse': // 塔身加高
+          out += B(16, 20, 0, 8, 8, 6 + lv * 7, shade(c1, -lv * 8));
+          break;
+        case 'fort': // 加垛口
+          out += P(9 + lv * 6, 20, 4, 3 + lv, shade(c1, -25), 'rotateX(90deg) translateZ(8px)', true);
+          break;
+        case 'plaza': // 加紀念柱
+          out += P(12 + lv * 6, 22, 3, 4 + lv * 2, shade(c1, -lv * 10), 'rotateX(90deg)', true);
+          break;
+        case 'bridge': // 加橋塔
+          out += P(10 + lv * 8, 18, 2, 12 + lv * 2, c1, 'rotateX(90deg)', true);
+          break;
+        case 'beach': // 加棕櫚樹
+          out += P(10 + lv * 8, 16, 2, 8 + lv * 2, '#7a5a3a', 'rotateX(90deg)', true) +
+                 P(9 + lv * 8, 13, 4, 2, '#4a8a44', 'translateZ(' + (8 + lv * 2) + 'px) rotateZ(20deg)', true);
+          break;
+        case 'buddha': // 加蓮台
+          out += C(17, 20, 8 + lv * 3, 4, 2, shade('#b08a58', lv * 6), 4);
+          break;
+        case 'cablecar': // 加吊艙
+          out += B(20 - lv * 4, 20 + lv, 6, 6, 5 + lv, 5, shade(c1, lv * 12));
+          break;
+        case 'facade': // 修復加層
+          out += P(12, 18 - lv * 2, 12, 3, shade(c1, -lv * 8), 'rotateX(90deg)', true);
+          break;
+        case 'market': // 加燈籠
+          out += P(13 + lv * 5, 22, 3, 3, '#e8a03a', 'rotateX(90deg) translateZ(' + (2 + lv) + 'px)', true);
+          break;
+        default: // 館舍/教堂/小屋/大宅/騎樓：同色系加層
+          out += B(11, 19, 8 + (lv - 1) * 3, 16, 12, 3, shade(c1, -lv * 7));
+      }
+    }
+    return out;
+  }
+
   // 2D 俯視降級：原型剪影小圖標（簡單 SVG）
   const ICON_PATHS = {
     temple: 'M6 14 L16 6 L26 14 Z M9 14 v10 h14 v-10 z M12 18 h8 v6 h-8 z',
@@ -1843,7 +1891,7 @@ const MODELS = (function () {
       '" fill="' + (color || '#8a94a6') + '" fill-rule="evenodd"/></svg>';
   }
 
-  return { ARCHETYPES: ARCHETYPES, LANDMARK_ARCH: LANDMARK_ARCH, buildModelHTML: buildModelHTML, iconSVG: iconSVG, shade: shade };
+  return { ARCHETYPES: ARCHETYPES, LANDMARK_ARCH: LANDMARK_ARCH, buildModelHTML: buildModelHTML, iconSVG: iconSVG, shade: shade, growHTML: growHTML };
 })();
 
 /* ==================== 三點六、Q 版 SVG 人物頭像（15 位，代碼生成） ==================== */
@@ -1991,6 +2039,21 @@ if (typeof module !== 'undefined' && module.exports) module.exports = MFT2;
 if (typeof document === 'undefined') return;
 
 const $ = id => document.getElementById(id);
+
+/* ---------- 無障礙：prefers-reduced-motion（JS 監聽 + CSS 媒體查詢雙管齊下） ---------- */
+const ReducedMotion = {
+  on: false,
+  init() {
+    if (typeof matchMedia === 'undefined') return;
+    const mq = matchMedia('(prefers-reduced-motion: reduce)');
+    this.on = mq.matches;
+    const apply = () => document.body.classList.toggle('reduced-motion', this.on);
+    apply();
+    const cb = e => { this.on = e.matches; apply(); };
+    if (mq.addEventListener) mq.addEventListener('change', cb);
+    else if (mq.addListener) mq.addListener(cb);
+  }
+};
 const DATA = MFT2.DATA;
 const ENGINE = MFT2.Engine;
 
@@ -2105,6 +2168,59 @@ const Sound = {
   }
 };
 
+/* ---------- 背景音樂（五聲音階琶音 + 低音節奏，可獨立開關，預設開） ---------- */
+const BGM = {
+  enabled: Store.get('mft2_bgm', true),
+  timer: null, step: 0,
+  // 宮商角徵羽（C 宮五聲）：C D E G A
+  PENTA: [523.25, 587.33, 659.25, 783.99, 880.0],
+  SEQ: [0, 2, 4, 3, 2, 1, 0, 2, 4, 3, 2, 4, 3, 2, 1, 2],
+  BASS: [130.81, 130.81, 196.0, 130.81, 146.83, 196.0, 164.81, 130.81],
+  tone(freq, dur, type, vol, delay) {
+    const ctx = Sound.ctx;
+    if (!ctx) return;
+    const t0 = ctx.currentTime + (delay || 0);
+    const osc = ctx.createOscillator();
+    const gain = ctx.createGain();
+    osc.type = type;
+    osc.frequency.setValueAtTime(freq, t0);
+    gain.gain.setValueAtTime(vol, t0);
+    gain.gain.exponentialRampToValueAtTime(0.001, t0 + dur);
+    osc.connect(gain).connect(ctx.destination);
+    osc.start(t0);
+    osc.stop(t0 + dur);
+  },
+  tick() {
+    const ctx = Sound.ctx;
+    if (!ctx || Sound.muted === undefined) return;
+    this.tone(this.PENTA[this.SEQ[this.step % this.SEQ.length]], 0.22, 'sine', 0.028);
+    if (this.step % 2 === 0) this.tone(this.BASS[(this.step >> 1) % this.BASS.length], 0.4, 'triangle', 0.024);
+    this.step++;
+  },
+  start() {
+    if (this.timer || !this.enabled) return;
+    const ctx = Sound.ensure();
+    if (!ctx) return;
+    this.step = 0;
+    this.timer = setInterval(() => this.tick(), 240);
+  },
+  stop() {
+    if (this.timer) { clearInterval(this.timer); this.timer = null; }
+  },
+  setOn(v) {
+    this.enabled = v;
+    Store.set('mft2_bgm', v);
+    if (v) this.start(); else this.stop();
+    updateBgmBtns();
+  }
+};
+function updateBgmBtns() {
+  ['btn-menu-bgm', 'btn-bgm'].forEach(id => {
+    const b = $(id);
+    if (b) { b.textContent = BGM.enabled ? '🎵' : '🔇'; b.title = '背景音樂：' + (BGM.enabled ? '開' : '關'); b.classList.toggle('off', !BGM.enabled); }
+  });
+}
+
 /* ---------- 模態框 ---------- */
 function openModal(title, bodyHTML, buttons) {
   $('modal-title').innerHTML = title;
@@ -2117,6 +2233,7 @@ function openModal(title, bodyHTML, buttons) {
     btn.className = 'btn ' + (b.cls || 'btn-gold');
     btn.innerHTML = b.label;
     btn.onclick = b.onClick;
+    btn.setAttribute('aria-label', btn.textContent);
     if ((b.cls || '').includes('btn-ghost')) btn._ghost = true;
     btnEls.push(btn);
     act.appendChild(btn);
@@ -2125,10 +2242,24 @@ function openModal(title, bodyHTML, buttons) {
   let safeBtn = null;
   if (btnEls.length === 1) safeBtn = btnEls[0];
   else safeBtn = btnEls.find(b => b._ghost) || null;
+  // 推薦主按鈕（空格鍵確認用）：首個非 ghost 的 btn-gold
+  G.modalSafe = safeBtn;
+  G.modalPrimary = btnEls.find(b => !b._ghost && b.className.includes('btn-gold')) || safeBtn;
   const overlay = $('modal-overlay');
   overlay.onclick = e => {
     if (e.target === overlay && safeBtn) safeBtn.click();
   };
+  // 小屏抽屜：下滑關閉
+  const box = $('modal-box');
+  let touchY = null;
+  box.ontouchstart = e => { touchY = e.touches[0].clientY; };
+  box.ontouchmove = e => {
+    if (touchY !== null && e.touches[0].clientY - touchY > 80) {
+      touchY = null;
+      if (safeBtn) safeBtn.click();
+    }
+  };
+  box.ontouchend = () => { touchY = null; };
   overlay.classList.add('show');
 }
 function closeModal() { $('modal-overlay').classList.remove('show'); }
@@ -2514,6 +2645,39 @@ const Net = { mode: 'local', inGame: false };
 
 const CELL = 46; // 每格像素
 
+/* ---------- 幀率自適應：連續約 2 秒 FPS<30 自動降一級 LOD ---------- */
+const Perf = {
+  frames: 0, last: 0, low: 0, bias: 0, started: false, toastShown: false,
+  start() {
+    if (this.started) return;
+    this.started = true;
+    this.last = performance.now();
+    const loop = () => { this.frames++; requestAnimationFrame(loop); };
+    requestAnimationFrame(loop);
+    setInterval(() => {
+      const now = performance.now();
+      const fps = this.frames * 1000 / Math.max(1, now - this.last);
+      this.frames = 0;
+      this.last = now;
+      if (!G.state || !$('screen-game').classList.contains('active')) { this.low = 0; return; }
+      if (fps < 30) {
+        this.low++;
+        if (this.low >= 2 && this.bias < 2) {
+          this.bias++;
+          this.low = 0;
+          if (!this.toastShown) {
+            this.toastShown = true;
+            toast('已自動調整畫質保持流暢');
+          }
+          applyCam();
+        }
+      } else {
+        this.low = 0;
+      }
+    }, 1000);
+  }
+};
+
 /* ---------- 視角相機（拖動平移 + 滾輪/雙指縮放 + 2D/3D 切換 + 跟隨鏡頭） ---------- */
 const Cam = { x: 0, y: 0, s: 1, is3d: true, follow: Store.get('mft2_follow', true) };
 let savedCam = null;
@@ -2524,10 +2688,10 @@ function applyCam() {
   world.style.setProperty('--cam-trans', G.fast ? '.2s' : '.4s'); // 快速模式過渡減半
   $('board-plane').classList.toggle('mode3d', Cam.is3d);
   $('btn-view-toggle').textContent = Cam.is3d ? '🗺️ 2D' : '🏔️ 3D';
-  // 性能 LOD：遠景縮放級別隱藏模型細節，極遠只留 2D 圖標
+  // 性能 LOD：遠景縮放級別隱藏模型細節，極遠只留 2D 圖標；幀率自適應再降
   const vp = $('board-viewport');
-  vp.classList.toggle('lod-mid', Cam.s < 0.62);
-  vp.classList.toggle('lod-low', Cam.s < 0.38);
+  vp.classList.toggle('lod-mid', Cam.s < 0.62 || Perf.bias >= 1);
+  vp.classList.toggle('lod-low', Cam.s < 0.38 || Perf.bias >= 2);
 }
 
 // 平滑移動鏡頭至指定格子居中（3D/2D 都生效）
@@ -2545,6 +2709,11 @@ function centerOnTile(tileIdx, scale) {
   const vr = vp.getBoundingClientRect();
   const tx = fromX + (vr.left + vr.width / 2) - (r.left + r.width / 2);
   const ty = fromY + (vr.top + vr.height / 2) - (r.top + r.height / 2);
+  if (ReducedMotion.on) {                  // reduced-motion：瞬移定位
+    Cam.x = tx; Cam.y = ty; Cam.s = scale;
+    applyCam();
+    return;
+  }
   Cam.x = fromX; Cam.y = fromY; Cam.s = fromS;
   applyCam();
   void world.offsetWidth;                  // 提交原位
@@ -2555,10 +2724,26 @@ function centerOnTile(tileIdx, scale) {
 
 function restoreCam(cam) {
   const world = $('board-world');
+  if (ReducedMotion.on) {
+    Cam.x = cam.x; Cam.y = cam.y; Cam.s = cam.s;
+    applyCam();
+    return;
+  }
   world.classList.add('smooth');
   Cam.x = cam.x; Cam.y = cam.y; Cam.s = cam.s;
   applyCam();
   setTimeout(() => world.classList.remove('smooth'), 500);
+  // 安全網：還原後若棋盤完全不在視口內（罕見競態），退回全域視角
+  setTimeout(() => {
+    const t0 = $('tile-0'), vp = $('board-viewport');
+    if (!t0 || !vp) return;
+    const r = t0.getBoundingClientRect(), v = vp.getBoundingClientRect();
+    const margin = 60;
+    if (r.right < v.left - margin || r.left > v.right + margin || r.bottom < v.top - margin || r.top > v.bottom + margin) {
+      savedCam = null;
+      fitBoard();
+    }
+  }, 80);
 }
 
 function fitBoard() {
@@ -2786,16 +2971,17 @@ function updateBoard() {
       own.style.background = prop ? charOf(st.players[prop.owner].charId).color : 'transparent';
       own.textContent = prop ? charOf(st.players[prop.owner].charId).emoji : '';
     }
-    const bx = $('bldgs-' + i);
-    if (bx) {
+    // 加蓋原型化：模型按原型風格長高/加層（與業主光暈/小旗共存）
+    const lmInner = $('lm-' + i) ? $('lm-' + i).querySelector('.lm-inner') : null;
+    if (lmInner) {
       const lv = prop ? prop.level : 0;
-      if (bx.childElementCount !== lv) {
-        bx.innerHTML = '';
-        for (let k = 0; k < lv; k++) {
-          const b = document.createElement('div');
-          b.className = 'bldg bldg-lv' + (k + 1);
-          b.style.setProperty('--owner-color', charOf(st.players[prop.owner].charId).color);
-          bx.appendChild(b);
+      if (lmInner._lv !== lv) {
+        lmInner._lv = lv;
+        lmInner.innerHTML = MFT2.MODELS.buildModelHTML(t.lmId) + (lv > 0 ? MFT2.MODELS.growHTML(t.lmId, lv) : '');
+        if (lv > 0 && !ReducedMotion.on) {
+          lmInner.classList.remove('bldg-pop');
+          void lmInner.offsetWidth;
+          lmInner.classList.add('bldg-pop');
         }
       }
     }
@@ -2961,7 +3147,7 @@ function playAnim(anim, done) {
   if (following && !savedCam) savedCam = { x: Cam.x, y: Cam.y, s: Cam.s };
   // ⚡ 快速模式：AI 的擲骰/移動/結算動畫 2 倍速
   const speedUp = G.fast && G.state && G.state.players[anim.player] && G.state.players[anim.player].isAI;
-  const stepMs = anim.tele ? (speedUp ? 250 : 500) : (speedUp ? Math.round(STEP_MS / 2) : STEP_MS);
+  const stepMs = ReducedMotion.on ? 90 : (anim.tele ? (speedUp ? 250 : 500) : (speedUp ? Math.round(STEP_MS / 2) : STEP_MS));
   const steps = () => {
     const path = anim.path || [];
     if (!path.length) { finish(); return; }
@@ -2969,9 +3155,9 @@ function playAnim(anim, done) {
     let i = 0;
     const step = () => {
       placeToken(anim.player, path[i]);
-      trailLight(path[i]);
+      if (!ReducedMotion.on) trailLight(path[i]);
       if (following) centerOnTile(path[i], 1.8); // 拉近至 1.6–2.0×
-      if (tok) {
+      if (tok && !ReducedMotion.on) {
         tok.classList.remove('hop');
         void tok.offsetWidth;
         tok.classList.add('hop');
@@ -2982,7 +3168,7 @@ function playAnim(anim, done) {
     };
     step();
   };
-  if (anim.dice) {
+  if (anim.dice && !ReducedMotion.on) {
     Sound.play('roll');
     const d1 = $('die-1'), d2 = $('die-2');
     d1.classList.add('tumbling');
@@ -2995,6 +3181,10 @@ function playAnim(anim, done) {
       steps();
     }, speedUp ? 330 : 650);
   } else {
+    if (anim.dice) {
+      setDieFace($('die-1'), anim.dice[0]);
+      setDieFace($('die-2'), anim.dice[1]);
+    }
     steps();
   }
 }
@@ -3003,6 +3193,14 @@ function playAnim(anim, done) {
 function processFx() {
   const st = G.state;
   if (!st) return;
+  if (ReducedMotion.on) { // reduced-motion：跳過粒子/彈幕/煙花，僅保留獎券卡
+    if (st.fx && !G.shownFx[st.fx.id]) G.shownFx[st.fx.id] = true;
+    if (st.lottery && !G.shownFx[st.lottery.id]) {
+      G.shownFx[st.lottery.id] = true;
+      showLottery(st.lottery);
+    }
+    return;
+  }
   // 一次性特效
   if (st.fx && !G.shownFx[st.fx.id]) {
     G.shownFx[st.fx.id] = true;
@@ -3682,6 +3880,17 @@ function renderLobbyChars() {
   });
 }
 
+function fallbackCopy(text, done) {
+  const ta = document.createElement('textarea');
+  ta.value = text;
+  ta.style.position = 'fixed';
+  ta.style.opacity = '0';
+  document.body.appendChild(ta);
+  ta.select();
+  try { document.execCommand('copy'); done(); } catch (e) { toast('複製失敗，請手動複製'); }
+  ta.remove();
+}
+
 function lobbyName() {
   const name = $('input-lobby-name').value.trim().slice(0, 12) || '玩家';
   const prof = getProfile();
@@ -3716,6 +3925,14 @@ function hostRoom() {
   MFT2Online.hostGame({ name: lobbyName(), charId: Lobby.char })
     .then(code => {
       $('lobby-code-display').textContent = code;
+      const link = location.origin + location.pathname + '?room=' + code;
+      $('lobby-share-link').textContent = link;
+      $('btn-lobby-copy').onclick = () => {
+        const done = () => toast('✅ 邀請鏈接已複製！');
+        if (navigator.clipboard && navigator.clipboard.writeText) {
+          navigator.clipboard.writeText(link).then(done, () => fallbackCopy(link, done));
+        } else fallbackCopy(link, done);
+      };
       $('lobby-status').textContent = '';
       showLobbyRoom(true);
     })
@@ -3760,6 +3977,18 @@ function wireOnline() {
       render();
     }
   };
+  MFT2Online.onPeerRejoin = playerId => {
+    if (Net.mode !== 'host' || !G.state || G.state.over) return;
+    const p = G.state.players[playerId];
+    if (p && p.managed) {
+      p.isAI = false;
+      p.managed = false;
+      G.state.log.push('🔗 ' + p.name + ' 重新連線，恢復控制權！');
+      MFT2Online.broadcast(G.state);
+      render();
+      toast('🔗 ' + p.name + ' 已回歸房間');
+    }
+  };
   MFT2Online.onPeerDropped = playerId => {
     if (Net.mode !== 'host' || !G.state || G.state.over) return;
     const p = G.state.players[playerId];
@@ -3781,6 +4010,56 @@ function wireOnline() {
 }
 
 /* ==================== 八、按鈕綁定與啟動 ==================== */
+// 鍵盤快捷鍵：空格=擲骰/當前推薦確認、Esc=關閉彈窗、M=靜音、F=快速模式（輸入框聚焦時不生效）
+function initKeyboard() {
+  document.addEventListener('keydown', e => {
+    const tag = (e.target && e.target.tagName || '').toLowerCase();
+    if (tag === 'input' || tag === 'textarea' || tag === 'select') return;
+    const overlayOpen = $('modal-overlay').classList.contains('show');
+    switch (e.key) {
+      case 'Escape':
+        if (overlayOpen) {
+          if (G.modalSafe) G.modalSafe.click();
+          else closeModal();
+          e.preventDefault();
+        }
+        break;
+      case ' ':
+        if (overlayOpen) {
+          if (G.modalPrimary) G.modalPrimary.click();
+          e.preventDefault();
+        } else if ($('screen-game').classList.contains('active') && G.state && !G.state.over) {
+          const pd = G.state.pending;
+          if (pd && pd.kind === 'roll' && canControl(pd.player) && !G.animating) {
+            dispatch({ type: 'roll', player: pd.player });
+            e.preventDefault();
+          }
+        }
+        break;
+      case 'm': case 'M':
+        $('btn-mute').click();
+        break;
+      case 'f': case 'F':
+        if ($('screen-game').classList.contains('active')) $('btn-fast').click();
+        break;
+    }
+  });
+}
+
+function initBgm() {
+  const menuBtn = $('btn-menu-bgm');
+  if (menuBtn) menuBtn.onclick = () => { BGM.setOn(!BGM.enabled); toast(BGM.enabled ? '🎵 背景音樂：開' : '背景音樂：關'); };
+  const gameBtn = $('btn-bgm');
+  if (gameBtn) gameBtn.onclick = () => { BGM.setOn(!BGM.enabled); toast(BGM.enabled ? '🎵 背景音樂：開' : '背景音樂：關'); };
+  updateBgmBtns();
+  // 自動播放策略：首次用戶手勢後才發聲
+  const kick = () => {
+    document.removeEventListener('pointerdown', kick);
+    if (BGM.enabled) BGM.start();
+  };
+  document.addEventListener('pointerdown', kick);
+}
+
 function initGameButtons() {
   $('btn-roll').onclick = () => {
     const pd = G.state && G.state.pending;
@@ -3814,12 +4093,34 @@ document.addEventListener('dblclick', e => {
 
 function boot() {
   migrateCodex();
+  ReducedMotion.init();
+  Perf.start();
   initMenu();
+  initBgm();
   initGameButtons();
+  initKeyboard();
   wireOnline();
   $('btn-help-back').onclick = () => showScreen('screen-menu');
   showScreen('screen-menu');
-
+  // 邀請鏈接：?room=CODE 自動進入聯機加入界面並填入房間碼聚焦
+  const room = new URLSearchParams(location.search).get('room');
+  if (room && /^[A-Z0-9]{4,8}$/i.test(room)) {
+    const code = room.toUpperCase();
+    let tries = 0;
+    const tryOpen = () => {
+      if (window.MFT2Online && MFT2Online.available) {
+        openLobby();
+        $('input-lobby-code').value = code;
+        $('btn-lobby-join').focus();
+        toast('🔗 已填入邀請房間碼 ' + code + '，點「加入房間」開玩！');
+      } else if (++tries < 15) {
+        setTimeout(tryOpen, 800);
+      } else {
+        toast('🌐 網絡不可用，暫時無法加入房間');
+      }
+    };
+    setTimeout(tryOpen, 400);
+  }
 }
 
 if (document.readyState === 'loading') {

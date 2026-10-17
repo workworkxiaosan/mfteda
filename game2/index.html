@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#16264c">
 <title>濠港雙城大亨 — 港澳文化大富翁 3D</title>
 <meta name="description" content="擲骰遊雙城，邊玩邊學港澳史！3D 大地圖版：99 格 10 種走勢、70 地標、15 位歷史人物。澳門財經科技與教育發展學會港澳文化教育遊戲。">
-<link rel="stylesheet" href="style.css?v=5">
+<link rel="stylesheet" href="style.css?v=6">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316264c'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23d4af37' font-family='serif' font-weight='bold'%3E濠%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -15,7 +15,7 @@
   <!-- ========== 主菜單 ========== -->
   <section class="screen active" id="screen-menu">
     <div class="menu-hero">
-      <div class="menu-logo">🏙️</div>
+      <div class="menu-logo">🏙️ <button type="button" id="btn-menu-bgm" class="bgm-toggle" aria-label="切換背景音樂">🎵</button></div>
       <h1 class="game-title">濠港雙城大亨</h1>
       <p class="game-subtitle">港澳文化大富翁 · 3D 大地圖版</p>
       <p class="game-slogan">擲骰遊雙城，邊玩邊學港澳史</p>
@@ -23,11 +23,11 @@
     <div class="card menu-card">
       <label class="field-label" for="input-menu-nickname">你的暱稱</label>
       <input type="text" id="input-menu-nickname" maxlength="12" placeholder="例如：濠江小大亨">
-      <button class="btn btn-gold btn-big btn-quick" id="btn-menu-quick">⚡ 快速開局</button>
+      <button class="btn btn-gold btn-big btn-quick" id="btn-menu-quick" aria-label="快速開局（沿用上次設置）">⚡ 快速開局</button>
       <p class="quick-note">沿用上次設置一鍵開局</p>
-      <button class="btn btn-navy btn-demote" id="btn-menu-solo">🎲 單機人機</button>
-      <button class="btn btn-navy btn-demote" id="btn-menu-hotseat">👥 本機多人（同機輪流）</button>
-      <button class="btn btn-red btn-demote" id="btn-menu-online">🌐 線上聯機</button>
+      <button class="btn btn-navy btn-demote" id="btn-menu-solo" aria-label="單機人機開局設置">🎲 單機人機</button>
+      <button class="btn btn-navy btn-demote" id="btn-menu-hotseat" aria-label="本機多人開局設置">👥 本機多人（同機輪流）</button>
+      <button class="btn btn-red btn-demote" id="btn-menu-online" aria-label="線上聯機大廳">🌐 線上聯機</button>
       <div class="menu-grid">
         <button class="btn btn-ghost" id="btn-menu-codex">📖 文脈圖鑑</button>
         <button class="btn btn-ghost" id="btn-menu-help">❓ 玩法說明</button>
@@ -91,6 +91,8 @@
       <p>每人最多持 2 件：免租金牌、雙倍骰、轉向卡（逆行）、搬遷卡（與對手換同組地，對手按估價決定）。在「管理地標」中使用。</p>
       <h3>🎭 15 位歷史人物</h3>
       <p>每位都有小幅被動加成（選角界面雙擊角色卡可看生平）：由鄭觀應、利瑪竇到李小龍、梅艷芳，集齊港澳風雲人物！</p>
+      <h3>⌨️ 鍵盤快捷鍵</h3>
+      <p><b>空格</b>＝擲骰／當前推薦確認 · <b>Esc</b>＝關閉彈窗 · <b>M</b>＝音效開關 · <b>F</b>＝快速模式切換（輸入文字時快捷鍵自動停用）。系統開啟「減少動態效果」時，遊戲會自動關閉粒子與大型動畫。</p>
       <h3>📖 文脈圖鑑</h3>
       <p>70 個地標知識 + 56 道文化題，見過即收集。結算頁會統計本局知識收穫——集齊 100% 才是真大亨！</p>
     </div>
@@ -128,6 +130,11 @@
         <div id="lobby-code-row">
           <p class="field-label">房間碼（分享給朋友）</p>
           <div class="lobby-code" id="lobby-code-display">------</div>
+          <p class="field-label">邀請鏈接</p>
+          <div class="share-row">
+            <div class="share-link" id="lobby-share-link"></div>
+            <button type="button" class="btn btn-navy btn-mini" id="btn-lobby-copy" aria-label="複製邀請鏈接">複製邀請鏈接</button>
+          </div>
         </div>
         <div id="lobby-difficulty-row">
           <p class="field-label">難度（影響文脈卡題目）</p>
@@ -156,12 +163,13 @@
         <div id="board-plane"></div>
       </div>
       <div id="board-controls">
-        <button id="btn-view-toggle" title="切換 2D/3D">🗺️ 2D</button>
-        <button id="btn-zoom-in" title="放大">＋</button>
-        <button id="btn-zoom-out" title="縮小">－</button>
-        <button id="btn-follow" title="跟隨鏡頭：開">🎬</button>
-        <button id="btn-fast" title="快速模式：開">⚡</button>
-        <button id="btn-mute" title="音效開關">🔊</button>
+        <button id="btn-view-toggle" title="切換 2D/3D" aria-label="切換 2D 或 3D 視角">🗺️ 2D</button>
+        <button id="btn-zoom-in" title="放大" aria-label="放大棋盤">＋</button>
+        <button id="btn-zoom-out" title="縮小" aria-label="縮小棋盤">－</button>
+        <button id="btn-follow" title="跟隨鏡頭：開" aria-label="切換自動跟隨鏡頭">🎬</button>
+        <button id="btn-fast" title="快速模式：開" aria-label="切換快速模式（F 鍵）">⚡</button>
+        <button id="btn-bgm" title="背景音樂" aria-label="切換背景音樂">🎵</button>
+        <button id="btn-mute" title="音效開關" aria-label="切換音效（M 鍵）">🔊</button>
       </div>
       <div id="dice-dock">
         <div class="die-cube" id="die-1"><div class="df df1">1</div><div class="df df2">2</div><div class="df df3">3</div><div class="df df4">4</div><div class="df df5">2</div><div class="df df6">3</div></div>
@@ -182,11 +190,11 @@
     <div id="game-status-text">載入中…</div>
     <div id="players-bar"></div>
     <div id="action-bar">
-      <button class="btn btn-gold" id="btn-roll">🎲 擲骰</button>
-      <button class="btn btn-navy" id="btn-stock">📈 股市</button>
-      <button class="btn btn-navy" id="btn-manage">⬆️ 管理地標</button>
-      <button class="btn btn-red" id="btn-end-turn">✔️ 結束回合</button>
-      <button class="btn btn-ghost btn-mini" id="btn-game-quit">離開</button>
+      <button class="btn btn-gold" id="btn-roll" aria-label="擲骰（空格鍵）">🎲 擲骰</button>
+      <button class="btn btn-navy" id="btn-stock" aria-label="打開股市面板">📈 股市</button>
+      <button class="btn btn-navy" id="btn-manage" aria-label="管理地標與道具">⬆️ 管理地標</button>
+      <button class="btn btn-red" id="btn-end-turn" aria-label="結束回合">✔️ 結束回合</button>
+      <button class="btn btn-ghost btn-mini" id="btn-game-quit" aria-label="離開遊戲">離開</button>
     </div>
   </section>
 
@@ -212,7 +220,7 @@
   <div id="toast"></div>
 
 </div>
-<script src="online.js?v=5" defer></script>
-<script src="game.js?v=5" defer></script>
+<script src="online.js?v=6" defer></script>
+<script src="game.js?v=6" defer></script>
 </body>
 </html>
