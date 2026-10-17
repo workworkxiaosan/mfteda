@@ -10,7 +10,7 @@
 - `assets/` — 源頭樣式/腳本/圖片，`build.py` 會拷貝進 `dist/`。圖片一律用 webp（已壓縮）；`og-cover.jpg` 是社交分享圖（1200×630）。學會 LOGO 原圖為 `assets/img/logo.png`（2026-10-16 起為正確版海豚標識：海豚+綠浪+中英文會名，透明底 776×640，僅供 JSON-LD/og-cover 使用）；**頁頭/頁尾/favicon 用 `assets/img/logo-sm.png`**（155×128 透明底，21KB，由原圖 `sips -z 128 155` 生成，換 LOGO 時需同步重新生成小圖並重繪 og-cover）。
 - `dist/` — 生成物，**不要手改**，已被 .gitignore 忽略。除 36 個頁面外還自動生成 `robots.txt`、`sitemap.xml`（含 4 語言 hreflang）、`404.html`。
 - `game/` — 「濠江財富大亨」財經教育遊戲（index.html/style.css/game.js/manifest.json，獨立純前端應用），`build.py` 會拷貝進 `dist/game/`。研究領域頁「現代金融」卡片（area8）點擊彈出。
-- `game2/` — 「濠港雙城大亨」港澳文化大富翁（index.html/style.css/game.js/online.js，單機人機/本機 2–5 人/PeerJS 房間碼聯機最多 5 人；聯機依賴 unpkg CDN 加載 PeerJS，失敗時優雅降級為純單機），`build.py` 會拷貝進 `dist/game2/`。研究領域頁「文化與科技」卡片（area9）點擊彈出。
+- `game2/` — 「濠港雙城大亨」港澳文化大富翁 v2（index.html/style.css/game.js/online.js；99 格 ×10 種走勢地圖、CSS 3D 等軸測棋盤、70 地標、15 位歷史人物、56 題文脈卡、道具/連排加倍/加蓋建築；單機人機/本機 2–5 人/PeerJS 房間碼聯機最多 5 人，聯機依賴 unpkg CDN 加載 PeerJS，失敗時優雅降級為純單機），`build.py` 會拷貝進 `dist/game2/`。研究領域頁「文化與科技」卡片（area9）點擊彈出。遊戲自身資源引用帶 `?v=N` 版本參數（遊戲文件不走主站 ASSET_V），改動遊戲後遞增 index.html 中的版本號。
 - 教育遊戲整合：卡片→遊戲映射在 `build.py` 常量 `RESEARCH_GAME_ATTRS`（輸出 `data-mft-game="遊戲URL"` 屬性）；`assets/js/game-launcher.js` 統一處理所有帶該屬性的卡片（iframe 彈窗、ESC/遮罩/✕ 關閉、徽章文案 4 語言在 `render_research`）。新增遊戲：建 `gameN/` 目錄 + `build()` 加 copytree + `RESEARCH_GAME_ATTRS` 加映射。改動遊戲文件後照舊跑 `build.py` 並更新 `ASSET_V`。
 - `.scrape/` — 原 Hostinger Horizons 站點的抓取備份（原站已下線前的參考資料）。
 

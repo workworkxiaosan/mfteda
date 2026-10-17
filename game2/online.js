@@ -158,15 +158,16 @@ function broadcastAll(msg) {
   });
 }
 
-// 房主開局：建立權威遊戲狀態並廣播
-MFT2Online.startGame = function (difficulty) {
+// 房主開局：建立權威遊戲狀態並廣播（v2：帶難度與地圖選擇）
+MFT2Online.startGame = function (opts) {
   if (!MFT2Online._isHost) return null;
   const players = MFT2Online._lobbyPlayers;
   if (players.length < 2) return null;
   MFT2Online._started = true;
   const state = global.MFT2.Engine.createGame({
     players: players.map(p => ({ name: p.name, charId: p.charId, isAI: false })),
-    difficulty: difficulty,
+    difficulty: (opts && opts.difficulty) || 'P',
+    mapId: (opts && opts.mapId) || 'ring',
     maxRounds: 30
   });
   broadcastAll({ t: 'state', state: state });
