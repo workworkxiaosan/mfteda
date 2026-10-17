@@ -1547,7 +1547,7 @@ const Store = {
   },
   set(key, val) { try { localStorage.setItem(key, JSON.stringify(val)); } catch (e) { /* 無痕模式 */ } }
 };
-const LSK = { profile: 'mft2_profile', stats: 'mft2_stats', codex: 'mft2_codex', tut: 'mft2_tutorial_v2', muted: 'mft2_muted' };
+const LSK = { profile: 'mft2_profile', stats: 'mft2_stats', codex: 'mft2_codex', tut: 'mft2_tutorial_v2', muted: 'mft2_muted', lastCfg: 'mft2_lastcfg', fast: 'mft2_fast' };
 
 function getProfile() { return Store.get(LSK.profile, { nickname: '' }); }
 function getStats() { return Store.get(LSK.stats, { games: 0, wins: 0, best: 0 }); }
@@ -1656,14 +1656,25 @@ function openModal(title, bodyHTML, buttons) {
   $('modal-body').innerHTML = bodyHTML;
   const act = $('modal-actions');
   act.innerHTML = '';
+  const btnEls = [];
   (buttons || []).forEach(b => {
     const btn = document.createElement('button');
     btn.className = 'btn ' + (b.cls || 'btn-gold');
     btn.innerHTML = b.label;
     btn.onclick = b.onClick;
+    if ((b.cls || '').includes('btn-ghost')) btn._ghost = true;
+    btnEls.push(btn);
     act.appendChild(btn);
   });
-  $('modal-overlay').classList.add('show');
+  // 點擊遮罩關閉 = 默認安全項（唯一按鈕，或 ghost 按鈕如「放棄/不買了/不需要/留堂」）
+  let safeBtn = null;
+  if (btnEls.length === 1) safeBtn = btnEls[0];
+  else safeBtn = btnEls.find(b => b._ghost) || null;
+  const overlay = $('modal-overlay');
+  overlay.onclick = e => {
+    if (e.target === overlay && safeBtn) safeBtn.click();
+  };
+  overlay.classList.add('show');
 }
 function closeModal() { $('modal-overlay').classList.remove('show'); }
 
@@ -1731,6 +1742,7 @@ function initMenu() {
     p.nickname = $('input-menu-nickname').value.trim().slice(0, 12);
     Store.set(LSK.profile, p);
   });
+  $('btn-menu-quick').onclick = () => { Sound.play('roll'); quickStart(); };
   $('btn-menu-solo').onclick = () => openSetup('solo');
   $('btn-menu-hotseat').onclick = () => openSetup('hotseat');
   $('btn-menu-online').onclick = () => {
@@ -1793,26 +1805,42 @@ function bindDiffRow(row, onChange) {
 }
 
 function buildMapPicker(box, onChange) {
-  box.innerHTML = '';
-  DATA.MAPS.forEach((m, i) => {
-    const card = document.createElement('button');
-    card.type = 'button';
-    card.className = 'map-card' + (i === 0 ? ' on' : '');
-    const cv = document.createElement('canvas');
-    cv.width = 72; cv.height = 72;
-    cv.className = 'map-thumb';
-    card.appendChild(cv);
-    const label = document.createElement('div');
-    label.className = 'map-name';
-    label.textContent = m.name;
-    card.appendChild(label);
-    card.onclick = () => {
-      box.querySelectorAll('.map-card').forEach(x => x.classList.toggle('on', x === card));
-      onChange(m.id);
-    };
-    box.appendChild(card);
-    drawMapPreview(cv, m.id);
-  });
+  if (!box._selected) box._selected = DATA.MAPS[0].id;
+  const render = () => {
+    box.innerHTML = '';
+    const expanded = !!box._expanded;
+    DATA.MAPS.forEach(m => {
+      if (!expanded && m.id !== box._selected) return;
+      const card = document.createElement('button');
+      card.type = 'button';
+      card.className = 'map-card' + (m.id === box._selected ? ' on' : '');
+      const cv = document.createElement('canvas');
+      cv.width = 72; cv.height = 72;
+      cv.className = 'map-thumb';
+      card.appendChild(cv);
+      const label = document.createElement('div');
+      label.className = 'map-name';
+      label.textContent = m.name;
+      card.appendChild(label);
+      card.onclick = () => {
+        box._selected = m.id;
+        box._expanded = false; // 選定即收合
+        onChange(m.id);
+        render();
+      };
+      box.appendChild(card);
+      drawMapPreview(cv, m.id);
+    });
+    if (!expanded) {
+      const t = document.createElement('button');
+      t.type = 'button';
+      t.className = 'map-toggle';
+      t.textContent = '更換 ▸';
+      t.onclick = () => { box._expanded = true; render(); };
+      box.appendChild(t);
+    }
+  };
+  render();
 }
 
 function buildSetupPlayers() {
@@ -1862,6 +1890,8 @@ function renderCharPick(container) {
         Setup.chars[takenBy] = free.find(id => id !== c.id) || DATA.CHARACTERS[0].id;
       }
       Setup.chars[i] = c.id;
+      const prof = getProfile();
+      if (i === 0) { prof.lastChar = c.id; Store.set(LSK.profile, prof); } // 記住上次角色供快速開局
       document.querySelectorAll('.char-pick').forEach(renderCharPick);
     };
     container.appendChild(card);
@@ -1876,25 +1906,58 @@ function showCharBio(c) {
     [{ label: '知道了', onClick: closeModal }]);
 }
 
-function startLocalGame() {
-  const n = parseInt($('select-setup-count').value, 10);
-  const humanCount = Setup.mode === 'solo' ? 1 : n;
-  const total = Setup.mode === 'solo' ? 1 + n : n;
-  const names = Array.from(document.querySelectorAll('.setup-name')).map(inp => inp.value.trim() || '玩家');
-  const prof = getProfile();
-  if (names[0]) { prof.nickname = names[0]; Store.set(LSK.profile, prof); }
-  const freeChars = DATA.CHARACTERS.map(c => c.id).filter(id => !Setup.chars.includes(id));
+// 統一以配置開局（設置頁、快速開局、再來一局共用）
+function startGameWithConfig(cfg) {
+  const freeChars = DATA.CHARACTERS.map(c => c.id).filter(id => !(cfg.chars || []).includes(id));
   const players = [];
+  const humanCount = cfg.mode === 'solo' ? 1 : cfg.count;
+  const total = cfg.mode === 'solo' ? 1 + cfg.count : cfg.count;
   for (let i = 0; i < total; i++) {
-    if (i < humanCount) players.push({ name: names[i] || '玩家' + (i + 1), charId: Setup.chars[i], isAI: false });
-    else {
+    if (i < humanCount) {
+      players.push({ name: (cfg.names && cfg.names[i]) || '玩家' + (i + 1), charId: cfg.chars[i], isAI: false });
+    } else {
       const charId = freeChars.length ? freeChars.splice(Math.floor(Math.random() * freeChars.length), 1)[0]
         : DATA.CHARACTERS[i % DATA.CHARACTERS.length].id;
       players.push({ name: 'AI · ' + charOf(charId).name, charId: charId, isAI: true });
     }
   }
-  const state = ENGINE.createGame({ players: players, difficulty: Setup.difficulty, maxRounds: 30, mapId: Setup.mapId });
+  Store.set(LSK.lastCfg, cfg);
+  G.lastCfg = cfg;
+  const state = ENGINE.createGame({ players: players, difficulty: cfg.difficulty, maxRounds: 30, mapId: cfg.mapId });
   enterGame(state, { mode: 'local', myId: null });
+}
+
+function startLocalGame() {
+  const n = parseInt($('select-setup-count').value, 10);
+  const names = Array.from(document.querySelectorAll('.setup-name')).map((inp, i) => inp.value.trim() || '玩家' + (i + 1));
+  const prof = getProfile();
+  if (names[0]) { prof.nickname = names[0]; Store.set(LSK.profile, prof); }
+  startGameWithConfig({
+    mode: Setup.mode, count: n,
+    difficulty: Setup.difficulty, mapId: Setup.mapId,
+    chars: Setup.chars.slice(0, Setup.mode === 'solo' ? 1 : n),
+    names: names
+  });
+}
+
+// ⚡ 快速開局：上次設置一鍵開局；首次用推薦默認（單機 3 AI / 隨機地圖 / 小學 / 上次角色或隨機）
+function quickStart() {
+  const prof = getProfile();
+  let cfg = Store.get(LSK.lastCfg, null);
+  if (!cfg || !cfg.mode) {
+    cfg = {
+      mode: 'solo', count: 3, difficulty: 'P',
+      mapId: DATA.MAPS[Math.floor(Math.random() * DATA.MAPS.length)].id,
+      chars: [prof.lastChar || DATA.CHARACTERS[Math.floor(Math.random() * DATA.CHARACTERS.length)].id],
+      names: [prof.nickname || '玩家1']
+    };
+  } else {
+    cfg = Object.assign({}, cfg);
+    if (!cfg.chars || !cfg.chars.length) cfg.chars = [prof.lastChar || DATA.CHARACTERS[0].id];
+    if (!cfg.names) cfg.names = [prof.nickname || '玩家1'];
+    if (cfg.names[0] !== undefined && prof.nickname) cfg.names[0] = prof.nickname;
+  }
+  startGameWithConfig(cfg);
 }
 
 /* ==================== 文脈圖鑑（70 地標 + 56 題，舊檔已遷移） ==================== */
@@ -1985,7 +2048,8 @@ const G = {
   state: null, mode: 'local', myId: null,
   built: false, playedAnim: null, animating: false,
   aiTimer: null, statsRecorded: false, lastPositions: [],
-  shownFx: {}, codexBefore: null
+  shownFx: {}, codexBefore: null, lastCfg: null,
+  fast: Store.get('mft2_fast', true)
 };
 const Net = { mode: 'local', inGame: false };
 
@@ -1996,7 +2060,9 @@ const Cam = { x: 0, y: 0, s: 1, is3d: true, follow: Store.get('mft2_follow', tru
 let savedCam = null;
 
 function applyCam() {
-  $('board-world').style.transform = 'translate(' + Cam.x + 'px,' + Cam.y + 'px) scale(' + Cam.s + ')';
+  const world = $('board-world');
+  world.style.transform = 'translate(' + Cam.x + 'px,' + Cam.y + 'px) scale(' + Cam.s + ')';
+  world.style.setProperty('--cam-trans', G.fast ? '.2s' : '.4s'); // 快速模式過渡減半
   $('board-plane').classList.toggle('mode3d', Cam.is3d);
   $('btn-view-toggle').textContent = Cam.is3d ? '🗺️ 2D' : '🏔️ 3D';
 }
@@ -2112,6 +2178,14 @@ function initCamera() {
     toast(Cam.follow ? '自動跟隨鏡頭：開' : '自動跟隨鏡頭：關');
   };
   updateFollowBtn();
+  $('btn-fast').onclick = () => {
+    G.fast = !G.fast;
+    Store.set(LSK.fast, G.fast);
+    updateFastBtn();
+    applyCam();
+    toast(G.fast ? '⚡ 快速模式：開（AI 動畫 2 倍速）' : '快速模式：關');
+  };
+  updateFastBtn();
   $('btn-mute').onclick = () => {
     const m = Sound.toggle();
     $('btn-mute').textContent = m ? '🔇' : '🔊';
@@ -2123,6 +2197,10 @@ function initCamera() {
 function updateFollowBtn() {
   const b = $('btn-follow');
   if (b) { b.textContent = Cam.follow ? '🎬' : '🚫'; b.title = '跟隨鏡頭：' + (Cam.follow ? '開' : '關'); }
+}
+function updateFastBtn() {
+  const b = $('btn-fast');
+  if (b) { b.textContent = '⚡'; b.classList.toggle('off', !G.fast); b.title = '快速模式：' + (G.fast ? '開' : '關'); }
 }
 
 /* ---------- 棋盤構建 ---------- */
@@ -2139,7 +2217,7 @@ function enterGame(state, opts) {
   G.codexBefore = Object.keys(codex.landmarks).length + Object.keys(codex.questions).length;
   buildBoard();
   showScreen('screen-game');
-  requestAnimationFrame(() => { fitBoard(); render(); });
+  requestAnimationFrame(() => { fitBoard(); render(); showTutorialCard(); });
 }
 
 function buildBoard() {
@@ -2382,13 +2460,16 @@ function playAnim(anim, done) {
     if (savedCam) {
       const sc = savedCam;
       savedCam = null;
-      setTimeout(() => { restoreCam(sc); }, 1200);
+      setTimeout(() => { restoreCam(sc); }, G.fast ? 600 : 1200);
     } else {
       world.classList.remove('smooth');
     }
   };
   const following = Cam.follow && anim.path && anim.path.length > 0;
   if (following && !savedCam) savedCam = { x: Cam.x, y: Cam.y, s: Cam.s };
+  // ⚡ 快速模式：AI 的擲骰/移動/結算動畫 2 倍速
+  const speedUp = G.fast && G.state && G.state.players[anim.player] && G.state.players[anim.player].isAI;
+  const stepMs = anim.tele ? (speedUp ? 250 : 500) : (speedUp ? Math.round(STEP_MS / 2) : STEP_MS);
   const steps = () => {
     const path = anim.path || [];
     if (!path.length) { finish(); return; }
@@ -2404,8 +2485,8 @@ function playAnim(anim, done) {
         tok.classList.add('hop');
       }
       i++;
-      if (i < path.length) setTimeout(step, anim.tele ? 500 : STEP_MS);
-      else setTimeout(finish, 300);
+      if (i < path.length) setTimeout(step, stepMs);
+      else setTimeout(finish, speedUp ? 150 : 300);
     };
     step();
   };
@@ -2420,7 +2501,7 @@ function playAnim(anim, done) {
       setDieFace(d1, anim.dice[0]);
       setDieFace(d2, anim.dice[1]);
       steps();
-    }, 650);
+    }, speedUp ? 330 : 650);
   } else {
     steps();
   }
@@ -2613,7 +2694,6 @@ function showPending() {
   const ctrl = canControl(pd.player);
   const key = pd.kind + '|' + pd.player + '|' + (pd.tile || '') + '|' + (pd.qid || '') + '|' + st.round;
 
-  maybeShowTutorial(pd, ctrl);
 
   if (!ctrl) {
     pendingModalKey = null;
@@ -2640,7 +2720,7 @@ function showPending() {
         tileInfoHTML(pd.tile, pd.price, Math.round(t.price * 0.1)) + runHint +
         '<p class="modal-cash">你現有 ' + money(p.money) + '</p>',
         [
-          { label: '購買 ' + money(pd.price), onClick: () => { closeModal(); dispatch({ type: 'buy', buy: true, player: pd.player }); } },
+          { label: '購買 ' + money(pd.price), cls: 'btn-gold btn-pulse', onClick: () => { closeModal(); dispatch({ type: 'buy', buy: true, player: pd.player }); } },
           { label: '放棄', cls: 'btn-ghost', onClick: () => { closeModal(); dispatch({ type: 'buy', buy: false, player: pd.player }); } }
         ]);
       break;
@@ -2950,24 +3030,33 @@ function maybeRunAI() {
       if (res.ok && Net.mode === 'host' && window.MFT2Online) MFT2Online.broadcast(G.state);
       render();
     }
-  }, pd.kind === 'roll' ? 1000 : 1200);
+  }, G.fast ? 450 : (pd.kind === 'roll' ? 1000 : 1200));
 }
 
 /* ---------- 教學氣泡（v2：前 4 回合，可關閉） ---------- */
-function maybeShowTutorial(pd, ctrl) {
-  const bubble = $('tutorial-bubble');
-  if (Store.get(LSK.tut, false) || !ctrl || G.state.round > 4) {
-    bubble.classList.add('hidden');
-    return;
-  }
-  const tips = {
-    1: '👋 歡迎！現在是兩顆四面骰（2–8 點），行走時鏡頭會自動拉近跟隨（右上角 🎬 可關閉），邊走邊看清地名！',
-    2: '🏛️ 買下地標可收租；若與相鄰自有物業連成一排（連排），租金再加倍，棋盤上有金帶標示！',
-    3: '⬆️ 集齊同色全組後，回合結束前點「管理地標」加蓋建築（平房→騎樓→塔樓），租金大增！',
-    4: '📈 新玩法：自己回合內點「股市」買賣六檔板塊股（盛事會帶動板塊！）；落「港澳銀行」存款每輪賺 2% 利息！'
+/* ---------- 教學卡（首次玩家一次性顯示，可滑動翻頁或一鍵關閉，不打斷遊戲） ---------- */
+const TUT_TIPS = [
+  '👋 歡迎！兩顆四面骰（2–8 點）決定步數，行走時鏡頭自動拉近跟隨，邊走邊看清地名。右上角可切 2D/3D、關閉跟隨。',
+  '🏛️ 買下地標可向對手收租；相鄰自有物業連成「連排」租金再加倍（金帶標示）；集齊同色全組可加蓋建築再翻倍！',
+  '📈 自己回合點「股市」買賣六檔板塊股，盛事會帶動板塊漲跌；「港澳銀行」存款每輪賺 2% 複利；「濠港交易所」有免費快訊！',
+  '🏪 道具店買免租金牌/雙倍骰/轉向卡/搬遷卡（最多 2 件）；文脈卡答題學港澳文化，見過的知識全部收進文脈圖鑑！'
+];
+function showTutorialCard() {
+  if (Store.get(LSK.tut, false)) return;
+  const strip = $('tut-strip');
+  strip.innerHTML = TUT_TIPS.map(t => '<div class="tut-page">' + t + '</div>').join('');
+  const dots = $('tut-dots');
+  dots.innerHTML = TUT_TIPS.map((t, i) => '<span class="tut-dot' + (i === 0 ? ' on' : '') + '"></span>').join('');
+  strip.scrollLeft = 0;
+  strip.onscroll = () => {
+    const idx = Math.round(strip.scrollLeft / strip.clientWidth);
+    dots.querySelectorAll('.tut-dot').forEach((d, i) => d.classList.toggle('on', i === idx));
   };
-  $('tut-text').textContent = tips[G.state.round] || '';
-  bubble.classList.remove('hidden');
+  $('tutorial-card').classList.remove('hidden');
+}
+function hideTutorialCard() {
+  Store.set(LSK.tut, true);
+  $('tutorial-card').classList.add('hidden');
 }
 
 /* ---------- 結算（含知識收穫） ---------- */
@@ -3031,7 +3120,13 @@ function showResult() {
     }
     st.knowledge.landmarks.forEach(id => recordLandmark(DATA.LANDMARKS[id].name));
   }
-  $('btn-result-again').onclick = () => { leaveToMenu(); };
+  if (G.lastCfg) {
+    $('btn-result-again').innerHTML = '🎲 再來一局（同設置）';
+    $('btn-result-again').onclick = () => { startGameWithConfig(G.lastCfg); };
+  } else {
+    $('btn-result-again').innerHTML = '返回主菜單';
+    $('btn-result-again').onclick = () => { leaveToMenu(); };
+  }
   $('btn-result-menu').onclick = () => { leaveToMenu(); renderCodex(); showScreen('screen-codex'); };
   showScreen('screen-result');
 }
@@ -3083,7 +3178,13 @@ function renderLobbyChars() {
       '<div class="char-emoji" style="border-color:' + c.color + '">' + c.emoji + '</div>' +
       '<div class="char-name">' + c.name + '</div>' +
       '<div class="char-passive">' + c.passive + '</div>';
-    card.onclick = () => { Lobby.char = c.id; renderLobbyChars(); };
+    card.onclick = () => {
+      Lobby.char = c.id;
+      const prof = getProfile();
+      prof.lastChar = c.id;
+      Store.set(LSK.profile, prof);
+      renderLobbyChars();
+    };
     card.ondblclick = () => showCharBio(c);
     box.appendChild(card);
   });
@@ -3204,10 +3305,7 @@ function initGameButtons() {
       { label: '確認離開', cls: 'btn-ghost', onClick: () => { closeModal(); leaveToMenu(); } }
     ]);
   };
-  $('btn-tut-close').onclick = () => {
-    Store.set(LSK.tut, true);
-    $('tutorial-bubble').classList.add('hidden');
-  };
+  $('btn-tut-close').onclick = hideTutorialCard;
   initCamera();
 }
 

@@ -846,3 +846,119 @@ body.bankrupt-flash #app { animation: bwFlash .9s ease; }
 
 /* 財商徽章 */
 .badge-item b { font-size: .92rem; }
+
+/* ============================================================
+   v4：UX 清爽化（快速開局 / sticky 開始 / 橫滑角色 / 地圖折疊 / 教學卡 / 快速模式）
+   ============================================================ */
+
+/* 快速開局主按鈕 + 三入口降級 */
+.btn-quick {
+  font-size: 1.2rem;
+  padding: 17px 14px;
+  box-shadow: 0 6px 18px rgba(168,134,42,.55);
+  animation: quickGlow 2.2s ease-in-out infinite;
+}
+@keyframes quickGlow {
+  0%, 100% { box-shadow: 0 6px 18px rgba(168,134,42,.55); }
+  50% { box-shadow: 0 6px 26px rgba(212,175,55,.85); }
+}
+.quick-note { text-align: center; font-size: .72rem; color: var(--muted); margin: 4px 0 2px; }
+.btn-demote { opacity: .8; padding: 10px 14px; font-size: .9rem; margin-top: 7px; }
+
+/* 設置頁 sticky 開始按鈕 */
+#screen-setup { position: relative; }
+.sticky-bottom {
+  position: sticky;
+  bottom: 0;
+  z-index: 10;
+  padding: 10px 0 6px;
+  background: linear-gradient(180deg, transparent, var(--cream) 35%);
+}
+
+/* 推薦操作高亮脈衝 */
+.btn-pulse { animation: btnPulse 1.6s ease-in-out infinite; }
+@keyframes btnPulse {
+  0%, 100% { filter: brightness(1); }
+  50% { filter: brightness(1.12); }
+}
+
+/* 角色選擇改橫向滑動卡片條 */
+.char-pick {
+  display: flex;
+  gap: 8px;
+  overflow-x: auto;
+  padding: 4px 2px 8px;
+  -webkit-overflow-scrolling: touch;
+  scroll-snap-type: x proximity;
+}
+.char-card { flex: 0 0 96px; scroll-snap-align: start; }
+
+/* 地圖選擇器折疊「更換」鈕 */
+.map-toggle {
+  flex: 0 0 auto;
+  align-self: center;
+  border: 2px dashed var(--gold-dark);
+  border-radius: 10px;
+  background: transparent;
+  color: var(--gold-dark);
+  font-size: .78rem;
+  font-weight: 700;
+  font-family: inherit;
+  padding: 10px 12px;
+  cursor: pointer;
+  white-space: nowrap;
+}
+.map-toggle:active { transform: scale(.95); }
+.map-pick { display: flex; flex-wrap: wrap; gap: 8px; }
+
+/* 教學卡（居中卡片，可滑動翻頁） */
+#tutorial-card {
+  position: absolute;
+  inset: 0;
+  z-index: 40;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+  padding: 0 10px 12px;
+  background: linear-gradient(180deg, transparent 40%, rgba(14,26,56,.45));
+}
+#tutorial-card.hidden { display: none !important; }
+.tut-inner {
+  width: 100%;
+  background: #fffbe9;
+  border: 2px solid var(--gold);
+  border-radius: 14px;
+  padding: 12px 12px 10px;
+  box-shadow: 0 8px 24px rgba(14,26,56,.4);
+  animation: fadeSlideIn .3s ease;
+}
+.tut-title { font-size: .82rem; font-weight: 800; color: var(--navy-800); margin-bottom: 6px; }
+.tut-strip {
+  display: flex;
+  overflow-x: auto;
+  scroll-snap-type: x mandatory;
+  -webkit-overflow-scrolling: touch;
+}
+.tut-page {
+  flex: 0 0 100%;
+  scroll-snap-align: center;
+  font-size: .8rem;
+  line-height: 1.65;
+  color: var(--ink);
+  padding-right: 8px;
+}
+.tut-dots { display: flex; justify-content: center; gap: 6px; margin: 8px 0 4px; }
+.tut-dot {
+  width: 7px; height: 7px;
+  border-radius: 50%;
+  background: #d8cfae;
+  transition: background .2s;
+}
+.tut-dot.on { background: var(--gold-dark); }
+.tut-inner .btn { margin-top: 6px; padding: 10px; font-size: .9rem; }
+
+/* 快速模式關閉態 */
+#board-controls button.off { opacity: .45; }
+
+/* 相機過渡時長變數（快速模式減半） */
+#board-world.smooth { transition: transform var(--cam-trans, .4s) ease; }

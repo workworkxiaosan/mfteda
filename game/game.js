@@ -180,8 +180,11 @@ let gamesPlayed = LS.get('mft_games', 0);
 let quizStreakGlobal = LS.get('mft_quiz_streak', 0);
 let dailyDone = LS.get('mft_daily', null);           // 今日是否已玩過每日挑戰 {date, score}
 
-let game = null;      // 當局狀態
-let quizTimer = null; // 倒計時 interval
+let game = null;          // 當局狀態
+let quizTimer = null;     // 答題倒計時 interval
+let quizAutoTimer = null; // 答題超時後自動結算 timer
+let autoNextTimer = null; // 月結算自動續月 timer
+let autoNextEnabled = LS.get('mft_auto_next', false); // 自動續月開關（localStorage 記憶）
 
 /* ================= 屏幕切換 ================= */
 function showScreen(id) {
@@ -243,7 +246,7 @@ function unlockAch(id) {
 }
 function hasAch(id) { return !!achState[id]; }
 
-/* ================= 簽到 ================= */
+/* ================= 簽到（自動完成，toast 提示，不打斷流程） ================= */
 function checkinNeeded() {
   return checkin.last !== todayStr();
 }
@@ -256,18 +259,7 @@ function doCheckin() {
   LS.set('mft_checkin', checkin);
 
   const fortune = CHECKIN_FORTUNES[Math.floor(Math.random() * CHECKIN_FORTUNES.length)];
-  $('checkin-fortune').textContent = '🧧 ' + fortune;
-  $('checkin-days').textContent = checkin.streak;
-  $('checkin-reward').textContent = '+' + checkin.voucher.toLocaleString('en-US');
-  const week = $('checkin-week');
-  week.innerHTML = '';
-  for (let i = 1; i <= 7; i++) {
-    const d = document.createElement('div');
-    d.className = 'day' + (i <= Math.min(checkin.streak, 7) ? ' done' : '');
-    d.textContent = i;
-    week.appendChild(d);
-  }
-  $('modal-checkin').classList.remove('hidden');
+  toast('簽到成功！連簽 ' + checkin.streak + ' 天，本金加成 +' + checkin.voucher.toLocaleString('en-US') + ' · ' + fortune, '🧧');
   if (checkin.streak >= 7) unlockAch('streak7');
 }
 
@@ -336,48 +328,8 @@ function startMonth() {
   if (game.currentEvent.tag === 'typhoon') game.typhoonMonths.push(game.month);
 
   saveGame();
-  renderNewsScreen();
-  showScreen('screen-game');
-}
-
-/* ================= 渲染：新聞畫面 ================= */
-function renderNewsScreen() {
-  $('game-month-label').textContent = '第 ' + game.month + ' / ' + game.totalMonths + ' 個月' + (game.mode === 'daily' ? ' · 每日挑戰' : '');
-  $('game-networth').textContent = fmt(netWorth());
-  const e = game.currentEvent;
-  $('news-title').textContent = e.title;
-  $('news-desc').textContent = e.desc;
-  const box = $('news-effects');
-  box.innerHTML = '';
-  Object.keys(e.effects).forEach(id => {
-    const a = ASSETS.find(x => x.id === id);
-    const v = e.effects[id];
-    const chip = document.createElement('span');
-    chip.className = 'eff-chip ' + (v > 0 ? 'pos' : 'neg');
-    chip.textContent = a.icon + ' ' + a.name + ' ' + fmtPct(v);
-    box.appendChild(chip);
-  });
-  if (Object.keys(e.effects).length === 0) {
-    box.innerHTML = '<span class="eff-chip neu">市場整體平穩</span>';
-  }
-  renderHoldingsSummary();
-}
-
-function renderHoldingsSummary() {
-  const box = $('holdings-list');
-  box.innerHTML = '';
-  ASSETS.forEach(a => {
-    const amt = game.holdings[a.id];
-    if (amt <= 0) return;
-    const row = document.createElement('div');
-    row.className = 'holding-row';
-    row.innerHTML = '<span>' + a.icon + ' ' + a.name + '</span><span class="amt">' + fmt(amt) + '</span>';
-    box.appendChild(row);
-  });
-  const cashRow = document.createElement('div');
-  cashRow.className = 'holding-row';
-  cashRow.innerHTML = '<span>💵 現金（月息 0.1%）</span><span class="amt">' + fmt(game.cash) + '</span>';
-  box.appendChild(cashRow);
+  renderTrade();
+  showScreen('screen-trade');
 }
 
 function netWorth() {
@@ -386,9 +338,28 @@ function netWorth() {
   return sum;
 }
 
-/* ================= 交易面板 ================= */
+/* ================= 交易面板（新聞橫幅 + 交易同屏） ================= */
 function renderTrade() {
-  $('trade-month-label').textContent = '第 ' + game.month + ' 個月 · 交易';
+  $('trade-month-label').textContent = '第 ' + game.month + ' / ' + game.totalMonths + ' 個月' + (game.mode === 'daily' ? ' · 每日挑戰' : '');
+  // 本月新聞橫幅
+  const e = game.currentEvent;
+  $('news-title').textContent = e.title;
+  $('news-desc').textContent = e.desc;
+  const effBox = $('news-effects');
+  effBox.innerHTML = '';
+  Object.keys(e.effects).forEach(id => {
+    const a = ASSETS.find(x => x.id === id);
+    const v = e.effects[id];
+    const chip = document.createElement('span');
+    chip.className = 'eff-chip ' + (v > 0 ? 'pos' : 'neg');
+    chip.textContent = a.icon + ' ' + a.name + ' ' + fmtPct(v);
+    effBox.appendChild(chip);
+  });
+  if (Object.keys(e.effects).length === 0) {
+    effBox.innerHTML = '<span class="eff-chip neu">市場整體平穩</span>';
+  }
+  resetTradeConfirmBtn();
+
   $('trade-cash').textContent = fmt(game.cash);
   const box = $('trade-rows');
   box.innerHTML = '';
@@ -448,6 +419,31 @@ function refreshTradeUI() {
   });
 }
 
+/* ================= 確認交易（按鈕二次態，不打斷流程） ================= */
+let tradeConfirmArmed = false;
+let tradeConfirmTimer = null;
+function resetTradeConfirmBtn() {
+  tradeConfirmArmed = false;
+  clearTimeout(tradeConfirmTimer);
+  const btn = $('btn-trade-confirm');
+  btn.textContent = '確認本月配置 ✓';
+  btn.classList.remove('armed');
+}
+function handleTradeConfirm() {
+  if (!tradeConfirmArmed) {
+    tradeConfirmArmed = true;
+    const btn = $('btn-trade-confirm');
+    btn.textContent = '再次點擊鎖定結算 ✓';
+    btn.classList.add('armed');
+    clearTimeout(tradeConfirmTimer);
+    tradeConfirmTimer = setTimeout(resetTradeConfirmBtn, 3000);
+    return;
+  }
+  clearTimeout(tradeConfirmTimer);
+  resetTradeConfirmBtn();
+  confirmTrade();
+}
+
 /* ================= 確認交易 → 答題或結算 ================= */
 function confirmTrade() {
   const invested = ASSETS.filter(a => game.holdings[a.id] > 0).length;
@@ -471,6 +467,7 @@ function quizLevel() {
 }
 
 function startQuiz() {
+  clearTimeout(quizAutoTimer);
   const lv = quizLevel();
   const pool = QUIZ_BANK.filter(q => q.lv <= lv);
   const q = pool[Math.floor(Math.random() * pool.length)];
@@ -537,6 +534,11 @@ function answerQuiz(q, picked, btn) {
   LS.set('mft_quiz_streak', quizStreakGlobal);
   if (quizStreakGlobal >= 5) unlockAch('quiz_streak5');
   $('btn-quiz-continue').classList.remove('hidden');
+  // 超時自動顯示解析後，2 秒自動結算（可手動提前點「繼續」）
+  if (picked < 0) {
+    clearTimeout(quizAutoTimer);
+    quizAutoTimer = setTimeout(() => settleMonth(), 2000);
+  }
 }
 
 /* ================= 月結算 ================= */
@@ -613,6 +615,23 @@ function settleMonth() {
     saveGame();
   }
   showScreen('screen-month-result');
+  // 自動續月：開關狀態同步，開啟時 2.5 秒自動進入下一個月
+  $('mr-auto-next').checked = autoNextEnabled;
+  clearTimeout(autoNextTimer);
+  if (autoNextEnabled) {
+    autoNextTimer = setTimeout(advanceFromMonthResult, 2500);
+  }
+}
+
+function advanceFromMonthResult() {
+  clearTimeout(autoNextTimer);
+  if (!game) return;
+  if (game.month >= game.totalMonths) {
+    yearEnd();
+  } else {
+    game.month++;
+    startMonth();
+  }
 }
 
 /* 淨值曲線（canvas 手繪，無依賴） */
@@ -662,6 +681,8 @@ function drawChart() {
 
 /* ================= 年終結算 ================= */
 function yearEnd() {
+  clearTimeout(autoNextTimer);
+  clearTimeout(quizAutoTimer);
   const finalNet = netWorth();
   const retRate = (finalNet - game.initial) / game.initial;
 
@@ -890,9 +911,7 @@ function init() {
   // 歡迎 → 註冊/主菜單
   bind('btn-welcome-start', () => {
     if (profile) {
-      showScreen('screen-menu');
-      refreshMenu();
-      if (checkinNeeded()) doCheckin();
+      enterMenu();
     } else {
       showScreen('screen-register');
     }
@@ -917,28 +936,19 @@ function init() {
       tutStep++;
       renderTutorial();
     } else {
-      showScreen('screen-menu');
-      refreshMenu();
-      if (checkinNeeded()) doCheckin();
+      enterMenu();
     }
   });
-  bind('btn-tut-skip', () => {
-    showScreen('screen-menu');
-    refreshMenu();
-    if (checkinNeeded()) doCheckin();
-  });
+  bind('btn-tut-skip', () => enterMenu());
 
-  // 簽到
+  // 簽到狀態（每日進入主菜單已自動簽到，此按鈕僅顯示狀態）
   bind('btn-open-checkin', () => {
     if (checkinNeeded()) {
       doCheckin();
+      refreshMenu();
     } else {
-      toast('今日已簽到，聽日再嚟！連簽 ' + checkin.streak + ' 天', '📅');
+      toast('今日已簽到！連簽 ' + checkin.streak + ' 天，本金加成 +' + (checkin.voucher || 0).toLocaleString('en-US'), '📅');
     }
-  });
-  bind('btn-checkin-claim', () => {
-    $('modal-checkin').classList.add('hidden');
-    refreshMenu();
   });
   bind('btn-confirm-yes', () => {
     const cb = confirmCallback;
@@ -960,8 +970,8 @@ function init() {
   });
   bind('btn-continue', () => {
     if (loadGame()) {
-      renderNewsScreen();
-      showScreen('screen-game');
+      renderTrade();
+      showScreen('screen-trade');
     } else {
       toast('搵唔到存檔', '❌');
     }
@@ -971,32 +981,36 @@ function init() {
   bind('btn-achievements', () => { renderAchievements(); showScreen('screen-achievements'); });
   bind('btn-reset-profile', () => {
     askConfirm('確定重設所有玩家資料？成就、簽到、排行榜成績都會清除！', () => {
-      ['mft_profile', 'mft_achievements', 'mft_checkin', 'mft_xp', 'mft_best', 'mft_games', 'mft_save', 'mft_quiz_streak', 'mft_daily'].forEach(k => LS.del(k));
+      ['mft_profile', 'mft_achievements', 'mft_checkin', 'mft_xp', 'mft_best', 'mft_games', 'mft_save', 'mft_quiz_streak', 'mft_daily', 'mft_auto_next'].forEach(k => LS.del(k));
       location.reload();
     });
   });
 
   // 遊戲流程
-  bind('btn-goto-trade', () => { renderTrade(); showScreen('screen-trade'); });
   bind('btn-quit-save', () => {
+    clearTimeout(autoNextTimer);
+    resetTradeConfirmBtn();
     saveGame();
     game = null;
     toast('進度已儲存', '💾');
     refreshMenu();
     showScreen('screen-menu');
   });
-  bind('btn-trade-confirm', () => {
-    askConfirm('確認本月投資配置？確認後將鎖定並結算。', () => confirmTrade());
+  bind('btn-trade-confirm', () => handleTradeConfirm());
+  bind('btn-quiz-continue', () => {
+    clearTimeout(quizAutoTimer);
+    settleMonth();
   });
-  bind('btn-quiz-continue', () => settleMonth());
-  bind('btn-mr-next', () => {
-    if (game.month >= game.totalMonths) {
-      yearEnd();
-    } else {
-      game.month++;
-      startMonth();
+  bind('btn-mr-next', () => advanceFromMonthResult());
+  bind('mr-auto-next', () => {
+    autoNextEnabled = $('mr-auto-next').checked;
+    LS.set('mft_auto_next', autoNextEnabled);
+    clearTimeout(autoNextTimer);
+    if (autoNextEnabled && game) {
+      autoNextTimer = setTimeout(advanceFromMonthResult, 2500);
     }
   });
+  bind('btn-yr-replay', () => newGame('normal'));
   bind('btn-yr-menu', () => { refreshMenu(); showScreen('screen-menu'); });
   bind('btn-yr-leaderboard', () => { renderLeaderboard('all'); showScreen('screen-leaderboard'); });
 
@@ -1006,6 +1020,23 @@ function init() {
   bind('lb-tab-me', () => renderLeaderboard('me'));
   bind('btn-lb-back', () => { refreshMenu(); showScreen('screen-menu'); });
   bind('btn-ach-back', () => { refreshMenu(); showScreen('screen-menu'); });
+
+  // 老玩家直達主菜單（跳過歡迎頁/註冊/教學），首次進入才走完整引導
+  if (profile) {
+    enterMenu();
+  } else {
+    showScreen('screen-welcome');
+  }
+}
+
+/* 進入主菜單：刷新資料 + 每日自動簽到（toast 提示，不打斷） */
+function enterMenu() {
+  refreshMenu();
+  showScreen('screen-menu');
+  if (checkinNeeded()) {
+    doCheckin();
+    refreshMenu();
+  }
 }
 
 document.addEventListener('DOMContentLoaded', init);

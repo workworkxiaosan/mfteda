@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#0b3d2e">
 <title>濠江財富大亨 — Macau Fortune Tycoon</title>
 <link rel="manifest" href="manifest.json">
-<link rel="stylesheet" href="style.css">
+<link rel="stylesheet" href="style.css?v=2">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%230b3d2e'/%3E%3Ctext x='32' y='44' font-size='36' text-anchor='middle' fill='%23d4af37' font-family='serif' font-weight='bold'%3E濠%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -87,18 +87,6 @@
     </div>
   </section>
 
-  <!-- ========== 每日簽到彈窗 ========== -->
-  <div class="modal-mask hidden" id="modal-checkin">
-    <div class="modal-card">
-      <h2>每日簽到</h2>
-      <div class="checkin-fortune" id="checkin-fortune"></div>
-      <p>連續簽到 <b id="checkin-days">1</b> 天</p>
-      <p id="checkin-reward-line">獎勵：下一局本金加成券 <b class="gold-text" id="checkin-reward">+5,000</b></p>
-      <div class="checkin-week" id="checkin-week"></div>
-      <button class="btn btn-gold btn-big" id="btn-checkin-claim">領取獎勵</button>
-    </div>
-  </div>
-
   <!-- ========== 通用確認彈窗 ========== -->
   <div class="modal-mask hidden" id="modal-confirm">
     <div class="modal-card">
@@ -109,34 +97,22 @@
     </div>
   </div>
 
-  <!-- ========== 遊戲主畫面（新聞） ========== -->
-  <section class="screen" id="screen-game">
-    <div class="hud">
-      <span id="game-month-label">第 1 個月</span>
-      <span class="hud-networth" id="game-networth">$100,000</span>
-    </div>
-    <div class="news-card" id="game-news">
-      <div class="news-tag">📰 濠江快訊</div>
-      <h3 id="news-title"></h3>
-      <p id="news-desc"></p>
-      <div class="news-effects" id="news-effects"></div>
-    </div>
-    <div class="holdings-summary" id="holdings-list"></div>
-    <div class="btn-row-col">
-      <button class="btn btn-gold btn-big" id="btn-goto-trade">進入交易面板 →</button>
-      <button class="btn btn-ghost" id="btn-quit-save">儲存並返回主菜單</button>
-    </div>
-  </section>
-
-  <!-- ========== 交易面板 ========== -->
+  <!-- ========== 交易面板（含本月新聞橫幅） ========== -->
   <section class="screen" id="screen-trade">
     <div class="hud">
       <span id="trade-month-label">第 1 個月 · 交易</span>
       <span class="hud-networth">現金 <b id="trade-cash">$0</b></span>
     </div>
+    <div class="news-card news-banner" id="game-news">
+      <div class="news-tag">📰 濠江快訊</div>
+      <h3 id="news-title"></h3>
+      <p id="news-desc"></p>
+      <div class="news-effects" id="news-effects"></div>
+    </div>
     <p class="muted small">調整各板塊投資金額（每格 $5,000），閒置現金享 0.1% 月息。</p>
     <div id="trade-rows"></div>
     <button class="btn btn-gold btn-big" id="btn-trade-confirm">確認本月配置 ✓</button>
+    <button class="btn btn-ghost" id="btn-quit-save">儲存並返回主菜單</button>
   </section>
 
   <!-- ========== 快問快答 ========== -->
@@ -166,6 +142,10 @@
         <span>目前總資產</span><b id="mr-networth"></b>
       </div>
       <div class="chart-wrap"><canvas id="mr-chart" width="640" height="220"></canvas></div>
+      <label class="auto-next-toggle">
+        <input type="checkbox" id="mr-auto-next">
+        <span>自動繼續（2.5 秒後進入下個月）</span>
+      </label>
       <button class="btn btn-gold btn-big" id="btn-mr-next">進入下一個月 →</button>
     </div>
   </section>
@@ -184,8 +164,9 @@
       <div id="yr-newach"></div>
       <div id="yr-daily-compare" class="hidden"></div>
       <div class="btn-row-col">
-        <button class="btn btn-gold btn-big" id="btn-yr-menu">返回主菜單</button>
-        <button class="btn btn-green" id="btn-yr-leaderboard">查看排行榜</button>
+        <button class="btn btn-gold btn-big" id="btn-yr-replay">🎲 再來一局</button>
+        <button class="btn btn-green" id="btn-yr-menu">返回主菜單</button>
+        <button class="btn btn-ghost" id="btn-yr-leaderboard">查看排行榜</button>
       </div>
     </div>
   </section>
@@ -221,6 +202,6 @@
     澳門財經科技與教育發展學會 · 財經教育遊戲 · 全部為虛擬貨幣，投資有風險
   </footer>
 </div>
-<script src="game.js"></script>
+<script src="game.js?v=2"></script>
 </body>
 </html>

@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#16264c">
 <title>濠港雙城大亨 — 港澳文化大富翁 3D</title>
 <meta name="description" content="擲骰遊雙城，邊玩邊學港澳史！3D 大地圖版：99 格 10 種走勢、70 地標、15 位歷史人物。澳門財經科技與教育發展學會港澳文化教育遊戲。">
-<link rel="stylesheet" href="style.css?v=3">
+<link rel="stylesheet" href="style.css?v=4">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316264c'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23d4af37' font-family='serif' font-weight='bold'%3E濠%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -23,9 +23,11 @@
     <div class="card menu-card">
       <label class="field-label" for="input-menu-nickname">你的暱稱</label>
       <input type="text" id="input-menu-nickname" maxlength="12" placeholder="例如：濠江小大亨">
-      <button class="btn btn-gold btn-big" id="btn-menu-solo">🎲 單機人機</button>
-      <button class="btn btn-navy btn-big" id="btn-menu-hotseat">👥 本機多人（同機輪流）</button>
-      <button class="btn btn-red btn-big" id="btn-menu-online">🌐 線上聯機</button>
+      <button class="btn btn-gold btn-big btn-quick" id="btn-menu-quick">⚡ 快速開局</button>
+      <p class="quick-note">沿用上次設置一鍵開局</p>
+      <button class="btn btn-navy btn-demote" id="btn-menu-solo">🎲 單機人機</button>
+      <button class="btn btn-navy btn-demote" id="btn-menu-hotseat">👥 本機多人（同機輪流）</button>
+      <button class="btn btn-red btn-demote" id="btn-menu-online">🌐 線上聯機</button>
       <div class="menu-grid">
         <button class="btn btn-ghost" id="btn-menu-codex">📖 文脈圖鑑</button>
         <button class="btn btn-ghost" id="btn-menu-help">❓ 玩法說明</button>
@@ -52,9 +54,11 @@
       </div>
     </div>
     <div id="setup-players"></div>
-    <div class="btn-row">
-      <button class="btn btn-ghost" id="btn-setup-back">返回</button>
-      <button class="btn btn-gold" id="btn-setup-start">開始遊戲</button>
+    <div class="sticky-bottom">
+      <div class="btn-row">
+        <button class="btn btn-ghost" id="btn-setup-back">返回</button>
+        <button class="btn btn-gold btn-pulse" id="btn-setup-start">開始遊戲</button>
+      </div>
     </div>
   </section>
 
@@ -156,6 +160,7 @@
         <button id="btn-zoom-in" title="放大">＋</button>
         <button id="btn-zoom-out" title="縮小">－</button>
         <button id="btn-follow" title="跟隨鏡頭：開">🎬</button>
+        <button id="btn-fast" title="快速模式：開">⚡</button>
         <button id="btn-mute" title="音效開關">🔊</button>
       </div>
       <div id="dice-dock">
@@ -166,9 +171,13 @@
       <div id="fx-layer"></div>
       <div id="danmaku-layer"></div>
     </div>
-    <div id="tutorial-bubble" class="hidden">
-      <span id="tut-text"></span>
-      <button id="btn-tut-close">知道了</button>
+    <div id="tutorial-card" class="hidden">
+      <div class="tut-inner">
+        <div class="tut-title">🎓 快速上手（可滑動翻頁）</div>
+        <div class="tut-strip" id="tut-strip"></div>
+        <div class="tut-dots" id="tut-dots"></div>
+        <button class="btn btn-gold" id="btn-tut-close">知道了</button>
+      </div>
     </div>
     <div id="game-status-text">載入中…</div>
     <div id="players-bar"></div>
@@ -203,7 +212,7 @@
   <div id="toast"></div>
 
 </div>
-<script src="online.js?v=3" defer></script>
-<script src="game.js?v=3" defer></script>
+<script src="online.js?v=4" defer></script>
+<script src="game.js?v=4" defer></script>
 </body>
 </html>

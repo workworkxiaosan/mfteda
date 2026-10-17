@@ -232,6 +232,11 @@ input:focus, select:focus { outline: none; border-color: var(--gold); box-shadow
 .news-card h3 { margin: 6px 0 8px; font-size: 1.15rem; }
 .news-card p { line-height: 1.6; font-size: .95rem; }
 .news-effects { margin-top: 10px; display: flex; flex-wrap: wrap; gap: 6px; }
+/* 交易面板頂部的新聞橫幅（更緊湊） */
+.news-banner { padding: 12px 14px; margin-bottom: 12px; }
+.news-banner h3 { font-size: 1.02rem; margin: 4px 0 6px; }
+.news-banner p { font-size: .86rem; line-height: 1.5; }
+.news-banner .news-effects { margin-top: 8px; }
 .eff-chip {
   font-size: .78rem; padding: 4px 10px; border-radius: 20px; font-weight: 700;
 }
@@ -296,6 +301,20 @@ input:focus, select:focus { outline: none; border-color: var(--gold); box-shadow
 .quiz-feedback b.bad { color: var(--up); }
 
 /* ============ 月結算 ============ */
+.auto-next-toggle {
+  display: flex; align-items: center; justify-content: center; gap: 8px;
+  margin-top: 12px; font-size: .9rem; color: var(--green-800); font-weight: 700;
+  cursor: pointer; user-select: none;
+}
+.auto-next-toggle input[type="checkbox"] {
+  width: 20px; height: 20px; accent-color: var(--gold-dark); cursor: pointer;
+}
+#btn-trade-confirm.armed {
+  background: linear-gradient(180deg, #ffb199, #e86a4a 55%, #c0392b);
+  color: #fff;
+  box-shadow: 0 4px 0 #8e2a1e, 0 6px 14px rgba(192,57,43,.45);
+  animation: pulse .5s infinite alternate;
+}
 .mr-row {
   display: flex; justify-content: space-between; padding: 9px 4px;
   border-bottom: 1px dashed #ddd2b8; font-size: .92rem;
