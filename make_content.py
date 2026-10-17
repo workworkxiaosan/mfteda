@@ -1,7 +1,6 @@
 #!/usr/bin/env python3
 """Assemble content.json: i18n.json + insights articles + homepage focus cards."""
 import json
-import os
 
 from news_data import NEWS_WX, OPED_HUMANITIES, YOUTH_OFFICIAL
 
@@ -588,7 +587,6 @@ languages = [
     {"code": "zh-CN", "label": "简体中文", "flag": "🇨🇳"},
     {"code": "en", "label": "English", "flag": "🇬🇧"},
     {"code": "pt", "label": "Português", "flag": "🇵🇹"},
-    {"code": "fr", "label": "Français", "flag": "🇫🇷"},
 ]
 
 content = {
@@ -624,56 +622,6 @@ content = {
     "policies": policies,
     "book_covers": book_covers,
 }
-
-# ---- 外部譯文覆寫（translations/*.json，由翻譯流程生成；不存在則跳過）----
-# 片段格式：
-#   {"i18n": {"fr": {...樹狀結構}, "en": {...}, "pt": {...}},
-#    "news"/"insights": {"<slug>": {"<lang>": {"title","excerpt","category","body",
-#        "source_name","author_name","author_title","image_captions":{"<file>":"..."}}}},
-#    "policies"/"focus_cards": {"<index>": {"<lang>": {"title","summary"/"description"}}}}
-import glob as _glob
-
-def _deep_merge(dst, src):
-    for k, v in src.items():
-        if isinstance(v, dict) and isinstance(dst.get(k), dict):
-            _deep_merge(dst[k], v)
-        else:
-            dst[k] = v
-
-def _apply_lang_fields(item, lang, fields):
-    for k, v in fields.items():
-        if k == 'source_name':
-            item['source']['name'][lang] = v
-        elif k == 'author_name':
-            item['author']['name'][lang] = v
-        elif k == 'author_title':
-            item['author']['title'][lang] = v
-        elif k == 'image_captions':
-            for img in item.get('images', []):
-                if img['file'] in v:
-                    img['caption'][lang] = v[img['file']]
-        else:
-            item[k][lang] = v
-
-for _path in sorted(_glob.glob(os.path.join(os.path.dirname(os.path.abspath(__file__)), 'translations', '*.json'))):
-    with open(_path, encoding='utf-8') as _f:
-        _ov = json.load(_f)
-    if 'i18n' in _ov:
-        for _lang, _tree in _ov['i18n'].items():
-            _deep_merge(content['i18n'].setdefault(_lang, {}), _tree)
-    for _section in ('news', 'insights'):
-        for _key, _langs in _ov.get(_section, {}).items():
-            _item = next((x for x in content[_section] if x.get('slug') == _key), None)
-            if _item is None:
-                _item = content[_section][int(_key)]
-            for _lang, _fields in _langs.items():
-                _apply_lang_fields(_item, _lang, _fields)
-    for _section in ('policies', 'focus_cards'):
-        for _idx, _langs in _ov.get(_section, {}).items():
-            _item = content[_section][int(_idx)]
-            for _lang, _fields in _langs.items():
-                _apply_lang_fields(_item, _lang, _fields)
-    print('applied translations:', os.path.basename(_path))
 
 with open('content.json', 'w', encoding='utf-8') as f:
     json.dump(content, f, ensure_ascii=False, indent=2)
