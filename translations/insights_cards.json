@@ -1,0 +1,106 @@
+{
+  "insights": {
+    "1": {
+      "fr": {
+        "category": "Économie numérique",
+        "title": "Tendances de l'économie numérique à Macao",
+        "excerpt": "Analyse des opportunités et des défis de la transformation numérique dans la RAS de Macao"
+      },
+      "en": {
+        "category": "Digital Economy",
+        "title": "Digital Economy Trends in Macao",
+        "excerpt": "An analysis of the opportunities and challenges of digital transformation in the Macao SAR"
+      },
+      "pt": {
+        "category": "Economia Digital",
+        "title": "Tendências da Economia Digital em Macau",
+        "excerpt": "Análise das oportunidades e desafios da transformação digital na RAE de Macau"
+      }
+    },
+    "2": {
+      "fr": {
+        "category": "Coopération régionale",
+        "title": "Stratégies de développement intégré de la Grande Baie Guangdong-Hong Kong-Macao",
+        "excerpt": "Recommandations politiques visant à renforcer le rôle de Macao dans la Grande Baie Guangdong-Hong Kong-Macao"
+      },
+      "en": {
+        "category": "Regional Cooperation",
+        "title": "Strategies for Integrated Development in the Greater Bay Area",
+        "excerpt": "Policy recommendations for enhancing Macao's role in the Greater Bay Area"
+      },
+      "pt": {
+        "category": "Cooperação Regional",
+        "title": "Estratégias de Desenvolvimento Integrado da Grande Baía",
+        "excerpt": "Recomendações de políticas para reforçar o papel de Macau na Grande Baía"
+      }
+    },
+    "3": {
+      "fr": {
+        "category": "Finance durable",
+        "title": "Opportunités d'investissement ESG",
+        "excerpt": "Exploration des tendances de l'investissement durable et des initiatives de finance verte"
+      },
+      "en": {
+        "category": "Sustainable Finance",
+        "title": "ESG Investment Opportunities",
+        "excerpt": "Exploring sustainable investment trends and green finance initiatives"
+      },
+      "pt": {
+        "category": "Finanças Sustentáveis",
+        "title": "Oportunidades de Investimento ESG",
+        "excerpt": "Explorar as tendências de investimento sustentável e as iniciativas de finanças verdes"
+      }
+    },
+    "4": {
+      "fr": {
+        "category": "Finance moderne",
+        "title": "Les progrès de l'internationalisation du RMB",
+        "excerpt": "Les dernières avancées en matière d'utilisation transfrontalière du RMB et de coopération financière"
+      },
+      "en": {
+        "category": "Modern Finance",
+        "title": "Progress in RMB Internationalization",
+        "excerpt": "The latest developments in cross-border RMB use and financial cooperation"
+      },
+      "pt": {
+        "category": "Finanças Modernas",
+        "title": "Progressos da Internacionalização do RMB",
+        "excerpt": "Os mais recentes progressos na utilização transfronteiriça do RMB e na cooperação financeira"
+      }
+    },
+    "5": {
+      "fr": {
+        "category": "Innovation",
+        "title": "Innovation culturelle et technologique",
+        "excerpt": "Comment la technologie transforme les industries culturelles de Macao"
+      },
+      "en": {
+        "category": "Innovation",
+        "title": "Cultural and Technological Innovation",
+        "excerpt": "How technology is transforming Macao's cultural industries"
+      },
+      "pt": {
+        "category": "Inovação",
+        "title": "Inovação em Cultura e Tecnologia",
+        "excerpt": "Como a tecnologia está a transformar as indústrias culturais de Macau"
+      }
+    },
+    "6": {
+      "fr": {
+        "category": "Recherche en politiques publiques",
+        "title": "Bonnes pratiques de réglementation des ports francs",
+        "excerpt": "Une comparaison internationale des cadres de réglementation douanière"
+      },
+      "en": {
+        "category": "Policy Research",
+        "title": "Best Practices in Free Trade Port Regulation",
+        "excerpt": "An international comparison of customs regulatory frameworks"
+      },
+      "pt": {
+        "category": "Estudos de Políticas Públicas",
+        "title": "Melhores Práticas de Regulação de Portos Francos",
+        "excerpt": "Comparação internacional de quadros de regulação aduaneira"
+      }
+    }
+  }
+}

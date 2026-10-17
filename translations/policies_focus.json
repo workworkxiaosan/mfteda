@@ -1,0 +1,258 @@
+{
+  "policies": {
+    "0": {
+      "fr": {
+        "title": "Fonds industriel du gouvernement et Fonds d'orientation pour la commercialisation des résultats scientifiques et technologiques",
+        "summary": "Le gouvernement a pris l'initiative de créer un fonds industriel et un fonds d'orientation pour la commercialisation des résultats scientifiques et technologiques, afin d'attirer à Macao des entreprises et des projets de haute technologie selon un modèle de « coinvestissement public-privé »."
+      },
+      "en": {
+        "title": "Government Industrial Fund and Guidance Fund for the Commercialization of Scientific and Technological Achievements",
+        "summary": "The government has taken the lead in establishing an industrial fund and a guidance fund for the commercialization of scientific and technological achievements, attracting high-tech enterprises and projects to Macao under a \"government + private co-investment\" model."
+      },
+      "pt": {
+        "title": "Fundo Industrial do Governo e Fundo Orientador para a Comercialização de Resultados Científicos e Tecnológicos",
+        "summary": "O Governo liderou a criação de um fundo industrial e de um fundo orientador para a comercialização de resultados científicos e tecnológicos, atraindo empresas e projetos de alta tecnologia para Macau através de um modelo de «coinvestimento público-privado»."
+      }
+    },
+    "1": {
+      "fr": {
+        "title": "Parc industriel de recherche et développement scientifique et technologique de Macao",
+        "summary": "Parc d'innovation axé sur quatre domaines — biomédecine, circuits intégrés, technologies numériques et technologies aérospatiales — conçu comme une base d'expansion internationale pour les entreprises technologiques de qualité de la Chine continentale et comme un point d'accueil pour les projets étrangers de technologie de pointe."
+      },
+      "en": {
+        "title": "Macao Science and Technology Research and Development Park",
+        "summary": "A science and technology innovation park focused on biomedicine, integrated circuits, digital technology and aerospace technology, positioned as a launchpad for high-quality mainland tech firms going global and a service base for overseas cutting-edge technology projects establishing a presence in Macao."
+      },
+      "pt": {
+        "title": "Parque Industrial de Investigação e Desenvolvimento Científico e Tecnológico de Macau",
+        "summary": "Parque de inovação centrado na biomedicina, nos circuitos integrados, na tecnologia digital e na tecnologia aeroespacial, posicionado como base de expansão internacional para as empresas tecnológicas de qualidade do interior da China e como ponto de apoio à instalação de projetos estrangeiros de tecnologia de ponta."
+      }
+    },
+    "2": {
+      "fr": {
+        "title": "Programme de soutien au développement de l'économie des premières boutiques de Macao",
+        "summary": "Subventions aux frais de démarrage et d'exploitation pour les marques internationales ainsi que pour les marques de la Chine continentale, de Hong Kong, de Macao et de Taiwan ouvrant leur première boutique physique à Macao ; des aides supplémentaires cumulables sont prévues pour les boutiques s'installant dans les quartiers désignés."
+      },
+      "en": {
+        "title": "Programme for Supporting the Development of Macao's First-Store Economy",
+        "summary": "Start-up and operating subsidies for international brands and brands from the Chinese mainland, Hong Kong, Macao and Taiwan opening their first physical store in Macao, with additional stacked subsidies for stores locating in designated communities."
+      },
+      "pt": {
+        "title": "Programa de Apoio ao Desenvolvimento da Economia de Primeiras Lojas de Macau",
+        "summary": "Apoio financeiro para despesas de instalação e de funcionamento a marcas internacionais e a marcas do interior da China, de Hong Kong, de Macau e de Taiwan que abram a sua primeira loja física em Macau, com apoios complementares cumuláveis para as lojas que se instalem em comunidades designadas."
+      }
+    },
+    "3": {
+      "fr": {
+        "title": "Mesures d'incitation aux congrès et expositions (MICE)",
+        "summary": "Financement des événements MICE organisés à Macao, y compris le modèle « un événement, deux sites » entre Macao et Hengqin, avec un plafond de 3 millions de patacas par événement."
+      },
+      "en": {
+        "title": "MICE Incentive Measures",
+        "summary": "Funding for MICE events held in Macao, covering the \"one event, two venues\" model between Macao and Hengqin, with a cap of MOP 3 million per event."
+      },
+      "pt": {
+        "title": "Medidas de Incentivo a Convenções e Exposições",
+        "summary": "Financiamento de eventos de convenções e exposições (MICE) realizados em Macau, abrangendo o modelo «um evento, dois locais» entre Macau e Hengqin, com um limite de 3 milhões de patacas por evento."
+      }
+    },
+    "4": {
+      "fr": {
+        "title": "Centre international de l'industrie technologique de Macao",
+        "summary": "Plateforme d'accueil d'entreprises technologiques cofondée par la DSEDT, le FDCT et l'IPIM ; la première cohorte d'entreprises technologiques s'y est déjà installée, et le programme « Ambassadeur de la promotion des investissements de Macao » a été lancé lors de la même cérémonie."
+      },
+      "en": {
+        "title": "Macao International Technology Industry Center",
+        "summary": "A landing platform for technology enterprises jointly established by DSEDT, FDCT and IPIM; the first cohort of tech companies has moved in, and the \"Macao Investment Promotion Ambassador\" programme was launched at the same event."
+      },
+      "pt": {
+        "title": "Centro Internacional da Indústria Tecnológica de Macau",
+        "summary": "Plataforma de instalação de empresas tecnológicas construída em conjunto pela DSEDT, pelo FDCT e pelo IPIM, com o primeiro grupo de empresas tecnológicas já instalado e o lançamento, na mesma ocasião, do programa «Embaixador de Promoção do Investimento de Macau»."
+      }
+    },
+    "5": {
+      "fr": {
+        "title": "Guichet unique pour les investisseurs",
+        "summary": "L'IPIM offre un service de guichet unique : un interlocuteur dédié accompagne les investisseurs dans leur implantation et coordonne les formalités de création de société."
+      },
+      "en": {
+        "title": "One-Stop Service for Investors",
+        "summary": "IPIM provides one-stop services, with dedicated officers following up on investors' establishment in Macao and coordinating company incorporation procedures."
+      },
+      "pt": {
+        "title": "Serviço de Balcão Único para Investidores",
+        "summary": "O IPIM presta serviços de balcão único, com acompanhamento personalizado da instalação dos investidores e coordenação dos procedimentos de constituição de empresas."
+      }
+    },
+    "6": {
+      "fr": {
+        "title": "Taux préférentiel de 15 % de l'impôt sur les sociétés",
+        "summary": "Les entreprises établies dans la Zone de coopération approfondie de Hengqin, dont l'activité principale figure dans le catalogue des industries encouragées et qui exercent une activité réelle, bénéficient d'un taux réduit de 15 % d'impôt sur les sociétés."
+      },
+      "en": {
+        "title": "15% Corporate Income Tax Incentive",
+        "summary": "Enterprises established in the Hengqin Cooperation Zone whose core business falls within the catalogue of encouraged industries and that maintain substantive operations are taxed at a reduced corporate income tax rate of 15%."
+      },
+      "pt": {
+        "title": "Incentivo de 15% no Imposto sobre o Rendimento das Empresas",
+        "summary": "As empresas estabelecidas na Zona de Cooperação Aprofundada de Hengqin, cuja atividade principal integre o catálogo de indústrias elegíveis e que mantenham operações efetivas, beneficiam de uma taxa reduzida de 15% no imposto sobre o rendimento das empresas."
+      }
+    },
+    "7": {
+      "fr": {
+        "title": "Prolongation des avantages fiscaux sur le revenu des personnes physiques (résidents de Macao imposés selon le régime fiscal de Macao)",
+        "summary": "Les talents de haut niveau et rares, chinois ou étrangers, travaillant dans la Zone de coopération sont exonérés de la fraction de l'impôt sur le revenu des personnes physiques excédant 15 % ; les résidents de Macao sont exonérés de la fraction excédant la charge fiscale de Macao. Caishui [2026] n° 2."
+      },
+      "en": {
+        "title": "Extension of Individual Income Tax Incentives (Macao Tax Treatment for Macao Residents)",
+        "summary": "High-calibre and urgently needed professionals, whether domestic or overseas, working in the Cooperation Zone are exempt from individual income tax on the portion exceeding 15%; Macao residents are exempt from any tax exceeding the Macao tax burden. Caishui [2026] No. 2."
+      },
+      "pt": {
+        "title": "Prorrogação dos Incentivos ao Imposto sobre o Rendimento das Pessoas Singulares (Regime Fiscal de Macau para Residentes de Macau)",
+        "summary": "Os talentos altamente qualificados e escassos, nacionais ou estrangeiros, que trabalhem na Zona de Cooperação ficam isentos da parcela do imposto sobre o rendimento das pessoas singulares que exceda 15%; os residentes de Macau ficam isentos da parcela que exceda a carga fiscal de Macau. Caishui [2026] n.º 2."
+      }
+    },
+    "8": {
+      "fr": {
+        "title": "Plan de développement industriel de la Zone de coopération approfondie Guangdong-Macao à Hengqin (2025-2029)",
+        "summary": "Le plan structure quatre grands pôles industriels : recherche-développement technologique et fabrication de pointe ; industries de marque de Macao, dont la médecine traditionnelle chinoise ; tourisme culturel, congrès et expositions, commerce ; et finance moderne. En 2029, la valeur ajoutée des « quatre nouvelles » industries devrait représenter environ 65 % du PIB."
+      },
+      "en": {
+        "title": "Industrial Development Plan of the Guangdong-Macao In-Depth Cooperation Zone in Hengqin (2025–2029)",
+        "summary": "The plan establishes four major industrial clusters — technology R&D and high-end manufacturing; Macao-branded industries such as traditional Chinese medicine; cultural tourism, MICE, commerce and trade; and modern finance — with value added by the \"four new\" industries targeted to account for around 65% of GDP by 2029."
+      },
+      "pt": {
+        "title": "Plano de Desenvolvimento Industrial da Zona de Cooperação Aprofundada entre Guangdong e Macau em Hengqin (2025–2029)",
+        "summary": "O plano estrutura quatro polos industriais: I&D tecnológica e manufactura de ponta; indústrias de marca de Macau, como a medicina tradicional chinesa; turismo cultural, convenções e exposições, comércio; e finanças modernas. Em 2029, o valor acrescentado das «quatro novas» indústrias deverá representar cerca de 65% do PIB."
+      }
+    },
+    "9": {
+      "fr": {
+        "title": "Règles d'application des mesures de soutien à l'industrie biomédicale et de la santé globale",
+        "summary": "Des financements spéciaux accompagnent les projets phares à toutes les étapes — implantation, R&D, essais cliniques et enregistrement — en parfaite adéquation avec la stratégie industrielle « 1+4 » de Macao."
+      },
+      "en": {
+        "title": "Implementation Rules for Supporting the Biomedicine and Greater Health Industry",
+        "summary": "Dedicated funding for benchmark projects across the settlement, R&D, clinical trial and registration stages, in direct alignment with Macao's \"1+4\" industrial strategy."
+      },
+      "pt": {
+        "title": "Regras de Implementação de Apoio à Indústria Biomédica e da Grande Saúde",
+        "summary": "Financiamento especial para projetos emblemáticos nas fases de instalação, I&D, ensaios clínicos e registo, em articulação direta com a estratégia industrial «1+4» de Macau."
+      }
+    },
+    "10": {
+      "fr": {
+        "title": "Mesures de soutien au développement de haute qualité de l'industrie financière",
+        "summary": "Les institutions financières et les entreprises fintech qui s'implantent dans la Zone de coopération bénéficient de primes d'installation, de subventions locatives et d'un accompagnement au développement de leurs activités, en coordination avec le développement de l'industrie financière moderne de Macao."
+      },
+      "en": {
+        "title": "Measures for Supporting High-Quality Development of the Financial Industry",
+        "summary": "Settlement incentives, rent subsidies and business development support for financial institutions and fintech enterprises establishing a presence in the Cooperation Zone, complementing the development of Macao's modern financial industry."
+      },
+      "pt": {
+        "title": "Medidas de Apoio ao Desenvolvimento de Alta Qualidade da Indústria Financeira",
+        "summary": "As instituições financeiras e as empresas de tecnologia financeira (fintech) que se instalem na Zona de Cooperação beneficiam de prémios de instalação, subsídios de renda e apoio ao desenvolvimento da atividade, em coordenação com o desenvolvimento da indústria financeira moderna de Macau."
+      }
+    },
+    "11": {
+      "fr": {
+        "title": "Soutien à l'innovation et à l'entrepreneuriat des jeunes de Macao",
+        "summary": "Les jeunes entreprises de Macao reconnues peuvent bénéficier d'une aide au loyer de leurs bureaux et de primes à l'entrepreneuriat ; les bases d'innovation et d'entrepreneuriat des jeunes de Macao bénéficient quant à elles d'un soutien à leurs activités."
+      },
+      "en": {
+        "title": "Support for Macao Youth Innovation and Entrepreneurship",
+        "summary": "Recognised startups founded by Macao youth are eligible for office rent subsidies and entrepreneurship incentives, while Macao youth innovation and entrepreneurship bases receive support for their activities."
+      },
+      "pt": {
+        "title": "Apoio à Inovação e ao Empreendedorismo dos Jovens de Macau",
+        "summary": "As startups de jovens de Macau devidamente reconhecidas podem beneficiar de apoio ao arrendamento de escritórios e de prémios de empreendedorismo; as bases de inovação e empreendedorismo dos jovens de Macau beneficiam de apoio às suas atividades."
+      }
+    }
+  },
+  "focus_cards": {
+    "0": {
+      "fr": {
+        "title": "Finance moderne",
+        "description": "Promouvoir l'innovation fintech et la coopération financière transfrontalière"
+      },
+      "en": {
+        "title": "Modern Finance",
+        "description": "Driving fintech innovation and cross-border financial cooperation"
+      },
+      "pt": {
+        "title": "Finanças Modernas",
+        "description": "Impulsionar a inovação fintech e a cooperação financeira transfronteiriça"
+      }
+    },
+    "1": {
+      "fr": {
+        "title": "Économie numérique",
+        "description": "Explorer l'intelligence artificielle, le commerce électronique et la transformation numérique"
+      },
+      "en": {
+        "title": "Digital Economy",
+        "description": "Exploring AI, e-commerce and digital transformation"
+      },
+      "pt": {
+        "title": "Economia Digital",
+        "description": "Explorar a IA, o comércio eletrónico e a transformação digital"
+      }
+    },
+    "2": {
+      "fr": {
+        "title": "Coopération dans la Grande Baie",
+        "description": "Promouvoir l'intégration régionale et la coopération transfrontalière"
+      },
+      "en": {
+        "title": "Greater Bay Area Cooperation",
+        "description": "Promoting regional integration and cross-border cooperation"
+      },
+      "pt": {
+        "title": "Cooperação na Grande Baía",
+        "description": "Promover a integração regional e a cooperação transfronteiriça"
+      }
+    },
+    "3": {
+      "fr": {
+        "title": "Centre de services pour le transfert de technologie",
+        "description": "Relier la recherche universitaire aux besoins de l'industrie afin d'accélérer la commercialisation des résultats scientifiques"
+      },
+      "en": {
+        "title": "Technology Transfer Services Center",
+        "description": "Connecting university research with industry needs to accelerate the commercialization of scientific achievements"
+      },
+      "pt": {
+        "title": "Centro de Serviços de Transferência de Tecnologia",
+        "description": "Ligar a investigação universitária às necessidades da indústria, acelerando a comercialização dos resultados científicos"
+      }
+    },
+    "4": {
+      "fr": {
+        "title": "Centre d'incubation de talents OPC SenseTime Raccoon",
+        "description": "En s'appuyant sur la technologie d'IA et la puissance de calcul de SenseTime Raccoon, former des talents aux « compétences full-stack individuelles (OPC) » et promouvoir ensemble la formation en IA et son déploiement industriel"
+      },
+      "en": {
+        "title": "SenseTime Raccoon OPC Talent Incubation Center",
+        "description": "Leveraging SenseTime Raccoon's AI technology and computing power to cultivate \"OPC one-person full-stack\" capabilities, jointly advancing AI talent development and real-world industry adoption"
+      },
+      "pt": {
+        "title": "Centro de Incubação de Talentos OPC SenseTime Raccoon",
+        "description": "Com base na tecnologia de IA e na capacidade de computação da SenseTime Raccoon, desenvolver «capacidades full-stack individuais (OPC)», promovendo em conjunto a formação de talentos em IA e a respetiva aplicação industrial"
+      }
+    },
+    "5": {
+      "fr": {
+        "title": "Centre de formation aux systèmes d'applications numériques pour l'internationalisation des entreprises chinoises d'infrastructures",
+        "description": "Exploité avec le soutien de Digital Construction (Guangdong Hengqin) Technology Co., Ltd., ce centre accompagne les entreprises d'infrastructures dans leur expansion internationale par le biais de la transformation numérique"
+      },
+      "en": {
+        "title": "Digital Application Systems Training Center for Chinese Infrastructure Enterprises Going Global",
+        "description": "Operated with support from Digital Construction (Guangdong Hengqin) Technology Co., Ltd., empowering infrastructure enterprises to expand globally through digitalization"
+      },
+      "pt": {
+        "title": "Centro de Formação em Sistemas de Aplicação Digital para a Internacionalização de Empresas Chinesas de Infraestruturas",
+        "description": "Operado com o apoio da Digital Construction (Guangdong Hengqin) Technology Co., Ltd., apoiando a expansão internacional das empresas de infraestruturas através da digitalização"
+      }
+    }
+  }
+}

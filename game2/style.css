@@ -796,3 +796,53 @@ body.bankrupt-flash #app { animation: bwFlash .9s ease; }
   #board-viewport { height: min(66vh, 620px); }
   #game-log { font-size: .72rem; }
 }
+
+/* ============================================================
+   v3：跟隨鏡頭 / 行走軌跡 / 股市面板 / 徽章
+   ============================================================ */
+#board-world.smooth { transition: transform .4s ease; }
+
+/* 行走軌跡格子微亮 */
+.tile3.trail-lit {
+  box-shadow: 0 0 0 2px var(--gold-light), 0 0 14px rgba(240,216,120,.9), 4px 4px 0 #8f855f;
+  filter: brightness(1.18);
+  z-index: 2;
+}
+
+/* 股市面板 */
+.news-banner {
+  background: linear-gradient(90deg, #fff8dc, #fdeec9);
+  border-left: 4px solid var(--gold);
+  border-radius: 8px;
+  padding: 9px 11px;
+  font-size: .84rem;
+  font-weight: 700;
+  color: var(--navy-800);
+  margin-bottom: 8px;
+}
+.stock-row {
+  border-top: 1px dashed #ddd3b4;
+  padding: 9px 0;
+}
+.stock-head { display: flex; justify-content: space-between; align-items: center; font-size: .9rem; }
+.stock-price { font-weight: 800; color: var(--navy-800); }
+.stock-price .up { color: var(--red); }   /* 港股習慣：紅升 */
+.stock-price .down { color: #1e8e5a; }
+.stock-mid { display: flex; align-items: center; gap: 10px; margin: 5px 0; }
+.sparkline { background: var(--cream); border-radius: 6px; flex-shrink: 0; }
+.stock-hold { font-size: .76rem; color: var(--muted); line-height: 1.4; }
+.stock-btns { display: flex; gap: 8px; }
+.stock-btns .btn { flex: 1; }
+.stock-tip {
+  margin-top: 10px;
+  background: var(--navy-800);
+  color: var(--gold-light);
+  border-radius: 10px;
+  padding: 10px 12px;
+  font-size: .82rem;
+  line-height: 1.5;
+  transition: opacity .3s;
+}
+
+/* 財商徽章 */
+.badge-item b { font-size: .92rem; }

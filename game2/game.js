@@ -423,7 +423,8 @@ const Engine = (function () {
   }
 
   const MAP_SIZE = 99;
-  const FUNC_QUOTA = { chance: 6, quiz: 6, study: 1, goStudy: 1, cafe: 3, tax: 2, wheel: 2, cable: 2, doubleDice: 2, shop: 2, freeUp: 1 }; // 28 + 起點 = 29 功能格
+  // v3：機緣 5、文脈 5、茶餐廳 2，新增交易所×2、銀行×1 → 功能格仍 29
+  const FUNC_QUOTA = { chance: 5, quiz: 5, study: 1, goStudy: 1, cafe: 2, tax: 2, wheel: 2, cable: 2, doubleDice: 2, shop: 2, freeUp: 1, stockEx: 2, bank: 1 }; // 28 + 起點 = 29 功能格
 
   const TILE_META = {
     go:         { name: '起點 · 港澳碼頭', icon: '⛴️', info: '港澳碼頭是兩地往來的門戶。經過起點可領 $200 零用錢！' },
@@ -437,7 +438,33 @@ const Engine = (function () {
     cable:      { name: '纜車傳送', icon: '🚠', info: '搭乘纜車直達前方 12 格，像昂坪 360 一樣飛馳！' },
     doubleDice: { name: '雙倍骰', icon: '🎲', info: '好運到！下回合擲骰點數 ×2。' },
     shop:       { name: '道具店', icon: '🏪', info: '老字號雜貨店：免租金牌、雙倍骰、轉向卡、搬遷卡，每人最多持 2 件。' },
-    freeUp:     { name: '免費升級', icon: '⬆️', info: '市政美化計劃！免費升級一個地標（需已集齊同色組）。' }
+    freeUp:     { name: '免費升級', icon: '⬆️', info: '市政美化計劃！免費升級一個地標（需集齊同色組）。' },
+    stockEx:    { name: '濠港交易所', icon: '📈', info: '落格獲「市場快訊」（預告下輪某板塊漲跌），且下一次股票交易免手續費！' },
+    bank:       { name: '港澳銀行', icon: '🏦', info: '存入現金每輪結算 2% 利息（複利），是安全資產；落格可存取款。' }
+  };
+
+  // 六檔港澳主題虛構板塊股（起始價各 $100）
+  const STOCKS = [
+    { id: 'tourism',   name: '旅遊休閒', emoji: '🎡', vol: 0.12, blurb: '盛事與旅客量帶動股價' },
+    { id: 'mice',      name: '會展商貿', emoji: '🤝', vol: 0.09, blurb: '書展、藝展、欖球賽都是商機' },
+    { id: 'fintech',   name: '金融科技', emoji: '💳', vol: 0.12, blurb: '高波動高回報，留意風險' },
+    { id: 'utility',   name: '公用事業', emoji: '💡', vol: 0.05, blurb: '水電煤穩定收租式企業' },
+    { id: 'culture',   name: '文化創意', emoji: '🎭', vol: 0.09, blurb: '藝術展演與 IP 經濟' },
+    { id: 'transport', name: '交通基建', emoji: '🌉', vol: 0.05, blurb: '大橋鐵路港口，穩健之選' }
+  ];
+  const STOCK_TIPS = [
+    '分散投資降低風險：唔好全倉一隻股！',
+    '買低賣高：留意走勢圖找入市時機。',
+    '盛事帶動板塊：大賽車期間交通與旅遊股看漲。',
+    '手續費也是成本：頻繁買賣會蠶食回報。',
+    '銀行存款每輪 2% 利息，複利滾存更安全。',
+    '市場快訊有信息價值：交易所格免費預告！'
+  ];
+  // 盛事機緣卡 → 帶動板塊（下輪上漲）
+  const CARD_BOOST = {
+    c1: ['transport', 'tourism'], c2: ['tourism'], c4: ['culture'], c5: ['culture'],
+    c6: ['culture', 'mice'], c7: ['tourism'], c8: ['tourism'], c9: ['tourism', 'mice'],
+    c11: ['tourism'], c12: ['tourism'], c14: ['tourism', 'mice'], c15: ['culture'], c18: ['transport']
   };
 
   // 生成棋盤佈局：路徑 99 格，格型分配，70 地標依序鋪排、地價 $60→$800 遞增
@@ -593,9 +620,88 @@ const Engine = (function () {
     return rent;
   }
 
+  function totalShares(p) {
+    let t = 0;
+    for (const s of STOCKS) t += (p.holdings && p.holdings[s.id]) || 0;
+    return t;
+  }
+
+  // 股票交易：qty>0 買入，qty<0 賣出；手續費 1%（免手續費旗標豁免）
+  function trade(state, p, sectorId, qty) {
+    const st = state.stocks[sectorId];
+    if (!st) return { ok: false, error: '未知板塊' };
+    const free = p.freeFee > 0;
+    if (qty > 0) {
+      const gross = qty * st.price;
+      const fee = free ? 0 : Math.max(1, Math.round(gross * 0.01));
+      if (p.money < gross + fee) return { ok: false, error: '現金不足（含 1% 手續費）' };
+      p.money -= gross + fee;
+      p.holdings[sectorId] = (p.holdings[sectorId] || 0) + qty;
+      p.stockCost += gross;
+      if (free) p.freeFee--;
+      addLog(state, '📈 ' + p.name + ' 買入 ' + qty + ' 股「' + stockName(sectorId) + '」@$' + st.price + (fee ? '（手續費 $' + fee + '）' : '（免手續費）'));
+      return { ok: true };
+    }
+    if (qty < 0) {
+      const sh = -qty;
+      if ((p.holdings[sectorId] || 0) < sh) return { ok: false, error: '持股不足' };
+      const gross = sh * st.price;
+      const fee = free ? 0 : Math.max(1, Math.round(gross * 0.01));
+      const ts = totalShares(p);
+      const costSold = ts > 0 ? Math.round(p.stockCost * sh / ts) : 0;
+      p.holdings[sectorId] -= sh;
+      p.stockCost -= costSold;
+      p.realizedPL += (gross - costSold);
+      p.money += gross - fee;
+      if (free) p.freeFee--;
+      addLog(state, '📉 ' + p.name + ' 賣出 ' + sh + ' 股「' + stockName(sectorId) + '」@$' + st.price + (fee ? '（手續費 $' + fee + '）' : '（免手續費）'));
+      return { ok: true };
+    }
+    return { ok: false, error: '股數不能為 0' };
+  }
+
+  function stockName(id) { return (STOCKS.find(s => s.id === id) || {}).name || id; }
+
+  // 每輪結束：股價隨機漫步 + 盛事帶動 + 快訊方向；存款 2% 利息
+  function updateMarket(state) {
+    for (const s of STOCKS) {
+      const st = state.stocks[s.id];
+      let change = (rnd(state) * 2 - 1) * s.vol;
+      if (state.boost && state.boost[s.id]) change += s.vol * (0.5 + rnd(state) * 0.5); // 盛事帶動
+      if (state.news && state.news.sector === s.id) change = state.news.dir * s.vol * (0.3 + rnd(state) * 0.5); // 快訊
+      st.price = Math.max(10, Math.round(st.price * (1 + change)));
+      st.hist.push(st.price);
+      if (st.hist.length > 8) st.hist.shift();
+    }
+    state.boost = {};
+    for (const p of state.players) {
+      if (!p.bankrupt && p.bankDeposit > 0) {
+        const interest = Math.round(p.bankDeposit * 0.02);
+        if (interest > 0) {
+          p.bankDeposit += interest;
+          p.interestEarned += interest;
+        }
+      }
+    }
+    if (state.news) {
+      addLog(state, '📈 股市快訊應驗：「' + stockName(state.news.sector) + '」板塊' + (state.news.dir > 0 ? '上漲' : '下跌') + '。');
+      state.news = null;
+    }
+  }
+
+  // 持股總市值
+  function stockValue(state, playerId) {
+    const p = state.players[playerId];
+    let v = 0;
+    for (const s of STOCKS) {
+      if (p.holdings && p.holdings[s.id]) v += p.holdings[s.id] * state.stocks[s.id].price;
+    }
+    return v;
+  }
+
   function assetValue(state, playerId) {
     const p = state.players[playerId];
-    let total = Math.max(0, p.money);
+    let total = Math.max(0, p.money) + (p.bankDeposit || 0) + stockValue(state, playerId);
     for (let i = 0; i < state.layout.size; i++) {
       const prop = state.props[i];
       if (prop && prop.owner === playerId) {
@@ -630,6 +736,29 @@ const Engine = (function () {
 
   function liquidate(state, playerId, creditorId, reason) {
     const p = state.players[playerId];
+    // 先強制按市值賣股（付租資金不足先賣股）
+    if (p.money < 0) {
+      let sold = 0;
+      for (const s of STOCKS) {
+        const sh = p.holdings[s.id] || 0;
+        if (sh > 0) {
+          sold += sh * state.stocks[s.id].price;
+          p.realizedPL += Math.round(sh * state.stocks[s.id].price - (p.stockCost * (sh / totalShares(p) || 0)));
+          p.holdings[s.id] = 0;
+        }
+      }
+      if (sold > 0) {
+        p.money += sold;
+        addLog(state, '📉 ' + p.name + ' 被強制按市值賣出全部持股，套現 $' + sold + '。');
+        p.stockCost = 0;
+      }
+    }
+    // 再動用存款
+    if (p.money < 0 && p.bankDeposit > 0) {
+      p.money += p.bankDeposit;
+      addLog(state, '🏦 ' + p.name + ' 取出銀行存款 $' + p.bankDeposit + ' 應急。');
+      p.bankDeposit = 0;
+    }
     let tiles = ownedTiles(state, playerId).sort((a, b) => state.layout.board[a].price - state.layout.board[b].price);
     while (p.money < 0 && tiles.length) {
       const i = tiles.shift();
@@ -813,7 +942,14 @@ const Engine = (function () {
     if (fx.rentFree) { p.rentFree = 1; addLog(state, p.name + ' 獲得一次租金豁免。'); }
     if (fx.freeUpgrade) applyFreeUpgrade(state, p);
     if (fx.study) sendToStudy(state, p, '突擊測驗不合格');
-    if (!state.over) setNotice(state, p, { kind: 'chance', cardId: card.id, title: card.title, text: card.text, info: card.info });
+    // 盛事帶動板塊（下輪股價上漲）
+    let boostNote = '';
+    if (CARD_BOOST[card.id]) {
+      CARD_BOOST[card.id].forEach(sec => { state.boost[sec] = 1; });
+      boostNote = '📈 盛事帶動：' + CARD_BOOST[card.id].map(stockName).join('、') + ' 板塊下輪看漲！';
+      addLog(state, boostNote);
+    }
+    if (!state.over) setNotice(state, p, { kind: 'chance', cardId: card.id, title: card.title, text: card.text + (boostNote ? '\n' + boostNote : ''), info: card.info });
     noteLeader(state);
   }
 
@@ -936,6 +1072,29 @@ const Engine = (function () {
         applyFreeUpgrade(state, p);
         contFlow(state, p);
         break;
+      case 'stockEx': {
+        // 市場快訊：預告下輪某板塊漲跌 + 下一次交易免手續費
+        const s = STOCKS[rndInt(state, STOCKS.length)];
+        const dir = rnd(state) < 0.6 ? 1 : -1;
+        state.news = { sector: s.id, dir: dir, round: state.round };
+        p.freeFee++;
+        addLog(state, '📈 ' + p.name + ' 在交易所獲得市場快訊，下次交易免手續費。');
+        setNotice(state, p, {
+          kind: 'stockEx', title: '濠港交易所 · 市場快訊',
+          text: '消息指「' + s.name + '」板塊下輪' + (dir > 0 ? '看漲 📈' : '看跌 📉') + '！你下次股票交易免手續費。',
+          info: '信息就是價值：提前知道漲跌方向，可以低買高賣。'
+        });
+        break;
+      }
+      case 'bank': {
+        if (p.money <= 0 && p.bankDeposit <= 0) {
+          addLog(state, p.name + ' 兩手空空，路過銀行。');
+          contFlow(state, p);
+        } else {
+          state.pending = { kind: 'bank', player: p.id };
+        }
+        break;
+      }
       default:
         contFlow(state, p);
     }
@@ -954,6 +1113,8 @@ const Engine = (function () {
         state.round++;
         if (state.round > state.maxRounds) { finishGame(state, null); return; }
         addLog(state, '—— 第 ' + state.round + ' 回合開始 ——');
+        // 每輪結束：股價更新 + 存款利息
+        updateMarket(state);
         // 金紫荊獎券：每輪 12% 機率全場抽一名玩家發獎金
         if (rnd(state) < 0.12) {
           const lucky = alive[rndInt(state, alive.length)];
@@ -1001,9 +1162,18 @@ const Engine = (function () {
           streak: 0,
           rentFree: 0,
           doubleNext: false,
-          items: []
+          items: [],
+          holdings: {},
+          bankDeposit: 0,
+          stockCost: 0,
+          realizedPL: 0,
+          interestEarned: 0,
+          freeFee: 0
         };
       }),
+      stocks: STOCKS.reduce((m, s) => { m[s.id] = { price: 100, hist: [100] }; return m; }, {}),
+      boost: {},
+      news: null,
       props: {},
       chanceDeck: null, chancePtr: 0,
       quizUsed: {},
@@ -1032,8 +1202,9 @@ const Engine = (function () {
 
     switch (pd.kind) {
       case 'roll': {
+        if (action.type === 'trade') { const r = trade(state, p, action.sector, action.qty); noteLeader(state); return r; }
         if (action.type !== 'roll') return { ok: false, error: '請擲骰' };
-        const d1 = 1 + rndInt(state, 6), d2 = 1 + rndInt(state, 6);
+        const d1 = 1 + rndInt(state, 4), d2 = 1 + rndInt(state, 4); // v3：兩顆四面骰（2–8 點）
         let total = d1 + d2;
         if (p.doubleNext) { total *= 2; p.doubleNext = false; addLog(state, '🎲 雙倍骰生效！'); }
         if (p.charId === 'bruce' && !p.bruceUsed) { total += 1; p.bruceUsed = true; } // 李小龍 +1 格
@@ -1155,7 +1326,28 @@ const Engine = (function () {
         contFlow(state, p);
         return { ok: true };
       }
+      case 'bank': {
+        if (action.type !== 'bank') return { ok: false, error: '請選擇銀行操作' };
+        if (action.mode === 'depositHalf') {
+          const amt = Math.floor(p.money / 2);
+          if (amt <= 0) return { ok: false, error: '現金不足' };
+          p.money -= amt;
+          p.bankDeposit += amt;
+          addLog(state, '🏦 ' + p.name + ' 存入 $' + amt + '，每輪結算 2% 利息。');
+        } else if (action.mode === 'withdrawAll') {
+          if (p.bankDeposit <= 0) return { ok: false, error: '沒有存款' };
+          p.money += p.bankDeposit;
+          addLog(state, '🏦 ' + p.name + ' 取出全部存款 $' + p.bankDeposit + '。');
+          p.bankDeposit = 0;
+        } else {
+          addLog(state, p.name + ' 路過銀行，沒有辦理業務。');
+        }
+        noteLeader(state);
+        contFlow(state, p);
+        return { ok: true };
+      }
       case 'turnEnd': {
+        if (action.type === 'trade') { const r = trade(state, p, action.sector, action.qty); noteLeader(state); return r; }
         if (action.type === 'upgrade') {
           const i = action.tile;
           const prop = state.props[i];
@@ -1274,7 +1466,24 @@ const Engine = (function () {
         if (p.money > 500 && !p.doubleNext) return { type: 'shopBuy', item: 'doubleDice' };
         return { type: 'shopBuy', item: null };
       }
+      case 'bank': {
+        if (p.bankDeposit > 0 && p.money < 300) return { type: 'bank', mode: 'withdrawAll' };
+        if (p.money > 800) return { type: 'bank', mode: 'depositHalf' };
+        return { type: 'bank', mode: 'skip' };
+      }
       case 'turnEnd': {
+        // 股市：現金超過 $600 時把多餘部分 1/3 分散買入最便宜的 2–3 個板塊
+        if (p.money > 600) {
+          const budget = Math.floor((p.money - 600) / 3);
+          const cheap = STOCKS.slice().sort((a, b) => state.stocks[a.id].price - state.stocks[b.id].price);
+          for (const s of cheap) {
+            const owned = Object.keys(p.holdings).filter(k => p.holdings[k] > 0).length;
+            if (owned >= 3 && !p.holdings[s.id]) continue;
+            const price = state.stocks[s.id].price;
+            const qty = Math.floor(budget / Math.max(1, Math.round(price * 1.01)));
+            if (qty >= 1) return { type: 'trade', sector: s.id, qty: qty };
+          }
+        }
         // 連排組優先升級
         const ups = ownedTiles(state, p.id).filter(i => {
           const prop = state.props[i];
@@ -1296,7 +1505,9 @@ const Engine = (function () {
   return {
     createGame, act, aiAction, calcRent, assetValue, buyPrice, upgradeCost,
     ownsFullGroup, groupTiles, ownedTiles, alivePlayers, runLength, runMult, computeRuns,
-    getLayout, buildLayout, WHEEL_OUTCOMES, TILE_META
+    getLayout, buildLayout, WHEEL_OUTCOMES, TILE_META,
+    trade, stockValue, totalShares, updateMarket,
+    STOCKS, STOCK_TIPS, CARD_BOOST
   };
 })();
 
@@ -1312,6 +1523,8 @@ const MFT2 = {
     ITEMS: ITEMS,
     CHANCE_CARDS: CHANCE_CARDS,
     QUESTIONS: QUESTIONS,
+    STOCKS: Engine.STOCKS,
+    STOCK_TIPS: Engine.STOCK_TIPS,
     MAP_SIZE: 99
   }
 };
@@ -1717,9 +1930,22 @@ function renderCodex() {
     });
     lmBox.appendChild(div);
   });
+  // 財商徽章
+  const bBox = document.createElement('div');
+  bBox.innerHTML = '<h3>🏅 財商徽章</h3>';
+  const bGroup = document.createElement('div');
+  bGroup.className = 'codex-group';
+  BADGES.forEach(bd => {
+    const unlocked = c.badges && c.badges[bd.id];
+    const item = document.createElement('div');
+    item.className = 'codex-item badge-item' + (unlocked ? '' : ' locked');
+    item.innerHTML = '<b>' + bd.emoji + ' ' + bd.name + '</b><p>' + (unlocked ? bd.desc + '（已獲得）' : bd.desc) + '</p>';
+    bGroup.appendChild(item);
+  });
+  bBox.appendChild(bGroup);
+  lmBox.appendChild(bBox);
   const qBox = $('codex-questions');
-  qBox.innerHTML = '<h3>📖 文脈題目（56）</h3>';
-  ['P', 'S'].forEach(lv => {
+  qBox.innerHTML = '<h3>📖 文脈題目（56）</h3>';  ['P', 'S'].forEach(lv => {
     const qs = DATA.QUESTIONS.filter(q => q.lv === lv);
     const got = qs.filter(q => c.questions[q.id]).length;
     const div = document.createElement('div');
@@ -1765,13 +1991,45 @@ const Net = { mode: 'local', inGame: false };
 
 const CELL = 46; // 每格像素
 
-/* ---------- 視角相機（拖動平移 + 滾輪/雙指縮放 + 2D/3D 切換） ---------- */
-const Cam = { x: 0, y: 0, s: 1, is3d: true };
+/* ---------- 視角相機（拖動平移 + 滾輪/雙指縮放 + 2D/3D 切換 + 跟隨鏡頭） ---------- */
+const Cam = { x: 0, y: 0, s: 1, is3d: true, follow: Store.get('mft2_follow', true) };
+let savedCam = null;
 
 function applyCam() {
   $('board-world').style.transform = 'translate(' + Cam.x + 'px,' + Cam.y + 'px) scale(' + Cam.s + ')';
   $('board-plane').classList.toggle('mode3d', Cam.is3d);
   $('btn-view-toggle').textContent = Cam.is3d ? '🗺️ 2D' : '🏔️ 3D';
+}
+
+// 平滑移動鏡頭至指定格子居中（3D/2D 都生效）
+// 兩段式：先關過渡即時量度目標位置，再開過渡平滑移動（避免過渡中量度漂移）
+function centerOnTile(tileIdx, scale) {
+  const world = $('board-world');
+  const el = $('tile-' + tileIdx);
+  if (!el) return;
+  const vp = $('board-viewport');
+  const fromX = Cam.x, fromY = Cam.y, fromS = Cam.s;
+  world.classList.remove('smooth');
+  Cam.s = scale;
+  applyCam();
+  const r = el.getBoundingClientRect();   // 同步 reflow，量度準確
+  const vr = vp.getBoundingClientRect();
+  const tx = fromX + (vr.left + vr.width / 2) - (r.left + r.width / 2);
+  const ty = fromY + (vr.top + vr.height / 2) - (r.top + r.height / 2);
+  Cam.x = fromX; Cam.y = fromY; Cam.s = fromS;
+  applyCam();
+  void world.offsetWidth;                  // 提交原位
+  world.classList.add('smooth');
+  Cam.x = tx; Cam.y = ty; Cam.s = scale;   // 平滑移向目標
+  applyCam();
+}
+
+function restoreCam(cam) {
+  const world = $('board-world');
+  world.classList.add('smooth');
+  Cam.x = cam.x; Cam.y = cam.y; Cam.s = cam.s;
+  applyCam();
+  setTimeout(() => world.classList.remove('smooth'), 500);
 }
 
 function fitBoard() {
@@ -1801,6 +2059,7 @@ function initCamera() {
   });
   vp.addEventListener('pointermove', e => {
     if (!pointers.has(e.pointerId)) return;
+    $('board-world').classList.remove('smooth'); // 手動拖動即時跟手
     const prev = pointers.get(e.pointerId);
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (Math.hypot(e.clientX - downX, e.clientY - downY) > 6) moved = true;
@@ -1846,12 +2105,24 @@ function initCamera() {
   $('btn-zoom-in').onclick = () => { Cam.s = Math.min(2.5, Cam.s * 1.2); applyCam(); };
   $('btn-zoom-out').onclick = () => { Cam.s = Math.max(0.2, Cam.s / 1.2); applyCam(); };
   $('btn-view-toggle').onclick = () => { Cam.is3d = !Cam.is3d; applyCam(); };
+  $('btn-follow').onclick = () => {
+    Cam.follow = !Cam.follow;
+    Store.set('mft2_follow', Cam.follow);
+    updateFollowBtn();
+    toast(Cam.follow ? '自動跟隨鏡頭：開' : '自動跟隨鏡頭：關');
+  };
+  updateFollowBtn();
   $('btn-mute').onclick = () => {
     const m = Sound.toggle();
     $('btn-mute').textContent = m ? '🔇' : '🔊';
     toast(m ? '音效已靜音' : '音效已開啟');
   };
   $('btn-mute').textContent = Sound.muted ? '🔇' : '🔊';
+}
+
+function updateFollowBtn() {
+  const b = $('btn-follow');
+  if (b) { b.textContent = Cam.follow ? '🎬' : '🚫'; b.title = '跟隨鏡頭：' + (Cam.follow ? '開' : '關'); }
 }
 
 /* ---------- 棋盤構建 ---------- */
@@ -2056,6 +2327,8 @@ function updateButtons() {
   $('btn-roll').classList.toggle('hidden', !(pd && pd.kind === 'roll' && isCtrl));
   $('btn-end-turn').classList.toggle('hidden', !(pd && pd.kind === 'turnEnd' && isCtrl));
   $('btn-manage').classList.toggle('hidden', !(pd && pd.kind === 'turnEnd' && isCtrl));
+  // 股市：自己回合內（擲骰前/行動階段）隨時可開
+  $('btn-stock').classList.toggle('hidden', !(pd && (pd.kind === 'roll' || pd.kind === 'turnEnd') && isCtrl));
   if (pd && pd.again && pd.kind === 'roll') $('btn-roll').innerHTML = '🎲 雙同點再擲';
   else $('btn-roll').innerHTML = '🎲 擲骰';
 }
@@ -2068,10 +2341,12 @@ function render() {
   updatePlayersBar();
   updateLog();
   updateButtons();
+  checkBadges();
   processFx();
   const anim = st.anim;
   if (anim && anim.id !== G.playedAnim && !G.animating) {
     G.playedAnim = anim.id;
+    toast('PLAY-BRANCH ' + anim.id);
     playAnim(anim, () => { updateBoard(); showPending(); maybeRunAI(); });
     updateBoard();
   } else if (!G.animating) {
@@ -2081,16 +2356,39 @@ function render() {
   }
 }
 
-/* ---------- 骰子 3D 方塊 ---------- */
-const DIE_ROT = { 1: 'rotateX(0deg)', 2: 'rotateX(-90deg)', 3: 'rotateY(-90deg)', 4: 'rotateY(90deg)', 5: 'rotateX(90deg)', 6: 'rotateY(180deg)' };
+/* ---------- 骰子 3D 方塊（v3：四面骰 1–4） ---------- */
+const DIE_ROT = { 1: 'rotateX(0deg)', 2: 'rotateX(-90deg)', 3: 'rotateY(-90deg)', 4: 'rotateY(90deg)' };
 function setDieFace(el, v) {
-  el.style.transform = DIE_ROT[v] || DIE_ROT[1];
+  el.style.transform = DIE_ROT[Math.min(4, Math.max(1, v))] || DIE_ROT[1];
 }
 
-/* ---------- 動畫：骰子翻滾 + 棋子逐格跳躍 ---------- */
+/* ---------- 動畫：骰子翻滾 + 棋子逐格跳躍 + 跟隨鏡頭 + 軌跡微亮 ---------- */
+const STEP_MS = 450; // 每格停留（可調）
+function trailLight(tileIdx) {
+  const el = $('tile-' + tileIdx);
+  if (!el) return;
+  el.classList.add('trail-lit');
+  setTimeout(() => el.classList.remove('trail-lit'), 1500);
+}
+
 function playAnim(anim, done) {
   G.animating = true;
-  const finish = () => { G.animating = false; done(); };
+
+  const world = $('board-world');
+  const finish = () => {
+    G.animating = false;
+    done();
+    // 落格結算約 1.2 秒後拉回全域視角
+    if (savedCam) {
+      const sc = savedCam;
+      savedCam = null;
+      setTimeout(() => { restoreCam(sc); }, 1200);
+    } else {
+      world.classList.remove('smooth');
+    }
+  };
+  const following = Cam.follow && anim.path && anim.path.length > 0;
+  if (following && !savedCam) savedCam = { x: Cam.x, y: Cam.y, s: Cam.s };
   const steps = () => {
     const path = anim.path || [];
     if (!path.length) { finish(); return; }
@@ -2098,14 +2396,16 @@ function playAnim(anim, done) {
     let i = 0;
     const step = () => {
       placeToken(anim.player, path[i]);
+      trailLight(path[i]);
+      if (following) centerOnTile(path[i], 1.8); // 拉近至 1.6–2.0×
       if (tok) {
         tok.classList.remove('hop');
         void tok.offsetWidth;
         tok.classList.add('hop');
       }
       i++;
-      if (i < path.length) setTimeout(step, anim.tele ? 350 : 200);
-      else setTimeout(finish, 240);
+      if (i < path.length) setTimeout(step, anim.tele ? 500 : STEP_MS);
+      else setTimeout(finish, 300);
     };
     step();
   };
@@ -2383,6 +2683,17 @@ function showPending() {
         ]);
       break;
     }
+    case 'bank': {
+      openModal('🏦 港澳銀行',
+        '<p class="notice-text">存款每輪結算 2% 利息（複利滾存），計入總資產的安全之選。</p>' +
+        '<p class="modal-cash">現金 ' + money(p.money) + ' · 存款 ' + money(p.bankDeposit) + '（累計利息 ' + money(p.interestEarned) + '）</p>',
+        [
+          { label: '存入一半現金（' + money(Math.floor(p.money / 2)) + '）', onClick: () => { closeModal(); dispatch({ type: 'bank', mode: 'depositHalf', player: pd.player }); } },
+          { label: '取出全部存款', cls: 'btn-navy', onClick: () => { closeModal(); dispatch({ type: 'bank', mode: 'withdrawAll', player: pd.player }); } },
+          { label: '不需要', cls: 'btn-ghost', onClick: () => { closeModal(); dispatch({ type: 'bank', mode: 'skip', player: pd.player }); } }
+        ]);
+      break;
+    }
     case 'shopBuy': {
       let html = '<p class="notice-text">老字號雜貨店，每人最多持 2 件道具（現有 ' + p.items.length + ' 件）。</p>';
       html += '<p class="modal-cash">你現有 ' + money(p.money) + '</p>';
@@ -2509,6 +2820,107 @@ function openSwapTarget(pid, give) {
   });
 }
 
+/* ---------- 股市面板（回合內隨時可開） ---------- */
+let stockTipTimer = null;
+function openStock() {
+  const st = G.state;
+  const pd = st.pending;
+  if (!pd || (pd.kind !== 'roll' && pd.kind !== 'turnEnd')) return;
+  const p = st.players[pd.player];
+  let html = '';
+  if (st.news) {
+    const s = DATA.STOCKS.find(x => x.id === st.news.sector);
+    html += '<div class="news-banner">📰 市場快訊：消息指「' + s.name + '」板塊下輪' + (st.news.dir > 0 ? '看漲 📈' : '看跌 📉') + '</div>';
+  }
+  if (p.freeFee > 0) html += '<p class="gold-text" style="font-size:.82rem">🎟️ 你下次交易免手續費！</p>';
+  html += '<p class="muted" style="font-size:.78rem">整股交易，手續費 1%（交易成本）。持股按市值計入總資產。</p>';
+  DATA.STOCKS.forEach(s => {
+    const sd = st.stocks[s.id];
+    const shares = p.holdings[s.id] || 0;
+    const prev = sd.hist.length > 1 ? sd.hist[sd.hist.length - 2] : sd.hist[0];
+    const delta = sd.price - prev;
+    const pl = shares > 0 ? (shares * sd.price - Math.round(p.stockCost * shares / Math.max(1, ENGINE.totalShares(p)))) : 0;
+    html += '<div class="stock-row">' +
+      '<div class="stock-head"><span>' + s.emoji + ' <b>' + s.name + '</b></span>' +
+      '<span class="stock-price">$' + sd.price + ' <small class="' + (delta >= 0 ? 'up' : 'down') + '">' + (delta >= 0 ? '▲' : '▼') + Math.abs(delta) + '</small></span></div>' +
+      '<div class="stock-mid"><canvas class="sparkline" data-sector="' + s.id + '" width="120" height="30"></canvas>' +
+      '<span class="stock-hold">' + (shares > 0 ? '持 ' + shares + ' 股 · 盈虧 ' + (pl >= 0 ? '+' : '') + pl : s.blurb) + '</span></div>' +
+      '<div class="stock-btns">' +
+      '<button class="btn btn-mini" data-buy="' + s.id + '"' + (p.money < sd.price + Math.max(1, Math.round(sd.price * 0.01)) ? ' disabled' : '') + '>買 1 股</button>' +
+      '<button class="btn btn-mini btn-ghost" data-sell="' + s.id + '"' + (shares < 1 ? ' disabled' : '') + '>賣 1 股</button>' +
+      '</div></div>';
+  });
+  html += '<div class="stock-tip" id="stock-tip">💡 ' + DATA.STOCK_TIPS[0] + '</div>';
+  openModal('📈 濠港股市 · 現金 ' + money(p.money), html, [{ label: '關閉', onClick: () => { closeModal(); clearInterval(stockTipTimer); } }]);
+  // 迷你走勢圖
+  $('modal-body').querySelectorAll('.sparkline').forEach(cv => drawSparkline(cv, st.stocks[cv.dataset.sector].hist));
+  // 財商提示輪播
+  let ti = 0;
+  clearInterval(stockTipTimer);
+  stockTipTimer = setInterval(() => {
+    const el = $('stock-tip');
+    if (!el) { clearInterval(stockTipTimer); return; }
+    ti = (ti + 1) % DATA.STOCK_TIPS.length;
+    el.textContent = '💡 ' + DATA.STOCK_TIPS[ti];
+  }, 2600);
+  // 買賣
+  $('modal-body').querySelectorAll('[data-buy]').forEach(btn => {
+    btn.onclick = () => { dispatch({ type: 'trade', sector: btn.dataset.buy, qty: 1, player: pd.player }); if (Net.mode !== 'client') openStock(); };
+  });
+  $('modal-body').querySelectorAll('[data-sell]').forEach(btn => {
+    btn.onclick = () => { dispatch({ type: 'trade', sector: btn.dataset.sell, qty: -1, player: pd.player }); if (Net.mode !== 'client') openStock(); };
+  });
+}
+
+function drawSparkline(cv, hist) {
+  const ctx = cv.getContext('2d');
+  const w = cv.width, h = cv.height;
+  ctx.clearRect(0, 0, w, h);
+  if (!hist.length) return;
+  const min = Math.min.apply(null, hist), max = Math.max.apply(null, hist);
+  const range = Math.max(1, max - min);
+  ctx.strokeStyle = hist[hist.length - 1] >= hist[0] ? '#3e8e5a' : '#b03a2e';
+  ctx.lineWidth = 2;
+  ctx.beginPath();
+  hist.forEach((v, i) => {
+    const x = 3 + (i / Math.max(1, hist.length - 1)) * (w - 6);
+    const y = h - 4 - ((v - min) / range) * (h - 8);
+    if (i === 0) ctx.moveTo(x, y); else ctx.lineTo(x, y);
+  });
+  ctx.stroke();
+}
+
+/* ---------- 財商徽章 ---------- */
+const BADGES = [
+  { id: 'firstStock', name: '初入股市', emoji: '📈', desc: '首次買入股票' },
+  { id: 'diversified', name: '分散投資', emoji: '🧺', desc: '同時持有 3 個板塊' },
+  { id: 'guru', name: '股神附體', emoji: '🦅', desc: '股票浮盈達 50%' },
+  { id: 'compound', name: '複利的力量', emoji: '🏦', desc: '存款利息累計 $100' }
+];
+function checkBadges() {
+  const st = G.state;
+  if (!st) return;
+  const myIds = Net.mode === 'client' ? [G.myId] : (Net.mode === 'host' ? [0] : st.players.filter(p => !p.isAI).map(p => p.id));
+  const c = getCodex();
+  if (!c.badges) c.badges = {};
+  let changed = false;
+  myIds.forEach(id => {
+    const p = st.players[id];
+    if (!p || p.bankrupt) return;
+    const held = DATA.STOCKS.filter(s => (p.holdings[s.id] || 0) > 0).length;
+    if (held >= 1 && !c.badges.firstStock) { c.badges.firstStock = true; changed = '初入股市'; }
+    if (held >= 3 && !c.badges.diversified) { c.badges.diversified = true; changed = '分散投資'; }
+    const mv = ENGINE.stockValue(st, id);
+    if (p.stockCost > 0 && mv >= p.stockCost * 1.5 && !c.badges.guru) { c.badges.guru = true; changed = '股神附體'; }
+    if (p.interestEarned >= 100 && !c.badges.compound) { c.badges.compound = true; changed = '複利的力量'; }
+  });
+  if (changed) {
+    Store.set(LSK.codex, c);
+    toast('🏅 獲得財商徽章「' + changed + '」！');
+    Sound.play('right');
+  }
+}
+
 /* ---------- 操作分發 ---------- */
 function dispatch(action) {
   if (Net.mode === 'client') { MFT2Online.sendIntent(action); return; }
@@ -2549,10 +2961,10 @@ function maybeShowTutorial(pd, ctrl) {
     return;
   }
   const tips = {
-    1: '👋 歡迎！棋盤可拖動平移、滾輪/雙指縮放，右上角可切換 2D/3D 視角。點「擲骰」出發！',
+    1: '👋 歡迎！現在是兩顆四面骰（2–8 點），行走時鏡頭會自動拉近跟隨（右上角 🎬 可關閉），邊走邊看清地名！',
     2: '🏛️ 買下地標可收租；若與相鄰自有物業連成一排（連排），租金再加倍，棋盤上有金帶標示！',
     3: '⬆️ 集齊同色全組後，回合結束前點「管理地標」加蓋建築（平房→騎樓→塔樓），租金大增！',
-    4: '🏪 留意新功能格：幸運輪盤、纜車傳送、雙倍骰、道具店。道具每人最多持 2 件！'
+    4: '📈 新玩法：自己回合內點「股市」買賣六檔板塊股（盛事會帶動板塊！）；落「港澳銀行」存款每輪賺 2% 利息！'
   };
   $('tut-text').textContent = tips[G.state.round] || '';
   bubble.classList.remove('hidden');
@@ -2583,6 +2995,12 @@ function showResult() {
   const lmCount = st.knowledge.landmarks.length;
   const qRight = st.knowledge.questionsRight.length;
   const qSeen = st.knowledge.questionsSeen.length;
+  // 股市盈虧與利息統計（全場合計）
+  let stockPL = 0, interest = 0;
+  st.players.forEach(pl => {
+    stockPL += pl.realizedPL + (ENGINE.stockValue(st, pl.id) - pl.stockCost);
+    interest += pl.interestEarned;
+  });
   const codex = getCodex();
   const codexNow = Object.keys(codex.landmarks).length + Object.keys(codex.questions).length;
   const delta = Math.max(0, codexNow - (G.codexBefore || 0));
@@ -2593,6 +3011,11 @@ function showResult() {
     '<div class="stat-cell"><div class="stat-num">' + qRight + ' / ' + qSeen + '</div><div class="stat-label">文脈答對 / 作答</div></div>' +
     '<div class="stat-cell"><div class="stat-num">+' + delta + '</div><div class="stat-label">圖鑑新增收集</div></div>' +
     '<div class="stat-cell"><div class="stat-num">' + Math.round(codexNow / (DATA.LANDMARKS.length + DATA.QUESTIONS.length) * 100) + '%</div><div class="stat-label">圖鑑總進度</div></div>' +
+    '</div>' +
+    '<h3>📈 本局財商統計（全場）</h3>' +
+    '<div class="stat-grid">' +
+    '<div class="stat-cell"><div class="stat-num">' + (stockPL >= 0 ? '+' : '') + money(stockPL) + '</div><div class="stat-label">股市盈虧</div></div>' +
+    '<div class="stat-cell"><div class="stat-num">' + money(interest) + '</div><div class="stat-label">存款利息收入</div></div>' +
     '</div>';
   if (!G.statsRecorded) {
     G.statsRecorded = true;
@@ -2774,6 +3197,7 @@ function initGameButtons() {
     if (pd && pd.kind === 'turnEnd') { pendingModalKey = null; dispatch({ type: 'end', player: pd.player }); }
   };
   $('btn-manage').onclick = openManage;
+  $('btn-stock').onclick = openStock;
   $('btn-game-quit').onclick = () => {
     openModal('離開遊戲？', '<p class="notice-text">目前進度將不會保存（圖鑑收集會保留）。</p>', [
       { label: '繼續遊戲', onClick: closeModal },
@@ -2804,6 +3228,7 @@ function boot() {
   wireOnline();
   $('btn-help-back').onclick = () => showScreen('screen-menu');
   showScreen('screen-menu');
+
 }
 
 if (document.readyState === 'loading') {

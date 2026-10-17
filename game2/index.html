@@ -6,7 +6,7 @@
 <meta name="theme-color" content="#16264c">
 <title>濠港雙城大亨 — 港澳文化大富翁 3D</title>
 <meta name="description" content="擲骰遊雙城，邊玩邊學港澳史！3D 大地圖版：99 格 10 種走勢、70 地標、15 位歷史人物。澳門財經科技與教育發展學會港澳文化教育遊戲。">
-<link rel="stylesheet" href="style.css?v=2">
+<link rel="stylesheet" href="style.css?v=3">
 <link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 64 64'%3E%3Crect width='64' height='64' rx='14' fill='%2316264c'/%3E%3Ctext x='32' y='44' font-size='34' text-anchor='middle' fill='%23d4af37' font-family='serif' font-weight='bold'%3E濠%3C/text%3E%3C/svg%3E">
 </head>
 <body>
@@ -76,7 +76,9 @@
       <h3>🗺️ 大地圖與視角</h3>
       <p>99 格大地圖，10 種走勢任選。棋盤可拖動平移、滾輪/雙指縮放，右上角隨時切換 2D/3D 視角。</p>
       <h3>🎲 基本流程</h3>
-      <p>輪流擲 2 顆骰子前進。初始資金 $1500，經過起點領 $200。雙同點再擲一次；連續三次雙同點罰入自修室！</p>
+      <p>輪流擲 2 顆四面骰（2–8 點）前進，行走時鏡頭自動拉近跟隨（右上角 🎬 可關閉）。初始資金 $1500，經過起點領 $200。雙同點再擲一次；連續三次雙同點罰入自修室！</p>
+      <h3>📈 股市投資</h3>
+      <p>自己回合內點「股市」買賣 6 檔港澳板塊股（旅遊休閒/會展商貿/金融科技/公用事業/文化創意/交通基建），整股交易、手續費 1%。每輪結束股價隨機波動；盛事機緣卡會帶動相關板塊！落「濠港交易所」格獲市場快訊 + 免手續費；落「港澳銀行」格存款，每輪收 2% 複利。持股與存款都計入總資產，破產會被強制清算。</p>
       <h3>🏛️ 地標、連排與建築</h3>
       <p>基礎租金 = 地價 10%。集齊同色全組 ×2 並可付費加蓋（最多 3 級，每級 +50% 基礎）。路徑上相鄰的自有物業形成「連排」：2 連排 ×2、3 連排 ×2.5、4 連排以上 ×3，與集齊/升級乘算疊加，棋盤以金帶標示！</p>
       <h3>🎡 新功能格</h3>
@@ -153,11 +155,12 @@
         <button id="btn-view-toggle" title="切換 2D/3D">🗺️ 2D</button>
         <button id="btn-zoom-in" title="放大">＋</button>
         <button id="btn-zoom-out" title="縮小">－</button>
+        <button id="btn-follow" title="跟隨鏡頭：開">🎬</button>
         <button id="btn-mute" title="音效開關">🔊</button>
       </div>
       <div id="dice-dock">
-        <div class="die-cube" id="die-1"><div class="df df1">⚀</div><div class="df df2">⚁</div><div class="df df3">⚂</div><div class="df df4">⚃</div><div class="df df5">⚄</div><div class="df df6">⚅</div></div>
-        <div class="die-cube" id="die-2"><div class="df df1">⚀</div><div class="df df2">⚁</div><div class="df df3">⚂</div><div class="df df4">⚃</div><div class="df df5">⚄</div><div class="df df6">⚅</div></div>
+        <div class="die-cube" id="die-1"><div class="df df1">1</div><div class="df df2">2</div><div class="df df3">3</div><div class="df df4">4</div><div class="df df5">2</div><div class="df df6">3</div></div>
+        <div class="die-cube" id="die-2"><div class="df df1">1</div><div class="df df2">2</div><div class="df df3">3</div><div class="df df4">4</div><div class="df df5">2</div><div class="df df6">3</div></div>
       </div>
       <div id="log-dock"><div id="game-log"></div></div>
       <div id="fx-layer"></div>
@@ -171,6 +174,7 @@
     <div id="players-bar"></div>
     <div id="action-bar">
       <button class="btn btn-gold" id="btn-roll">🎲 擲骰</button>
+      <button class="btn btn-navy" id="btn-stock">📈 股市</button>
       <button class="btn btn-navy" id="btn-manage">⬆️ 管理地標</button>
       <button class="btn btn-red" id="btn-end-turn">✔️ 結束回合</button>
       <button class="btn btn-ghost btn-mini" id="btn-game-quit">離開</button>
@@ -199,7 +203,7 @@
   <div id="toast"></div>
 
 </div>
-<script src="online.js?v=2" defer></script>
-<script src="game.js?v=2" defer></script>
+<script src="online.js?v=3" defer></script>
+<script src="game.js?v=3" defer></script>
 </body>
 </html>
