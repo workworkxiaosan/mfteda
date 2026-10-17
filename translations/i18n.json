@@ -1,0 +1,425 @@
+{
+  "i18n": {
+    "fr": {
+      "nav": {
+        "home": "Accueil",
+        "about": "À propos",
+        "research": "Domaines de recherche",
+        "projects": "Projets clés",
+        "publications": "Publications",
+        "insights": "Perspectives",
+        "partners": "Partenaires",
+        "contact": "Contact",
+        "policy": "Politiques d’investissement",
+        "news": "Actualités"
+      },
+      "hero": {
+        "headline": "La recherche au service de la décision : faire de Macao un pont entre la Chine et les pays de langue portugaise,\nespagnole et française, ainsi que les pays et régions le long de « la Ceinture et la Route »",
+        "subtitle": "La MFTEDA s’engage à promouvoir le développement diversifié, durable et de haute qualité de la RAS de Macao",
+        "cta1": "En savoir plus",
+        "cta2": "Domaines de recherche",
+        "cta3": "Contactez-nous"
+      },
+      "about": {
+        "title": "À propos de nous",
+        "subtitle": "Un groupe de réflexion à but non lucratif au service du développement diversifié de Macao",
+        "description1": "Finalités de l’Association de Macao pour le développement des technologies financières et de l’éducation : ancrée à Macao, adossée à la mère patrie et tournée vers le monde, l’association répond activement à la stratégie du gouvernement central visant à soutenir la diversification appropriée de l’économie de Macao et son intégration dans le développement global du pays. Elle se consacre à l’innovation financière, au commerce électronique, à la mondialisation des entreprises, à la fusion entre culture et technologie et à la coopération dans la Grande Baie Guangdong-Hong Kong-Macao ; elle promeut le développement innovant du secteur financier moderne de Macao, approfondit la coopération financière transfrontalière et aide Macao à se doter d’un centre financier international ; elle tisse des liens étroits avec tous les milieux de la société pour approfondir la coopération pragmatique entre Macao, l’intérieur de la Chine et les pays de langue portugaise dans les domaines de l’économie, de la finance, de la technologie, de l’éducation et de la culture, enrichir le contenu de la plateforme sino-lusophone et servir la construction de « la Ceinture et la Route » ainsi que la nouvelle dynamique de développement de la « double circulation » ; elle favorise la recherche scientifique et technologique et la valorisation de ses résultats, accélère le développement des industries de haute technologie, soutient l’intégration étroite entre entreprises, universités et instituts de recherche dans des domaines tels que l’intelligence artificielle, l’économie numérique et les technologies financières, et renforce la compétitivité internationale de Macao en matière de talents ; elle soutient vigoureusement le développement des industries culturelles de Macao, promeut l’innovation par la fusion entre culture et technologie, développe de nouvelles activités telles que la création culturelle numérique, les applications technologiques du patrimoine culturel immatériel et les expériences immersives de tourisme culturel, et aide Macao à devenir une « ville de culture » et une base d’échanges et de coopération où coexistent des cultures diverses. Ce faisant, elle contribue à la diversification appropriée, durable et de haute qualité de l’économie de Macao, aide Macao à mieux s’intégrer dans le développement global du pays, joue un rôle de trait d’union privilégié dans une ouverture de plus haut niveau, œuvre à la prospérité et au progrès communs et apporte sa sagesse au grand renouveau de la nation chinoise.",
+        "description2": "Nous nous concentrons sur la stratégie nationale, la coopération dans le cadre de « la Ceinture et la Route », la « double circulation », la coopération de la plateforme sino-lusophone et une ouverture de plus haut niveau.",
+        "focusAreas": "Domaines prioritaires",
+        "area1": "Innovation financière",
+        "area2": "Commerce électronique",
+        "area3": "Mondialisation des entreprises",
+        "area4": "Intégration de la culture et de la technologie",
+        "area5": "Coopération de la Grande Baie",
+        "initiatives": "Principales initiatives",
+        "initiative1": "Développement de la finance moderne",
+        "initiative2": "Coopération financière transfrontalière",
+        "initiative3": "Recherche scientifique et valorisation technologique",
+        "initiative4": "IA et économie numérique",
+        "initiative5": "Innovation fintech",
+        "initiative6": "Développement des talents",
+        "initiative7": "Innovation des industries culturelles de Macao"
+      },
+      "mission": {
+        "title": "Mission et finalités",
+        "subtitle": "Notre vision et nos objectifs stratégiques",
+        "visionTitle": "Vision",
+        "visionText": "Devenir un groupe de réflexion de premier plan qui favorise le développement de la RAS de Macao, sert la stratégie nationale et promeut les échanges internationaux.",
+        "missionTitle": "Mission",
+        "missionText": "Par une recherche de haute qualité, des recommandations en matière de politiques publiques et la coopération internationale, nous promouvons la diversification économique de Macao, l’intégration de la Grande Baie et la coopération de la plateforme sino-lusophone.",
+        "objectivesTitle": "Objectifs stratégiques",
+        "objective1": "Promouvoir le développement de la finance moderne et de l’économie numérique",
+        "objective2": "Faciliter la coopération transfrontalière et la gouvernance régionale",
+        "objective3": "Soutenir l’innovation des politiques et l’intégration institutionnelle",
+        "objective4": "Former des talents professionnels et promouvoir les échanges académiques"
+      },
+      "research": {
+        "title": "Domaines de recherche",
+        "subtitle": "Douze grandes orientations — de l’économie numérique et de l’internationalisation du RMB à l’ESG et au développement durable — où la recherche éclaire la décision, au service du développement de Macao et du pays",
+        "area1": {
+          "title": "Économie numérique",
+          "description": "Explorer la transformation numérique, le commerce électronique et l’innovation de la finance numérique"
+        },
+        "area2": {
+          "title": "Internationalisation du RMB",
+          "description": "Étudier l’utilisation transfrontalière du RMB et la coopération financière internationale"
+        },
+        "area3": {
+          "title": "ESG et développement durable",
+          "description": "Promouvoir l’application des normes environnementales, sociales et de gouvernance (ESG) dans le secteur financier"
+        },
+        "area4": {
+          "title": "Économie de basse altitude",
+          "description": "Étudier les drones, la mobilité aérienne urbaine et d’autres industries émergentes"
+        },
+        "area5": {
+          "title": "Intégration institutionnelle de la Zone de coopération approfondie Guangdong-Macao à Hengqin",
+          "description": "Explorer l’innovation institutionnelle et la coordination des politiques dans la Zone de coopération approfondie"
+        },
+        "area6": {
+          "title": "Gouvernance régionale",
+          "description": "Étudier la gouvernance concertée de la Grande Baie et les mécanismes de coopération transfrontalière"
+        },
+        "area7": {
+          "title": "Réglementation des ports de libre-échange",
+          "description": "Analyser la réglementation douanière des ports de libre-échange et son alignement sur les normes internationales"
+        },
+        "area8": {
+          "title": "Finance moderne",
+          "description": "Promouvoir le développement de la fintech, de la finance verte et de la finance inclusive"
+        },
+        "area9": {
+          "title": "Culture et technologie",
+          "description": "Explorer l’intégration des industries culturelles et de l’innovation technologique"
+        },
+        "area10": {
+          "title": "Coopération transfrontalière",
+          "description": "Faciliter la coopération de la plateforme sino-lusophone et les échanges économiques et commerciaux internationaux"
+        },
+        "area11": {
+          "title": "Innovation des politiques",
+          "description": "Étudier les mécanismes de formulation, d’évaluation et d’optimisation des politiques"
+        },
+        "area12": {
+          "title": "Coûts de transfert de la confiance",
+          "description": "Étudier les mécanismes de construction et de transmission de la confiance dans la coopération transfrontalière ainsi que leurs coûts, afin d’aider les entreprises à réduire les risques de leur expansion à l’international"
+        }
+      },
+      "projects": {
+        "title": "Projets clés",
+        "subtitle": "Projets représentatifs de l’association en matière de vulgarisation du droit fiscal, de formation des jeunes, de valorisation de la recherche et de construction de la plateforme sino-lusophone — des résultats concrets au service de Macao, avec un rayonnement dans toute la Grande Baie",
+        "project1": {
+          "year": "2020",
+          "title": "Collection de manuels de connaissances fiscales pour les résidents de la RAS de Macao",
+          "description": "Rédaction et publication de manuels de vulgarisation du droit fiscal destinés à différents publics : éditions universitaire, communautaire et jeunesse, ainsi qu’un supplément."
+        },
+        "project2": {
+          "year": "2021",
+          "title": "Recherche sur l’innovation de la réglementation douanière du port de libre-échange de Hainan",
+          "description": "Participation au projet HNSK(ZD)21-182 : recherche sur l’innovation institutionnelle de la réglementation douanière du port de libre-échange de Hainan."
+        },
+        "project3": {
+          "year": "2023",
+          "title": "Comparaison internationale et alignement réglementaire de la réglementation douanière du port de libre-échange de Hainan",
+          "description": "Participation au projet HNSK(ZD)23-207 : étude comparative internationale de la réglementation douanière et analyse d’alignement sur les meilleures pratiques."
+        }
+      },
+      "publications": {
+        "title": "Publications",
+        "subtitle": "Collection « Manuel de connaissances fiscales pour les résidents de la RAS de Macao »",
+        "university": {
+          "title": "Édition universitaire",
+          "description": "Manuel de vulgarisation du droit fiscal destiné aux étudiants universitaires"
+        },
+        "community": {
+          "title": "Édition communautaire",
+          "description": "Manuel de vulgarisation du droit fiscal destiné aux résidents des communautés"
+        },
+        "youth": {
+          "title": "Édition jeunesse",
+          "description": "Manuel de vulgarisation du droit fiscal destiné aux jeunes"
+        },
+        "supplement": {
+          "title": "Supplément",
+          "description": "Matériel complémentaire de connaissances fiscales"
+        },
+        "readOnline": "Lire en ligne",
+        "downloadPDF": "Télécharger le PDF"
+      },
+      "insights": {
+        "title": "Perspectives",
+        "subtitle": "Recherches de notre groupe de réflexion et chroniques d’opinion : analyses approfondies des frontières financières et technologiques de Macao, de l’actualité de la Zone de coopération approfondie de Hengqin et des opportunités de la plateforme sino-lusophone",
+        "readMore": "Lire la suite"
+      },
+      "partners": {
+        "title": "Entités amies et partenaires stratégiques",
+        "subtitle": "Seize partenaires — institutions publiques, universités, instituts de recherche, associations et entreprises — constituant un réseau de collaboration industrie-université-recherche couvrant Macao, Hengqin et la Grande Baie",
+        "partner1": "Direction des services de l’économie et du développement technologique (DSEDT)",
+        "partner2": "Institut de promotion du commerce et de l’investissement (IPIM)",
+        "partner3": "Institut de droit de l’Académie chinoise des sciences sociales",
+        "partner4": "Fédération des Chinois d’outre-mer rapatriés de Pékin",
+        "partner5": "Université normale de Pékin",
+        "partner6": "Université de Guangzhou",
+        "partner7": "Université polytechnique de Macao",
+        "partner8": "Université Saint-Joseph",
+        "partner9": "Université d’études internationales de Jilin",
+        "partner10": "Institut de technologie électronique de Changchun",
+        "partner11": "Maison de la culture de Macao",
+        "partner12": "Institut du Millénaire de Macao",
+        "partner13": "Association de diffusion en direct de Macao",
+        "partner14": "SenseTime",
+        "partner15": "Macao NexMatrix Technology Limited",
+        "partner16": "Digital Construction (Guangdong Hengqin) Technology Co., Ltd."
+      },
+      "contact": {
+        "title": "Contactez-nous",
+        "subtitle": "Nous nous réjouissons de collaborer avec vous",
+        "orgName": "Association de Macao pour le développement des technologies financières et de l’éducation",
+        "address": "Adresse",
+        "addressValue": "Centre de services de diffusion en direct, B1, immeuble de bureaux du complexe de la plateforme de services pour la coopération commerciale entre la Chine et les pays de langue portugaise, Rua Nam Van Sul, Macao",
+        "email": "E-mail",
+        "contactForm": "Formulaire de contact",
+        "cooperationForm": "Demande de coopération",
+        "name": "Nom",
+        "namePlaceholder": "Veuillez saisir votre nom",
+        "emailLabel": "E-mail",
+        "emailPlaceholder": "Veuillez saisir votre adresse e-mail",
+        "message": "Message",
+        "messagePlaceholder": "Veuillez saisir votre message",
+        "organization": "Organisation",
+        "organizationPlaceholder": "Veuillez saisir le nom de votre organisation",
+        "inquiryType": "Type de demande",
+        "inquiryTypePlaceholder": "Veuillez sélectionner le type de demande",
+        "submit": "Envoyer",
+        "submitting": "Envoi en cours…",
+        "successMessage": "Formulaire envoyé avec succès",
+        "errorRequired": "Ce champ est obligatoire",
+        "errorEmail": "Veuillez saisir une adresse e-mail valide",
+        "inquiryTypes": {
+          "research": "Coopération en recherche",
+          "consulting": "Services de conseil",
+          "partnership": "Partenariat stratégique",
+          "other": "Autre"
+        }
+      },
+      "footer": {
+        "description": "La MFTEDA s’engage à promouvoir le développement diversifié, durable et de haute qualité de la RAS de Macao, à servir la stratégie nationale et à favoriser les échanges internationaux.",
+        "quickLinks": "Liens rapides",
+        "publications": "Publications",
+        "partners": "Partenaires",
+        "copyright": "Droits d’auteur",
+        "allRightsReserved": "Tous droits réservés"
+      }
+    },
+    "en": {
+      "nav": {
+        "policy": "Investment Promotion Policies"
+      },
+      "hero": {
+        "headline": "Research-driven policymaking: building Macao into a bridge between China and the Portuguese-, Spanish- and French-speaking countries\nand the countries and regions along the Belt and Road",
+        "subtitle": "MFTEDA is committed to promoting the diversified, sustainable and high-quality development of the Macao SAR"
+      },
+      "about": {
+        "description1": "Purpose of the Macao Financial Technology and Education Development Association: Based in Macao, backed by the motherland and open to the world, we actively respond to the central government’s strategic plans to support the appropriate diversification of Macao’s economy and its integration into the country’s overall development. We work to advance financial innovation, e-commerce, business globalization, the integration of culture and technology, and cooperation in the Guangdong–Hong Kong–Macao Greater Bay Area; to promote the innovative development of Macao’s modern financial sector, deepen cross-border financial cooperation and help Macao develop into an international financial center; to build broad ties across all sectors of society, deepening practical cooperation between Macao, the mainland and the Portuguese-speaking countries in the economy, finance, technology, education, culture and other fields, enriching the substance of the China–Portuguese-speaking Countries platform and serving the Belt and Road Initiative and the new “dual-circulation” development pattern; to advance scientific and technological research and the application of its results, accelerate the cultivation of high-tech industries, support the deep integration of industry, academia and research in fields such as artificial intelligence, the digital economy and financial technology, and strengthen Macao’s international competitiveness in talent; and to vigorously support the development of Macao’s cultural industries, promote the innovative integration of culture and technology, and develop new forms of business such as digital cultural creation, technological applications of intangible cultural heritage and immersive cultural tourism experiences, helping Macao build itself into a “City of Culture” and a base for exchange and cooperation among diverse cultures. In so doing, we contribute to the appropriately diversified, sustainable and high-quality development of Macao’s economy, help Macao better integrate into the country’s overall development, serve as a precise link in a higher level of opening-up, achieve shared prosperity and progress, and contribute our wisdom to the great rejuvenation of the Chinese nation.",
+        "description2": "We focus on national strategy, Belt and Road cooperation, the “dual-circulation” development pattern, the China–Portuguese-speaking Countries platform and a higher level of opening-up."
+      },
+      "research": {
+        "subtitle": "Twelve core research areas — from the digital economy and RMB internationalization to ESG and sustainable development — where research drives policymaking in the service of Macao’s and the nation’s development",
+        "area3": {
+          "description": "Promoting the application of environmental, social and governance (ESG) standards in the financial sector"
+        },
+        "area5": {
+          "title": "Institutional Integration in the Guangdong–Macao In-Depth Cooperation Zone in Hengqin",
+          "description": "Exploring institutional innovation and policy coordination in the In-Depth Cooperation Zone"
+        },
+        "area10": {
+          "description": "Facilitating cooperation under the China–Portuguese-speaking Countries platform and international economic and trade exchanges"
+        },
+        "area12": {
+          "description": "Studying trust-building and trust-transfer mechanisms and their costs in cross-border cooperation, helping enterprises mitigate the risks of overseas expansion"
+        }
+      },
+      "projects": {
+        "subtitle": "Representative projects in tax law literacy, youth development, research commercialization and China–Portuguese-speaking Countries platform building — delivering tangible results for Macao and radiating across the Greater Bay Area",
+        "project1": {
+          "title": "Tax Law Knowledge Readers for Residents of the Macao SAR (Series)",
+          "description": "Compiled and published tax law readers for different audiences: university, community and youth editions plus a supplement."
+        },
+        "project2": {
+          "title": "Customs Regulation Innovation for the Hainan Free Trade Port",
+          "description": "Participated in project HNSK(ZD)21-182, researching institutional innovation in customs regulation for the Hainan Free Trade Port."
+        },
+        "project3": {
+          "title": "International Comparison and Regulatory Benchmarking of Customs Regulation in the Hainan Free Trade Port",
+          "description": "Participated in project HNSK(ZD)23-207, conducting comparative international research and benchmarking analysis of customs regulation."
+        }
+      },
+      "publications": {
+        "subtitle": "The “Tax Law Knowledge Readers for Residents of the Macao SAR” series",
+        "university": {
+          "description": "A tax law reader for university students"
+        },
+        "community": {
+          "description": "A tax law reader for community residents"
+        },
+        "youth": {
+          "description": "A tax law reader for young people"
+        },
+        "supplement": {
+          "description": "Supplementary tax law materials"
+        }
+      },
+      "insights": {
+        "subtitle": "Think tank research and op-eds: in-depth analysis of Macao’s financial and technological frontiers, developments in the Hengqin In-Depth Cooperation Zone and opportunities on the China–Portuguese-speaking Countries platform"
+      },
+      "partners": {
+        "title": "Friendly Organizations & Strategic Partners",
+        "partner1": "Economic and Technological Development Bureau (DSEDT)",
+        "partner2": "Commerce and Investment Promotion Institute (IPIM)",
+        "partner11": "Macao Hall of Culture",
+        "partner13": "Macao Live Association"
+      },
+      "contact": {
+        "addressValue": "Live Streaming Service Center, B1, Office Building of the China-Portuguese-speaking Countries Commercial and Trade Cooperation Service Platform Complex, Rua Nam Van Sul, Macao"
+      },
+      "footer": {
+        "description": "MFTEDA is committed to promoting the diversified, sustainable and high-quality development of the Macao SAR, serving national strategy and fostering international exchange."
+      }
+    },
+    "pt": {
+      "nav": {
+        "research": "Áreas de Investigação",
+        "projects": "Principais Projetos",
+        "insights": "Perspetivas",
+        "policy": "Políticas de Captação de Investimento"
+      },
+      "hero": {
+        "headline": "Investigação ao serviço da decisão: Macau como ponte entre a China e os países de língua portuguesa, espanhola e francesa\ne os países e regiões ao longo da iniciativa «Uma Faixa, Uma Rota»",
+        "subtitle": "A MFTEDA está empenhada em promover o desenvolvimento diversificado, sustentável e de elevada qualidade da RAE de Macau",
+        "cta2": "Áreas de Investigação"
+      },
+      "about": {
+        "subtitle": "Um think tank sem fins lucrativos ao serviço do desenvolvimento diversificado de Macau",
+        "description1": "Finalidades da Associação de Desenvolvimento de Finanças, Tecnologia e Educação de Macau: enraizada em Macau, apoiada pela pátria e virada para o mundo, a associação responde ativamente à estratégia do Governo Central de apoio à diversificação adequada da economia de Macau e à sua integração no desenvolvimento global do país. Dedica-se à inovação financeira, ao comércio eletrónico, à internacionalização das empresas, à fusão entre cultura e tecnologia e à cooperação na Grande Baía Guangdong-Hong Kong-Macau; promove o desenvolvimento inovador do setor financeiro moderno de Macau, aprofunda a cooperação financeira transfronteiriça e apoia Macau na construção de um centro financeiro internacional; estabelece amplas ligações com todos os setores da sociedade, contribuindo para aprofundar a cooperação pragmática entre Macau, o Interior da China e os países de língua portuguesa nos domínios da economia, das finanças, da tecnologia, da educação e da cultura, enriquecendo o conteúdo da plataforma sino-lusófona e servindo a construção da iniciativa «Uma Faixa, Uma Rota» e a nova dinâmica de desenvolvimento da «dupla circulação»; promove a investigação científica e tecnológica e a valorização dos seus resultados, acelera o desenvolvimento das indústrias de alta tecnologia, apoia a integração profunda entre empresas, universidades e institutos de investigação em áreas como a inteligência artificial, a economia digital e as tecnologias financeiras, e reforça a competitividade internacional de Macau em matéria de talentos; apoia vigorosamente o desenvolvimento das indústrias culturais de Macau, promove a inovação pela fusão entre cultura e tecnologia e desenvolve novos modelos de negócio, como a criação cultural digital, as aplicações tecnológicas do património cultural imaterial e as experiências imersivas de turismo cultural, ajudando Macau a afirmar-se como «Cidade de Cultura» e como base de intercâmbio e cooperação onde coexistem culturas diversas. Deste modo, contribui para o desenvolvimento economicamente diversificado, sustentável e de elevada qualidade de Macau, ajuda Macau a integrar-se melhor no desenvolvimento global do país, desempenha o papel de elo de ligação privilegiado numa abertura de mais elevado nível, promove a prosperidade e o progresso comuns e contribui com a sua sabedoria para o grande rejuvenescimento da nação chinesa.",
+        "description2": "Centramo-nos na estratégia nacional, na cooperação no âmbito da iniciativa «Uma Faixa, Uma Rota», na «dupla circulação», na cooperação através da plataforma sino-lusófona e numa abertura de mais elevado nível.",
+        "focusAreas": "Áreas Prioritárias",
+        "initiatives": "Principais Iniciativas",
+        "initiative3": "Investigação Científica e Comercialização de Tecnologia"
+      },
+      "mission": {
+        "subtitle": "A nossa visão e os nossos objetivos estratégicos",
+        "missionText": "Através de investigação de elevada qualidade, recomendações de políticas e cooperação internacional, promovemos a diversificação económica de Macau, a integração da Grande Baía e a cooperação no âmbito da plataforma sino-lusófona.",
+        "objective1": "Promover o desenvolvimento das finanças modernas e da economia digital",
+        "objective2": "Facilitar a cooperação transfronteiriça e a governação regional",
+        "objective3": "Apoiar a inovação das políticas e a integração institucional",
+        "objective4": "Cultivar talentos profissionais e promover o intercâmbio académico"
+      },
+      "research": {
+        "title": "Áreas de Investigação",
+        "subtitle": "Doze áreas de investigação — da economia digital e da internacionalização do RMB ao ESG e ao desenvolvimento sustentável — em que a investigação orienta a decisão, ao serviço do desenvolvimento de Macau e do país",
+        "area1": {
+          "description": "Explorar a transformação digital, o comércio eletrónico e a inovação financeira digital"
+        },
+        "area2": {
+          "description": "Estudar a utilização transfronteiriça do RMB e a cooperação financeira internacional"
+        },
+        "area3": {
+          "description": "Promover a aplicação de critérios ambientais, sociais e de governação (ESG) no setor financeiro"
+        },
+        "area4": {
+          "description": "Estudar os drones, a mobilidade aérea urbana e outras indústrias emergentes"
+        },
+        "area5": {
+          "title": "Integração Institucional da Zona de Cooperação Aprofundada entre Guangdong e Macau em Hengqin",
+          "description": "Explorar a inovação institucional e a coordenação de políticas na Zona de Cooperação Aprofundada"
+        },
+        "area6": {
+          "description": "Estudar a governação colaborativa da Grande Baía e os mecanismos de cooperação transfronteiriça"
+        },
+        "area7": {
+          "title": "Regulação dos Portos de Livre Comércio",
+          "description": "Analisar a regulação aduaneira dos portos de livre comércio e a sua comparação com padrões internacionais"
+        },
+        "area8": {
+          "description": "Promover o desenvolvimento das fintech, das finanças verdes e das finanças inclusivas"
+        },
+        "area9": {
+          "description": "Explorar a integração das indústrias culturais com a inovação tecnológica"
+        },
+        "area10": {
+          "description": "Promover a cooperação no âmbito da plataforma sino-lusófona e os intercâmbios económicos e comerciais internacionais"
+        },
+        "area11": {
+          "description": "Estudar os mecanismos de formulação, avaliação e otimização de políticas"
+        },
+        "area12": {
+          "description": "Estudar os mecanismos de construção e transmissão de confiança na cooperação transfronteiriça e os respetivos custos, ajudando as empresas a reduzir os riscos da sua internacionalização"
+        }
+      },
+      "projects": {
+        "title": "Principais Projetos",
+        "subtitle": "Projetos emblemáticos nas áreas da literacia fiscal, da formação de jovens, da transferência de tecnologia e da construção da plataforma sino-lusófona, com resultados concretos ao serviço de Macau e projeção na Grande Baía",
+        "project1": {
+          "title": "Série de Manuais de Conhecimentos de Direito Fiscal para Residentes da RAE de Macau",
+          "description": "Compilação e publicação de manuais de divulgação do direito fiscal para diferentes públicos: edições universitária, comunitária e juvenil, além de um suplemento."
+        },
+        "project2": {
+          "title": "Investigação sobre a Inovação da Regulação Aduaneira do Porto de Livre Comércio de Hainan",
+          "description": "Participação no projeto HNSK(ZD)21-182, com investigação sobre a inovação institucional da regulação aduaneira do Porto de Livre Comércio de Hainan."
+        },
+        "project3": {
+          "title": "Comparação Internacional e Alinhamento Regulamentar da Regulação Aduaneira do Porto de Livre Comércio de Hainan",
+          "description": "Participação no projeto HNSK(ZD)23-207, com investigação comparada internacional da regulação aduaneira e análise de benchmarking."
+        }
+      },
+      "publications": {
+        "subtitle": "Série «Manual de Conhecimentos de Direito Fiscal para Residentes da RAE de Macau»",
+        "university": {
+          "description": "Manual de divulgação do direito fiscal para estudantes universitários"
+        },
+        "community": {
+          "description": "Manual de divulgação do direito fiscal para residentes das comunidades"
+        },
+        "youth": {
+          "description": "Manual de divulgação do direito fiscal para jovens"
+        },
+        "supplement": {
+          "description": "Materiais suplementares de conhecimentos de direito fiscal"
+        },
+        "readOnline": "Ler em Linha",
+        "downloadPDF": "Descarregar PDF"
+      },
+      "insights": {
+        "title": "Perspetivas de Investigação",
+        "subtitle": "Investigação de think tank e artigos de opinião: análises aprofundadas das fronteiras financeiras e tecnológicas de Macau, da atualidade da Zona de Cooperação Aprofundada de Hengqin e das oportunidades da plataforma sino-lusófona"
+      },
+      "partners": {
+        "title": "Entidades Amigas e Parceiros Estratégicos",
+        "subtitle": "Dezasseis parceiros — Governo, universidades, institutos de investigação, associações e empresas — que formam uma rede de colaboração indústria-universidade-investigação cobrindo Macau, Hengqin e a Grande Baía",
+        "partner1": "Direcção dos Serviços de Economia e Desenvolvimento Tecnológico (DSEDT)",
+        "partner2": "Instituto de Promoção do Comércio e do Investimento (IPIM)",
+        "partner3": "Instituto de Direito da Academia Chinesa de Ciências Sociais",
+        "partner11": "Casa da Cultura de Macau",
+        "partner13": "Associação de Transmissão em Direto de Macau"
+      },
+      "contact": {
+        "email": "E-mail",
+        "namePlaceholder": "Introduza o seu nome",
+        "emailLabel": "E-mail",
+        "emailPlaceholder": "Introduza o seu e-mail",
+        "messagePlaceholder": "Introduza a sua mensagem",
+        "organizationPlaceholder": "Introduza o nome da sua organização",
+        "submitting": "A enviar…",
+        "errorEmail": "Introduza um endereço de e-mail válido",
+        "inquiryTypes": {
+          "research": "Colaboração em Investigação"
+        }
+      },
+      "footer": {
+        "description": "A MFTEDA está empenhada em promover o desenvolvimento diversificado, sustentável e de elevada qualidade da RAE de Macau, ao serviço da estratégia nacional e da promoção do intercâmbio internacional.",
+        "quickLinks": "Ligações Rápidas",
+        "copyright": "Direitos de Autor"
+      }
+    }
+  }
+}
