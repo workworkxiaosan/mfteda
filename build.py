@@ -373,50 +373,50 @@ def page_hero(lang, section):
 
 # ---------------- 首頁 ----------------
 # 首頁 hero 世界地圖上的大洲動態連線 SVG（viewBox 與 hero-bg.webp 同尺寸，preserveAspectRatio slice 與 background-size:cover 行為一致）。
-# 8 個節點與真實城市地理位置一一匹配（2026-10-17 按地圖海岸線逐城校準）：澳門 MAC(1293,1360) 為樞紐，
-# 紐約 NYC(262,1215)、聖保羅 SAO(450,1615)、巴黎 PAR(683,1179)、約翰內斯堡 JNB(790,1590)、
-# 安卡拉 ANK(915,1230)、迪拜 DXB(1005,1368)、悉尼 SYD(1422,1600)。弧線以澳門為起點向外輻射，寓意「從澳門出發鏈接世界」。
+# 8 個節點與真實城市地理位置一一匹配（2026-10-17 按用戶標注箭頭終點校準）：澳門 MAC(1248,1334) 為樞紐，
+# 紐約 NYC(349,1227)、聖保羅 SAO(450,1615)、巴黎 PAR(721,1198)、約翰內斯堡 JNB(818,1629)、
+# 安卡拉 ANK(872,1247)、迪拜 DXB(955,1334)、悉尼 SYD(1426,1646)。弧線以澳門為起點向外輻射，寓意「從澳門出發鏈接世界」。
 HERO_LINKS = '''  <svg class="hero-links" viewBox="0 0 1536 2752" preserveAspectRatio="xMidYMid slice" aria-hidden="true" focusable="false">
     <g>
-      <path class="link-base" d="M1293 1360 Q988 1092 683 1179"/>
-      <path class="link-base" d="M1293 1360 Q1042 1329 790 1590"/>
-      <path class="link-base" d="M1293 1360 Q1104 1195 915 1230"/>
-      <path class="link-base" d="M1293 1360 Q778 993 262 1215"/>
-      <path class="link-base" d="M1293 1360 Q872 1228 450 1615"/>
-      <path class="link-base" d="M1293 1360 Q1149 1285 1005 1368"/>
-      <path class="link-base" d="M1293 1360 Q1358 1381 1422 1600"/>
-      <path class="link-base" d="M683 1179 Q567 1248 450 1615"/>
-      <path class="link-base" d="M683 1179 Q737 1274 790 1590"/>
+      <path class="link-base" d="M1248 1334 Q985 1089 721 1198"/>
+      <path class="link-base" d="M1248 1334 Q1033 1336 818 1629"/>
+      <path class="link-base" d="M1248 1334 Q1060 1191 872 1247"/>
+      <path class="link-base" d="M1248 1334 Q799 986 349 1227"/>
+      <path class="link-base" d="M1248 1334 Q849 1215 450 1615"/>
+      <path class="link-base" d="M1248 1334 Q1102 1255 955 1334"/>
+      <path class="link-base" d="M1248 1334 Q1337 1391 1426 1646"/>
+      <path class="link-base" d="M721 1198 Q586 1258 450 1615"/>
+      <path class="link-base" d="M721 1198 Q770 1303 818 1629"/>
     </g>
     <g>
-      <path class="link-pulse" pathLength="1000" d="M1293 1360 Q988 1092 683 1179"/>
-      <path class="link-pulse" pathLength="1000" style="animation-delay:-1.4s" d="M1293 1360 Q1042 1329 790 1590"/>
-      <path class="link-pulse" pathLength="1000" style="animation-delay:-2.6s" d="M1293 1360 Q1104 1195 915 1230"/>
-      <path class="link-pulse" pathLength="1000" style="animation-delay:-3.8s" d="M1293 1360 Q778 993 262 1215"/>
-      <path class="link-pulse" pathLength="1000" style="animation-delay:-5s" d="M1293 1360 Q872 1228 450 1615"/>
-      <path class="link-pulse" pathLength="1000" style="animation-delay:-0.9s" d="M1293 1360 Q1149 1285 1005 1368"/>
-      <path class="link-pulse" pathLength="1000" style="animation-delay:-2s" d="M1293 1360 Q1358 1381 1422 1600"/>
-      <path class="link-pulse" pathLength="1000" style="animation-delay:-3.2s" d="M683 1179 Q567 1248 450 1615"/>
-      <path class="link-pulse" pathLength="1000" style="animation-delay:-4.5s" d="M683 1179 Q737 1274 790 1590"/>
+      <path class="link-pulse" pathLength="1000" d="M1248 1334 Q985 1089 721 1198"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-1.4s" d="M1248 1334 Q1033 1336 818 1629"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-2.6s" d="M1248 1334 Q1060 1191 872 1247"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-3.8s" d="M1248 1334 Q799 986 349 1227"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-5s" d="M1248 1334 Q849 1215 450 1615"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-0.9s" d="M1248 1334 Q1102 1255 955 1334"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-2s" d="M1248 1334 Q1337 1391 1426 1646"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-3.2s" d="M721 1198 Q586 1258 450 1615"/>
+      <path class="link-pulse" pathLength="1000" style="animation-delay:-4.5s" d="M721 1198 Q770 1303 818 1629"/>
     </g>
     <g>
-      <circle class="node-ring" cx="1293" cy="1360" r="8"/>
-      <circle class="node-ring" cx="1293" cy="1360" r="8" style="animation-delay:-1.6s"/>
-      <circle class="node-core" cx="1293" cy="1360" r="8"/>
-      <circle class="node-ring" cx="683" cy="1179" r="6" style="animation-delay:-0.4s"/>
-      <circle class="node-core" cx="683" cy="1179" r="6"/>
-      <circle class="node-ring" cx="790" cy="1590" r="6" style="animation-delay:-0.8s"/>
-      <circle class="node-core" cx="790" cy="1590" r="6"/>
-      <circle class="node-ring" cx="915" cy="1230" r="6" style="animation-delay:-1.2s"/>
-      <circle class="node-core" cx="915" cy="1230" r="6"/>
-      <circle class="node-ring" cx="262" cy="1215" r="6" style="animation-delay:-2s"/>
-      <circle class="node-core" cx="262" cy="1215" r="6"/>
+      <circle class="node-ring" cx="1248" cy="1334" r="8"/>
+      <circle class="node-ring" cx="1248" cy="1334" r="8" style="animation-delay:-1.6s"/>
+      <circle class="node-core" cx="1248" cy="1334" r="8"/>
+      <circle class="node-ring" cx="721" cy="1198" r="6" style="animation-delay:-0.4s"/>
+      <circle class="node-core" cx="721" cy="1198" r="6"/>
+      <circle class="node-ring" cx="818" cy="1629" r="6" style="animation-delay:-0.8s"/>
+      <circle class="node-core" cx="818" cy="1629" r="6"/>
+      <circle class="node-ring" cx="872" cy="1247" r="6" style="animation-delay:-1.2s"/>
+      <circle class="node-core" cx="872" cy="1247" r="6"/>
+      <circle class="node-ring" cx="349" cy="1227" r="6" style="animation-delay:-2s"/>
+      <circle class="node-core" cx="349" cy="1227" r="6"/>
       <circle class="node-ring" cx="450" cy="1615" r="6" style="animation-delay:-2.4s"/>
       <circle class="node-core" cx="450" cy="1615" r="6"/>
-      <circle class="node-ring" cx="1005" cy="1368" r="6" style="animation-delay:-2.8s"/>
-      <circle class="node-core" cx="1005" cy="1368" r="6"/>
-      <circle class="node-ring" cx="1422" cy="1600" r="6" style="animation-delay:-1s"/>
-      <circle class="node-core" cx="1422" cy="1600" r="6"/>
+      <circle class="node-ring" cx="955" cy="1334" r="6" style="animation-delay:-2.8s"/>
+      <circle class="node-core" cx="955" cy="1334" r="6"/>
+      <circle class="node-ring" cx="1426" cy="1646" r="6" style="animation-delay:-1s"/>
+      <circle class="node-core" cx="1426" cy="1646" r="6"/>
     </g>
   </svg>'''
 
