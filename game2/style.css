@@ -1183,3 +1183,69 @@ body.reduced-motion .confetti-p { display: none !important; }
   from { transform: translateY(40px); opacity: 0; }
   to { transform: translateY(0); opacity: 1; }
 }
+
+/* ============================================================
+   v7：常駐跟隨視野 + 全身棋子
+   ============================================================ */
+
+/* 全身角色棋子：3D 顯全身立繪，2D 俯視用頭像圓牌 */
+.token-body {
+  position: absolute;
+  left: -3px; top: -38px;
+  width: 32px;
+  z-index: 3;
+  transform-origin: 50% 100%;
+  display: none;
+}
+.token-body svg { display: block; filter: drop-shadow(0 2px 2px rgba(0,0,0,.35)); }
+.mode3d .token-body { display: block; }
+.mode3d .token-head { display: none; }
+.token3.flip .token-body svg { transform: scaleX(-1); }
+
+/* 行走：雙腿交替擺動 + 身體律動（squash & stretch 保留） */
+.token3.hop .token-body { animation: bodyBob .3s ease; }
+@keyframes bodyBob {
+  0% { transform: translateY(0) scale(1, 1); }
+  35% { transform: translateY(-10px) scale(.92, 1.1); }
+  70% { transform: translateY(-2px) scale(1.06, .94); }
+  100% { transform: translateY(0) scale(1, 1); }
+}
+.token3.hop .leg-l { animation: legSwingL .3s ease; transform-box: fill-box; transform-origin: 50% 0; }
+.token3.hop .leg-r { animation: legSwingR .3s ease; transform-box: fill-box; transform-origin: 50% 0; }
+@keyframes legSwingL { 0% { transform: rotate(0); } 40% { transform: rotate(22deg); } 100% { transform: rotate(0); } }
+@keyframes legSwingR { 0% { transform: rotate(0); } 40% { transform: rotate(-22deg); } 100% { transform: rotate(0); } }
+
+/* 待機呼吸浮動 */
+.token3:not(.hop) .token-body { animation: breathe 2.4s ease-in-out infinite; }
+@keyframes breathe {
+  0%, 100% { transform: translateY(0) scale(1, 1); }
+  50% { transform: translateY(-2px) scale(1, 1.015); }
+}
+
+/* 當前回合光圈（全身版） */
+.token3.active .token-body { animation: bodyBob .3s ease, breathe 2.4s ease-in-out infinite; }
+.token3.active .token-base { animation: baseGlow 1.2s ease-in-out infinite; }
+@keyframes baseGlow {
+  0%, 100% { box-shadow: 0 3px 5px rgba(0,0,0,.4), 0 0 0 0 rgba(212,175,55,.9); }
+  50% { box-shadow: 0 3px 5px rgba(0,0,0,.4), 0 0 0 8px rgba(212,175,55,0); }
+}
+
+/* LOD 遠景：棋子降級為底座剪影 */
+.lod-low .token-body, .lod-low .token-head { display: none; }
+.lod-low .token3 { transform: none; }
+
+/* 選角卡全身立繪展示位 */
+.char-emoji.full {
+  border-radius: 10px;
+  height: 62px;
+  width: 100%;
+  overflow: hidden;
+  display: flex;
+  align-items: flex-end;
+  justify-content: center;
+}
+.char-emoji.full svg { display: block; }
+
+/* 全景/歸位鈕狀態 */
+#board-controls #btn-recenter { border-color: var(--gold-light); background: rgba(168,134,42,.9); color: #fff; }
+#board-controls #btn-recenter.hidden { display: none; }

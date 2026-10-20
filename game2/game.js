@@ -2007,7 +2007,129 @@ const AVATAR = (function () {
       '</svg>';
   }
 
-  return { avatarSVG: avatarSVG, CFG: CFG };
+  /* ---- 全身二頭身 Q 版立繪（頭:身 ≈ 1:1.2，viewBox 48×100；crop=true 時頭像裁切版） ---- */
+  // 每位服裝細節（規格指引）：長衫/中山裝/西裝/黃色連體衣/霞帔/官服/燕尾服等
+  const COSTUME = {
+    zheng:  { robe: '#5a6a8a', pants: '#3a3f4a', shoes: '#2a2a2a', extra: 'robe+book' },
+    ricci:  { robe: '#4a4a5a', pants: '#3a3a44', shoes: '#2a2a2a', extra: 'robe+cross' },
+    xian:   { robe: '#3a4a6a', pants: '#2a3040', shoes: '#1a1a1a', extra: 'tails+baton2' },
+    sun:    { robe: '#4a5568', pants: '#3a4150', shoes: '#2a2a2a', extra: 'pockets4+collar' },
+    jin:    { robe: '#6a5a4a', pants: '#4a4038', shoes: '#2a2018', extra: 'robe+book2' },
+    mazu:   { robe: '#c0392b', pants: '#8a2a20', shoes: '#d4af37', extra: 'xiapei+ribbon' },
+    camoes: { robe: '#6a4a6a', pants: '#4a3448', shoes: '#2a2028', extra: 'cape' },
+    lin:    { robe: '#2a3a4a', pants: '#1a2430', shoes: '#1a1a1a', extra: 'buzi+robe' },
+    rong:   { robe: '#4a5a6a', pants: '#34404c', shoes: '#2a2a2a', extra: 'coat+bowtie2' },
+    hotung: { robe: '#2a3a4a', pants: '#222c38', shoes: '#1a1a1a', extra: 'lapel+watch2' },
+    rao:    { robe: '#7a5a4a', pants: '#5a4438', shoes: '#3a3028', extra: 'tang+robe' },
+    bruce:  { robe: '#d4a017', pants: '#d4a017', shoes: '#1a1a1a', extra: 'stripes' },
+    yip:    { robe: '#5a5048', pants: '#484038', shoes: '#2a2620', extra: 'robe+stance' },
+    anita:  { robe: '#ad1457', pants: '#7a0e40', shoes: '#d4af37', extra: 'skirt+sparkle' },
+    gao:    { robe: '#6a7a5a', pants: '#4a5440', shoes: '#2a2418', extra: 'apron+palette' }
+  };
+
+  function costumeSVG(k, c) {
+    switch (k) {
+      case 'robe+book': // 長衫下擺 + 布鞋 + 持書
+        return '<rect x="13" y="38" width="22" height="44" rx="6" fill="' + c.robe + '"/><rect x="17" y="82" width="6" height="8" fill="' + c.shoes + '"/><rect x="25" y="82" width="6" height="8" fill="' + c.shoes + '"/>' +
+          '<rect x="30" y="50" width="10" height="7" rx="1" fill="#f0e0b0" stroke="#b8a070"/>';
+      case 'robe+cross':
+        return '<rect x="13" y="38" width="22" height="44" rx="6" fill="' + c.robe + '"/><rect x="17" y="82" width="6" height="8" fill="' + c.shoes + '"/><rect x="25" y="82" width="6" height="8" fill="' + c.shoes + '"/>' +
+          '<path d="M24 46 v10 M20 50 h8" stroke="#d4af37" stroke-width="2"/>';
+      case 'tails+baton2': // 燕尾服 + 指揮棒
+        return '<rect x="14" y="38" width="20" height="26" rx="4" fill="' + c.robe + '"/><path d="M14 60 l-4 16 h6 l3 -10 z M34 60 l4 16 h-6 l-3 -10 z" fill="' + c.robe + '"/>' +
+          '<rect x="18" y="62" width="5" height="24" fill="' + c.pants + '"/><rect x="25" y="62" width="5" height="24" fill="' + c.pants + '"/>' +
+          '<rect x="17" y="86" width="7" height="4" fill="' + c.shoes + '"/><rect x="24" y="86" width="7" height="4" fill="' + c.shoes + '"/>' +
+          '<rect x="14" y="38" width="20" height="4" fill="#f0ead8"/><path d="M36 50 l8 -8" stroke="#e8e0d0" stroke-width="1.6"/>';
+      case 'pockets4+collar': // 中山裝四袋 + 立領
+        return '<rect x="14" y="38" width="20" height="26" rx="4" fill="' + c.robe + '"/>' +
+          '<rect x="16" y="44" width="5" height="5" fill="#3a4250"/><rect x="27" y="44" width="5" height="5" fill="#3a4250"/><rect x="16" y="52" width="5" height="5" fill="#3a4250"/><rect x="27" y="52" width="5" height="5" fill="#3a4250"/>' +
+          '<rect x="20" y="36" width="8" height="4" fill="#3a4250"/>' +
+          '<rect x="18" y="62" width="5" height="24" fill="' + c.pants + '"/><rect x="25" y="62" width="5" height="24" fill="' + c.pants + '"/>' +
+          '<rect x="17" y="86" width="7" height="4" fill="' + c.shoes + '"/><rect x="24" y="86" width="7" height="4" fill="' + c.shoes + '"/>';
+      case 'robe+book2':
+        return '<rect x="13" y="38" width="22" height="44" rx="6" fill="' + c.robe + '"/><rect x="17" y="82" width="6" height="8" fill="' + c.shoes + '"/><rect x="25" y="82" width="6" height="8" fill="' + c.shoes + '"/>' +
+          '<rect x="8" y="48" width="9" height="7" rx="1" fill="#a03a30"/>';
+      case 'xiapei+ribbon': // 霞帔飄帶
+        return '<path d="M13 38 h22 l4 44 h-30 z" fill="' + c.robe + '"/><path d="M13 38 q-6 20 -2 34 M35 38 q6 20 2 34" stroke="#d4af37" stroke-width="2" fill="none"/>' +
+          '<rect x="17" y="82" width="6" height="8" fill="' + c.shoes + '"/><rect x="25" y="82" width="6" height="8" fill="' + c.shoes + '"/>';
+      case 'buzi+robe': // 清代官服補子
+        return '<rect x="13" y="38" width="22" height="44" rx="6" fill="' + c.robe + '"/><rect x="19" y="44" width="10" height="10" fill="#1a2a3a" stroke="#d4af37"/><circle cx="24" cy="49" r="3" fill="#d4af37"/>' +
+          '<rect x="17" y="82" width="6" height="8" fill="' + c.shoes + '"/><rect x="25" y="82" width="6" height="8" fill="' + c.shoes + '"/>';
+      case 'coat+bowtie2': // 西式長外套
+        return '<rect x="13" y="38" width="22" height="38" rx="4" fill="' + c.robe + '"/><path d="M24 38 v38" stroke="#34404c"/>' +
+          '<rect x="18" y="76" width="5" height="12" fill="' + c.pants + '"/><rect x="25" y="76" width="5" height="12" fill="' + c.pants + '"/>' +
+          '<rect x="17" y="86" width="7" height="4" fill="' + c.shoes + '"/><rect x="24" y="86" width="7" height="4" fill="' + c.shoes + '"/>';
+      case 'lapel+watch2': // 西裝皮鞋
+        return '<rect x="14" y="38" width="20" height="26" rx="4" fill="' + c.robe + '"/><path d="M18 38 l6 8 l6 -8 l-3 10 h-6 z" fill="#f0f0f0"/>' +
+          '<rect x="18" y="62" width="5" height="24" fill="' + c.pants + '"/><rect x="25" y="62" width="5" height="24" fill="' + c.pants + '"/>' +
+          '<ellipse cx="20" cy="88" rx="4" ry="3" fill="' + c.shoes + '"/><ellipse cx="28" cy="88" rx="4" ry="3" fill="' + c.shoes + '"/>';
+      case 'stripes': // 黃色連體衣黑條紋
+        return '<rect x="14" y="38" width="20" height="26" rx="4" fill="' + c.robe + '"/><rect x="15" y="40" width="2" height="22" fill="#1a1a1a"/><rect x="31" y="40" width="2" height="22" fill="#1a1a1a"/>' +
+          '<rect x="18" y="62" width="5" height="24" fill="' + c.pants + '"/><rect x="25" y="62" width="5" height="24" fill="' + c.pants + '"/>' +
+          '<rect x="18" y="62" width="1.6" height="24" fill="#1a1a1a"/><rect x="28" y="62" width="1.6" height="24" fill="#1a1a1a"/>' +
+          '<rect x="17" y="86" width="7" height="4" fill="' + c.shoes + '"/><rect x="24" y="86" width="7" height="4" fill="' + c.shoes + '"/>';
+      case 'robe+stance':
+        return '<rect x="13" y="38" width="22" height="44" rx="6" fill="' + c.robe + '"/><rect x="15" y="82" width="7" height="8" fill="' + c.shoes + '"/><rect x="26" y="82" width="7" height="8" fill="' + c.shoes + '"/>';
+      case 'skirt+sparkle': // 舞台裙裝
+        return '<rect x="15" y="38" width="18" height="18" rx="4" fill="' + c.robe + '"/><path d="M15 54 l-5 24 h28 l-5 -24 z" fill="' + c.robe + '"/>' +
+          '<path d="M12 62 l2 2 M34 60 l2 2 M18 70 l2 2 M28 66 l2 2" stroke="#f0d878" stroke-width="1.4"/>' +
+          '<rect x="18" y="78" width="5" height="10" fill="' + c.pants + '"/><rect x="25" y="78" width="5" height="10" fill="' + c.pants + '"/>' +
+          '<rect x="17" y="86" width="7" height="4" fill="' + c.shoes + '"/><rect x="24" y="86" width="7" height="4" fill="' + c.shoes + '"/>';
+      case 'apron+palette': // 圍裙調色板
+        return '<rect x="14" y="38" width="20" height="26" rx="4" fill="' + c.robe + '"/><rect x="16" y="46" width="16" height="20" rx="3" fill="#e8e0d0"/>' +
+          '<rect x="18" y="62" width="5" height="24" fill="' + c.pants + '"/><rect x="25" y="62" width="5" height="24" fill="' + c.pants + '"/>' +
+          '<rect x="17" y="86" width="7" height="4" fill="' + c.shoes + '"/><rect x="24" y="86" width="7" height="4" fill="' + c.shoes + '"/>' +
+          '<ellipse cx="36" cy="56" rx="5" ry="4" fill="#b08a58"/><circle cx="34" cy="54" r="1" fill="#c0392b"/><circle cx="37" cy="53" r="1" fill="#2c6e9e"/><circle cx="38" cy="57" r="1" fill="#d4a017"/>';
+      case 'tang+robe': // 唐裝
+        return '<rect x="13" y="38" width="22" height="44" rx="6" fill="' + c.robe + '"/><path d="M18 40 h12 M18 44 h12" stroke="#5a4438" stroke-width="1.2"/>' +
+          '<rect x="17" y="82" width="6" height="8" fill="' + c.shoes + '"/><rect x="25" y="82" width="6" height="8" fill="' + c.shoes + '"/>';
+      case 'cape': // 詩人披肩
+        return '<path d="M12 38 q-4 22 0 36 h28 q4 -22 0 -36 z" fill="' + c.robe + '"/><path d="M12 38 q12 6 24 0 l-2 8 q-10 5 -20 0 z" fill="#4a3448"/>' +
+          '<rect x="18" y="74" width="5" height="14" fill="' + c.pants + '"/><rect x="25" y="74" width="5" height="14" fill="' + c.pants + '"/>' +
+          '<rect x="17" y="86" width="7" height="4" fill="' + c.shoes + '"/><rect x="24" y="86" width="7" height="4" fill="' + c.shoes + '"/>';
+      default:
+        return '<rect x="14" y="38" width="20" height="26" rx="4" fill="' + c.robe + '"/>' +
+          '<rect x="18" y="62" width="5" height="24" fill="' + c.pants + '"/><rect x="25" y="62" width="5" height="24" fill="' + c.pants + '"/>' +
+          '<rect x="17" y="86" width="7" height="4" fill="' + c.shoes + '"/><rect x="24" y="86" width="7" height="4" fill="' + c.shoes + '"/>';
+    }
+  }
+
+  function fullBodySVG(charId, opts) {
+    opts = opts || {};
+    const c = CFG[charId] || CFG.zheng;
+    const co = COSTUME[charId] || COSTUME.zheng;
+    const hair = HAIRS[c.hair] || HAIRS.flat;
+    const browStroke = c.brow === 'thick' ? 1.8 : 1;
+    const head =
+      '<circle cx="24" cy="23" r="14" fill="' + c.skin + '"/>' +
+      '<path d="' + hair + '" fill="' + c.hc + '"/>' +
+      '<circle cx="19" cy="24" r="1.6" fill="#2a2a2a"/>' +
+      '<circle cx="29" cy="24" r="1.6" fill="#2a2a2a"/>' +
+      '<path d="M16 20 q2.5 -1.5 5 0 M27 20 q2.5 -1.5 5 0" stroke="#3a3a3a" stroke-width="' + browStroke + '" fill="none"/>' +
+      '<path d="M21 30 q3 2 6 0" stroke="#b0705a" stroke-width="1.2" fill="none"/>' +
+      beardSVG(c.beard, c.skin) +
+      accSVG(c.acc);
+    const body =
+      '<g class="tk-leg leg-l"><rect x="18" y="64" width="5" height="22" fill="' + co.pants + '"/><rect x="16" y="84" width="8" height="5" fill="' + co.shoes + '"/></g>' +
+      '<g class="tk-leg leg-r"><rect x="25" y="64" width="5" height="22" fill="' + co.pants + '"/><rect x="24" y="84" width="8" height="5" fill="' + co.shoes + '"/></g>' +
+      '<rect x="13" y="40" width="22" height="26" rx="6" fill="' + co.robe + '"/>' +
+      '<rect x="10" y="42" width="5" height="20" rx="2.5" fill="' + co.robe + '"/>' +
+      '<rect x="33" y="42" width="5" height="20" rx="2.5" fill="' + co.robe + '"/>' +
+      '<circle cx="12" cy="63" r="2.6" fill="' + c.skin + '"/>' +
+      '<circle cx="36" cy="63" r="2.6" fill="' + c.skin + '"/>' +
+      costumeSVG(co.extra, co);
+    if (opts.crop) {
+      // 頭像裁切版（面板/名條/結算/大廳共用）：聚焦頭部
+      return '<svg viewBox="2 2 44 40" width="' + (opts.size || 30) + '" height="' + (opts.size || 30) + '" xmlns="http://www.w3.org/2000/svg">' +
+        '<circle cx="24" cy="22" r="21" fill="#f5ecd8"/>' + head +
+        '<circle cx="24" cy="22" r="21" fill="none" stroke="#c9bd97" stroke-width="1.5"/></svg>';
+    }
+    const s = opts.size || 40;
+    return '<svg viewBox="0 0 48 100" width="' + s + '" height="' + Math.round(s * 100 / 48) + '" xmlns="http://www.w3.org/2000/svg">' +
+      body + head + '</svg>';
+  }
+
+  return { avatarSVG: avatarSVG, fullBodySVG: fullBodySVG, CFG: CFG };
 })();
 
 /* ==================== 四、對外導出 ==================== */
@@ -2262,7 +2384,10 @@ function openModal(title, bodyHTML, buttons) {
   box.ontouchend = () => { touchY = null; };
   overlay.classList.add('show');
 }
-function closeModal() { $('modal-overlay').classList.remove('show'); }
+function closeModal() {
+  $('modal-overlay').classList.remove('show');
+  if (G.state && Cam.mode === 'panorama') { Cam.mode = 'follow'; updatePanoBtn(); followNow(); } // 結算完成自動回跟隨
+}
 
 /* ---------- 地標資訊卡 ---------- */
 function tileInfoHTML(i, price, rent) {
@@ -2470,7 +2595,7 @@ function renderCharPick(container) {
     card.type = 'button';
     card.className = 'char-card' + (Setup.chars[i] === c.id ? ' on' : '');
     card.innerHTML =
-      '<div class="char-emoji" style="border-color:' + c.color + '">' + MFT2.AVATAR.avatarSVG(c.id, 36) + '</div>' +
+      '<div class="char-emoji full" style="border-color:' + c.color + '">' + MFT2.AVATAR.fullBodySVG(c.id, { size: 40 }) + '</div>' +
       '<div class="char-name">' + c.name + '</div>' +
       '<div class="char-passive">' + c.passive + '</div>' +
       (takenBy >= 0 ? '<div class="char-taken">玩家 ' + (takenBy + 1) + '</div>' : '');
@@ -2679,8 +2804,25 @@ const Perf = {
 };
 
 /* ---------- 視角相機（拖動平移 + 滾輪/雙指縮放 + 2D/3D 切換 + 跟隨鏡頭） ---------- */
-const Cam = { x: 0, y: 0, s: 1, is3d: true, follow: Store.get('mft2_follow', true) };
-let savedCam = null;
+const Cam = { x: 0, y: 0, s: 1, is3d: true, follow: Store.get('mft2_follow', true), mode: 'follow' };
+
+// 跟隨視野縮放：視口只顯示約 30% 棋盤面積（常駐拉近）
+function followScale() {
+  const vp = $('board-viewport');
+  const b = G.bounds;
+  if (!vp || !b) return 1.2;
+  const s = Math.sqrt((vp.clientWidth * vp.clientHeight) / (0.3 * b.w * b.h));
+  return Math.max(0.7, Math.min(2.2, s));
+}
+
+// 常駐跟隨：鏡頭鎖定當前棋子
+function followNow() {
+  if (!G.state) return;
+  const pd = G.state.pending;
+  const pid = pd ? pd.player : G.state.turnIndex;
+  const p = G.state.players[pid];
+  if (p && !p.bankrupt) centerOnTile(p.pos, followScale());
+}
 
 function applyCam() {
   const world = $('board-world');
@@ -2696,54 +2838,31 @@ function applyCam() {
 
 // 平滑移動鏡頭至指定格子居中（3D/2D 都生效）
 // 兩段式：先關過渡即時量度目標位置，再開過渡平滑移動（避免過渡中量度漂移）
-function centerOnTile(tileIdx, scale) {
-  const world = $('board-world');
-  const el = $('tile-' + tileIdx);
-  if (!el) return;
-  const vp = $('board-viewport');
-  const fromX = Cam.x, fromY = Cam.y, fromS = Cam.s;
-  world.classList.remove('smooth');
-  Cam.s = scale;
-  applyCam();
-  const r = el.getBoundingClientRect();   // 同步 reflow，量度準確
-  const vr = vp.getBoundingClientRect();
-  const tx = fromX + (vr.left + vr.width / 2) - (r.left + r.width / 2);
-  const ty = fromY + (vr.top + vr.height / 2) - (r.top + r.height / 2);
-  if (ReducedMotion.on) {                  // reduced-motion：瞬移定位
-    Cam.x = tx; Cam.y = ty; Cam.s = scale;
-    applyCam();
-    return;
-  }
-  Cam.x = fromX; Cam.y = fromY; Cam.s = fromS;
-  applyCam();
-  void world.offsetWidth;                  // 提交原位
-  world.classList.add('smooth');
-  Cam.x = tx; Cam.y = ty; Cam.s = scale;   // 平滑移向目標
-  applyCam();
+// 格子在棋盤平面（旋轉後）的世界坐標 —— 純解析計算，無 DOM 量度，杜絕競態
+function tileWorldPos(tileIdx) {
+  const t = G.state.layout.board[tileIdx];
+  const px = (t.x - G.bounds.minX) * CELL + CELL / 2;
+  const py = (t.y - G.bounds.minY) * CELL + CELL / 2;
+  if (!Cam.is3d) return { x: px, y: py };
+  // plane：rotateX(55deg) rotateZ(45deg)，原點為平面中心（transform-origin 50%）
+  const cx = G.bounds.w / 2, cy = G.bounds.h / 2;
+  const qx = px - cx, qy = py - cy;
+  const c45 = Math.SQRT1_2, c55 = Math.cos(55 * Math.PI / 180);
+  const rx = qx * c45 - qy * c45;          // rotateZ(45)
+  const ry = qx * c45 + qy * c45;
+  return { x: cx + rx, y: cy + ry * c55 }; // rotateX(55) 正交壓縮
 }
 
-function restoreCam(cam) {
-  const world = $('board-world');
-  if (ReducedMotion.on) {
-    Cam.x = cam.x; Cam.y = cam.y; Cam.s = cam.s;
-    applyCam();
-    return;
-  }
-  world.classList.add('smooth');
-  Cam.x = cam.x; Cam.y = cam.y; Cam.s = cam.s;
+// 跟隨/歸位：解析式計算目標，無量度競態；reduced-motion 瞬移
+function centerOnTile(tileIdx, scale) {
+  const vp = $('board-viewport');
+  if (!vp || !G.state || !G.bounds) return;
+  const p = tileWorldPos(tileIdx);
+  Cam.s = scale;
+  Cam.x = vp.clientWidth / 2 - p.x * scale;
+  Cam.y = vp.clientHeight / 2 - p.y * scale;
+  if (!ReducedMotion.on) $('board-world').classList.add('smooth');
   applyCam();
-  setTimeout(() => world.classList.remove('smooth'), 500);
-  // 安全網：還原後若棋盤完全不在視口內（罕見競態），退回全域視角
-  setTimeout(() => {
-    const t0 = $('tile-0'), vp = $('board-viewport');
-    if (!t0 || !vp) return;
-    const r = t0.getBoundingClientRect(), v = vp.getBoundingClientRect();
-    const margin = 60;
-    if (r.right < v.left - margin || r.left > v.right + margin || r.bottom < v.top - margin || r.top > v.bottom + margin) {
-      savedCam = null;
-      fitBoard();
-    }
-  }, 80);
 }
 
 function fitBoard() {
@@ -2774,6 +2893,7 @@ function initCamera() {
   vp.addEventListener('pointermove', e => {
     if (!pointers.has(e.pointerId)) return;
     $('board-world').classList.remove('smooth'); // 手動拖動即時跟手
+    if (Cam.mode === 'follow' && pointers.size === 1) { Cam.mode = 'free'; updatePanoBtn(); }
     const prev = pointers.get(e.pointerId);
     pointers.set(e.pointerId, { x: e.clientX, y: e.clientY });
     if (Math.hypot(e.clientX - downX, e.clientY - downY) > 6) moved = true;
@@ -2818,7 +2938,25 @@ function initCamera() {
   }, { passive: false });
   $('btn-zoom-in').onclick = () => { Cam.s = Math.min(2.5, Cam.s * 1.2); applyCam(); };
   $('btn-zoom-out').onclick = () => { Cam.s = Math.max(0.2, Cam.s / 1.2); applyCam(); };
+  // 🗺 全景：主動看全域；擲骰/回合切換/結算完成自動回跟隨（見 render/dispatch）
+  $('btn-pano').onclick = () => {
+    if (Cam.mode !== 'panorama') {
+      Cam.mode = 'panorama';
+      fitBoard();
+    } else {
+      Cam.mode = 'follow';
+      followNow();
+    }
+    updatePanoBtn();
+  };
+  // ◎ 回到棋子：一鍵歸位跟隨
+  $('btn-recenter').onclick = () => {
+    Cam.mode = 'follow';
+    followNow();
+    updatePanoBtn();
+  };
   $('btn-view-toggle').onclick = () => { Cam.is3d = !Cam.is3d; applyCam(); };
+  updatePanoBtn();
   $('btn-follow').onclick = () => {
     Cam.follow = !Cam.follow;
     Store.set('mft2_follow', Cam.follow);
@@ -2840,6 +2978,13 @@ function initCamera() {
     toast(m ? '音效已靜音' : '音效已開啟');
   };
   $('btn-mute').textContent = Sound.muted ? '🔇' : '🔊';
+}
+
+function updatePanoBtn() {
+  const pb = $('btn-pano');
+  if (pb) { pb.textContent = '🗺'; pb.title = Cam.mode === 'panorama' ? '回到跟隨視野' : '全景'; pb.classList.toggle('off', Cam.mode !== 'panorama'); }
+  const rb = $('btn-recenter');
+  if (rb) rb.classList.toggle('hidden', Cam.mode === 'follow');
 }
 
 function updateFollowBtn() {
@@ -2865,7 +3010,8 @@ function enterGame(state, opts) {
   G.codexBefore = Object.keys(codex.landmarks).length + Object.keys(codex.questions).length;
   buildBoard();
   showScreen('screen-game');
-  requestAnimationFrame(() => { fitBoard(); render(); showTutorialCard(); });
+  Cam.mode = 'follow';
+  requestAnimationFrame(() => { fitBoard(); updatePanoBtn(); render(); showTutorialCard(); followNow(); });
 }
 
 function buildBoard() {
@@ -2911,7 +3057,8 @@ function buildBoard() {
     tok.id = 'token-' + p.id;
     tok.innerHTML = '<div class="token-shadow"></div>' +
       '<div class="token-base" style="background:linear-gradient(180deg,' + MFT2.MODELS.shade(c.color, 25) + ',' + c.color + ' 55%,' + MFT2.MODELS.shade(c.color, -35) + ')"></div>' +
-      '<div class="token-head">' + MFT2.AVATAR.avatarSVG(p.charId, 26) + '</div>';
+      '<div class="token-body">' + MFT2.AVATAR.fullBodySVG(p.charId, { size: 26 }) + '</div>' +
+      '<div class="token-head">' + MFT2.AVATAR.fullBodySVG(p.charId, { size: 26, crop: true }) + '</div>';
     plane.appendChild(tok);
   });
   G.built = true;
@@ -3037,7 +3184,7 @@ function updatePlayersBar() {
     const assets = ENGINE.assetValue(st, p.id);
     const items = p.items.map(k => DATA.ITEMS[k].emoji).join('');
     div.innerHTML =
-      '<div class="pbar-emoji" style="background:' + c.color + '">' + MFT2.AVATAR.avatarSVG(p.charId, 26) + '</div>' +
+      '<div class="pbar-emoji" style="background:' + c.color + '">' + MFT2.AVATAR.fullBodySVG(p.charId, { size: 26, crop: true }) + '</div>' +
       '<div class="pbar-info"><b>' + esc(p.name) + (p.isAI ? ' 🤖' : '') + '</b>' +
       '<span>' + (p.bankrupt ? '已破產' : money(p.money) + ' · 資產 ' + money(assets)) + '</span>' +
       '<span class="pbar-flags">' +
@@ -3109,6 +3256,14 @@ function render() {
     updateBoard();
     showPending();
     maybeRunAI();
+    // 常駐跟隨視野：每次渲染重鎖當前棋子（全景模式下回合切換/動作後自動返回）
+    const turnKey = st.round + ':' + st.turnIndex;
+    if (Cam.mode === 'panorama' && G.lastTurnSeen && G.lastTurnSeen !== turnKey) {
+      Cam.mode = 'follow';
+      updatePanoBtn();
+    }
+    G.lastTurnSeen = turnKey;
+    if (Cam.follow && Cam.mode === 'follow') followNow();
   }
 }
 
@@ -3134,17 +3289,14 @@ function playAnim(anim, done) {
   const finish = () => {
     G.animating = false;
     done();
-    // 落格結算約 1.2 秒後拉回全域視角
-    if (savedCam) {
-      const sc = savedCam;
-      savedCam = null;
-      setTimeout(() => { restoreCam(sc); }, G.fast ? 600 : 1200);
-    } else {
-      world.classList.remove('smooth');
+    // v7：走完停留在跟隨視野（約 1.2 秒後重鎖最終格，reduced-motion 瞬移）
+    const finalTile = anim.path && anim.path.length ? anim.path[anim.path.length - 1] : null;
+    if (finalTile !== null && Cam.follow && Cam.mode === 'follow') {
+      setTimeout(() => { if (!G.animating) centerOnTile(finalTile, followScale()); }, G.fast ? 600 : 1200);
     }
+    setTimeout(() => world.classList.remove('smooth'), 500);
   };
   const following = Cam.follow && anim.path && anim.path.length > 0;
-  if (following && !savedCam) savedCam = { x: Cam.x, y: Cam.y, s: Cam.s };
   // ⚡ 快速模式：AI 的擲骰/移動/結算動畫 2 倍速
   const speedUp = G.fast && G.state && G.state.players[anim.player] && G.state.players[anim.player].isAI;
   const stepMs = ReducedMotion.on ? 90 : (anim.tele ? (speedUp ? 250 : 500) : (speedUp ? Math.round(STEP_MS / 2) : STEP_MS));
@@ -3155,8 +3307,14 @@ function playAnim(anim, done) {
     let i = 0;
     const step = () => {
       placeToken(anim.player, path[i]);
+      // 朝向行進方向（向左走水平翻轉）
+      const tk = $('token-' + anim.player);
+      if (tk && i > 0) {
+        const dx = G.state.layout.board[path[i]].x - G.state.layout.board[path[i - 1]].x;
+        if (dx < 0) tk.classList.add('flip'); else if (dx > 0) tk.classList.remove('flip');
+      }
       if (!ReducedMotion.on) trailLight(path[i]);
-      if (following) centerOnTile(path[i], 1.8); // 拉近至 1.6–2.0×
+      if (following) centerOnTile(path[i], followScale()); // 跟隨視野：30% 面積拉近
       if (tok && !ReducedMotion.on) {
         tok.classList.remove('hop');
         void tok.offsetWidth;
@@ -3693,6 +3851,7 @@ function checkBadges() {
 
 /* ---------- 操作分發 ---------- */
 function dispatch(action) {
+  if (Cam.mode === 'panorama') { Cam.mode = 'follow'; updatePanoBtn(); followNow(); } // 擲骰/操作自動回跟隨
   if (Net.mode === 'client') { MFT2Online.sendIntent(action); return; }
   const res = ENGINE.act(G.state, action);
   if (!res.ok) { toast(res.error || '操作失敗'); return; }
@@ -3764,7 +3923,7 @@ function showResult() {
     const c = charOf(r.charId);
     html += '<div class="result-row' + (r.id === st.winner ? ' winner' : '') + '">' +
       '<span class="result-rank">' + (idx + 1) + '</span>' +
-      '<span class="pbar-emoji" style="background:' + c.color + '">' + MFT2.AVATAR.avatarSVG(r.charId, 28) + '</span>' +
+      '<span class="pbar-emoji" style="background:' + c.color + '">' + MFT2.AVATAR.fullBodySVG(r.charId, { size: 28, crop: true }) + '</span>' +
       '<span class="result-name">' + esc(r.name) + (r.bankrupt ? '（破產）' : '') + '</span>' +
       '<span class="result-assets">' + (r.bankrupt ? '—' : money(r.assets)) + '</span></div>';
   });
@@ -3865,7 +4024,7 @@ function renderLobbyChars() {
     card.type = 'button';
     card.className = 'char-card' + (Lobby.char === c.id ? ' on' : '');
     card.innerHTML =
-      '<div class="char-emoji" style="border-color:' + c.color + '">' + MFT2.AVATAR.avatarSVG(c.id, 36) + '</div>' +
+      '<div class="char-emoji full" style="border-color:' + c.color + '">' + MFT2.AVATAR.fullBodySVG(c.id, { size: 40 }) + '</div>' +
       '<div class="char-name">' + c.name + '</div>' +
       '<div class="char-passive">' + c.passive + '</div>';
     card.onclick = () => {
@@ -3914,7 +4073,7 @@ function renderLobbyPlayers(players) {
   const box = $('lobby-players');
   box.innerHTML = players.map((p, i) => {
     const c = charOf(p.charId);
-    return '<div class="lobby-player"><span class="pbar-emoji" style="background:' + c.color + '">' + MFT2.AVATAR.avatarSVG(p.charId, 26) +
+    return '<div class="lobby-player"><span class="pbar-emoji" style="background:' + c.color + '">' + MFT2.AVATAR.fullBodySVG(p.charId, { size: 26, crop: true }) +
       '</span><span>' + esc(p.name) + '</span>' + (i === 0 ? '<span class="muted">（房主）</span>' : '') + '</div>';
   }).join('');
 }
