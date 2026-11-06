@@ -1348,7 +1348,1591 @@ NEWS_WX = [{'slug': 'beijing-fql-national-day-2025',
                           'en': 'Professor Tian Yihui presents "AI Business Applications and Enterprise Digital '
                                 'Transformation"',
                           'pt': 'O Professor Tian Yihui apresenta «Aplicações Comerciais da IA e Transformação Digital '
-                                'das Empresas»'}}]}]
+                                'das Empresas»'}}]},
+ {'slug': 'jisu-30th-anniversary-2025',
+  'date': '2025-09-30',
+  'category': {'zh-TW': '交流合作', 'zh-CN': '交流合作', 'en': 'Exchanges and Cooperation', 'pt': 'Intercâmbio e Cooperação'},
+  'title': {'zh-TW': '本會受邀出席吉林外國語大學30週年校慶並達成多項合作',
+            'zh-CN': '本会受邀出席吉林外国语大学30周年校庆并达成多项合作',
+            'en': 'MFTEDA Attends 30th Anniversary Celebrations of Jilin International Studies University and Reaches '
+                  'Multiple Cooperation Outcomes',
+            'pt': 'MFTEDA participa nas celebrações do 30.º aniversário da Universidade de Estudos Internacionais de '
+                  'Jilin e alcança múltiplos resultados de cooperação'},
+  'excerpt': {'zh-TW': '9月20日，本會會長楊誠博士率澳門教育代表團出席吉林外國語大學30週年校慶系列活動，獲秦和校長親切接見；代表團5位成員更獲聘為吉外碩士研究生指導教師，標誌著吉澳教育合作取得突破性成果。',
+              'zh-CN': '9月20日，本会会长杨诚博士率澳门教育代表团出席吉林外国语大学30周年校庆系列活动，获秦和校长亲切接见；代表团5位成员更获聘为吉外硕士研究生指导教师，标志着吉澳教育合作取得突破性成果。',
+              'en': 'On 20 September, MFTEDA President Dr. Yang Cheng led a Macao education delegation to the 30th '
+                    'anniversary celebrations of Jilin International Studies University (JISU), where they were warmly '
+                    "received by JISU President Qin He. Five delegation members were appointed as JISU master's "
+                    'supervisors, marking a breakthrough in Jilin–Macao educational cooperation.',
+              'pt': 'A 20 de setembro, o Presidente da MFTEDA, Dr. Yang Cheng, liderou uma delegação educativa de '
+                    'Macau nas celebrações do 30.º aniversário da Universidade de Estudos Internacionais de Jilin '
+                    '(JISU), tendo sido calorosamente recebido pelo presidente Qin He. Cinco membros da delegação '
+                    'foram nomeados orientadores de mestrado da JISU, o que constitui um avanço na cooperação '
+                    'educativa entre Jilin e Macau.'},
+  'source': {'name': {'zh-TW': 'MFTEDA微信公眾號',
+                      'zh-CN': 'MFTEDA微信公众号',
+                      'en': 'MFTEDA WeChat Official Account',
+                      'pt': 'Conta Oficial do WeChat da MFTEDA'},
+             'url': 'https://mp.weixin.qq.com/s/0qPqvbQGacRaG8ZNyc3TwQ'},
+  'body': {'zh-TW': ['受吉林外國語大學的邀請，9月20日澳門財經科技與教育發展學會會長、澳門吉星工程執委會主席楊誠博士率澳門教育代表團一行受邀參加吉林外國語大學（下稱吉外）30週年校慶系列活動，並得到秦和校長的親切接見。',
+                     '繼兩年前與吉外結緣之後，財經學會一直致力於將澳門吉星工程轉化為落地成果，經過澳門財經科技與教育發展學會秘書長、博士智庫吉林聯絡辦主任韓婧怡博士的持續溝通，在本次財經學會受邀出席吉外校慶活動的同時，財經學會會長楊誠博士、韓婧怡博士以及博士智庫主席鄧偉強博士、高明博士和盧子健博士受邀擔任吉林外國語大學碩士研究生指導教師。與此同時，盧子健博士還受邀為吉林外國語大學志願服務管理學院客座教授。',
+                     '代表團一行分別出席了吉外建校30週年慶祝大會、吉外高質量發展推進會招待晚宴、中外大學校長論壇，並在張俊姝院長的陪同下參觀了吉外志願服務管理學院實訓基地與志願服務成果展示館，圍繞志願服務領域開展深度交流。',
+                     '秦和校長接見楊誠博士一行時表示：澳門代表團不遠千里專程到來是吉外的榮幸，雙方在教育和財經領域有著廣闊的合作空間。吉外一直致力於培養具有國際視野和專業素養的人才，而澳門在財經科技與教育發展方面有著豐富的經驗和資源。希望雙方能夠以此次校慶為契機，在學術交流、學生交換、師資培訓等方面展開深入合作，共同推動教育事業的發展與進步。',
+                     '楊誠博士表示，非常榮幸能夠受邀參加吉外的30周年校慶，與15個國家共計82所大學校長一齊見證中國民辦高校的巔峰。這次澳門教育代表團集體受如此高規格的邀請，特別是5位團隊成員受聘作為吉外碩士研究生導師，這是吉澳兩地在教育領域取得的突破性成果，也是「澳門吉星工程」的又一重要里程碑。我們將充分發揮自身的專業優勢和資源優勢，為吉澳兩地的師生提供更優質的學術指導和實踐機會，助力他們更好發展。',
+                     '未來，「澳門吉星工程」將持續為吉澳兩地青年學者和教育資源搭建公益平台，發揚「雙區聯動，教育先行」的理念，推動吉澳兩地教育的深度融合與創新發展。相信在雙方的共同努力下，吉澳兩地的合作將不斷取得新的突破和成果，「澳門吉星工程」也將為兩地的教育事業和經濟發展注入新的活力，開創更加美好的未來。'],
+           'zh-CN': ['受吉林外国语大学的邀请，9月20日澳门财经科技与教育发展学会会长、澳门吉星工程执委会主席杨诚博士率澳门教育代表团一行受邀参加吉林外国语大学（下称吉外）30周年校庆系列活动，并得到秦和校长的亲切接见。',
+                     '继两年前与吉外结缘之后，财经学会一直致力于将澳门吉星工程转化为落地成果，经过澳门财经科技与教育发展学会秘书长、博士智库吉林联络办主任韩婧怡博士的持续沟通，在本次财经学会受邀出席吉外校庆活动的同时，财经学会会长杨诚博士、韩婧怡博士以及博士智库主席邓伟强博士、高明博士和卢子健博士受邀担任吉林外国语大学硕士研究生指导教师。与此同时，卢子健博士还受邀为吉林外国语大学志愿服务管理学院客座教授。',
+                     '代表团一行分别出席了吉外建校30周年庆祝大会、吉外高质量发展推进会招待晚宴、中外大学校长论坛，并在张俊姝院长的陪同下参观了吉外志愿服务管理学院实训基地与志愿服务成果展示馆，围绕志愿服务领域开展深度交流。',
+                     '秦和校长接见杨诚博士一行时表示：澳门代表团不远千里专程到来是吉外的荣幸，双方在教育和财经领域有着广阔的合作空间。吉外一直致力于培养具有国际视野和专业素养的人才，而澳门在财经科技与教育发展方面有着丰富的经验和资源。希望双方能够以此次校庆为契机，在学术交流、学生交换、师资培训等方面展开深入合作，共同推动教育事业的发展与进步。',
+                     '杨诚博士表示，非常荣幸能够受邀参加吉外的30周年校庆，与15个国家共计82所大学校长一齐见证中国民办高校的巅峰。这次澳门教育代表团集体受如此高规格的邀请，特别是5位团队成员受聘作为吉外硕士研究生导师，这是吉澳两地在教育领域取得的突破性成果，也是“澳门吉星工程”的又一重要里程碑。我们将充分发挥自身的专业优势和资源优势，为吉澳两地的师生提供更优质的学术指导和实践机会，助力他们更好发展。',
+                     '未来，“澳门吉星工程”将持续为吉澳两地青年学者和教育资源搭建公益平台，发扬“双区联动，教育先行”的理念，推动吉澳两地教育的深度融合与创新发展。相信在双方的共同努力下，吉澳两地的合作将不断取得新的突破和成果，“澳门吉星工程”也将为两地的教育事业和经济发展注入新的活力，开创更加美好的未来。'],
+           'en': ['At the invitation of Jilin International Studies University (JISU), Dr. Yang Cheng — President of '
+                  'the Macao Financial Technology and Education Development Association (MFTEDA) and Chairman of the '
+                  'Executive Committee of the Macao Lucky Star Project — led a Macao education delegation on 20 '
+                  "September to attend JISU's 30th anniversary celebration series, where the delegation was warmly "
+                  'received by JISU President Qin He.',
+                  'Since forging ties with JISU two years ago, MFTEDA has been committed to turning the Macao Lucky '
+                  'Star Project into concrete results. Thanks to the sustained coordination of Dr. Han Jingyi — MFTEDA '
+                  'Secretary-General and Director of the Jilin Liaison Office of the Macao Doctoral Think Tank — on '
+                  "the occasion of the association's invitation to the anniversary celebrations, MFTEDA President Dr. "
+                  'Yang Cheng, Dr. Han Jingyi, as well as Chairman of the Macao Doctoral Think Tank Dr. Deng Weiqiang, '
+                  "Dr. Gao Ming and Dr. Lu Zijian were invited to serve as supervisors for master's students at Jilin "
+                  'International Studies University. At the same time, Dr. Lu Zijian was also appointed visiting '
+                  "professor at JISU's College of Volunteer Service Management.",
+                  "The delegation attended the celebration ceremony marking JISU's 30th anniversary, the reception "
+                  'dinner of the JISU High-Quality Development Conference, and the Chinese and Foreign University '
+                  "Presidents' Forum. Accompanied by Dean Zhang Junshu, the delegation also visited the practical "
+                  'training base and the volunteer service achievements exhibition hall of the College of Volunteer '
+                  'Service Management, engaging in in-depth exchanges in the field of volunteer service.',
+                  'When receiving Dr. Yang Cheng and his delegation, President Qin He said it was an honour for JISU '
+                  'that the Macao delegation had travelled thousands of miles to attend, noting that the two sides '
+                  'enjoy broad scope for cooperation in education and finance. JISU has long been committed to '
+                  'cultivating talent with an international outlook and professional competence, while Macao boasts '
+                  'rich experience and resources in financial technology and education development. He expressed the '
+                  'hope that both sides would take this anniversary as an opportunity to deepen cooperation in '
+                  'academic exchanges, student exchange and faculty training, jointly advancing the development and '
+                  'progress of the cause of education.',
+                  "Dr. Yang Cheng said he was deeply honoured to be invited to JISU's 30th anniversary celebrations, "
+                  'joining the presidents of 82 universities from 15 countries in witnessing a highlight moment for '
+                  "China's private higher education institutions. The collective invitation extended to the Macao "
+                  'education delegation at such a high level — in particular the appointment of five delegation '
+                  "members as JISU master's supervisors — represents a breakthrough achievement in educational "
+                  'cooperation between Jilin and Macao, and another important milestone for the Macao Lucky Star '
+                  'Project. We will give full play to our professional strengths and resource advantages to provide '
+                  'teachers and students in both places with higher-quality academic guidance and practical '
+                  'opportunities, supporting their further development.',
+                  'Going forward, the Macao Lucky Star Project will continue to build a public-interest platform '
+                  'connecting young scholars and educational resources in Jilin and Macao, championing the vision of '
+                  '"twin-region synergy, with education taking the lead", and promoting the deep integration and '
+                  'innovative development of education in the two places. We are confident that, with the joint '
+                  'efforts of both sides, cooperation between Jilin and Macao will continue to achieve new '
+                  'breakthroughs and results, and the Macao Lucky Star Project will inject fresh vitality into '
+                  'education and economic development in both places, opening up an even brighter future.'],
+           'pt': ['A convite da Universidade de Estudos Internacionais de Jilin (JISU), o Dr. Yang Cheng — Presidente '
+                  'da Associação de Desenvolvimento de Finanças, Tecnologia e Educação de Macau (MFTEDA) e presidente '
+                  'da comissão executiva do «Projecto Estrela da Sorte de Macau» — deslocou-se, no dia 20 de setembro, '
+                  'à frente de uma delegação educativa de Macau, às celebrações do 30.º aniversário da JISU, tendo a '
+                  'delegação sido calorosamente recebida pelo presidente da universidade, Qin He.',
+                  'Desde que estabeleceu laços com a JISU há dois anos, a MFTEDA tem-se empenhado em transformar o '
+                  '«Projecto Estrela da Sorte de Macau» em resultados concretos. Graças à comunicação contínua da Dra. '
+                  'Han Jingyi — Secretária-Geral da MFTEDA e directora do Gabinete de Ligação de Jilin do Think Tank '
+                  'dos Doutorados de Macau —, por ocasião da presença da associação nas celebrações do aniversário da '
+                  'JISU, o Presidente da MFTEDA, Dr. Yang Cheng, a Dra. Han Jingyi, bem como o presidente do Think '
+                  'Tank dos Doutorados de Macau, Dr. Deng Weiqiang, o Dr. Gao Ming e o Dr. Lu Zijian, foram convidados '
+                  'a assumir funções de orientadores de estudantes de mestrado da Universidade de Estudos '
+                  'Internacionais de Jilin. Simultaneamente, o Dr. Lu Zijian foi ainda convidado para professor '
+                  'convidado da Faculdade de Gestão de Serviços de Voluntariado da JISU.',
+                  'A delegação participou, respectivamente, na cerimónia comemorativa do 30.º aniversário da fundação '
+                  'da JISU, no jantar de recepção da Conferência de Promoção do Desenvolvimento de Alta Qualidade da '
+                  'JISU e no Fórum de Dirigentes de Universidades da China e do Estrangeiro. Acompanhada pela '
+                  'directora Zhang Junshu, a delegação visitou ainda a base de formação prática e o pavilhão de '
+                  'exposição dos resultados do voluntariado da Faculdade de Gestão de Serviços de Voluntariado, '
+                  'mantendo intercâmbios aprofundados no domínio do voluntariado.',
+                  'Ao receber o Dr. Yang Cheng e a sua delegação, o presidente Qin He afirmou que a deslocação da '
+                  'delegação de Macau, percorrendo milhares de quilómetros, constitui uma honra para a JISU, '
+                  'salientando que ambas as partes dispõem de um amplo espaço de cooperação nos domínios da educação e '
+                  'das finanças. A JISU tem-se dedicado à formação de quadros com visão internacional e sólida '
+                  'qualificação profissional, enquanto Macau possui vasta experiência e recursos no desenvolvimento '
+                  'das finanças, da tecnologia e da educação. Manifestou a esperança de que as duas partes aproveitem '
+                  'esta celebração do aniversário como oportunidade para aprofundar a cooperação em áreas como os '
+                  'intercâmbios académicos, a mobilidade de estudantes e a formação de docentes, impulsionando em '
+                  'conjunto o desenvolvimento e o progresso da causa educativa.',
+                  'O Dr. Yang Cheng afirmou ser uma grande honra ter sido convidado para as celebrações do 30.º '
+                  'aniversário da JISU, testemunhando, ao lado dos dirigentes de 82 universidades de 15 países, um '
+                  'momento ímpar das instituições privadas de ensino superior da China. O convite de tão elevado nível '
+                  'dirigido colectivamente à delegação educativa de Macau — em especial a nomeação de cinco membros da '
+                  'delegação como orientadores de mestrado da JISU — constitui um resultado inovador da cooperação '
+                  'educativa entre Jilin e Macau e mais um marco importante do «Projecto Estrela da Sorte de Macau». '
+                  'Iremos dar pleno uso às nossas vantagens profissionais e aos nossos recursos, proporcionando '
+                  'orientação académica e oportunidades de prática de melhor qualidade aos docentes e estudantes das '
+                  'duas regiões, apoiando o seu desenvolvimento.',
+                  'No futuro, o «Projecto Estrela da Sorte de Macau» continuará a construir uma plataforma de '
+                  'utilidade pública que ligue os jovens académicos e os recursos educativos de Jilin e de Macau, '
+                  'promovendo o conceito de «sinergia entre as duas regiões, com a educação na liderança» e '
+                  'impulsionando a integração profunda e o desenvolvimento inovador da educação nas duas regiões. '
+                  'Acreditamos que, com os esforços conjuntos de ambas as partes, a cooperação entre Jilin e Macau '
+                  'continuará a alcançar novos avanços e resultados, e que o «Projecto Estrela da Sorte de Macau» '
+                  'injectará nova vitalidade na educação e no desenvolvimento económico das duas regiões, abrindo '
+                  'caminho a um futuro ainda melhor.']},
+  'images': [{'file': 'jisu-30th-anniversary-2025-1.webp',
+              'after': 1,
+              'caption': {'zh-TW': '楊誠博士（左）、秦和校長（中）與韓婧怡秘書長（右）合影',
+                          'zh-CN': '杨诚博士（左）、秦和校长（中）与韩婧怡秘书长（右）合影',
+                          'en': 'Dr. Yang Cheng (left), JISU President Qin He (centre) and Secretary-General Han '
+                                'Jingyi (right)',
+                          'pt': 'O Dr. Yang Cheng (à esq.), o presidente da JISU, Qin He (ao centro), e a '
+                                'Secretária-Geral Han Jingyi (à dir.)'}},
+             {'file': 'jisu-30th-anniversary-2025-2.webp',
+              'after': 2,
+              'caption': {'zh-TW': '盧子健博士（右一）、楊誠博士（右二）、韓婧怡博士（左二）代表澳門代表團領取碩士研究生指導教師證書',
+                          'zh-CN': '卢子健博士（右一）、杨诚博士（右二）、韩婧怡博士（左二）代表澳门代表团领取硕士研究生指导教师证书',
+                          'en': 'Dr. Lu Zijian (first from right), Dr. Yang Cheng (second from right) and Dr. Han '
+                                "Jingyi (second from left) receive the master's supervisor certificates on behalf of "
+                                'the Macao delegation',
+                          'pt': 'O Dr. Lu Zijian (1.º à dir.), o Dr. Yang Cheng (2.º à dir.) e a Dra. Han Jingyi (2.ª '
+                                'à esq.) recebem os certificados de orientador de mestrado em representação da '
+                                'delegação de Macau'}},
+             {'file': 'jisu-30th-anniversary-2025-3.webp',
+              'after': 3,
+              'caption': {'zh-TW': '澳門教育代表團獲邀參加吉外建校30週年慶祝大會',
+                          'zh-CN': '澳门教育代表团获邀参加吉外建校30周年庆祝大会',
+                          'en': "The Macao education delegation attends the celebration ceremony marking JISU's 30th "
+                                'anniversary',
+                          'pt': 'A delegação educativa de Macau participa na cerimónia comemorativa do 30.º '
+                                'aniversário da fundação da JISU'}},
+             {'file': 'jisu-30th-anniversary-2025-4.webp',
+              'after': 5,
+              'caption': {'zh-TW': '吉林外國語大學30週年校慶現場',
+                          'zh-CN': '吉林外国语大学30周年校庆现场',
+                          'en': "Aerial view of Jilin International Studies University's 30th anniversary celebrations",
+                          'pt': 'Vista aérea das celebrações do 30.º aniversário da Universidade de Estudos '
+                                'Internacionais de Jilin'}}]},
+ {'slug': 'huangjialun-appointed-legco-member',
+  'date': '2025-09-29',
+  'category': {'zh-TW': '學會動態', 'zh-CN': '学会动态', 'en': 'Association News', 'pt': 'Notícias da Associação'},
+  'title': {'zh-TW': '本會榮譽會長黃家倫獲委任為澳門特別行政區第八屆立法會議員',
+            'zh-CN': '本会荣誉会长黄家伦获委任为澳门特别行政区第八届立法会议员',
+            'en': 'MFTEDA Honorary President Vong Ka Lon Appointed Member of the Eighth Legislative Assembly of the '
+                  'Macao SAR',
+            'pt': 'Presidente Honorário da MFTEDA, Vong Ka Lon, nomeado deputado à VIII Assembleia Legislativa da '
+                  'RAEM'},
+  'excerpt': {'zh-TW': '根據《澳門特別行政區公報》9月29日刊登的第44/2025號行政命令，本會榮譽會長黃家倫先生獲行政長官岑浩輝委任為澳門特別行政區第八屆立法會議員。',
+              'zh-CN': '根据《澳门特别行政区公报》9月29日刊登的第44/2025号行政命令，本会荣誉会长黄家伦先生获行政长官岑浩辉委任为澳门特别行政区第八届立法会议员。',
+              'en': 'According to Executive Order No. 44/2025 published in the Official Gazette of the Macao SAR on 29 '
+                    'September, MFTEDA Honorary President Mr. Vong Ka Lon has been appointed by Chief Executive Sam '
+                    'Hou Fai as a member of the Eighth Legislative Assembly of the Macao SAR.',
+              'pt': 'De acordo com a Ordem Executiva n.º 44/2025, publicada no Boletim Oficial da RAEM a 29 de '
+                    'setembro, o Presidente Honorário da MFTEDA, Vong Ka Lon, foi nomeado pelo Chefe do Executivo, Sam '
+                    'Hou Fai, deputado à VIII Assembleia Legislativa da RAEM.'},
+  'source': {'name': {'zh-TW': 'MFTEDA微信公眾號',
+                      'zh-CN': 'MFTEDA微信公众号',
+                      'en': 'MFTEDA WeChat Official Account',
+                      'pt': 'Conta Oficial do WeChat da MFTEDA'},
+             'url': 'https://mp.weixin.qq.com/s/_t39MI7yZw2Sqj5C653E7Q'},
+  'body': {'zh-TW': ['根據《澳門特別行政區公報》9月29日刊登第44/2025號行政命令，澳門財經科技與教育發展學會榮譽會長黃家倫先生被行政長官岑浩輝委任為澳門特別行政區第八屆立法會議員。',
+                     '黃家倫榮譽會長表示：“非常感謝行政長官的信任，也非常榮幸獲委任為第八屆立法會議員。未來將會竭盡所能做到‘支持好、監督好’政府工作，為澳門謀發展，為居民做實事。”',
+                     '黃家倫先生長期服務於社會事務及愛國青年團隊建設。2016年創立澳門愛國教育青年協會並組織青年赴內地學習交流。作為企業家，他積極參與粵港澳大灣區建設，藉助澳門對接葡語系國家的經驗探索經貿合作新路徑，同時推動澳門青年創業和人才融匯，倡導港澳青年融入國家發展大局。',
+                     '黃家倫先生現為澳門青年事務委員會委員、澳門直播協會創會會長、廣州市政協委員、中國僑聯青年委員會常委等。'],
+           'zh-CN': ['根据《澳门特别行政区公报》9月29日刊登第44/2025号行政命令，澳门财经科技与教育发展学会荣誉会长黄家伦先生被行政长官岑浩辉委任为澳门特别行政区第八届立法会议员。',
+                     '黄家伦荣誉会长表示：“非常感谢行政长官的信任，也非常荣幸获委任为第八届立法会议员。未来将会竭尽所能做到‘支持好、监督好’政府工作，为澳门谋发展，为居民做实事。”',
+                     '黄家伦先生长期服务于社会事务及爱国青年团队建设。2016年创立澳门爱国教育青年协会并组织青年赴内地学习交流。作为企业家，他积极参与粤港澳大湾区建设，借助澳门对接葡语系国家的经验探索经贸合作新路径，同时推动澳门青年创业和人才融汇，倡导港澳青年融入国家发展大局。',
+                     '黄家伦先生现为澳门青年事务委员会委员、澳门直播协会创会会长、广州市政协委员、中国侨联青年委员会常委等。'],
+           'en': ['According to Executive Order No. 44/2025 published in the Official Gazette of the Macao Special '
+                  'Administrative Region on 29 September, Mr. Vong Ka Lon, Honorary President of the Macao Financial '
+                  'Technology and Education Development Association (MFTEDA), has been appointed by Chief Executive '
+                  'Sam Hou Fai as a member of the Eighth Legislative Assembly of the Macao SAR.',
+                  'Honorary President Vong Ka Lon said: "I am very grateful to the Chief Executive for his trust, and '
+                  'it is a great honour to be appointed a member of the Eighth Legislative Assembly. Going forward, I '
+                  "will do my utmost to 'support well and oversee well' the work of the Government, striving for "
+                  'Macao\'s development and delivering concrete results for its residents."',
+                  'Mr. Vong has long been dedicated to community affairs and the building of patriotic youth '
+                  'organisations. In 2016, he founded the Macao Patriotic Education Youth Association, organising '
+                  'study and exchange trips for young people to the mainland. As an entrepreneur, he has actively '
+                  'participated in the development of the Guangdong–Hong Kong–Macao Greater Bay Area, drawing on '
+                  "Macao's experience in connecting with Portuguese-speaking countries to explore new paths for "
+                  'economic and trade cooperation, while promoting youth entrepreneurship and talent integration in '
+                  "Macao and advocating for young people from Hong Kong and Macao to integrate into the nation's "
+                  'overall development.',
+                  'Mr. Vong currently serves as a member of the Macao Youth Affairs Committee, founding president of '
+                  'the Macao Live Streaming Association, a member of the Guangzhou Municipal Committee of the Chinese '
+                  "People's Political Consultative Conference, and a standing committee member of the Youth Committee "
+                  'of the All-China Federation of Returned Overseas Chinese, among other roles.'],
+           'pt': ['De acordo com a Ordem Executiva n.º 44/2025, publicada no Boletim Oficial da Região Administrativa '
+                  'Especial de Macau (RAEM) a 29 de setembro, Vong Ka Lon, Presidente Honorário da Associação de '
+                  'Desenvolvimento de Finanças, Tecnologia e Educação de Macau (MFTEDA), foi nomeado pelo Chefe do '
+                  'Executivo, Sam Hou Fai, deputado à VIII Assembleia Legislativa da RAEM.',
+                  'O Presidente Honorário Vong Ka Lon afirmou: «Agradeço profundamente a confiança do Chefe do '
+                  'Executivo e é para mim uma grande honra ser nomeado deputado à VIII Assembleia Legislativa. No '
+                  'futuro, farei tudo o que estiver ao meu alcance para “bem apoiar e bem fiscalizar” a acção do '
+                  'Governo, trabalhando pelo desenvolvimento de Macau e por resultados concretos para os seus '
+                  'residentes.»',
+                  'Vong Ka Lon dedica-se há muito aos assuntos comunitários e à construção de organizações juvenis '
+                  'patrióticas. Em 2016, fundou a Associação de Educação Patriótica da Juventude de Macau, organizando '
+                  'visitas de estudo e intercâmbio de jovens ao Interior da China. Enquanto empresário, participa '
+                  'activamente na construção da Grande Baía Guangdong–Hong Kong–Macau, aproveitando a experiência de '
+                  'Macau na ligação aos países de língua portuguesa para explorar novos caminhos de cooperação '
+                  'económica e comercial, promovendo simultaneamente o empreendedorismo juvenil e a integração de '
+                  'talentos em Macau e defendendo a integração dos jovens de Hong Kong e Macau no desenvolvimento '
+                  'nacional.',
+                  'Vong Ka Lon é actualmente membro do Conselho de Assuntos da Juventude de Macau, presidente fundador '
+                  'da Associação de Transmissão em Directo de Macau, membro da Conferência Consultiva Política do Povo '
+                  'Chinês do Município de Cantão e membro do Comité Permanente da Comissão da Juventude da Federação '
+                  'de Toda a China dos Chineses Ultramarinos Regressados, entre outras funções.']},
+  'images': [{'file': 'huangjialun-appointed-legco-member-1.webp',
+              'after': 1,
+              'caption': {'zh-TW': '黃家倫榮譽會長獲任澳門第八屆立法會議員',
+                          'zh-CN': '黄家伦荣誉会长获任澳门第八届立法会议员',
+                          'en': "Honorary President Vong Ka Lon appointed member of Macao's Eighth Legislative "
+                                'Assembly',
+                          'pt': 'O Presidente Honorário Vong Ka Lon nomeado deputado à VIII Assembleia Legislativa de '
+                                'Macau'}}]},
+ {'slug': 'chinese-modernization-forum-macao-2025',
+  'date': '2025-08-23',
+  'category': {'zh-TW': '學術活動', 'zh-CN': '学术活动', 'en': 'Academic Activities', 'pt': 'Actividades Académicas'},
+  'title': {'zh-TW': '「中國式現代化學術論壇」在澳門成功舉辦',
+            'zh-CN': '“中国式现代化学术论坛”在澳门成功举办',
+            'en': 'Academic Forum on Chinese Modernization Successfully Held in Macao',
+            'pt': 'Fórum Académico sobre a Modernização Chinesa realizado com sucesso em Macau'},
+  'excerpt': {'zh-TW': '8月23日，「紀念中國人民抗日戰爭暨世界反法西斯戰爭勝利80周年——中國式現代化學術論壇」在澳門隆重舉行，三位內地重量級專家圍繞科技現代化、國際格局與民族復興發表主旨演講，線上線下共4000多人參與；本會作為承辦單位全程參與策劃統籌。',
+              'zh-CN': '8月23日，“纪念中国人民抗日战争暨世界反法西斯战争胜利80周年——中国式现代化学术论坛”在澳门隆重举行，三位内地重量级专家围绕科技现代化、国际格局与民族复兴发表主旨演讲，线上线下共4000多人参与；本会作为承办单位全程参与策划统筹。',
+              'en': 'On 23 August, the Academic Forum on Chinese Modernization — commemorating the 80th anniversary of '
+                    "the victory in the Chinese People's War of Resistance against Japanese Aggression and the World "
+                    'Anti-Fascist War — was grandly held in Macao. Three leading experts from the Chinese mainland '
+                    'delivered keynote speeches on scientific and technological modernization, the international '
+                    'landscape and national rejuvenation, drawing more than 4,000 participants in person and online; '
+                    'MFTEDA, as the undertaking organisation, was fully involved in planning and coordinating the '
+                    'event.',
+              'pt': 'A 23 de Agosto, o Fórum Académico sobre a Modernização Chinesa — em comemoração do 80.º '
+                    'aniversário da vitória da Guerra de Resistência do Povo Chinês contra a Agressão Japonesa e da '
+                    'Guerra Mundial Antifascista — teve lugar, com grande solenidade, em Macau. Três eminentes '
+                    'especialistas do Interior da China proferiram discursos temáticos sobre a modernização científica '
+                    'e tecnológica, o panorama internacional e a revitalização nacional, reunindo mais de 4.000 '
+                    'participantes, presencialmente e em linha; a MFTEDA, enquanto entidade realizadora, participou em '
+                    'todo o planeamento e coordenação do evento.'},
+  'source': {'name': {'zh-TW': 'MFTEDA微信公眾號',
+                      'zh-CN': 'MFTEDA微信公众号',
+                      'en': 'MFTEDA WeChat Official Account',
+                      'pt': 'Conta Oficial do WeChat da MFTEDA'},
+             'url': 'https://mp.weixin.qq.com/s/C4NXTqPhCIy4HbZUNEvkjA'},
+  'body': {'zh-TW': ['為紀念中國人民抗日戰爭暨世界反法西斯戰爭勝利80周年，由澳門愛國教育青年協會、澳門直播協會和博士智庫主辦，澳門財經科技與教育發展學會承辦，澳門招商投資促進局和澳門青年聯合會支持的「紀念中國人民抗日戰爭暨世界反法西斯戰爭勝利80周年——中國式現代化學術論壇」於8月23日在中國與葡語國家商貿合作服務平台綜合體隆重舉行。',
+                     '本次論壇聚焦探討「中國式現代化」在科技、國際關係和軍事歷史等多領域的深刻內涵與實踐路徑。論壇強調，中國式現代化不僅是國家發展的戰略目標，也是澳門融入國家發展大局的重要契機。',
+                     '中央人民政府駐澳門特別行政區聯絡辦公室副主任黃柳權，澳門特別行政區經濟財政司司長戴建業，澳門特別行政區招商投資促進局主席謝永強，澳門青年聯合會會長羅奕龍，澳門特別行政區統計暨普查局代局長龐啟富等主禮嘉賓出席了論壇的開幕儀式。',
+                     '本次論壇特邀到了北京空天無人科技研究院院長、曾任合肥工業大學校長、北京航空航天大學常務副校長的徐樅巍教授，中國人民大學教授、中美關係專家金燦榮教授以及軍事科學院研究員、中共文獻研究會理事單秀法教授。',
+                     '三位專家深入探討中國式現代化的內涵與路徑，以及澳門在其中的獨特角色，為澳門經濟的可持續發展提供理論支持與實踐指導。',
+                     '澳門愛國教育青年協會主席、澳門財經科技與教育發展學會榮譽主席黃家倫先生在致辭時表示，80年前的抗戰勝利為中國的和平發展奠定了堅實基礎，而如今的中國式現代化則為澳門青年提供了更廣闊的世界視野。',
+                     '他強調，澳門青年應在中國式現代化的進程中找到自己的擔當，成為這一偉大事業的見證者、傳播者和踐行者。',
+                     '北京空天無人科技研究院徐樅巍教授圍繞「中國科技現代化」進行了分享，從新中國成立初期的百廢待興，到改革開放後的快速發展，再到如今的創新引領，取得了一系列重大成就。',
+                     '他表示，中國科技需優化科研環境、推動科技成果轉化、培養創新人才，在深化國際科技合作上澳門具有較大優勢，尤其在制度上和國際交流上能夠為國家科技發展提供助力。',
+                     '中國人民大學教授金燦榮教授聚焦「百年未有之大變局和21世紀的國際格局」。金教授指出，當今正處於百年未有之大變局，其核心是世界力量對比的「東升西降」。以西方主導世界500年的態勢正走向衰落，中國工業化成功是「東升」的關鍵。中美長期博弈不可避免，其結果將決定百年變局走向，澳門可以藉助地緣優勢提升戰略地位。',
+                     '軍事科學院研究員單秀法教授以「中國最輝煌的時代即將到來——漫談中國式的現代化」為題，展望了中國式現代化的未來前景，強調了文化影響力、國家統一和品牌競爭力在實現中華民族偉大復興中的重要作用。',
+                     '他指出，中國式現代化不僅要在經濟和科技領域取得突破，更要通過文化影響力提升國家的軟實力，澳門青年應利用自身優勢講好澳門故事，做好中國品牌的國際傳播。',
+                     '作為承辦單位，本會會長楊誠博士擔任此次活動的策劃工作，理事長宋薇博士擔任活動統籌工作。本會秘書長韓婧怡、學術顧問李斯、副理事長陳錦權受邀作為嘉賓出席了活動。',
+                     '本次論壇的成功舉辦，不僅為澳門青年提供了一個深入了解中國式現代化的平台，也為澳門在國家發展大局中的角色定位提供了新的思路。',
+                     '通過與葡語國家及一帶一路國家的合作，澳門可以發揮其獨特的地緣優勢，促進中國與發展中國家在經濟、文化、教育等領域的交流與合作，推動構建人類命運共同體，為中國式現代化的發展貢獻自己的力量。',
+                     '此外，論壇亦由澳門青年優才與專才協會、澳門愛國體育青年協會、澳門主播達人協會、澳門青年短視頻及直播行業協會共同協辦。',
+                     '活動通過線下及線上直播方式同步進行，來自高校、社團、學術研究機構等總計4000多人參與了活動。'],
+           'zh-CN': ['为纪念中国人民抗日战争暨世界反法西斯战争胜利80周年，由澳门爱国教育青年协会、澳门直播协会和博士智库主办，澳门财经科技与教育发展学会承办，澳门招商投资促进局和澳门青年联合会支持的“纪念中国人民抗日战争暨世界反法西斯战争胜利80周年——中国式现代化学术论坛”于8月23日在中国与葡语国家商贸合作服务平台综合体隆重举行。',
+                     '本次论坛聚焦探讨“中国式现代化”在科技、国际关系和军事历史等多领域的深刻内涵与实践路径。论坛强调，中国式现代化不仅是国家发展的战略目标，也是澳门融入国家发展大局的重要契机。',
+                     '中央人民政府驻澳门特别行政区联络办公室副主任黄柳权，澳门特别行政区经济财政司司长戴建业，澳门特别行政区招商投资促进局主席谢永强，澳门青年联合会会长罗奕龙，澳门特别行政区统计暨普查局代局长庞启富等主礼嘉宾出席了论坛的开幕仪式。',
+                     '本次论坛特邀到了北京空天无人科技研究院院长、曾任合肥工业大学校长、北京航空航天大学常务副校长的徐枞巍教授，中国人民大学教授、中美关系专家金灿荣教授以及军事科学院研究员、中共文献研究会理事单秀法教授。',
+                     '三位专家深入探讨中国式现代化的内涵与路径，以及澳门在其中的独特角色，为澳门经济的可持续发展提供理论支持与实践指导。',
+                     '澳门爱国教育青年协会主席、澳门财经科技与教育发展学会荣誉主席黄家伦先生在致辞时表示，80年前的抗战胜利为中国的和平发展奠定了坚实基础，而如今的中国式现代化则为澳门青年提供了更广阔的世界视野。',
+                     '他强调，澳门青年应在中国式现代化的进程中找到自己的担当，成为这一伟大事业的见证者、传播者和践行者。',
+                     '北京空天无人科技研究院徐枞巍教授围绕“中国科技现代化”进行了分享，从新中国成立初期的百废待兴，到改革开放后的快速发展，再到如今的创新引领，取得了一系列重大成就。',
+                     '他表示，中国科技需优化科研环境、推动科技成果转化、培养创新人才，在深化国际科技合作上澳门具有较大优势，尤其在制度上和国际交流上能够为国家科技发展提供助力。',
+                     '中国人民大学教授金灿荣教授聚焦“百年未有之大变局和21世纪的国际格局”。金教授指出，当今正处于百年未有之大变局，其核心是世界力量对比的“东升西降”。以西方主导世界500年的态势正走向衰落，中国工业化成功是“东升”的关键。中美长期博弈不可避免，其结果将决定百年变局走向，澳门可以借助地缘优势提升战略地位。',
+                     '军事科学院研究员单秀法教授以“中国最辉煌的时代即将到来——漫谈中国式的现代化”为题，展望了中国式现代化的未来前景，强调了文化影响力、国家统一和品牌竞争力在实现中华民族伟大复兴中的重要作用。',
+                     '他指出，中国式现代化不仅要在经济和科技领域取得突破，更要通过文化影响力提升国家的软实力，澳门青年应利用自身优势讲好澳门故事，做好中国品牌的国际传播。',
+                     '作为承办单位，本会会长杨诚博士担任此次活动的策划工作，理事长宋薇博士担任活动统筹工作。本会秘书长韩婧怡、学术顾问李斯、副理事长陈锦权受邀作为嘉宾出席了活动。',
+                     '本次论坛的成功举办，不仅为澳门青年提供了一个深入了解中国式现代化的平台，也为澳门在国家发展大局中的角色定位提供了新的思路。',
+                     '通过与葡语国家及一带一路国家的合作，澳门可以发挥其独特的地缘优势，促进中国与发展中国家在经济、文化、教育等领域的交流与合作，推动构建人类命运共同体，为中国式现代化的发展贡献自己的力量。',
+                     '此外，论坛亦由澳门青年优才与专才协会、澳门爱国体育青年协会、澳门主播达人协会、澳门青年短视频及直播行业协会共同协办。',
+                     '活动通过线下及线上直播方式同步进行，来自高校、社团、学术研究机构等总计4000多人参与了活动。'],
+           'en': ["To commemorate the 80th anniversary of the victory of the Chinese People's War of Resistance "
+                  'against Japanese Aggression and the World Anti-Fascist War, the "Academic Forum on Chinese '
+                  "Modernization — Commemorating the 80th Anniversary of the Victory of the Chinese People's War of "
+                  'Resistance against Japanese Aggression and the World Anti-Fascist War" was grandly held on 23 '
+                  'August at the Complex of the China–Portuguese-speaking Countries Commercial and Trade Cooperation '
+                  'Service Platform. The forum was organised by the Macao Patriotic Education Youth Association, the '
+                  'Macao Live Streaming Association and the Macao Doctoral Think Tank, undertaken by the Macao '
+                  'Financial Technology and Education Development Association (MFTEDA), and supported by the Macao '
+                  'Commerce and Investment Promotion Institute (IPIM) and the Macao Youth Federation.',
+                  'The forum focused on the profound meaning and practical pathways of "Chinese modernization" across '
+                  'multiple fields, including science and technology, international relations and military history. It '
+                  'stressed that Chinese modernization is not only a strategic goal of national development, but also '
+                  "an important opportunity for Macao to integrate into the country's overall development.",
+                  'Officiating guests attending the opening ceremony included Huang Liuquan, Deputy Director of the '
+                  "Liaison Office of the Central People's Government in the Macao Special Administrative Region; Dai "
+                  'Jianye, Secretary for Economy and Finance of the Macao SAR; Xie Yongqiang, Chairman of the Macao '
+                  'Commerce and Investment Promotion Institute; Luo Yilong, President of the Macao Youth Federation; '
+                  'and Pang Qifu, Acting Director of the Macao SAR Statistics and Census Service.',
+                  'The forum specially invited three distinguished speakers: Professor Xu Congwei, President of the '
+                  'Beijing Academy of Aerospace and Unmanned Aerial Technology, formerly President of Hefei University '
+                  'of Technology and Executive Vice President of Beihang University; Professor Jin Canrong of Renmin '
+                  'University of China, an expert on China–United States relations; and Professor Shan Xiufa, a '
+                  'researcher at the Academy of Military Science and a council member of the Research Society of CPC '
+                  'Literature.',
+                  'The three experts engaged in in-depth discussions on the meaning and pathways of Chinese '
+                  "modernization and on Macao's unique role within it, providing theoretical support and practical "
+                  "guidance for the sustainable development of Macao's economy.",
+                  'In his address, Mr. Vong Ka Lon, President of the Macao Patriotic Education Youth Association and '
+                  'Honorary President of MFTEDA, said that the victory in the War of Resistance 80 years ago laid a '
+                  "solid foundation for China's peaceful development, while Chinese modernization today offers Macao's "
+                  'young people a broader vision of the world.',
+                  "He stressed that Macao's youth should find their own sense of responsibility in the course of "
+                  'Chinese modernization, becoming witnesses, communicators and practitioners of this great cause.',
+                  'Professor Xu Congwei of the Beijing Academy of Aerospace and Unmanned Aerial Technology shared his '
+                  'perspectives on "China\'s scientific and technological modernization", reviewing the journey from '
+                  "the reconstruction of the early years of the People's Republic, through the rapid development that "
+                  "followed reform and opening-up, to today's innovation-led progress, which has yielded a series of "
+                  'major achievements.',
+                  "He noted that China's science and technology sector needs to improve the research environment, "
+                  'accelerate the application of research outcomes and cultivate innovative talent. Macao, he said, '
+                  'enjoys considerable advantages in deepening international sci-tech cooperation — particularly in '
+                  "its institutions and international exchanges — and can thereby contribute to the country's "
+                  'technological development.',
+                  'Professor Jin Canrong of Renmin University of China focused on "the changes unseen in a century and '
+                  'the international landscape of the 21st century". He pointed out that the world is now in the midst '
+                  'of once-in-a-century changes, at the core of which lies a shift in the global balance of power '
+                  'described as "the East rising while the West declines". The 500-year pattern of Western dominance '
+                  'is fading, and the success of China\'s industrialisation is the key to the "rise of the East". '
+                  'Long-term China–US rivalry is unavoidable, and its outcome will determine the direction of these '
+                  'changes; Macao, he argued, can draw on its geographical advantages to enhance its strategic '
+                  'position.',
+                  'Professor Shan Xiufa, a researcher at the Academy of Military Science, spoke on "China\'s most '
+                  'splendid era is about to arrive — reflections on Chinese-style modernization", looking ahead to the '
+                  'prospects of Chinese modernization and underlining the importance of cultural influence, national '
+                  'reunification and brand competitiveness in achieving the great rejuvenation of the Chinese nation.',
+                  'He pointed out that Chinese modernization must achieve breakthroughs not only in the economic and '
+                  "technological spheres, but also in strengthening the country's soft power through cultural "
+                  "influence. Macao's young people, he said, should make the most of their own strengths to tell "
+                  "Macao's stories well and to promote Chinese brands internationally.",
+                  'As the undertaking organisation, MFTEDA took charge of planning the event, led by President Dr. '
+                  'Yang Cheng, with Chairperson Dr. Song Wei serving as overall coordinator. MFTEDA Secretary-General '
+                  'Han Jingyi, Academic Advisor Li Si and Vice Chairman Chen Jinquan also attended the event as '
+                  'invited guests.',
+                  "The successful hosting of the forum not only provided Macao's young people with a platform for "
+                  'gaining an in-depth understanding of Chinese modernization, but also offered new ideas for defining '
+                  "Macao's role in the country's overall development.",
+                  'Through cooperation with Portuguese-speaking countries and Belt and Road partner countries, Macao '
+                  'can bring its unique geographical advantages into play, promoting exchanges and cooperation between '
+                  'China and developing countries in the economic, cultural and educational fields, contributing to '
+                  'the building of a community with a shared future for mankind, and making its own contribution to '
+                  'the advancement of Chinese modernization.',
+                  'The forum was also co-organised by the Macao Young Talents and Professionals Association, the Macao '
+                  'Patriotic Sports Youth Association, the Macao Livestreamers Association and the Macao Youth Short '
+                  'Video and Live Streaming Industry Association.',
+                  'The event took place both in person and via simultaneous live streaming, with a total of more than '
+                  '4,000 participants from universities, community associations and academic research institutions.'],
+           'pt': ['Para assinalar o 80.º aniversário da vitória da Guerra de Resistência do Povo Chinês contra a '
+                  'Agressão Japonesa e da Guerra Mundial Antifascista, o «Fórum Académico sobre a Modernização Chinesa '
+                  '— Comemoração do 80.º Aniversário da Vitória da Guerra de Resistência do Povo Chinês contra a '
+                  'Agressão Japonesa e da Guerra Mundial Antifascista» teve lugar, com grande solenidade, a 23 de '
+                  'Agosto, no Complexo da Plataforma de Serviços para a Cooperação Comercial entre a China e os Países '
+                  'de Língua Portuguesa. O fórum foi organizado pela Associação de Educação Patriótica da Juventude de '
+                  'Macau, pela Associação de Transmissão em Direto de Macau e pelo Macao Doctoral Think Tank, '
+                  'realizado pela Associação para o Desenvolvimento da Tecnologia Financeira e da Educação de Macau '
+                  '(MFTEDA), e contou com o apoio do Instituto de Promoção do Comércio e do Investimento de Macau '
+                  '(IPIM) e da Federação das Associações de Juventude de Macau.',
+                  'O fórum centrou-se na análise do profundo significado e dos caminhos práticos da «modernização '
+                  'chinesa» em diversos domínios, nomeadamente a ciência e a tecnologia, as relações internacionais e '
+                  'a história militar. Foi sublinhado que a modernização chinesa não constitui apenas um objectivo '
+                  'estratégico do desenvolvimento nacional, mas também uma importante oportunidade para a integração '
+                  'de Macau no desenvolvimento global do país.',
+                  'Entre os convidados de honra presentes na cerimónia de abertura encontravam-se Huang Liuquan, '
+                  'subdirector do Gabinete de Ligação do Governo Popular Central na Região Administrativa Especial de '
+                  'Macau (RAEM); Dai Jianye, secretário para a Economia e Finanças da RAEM; Xie Yongqiang, presidente '
+                  'do Instituto de Promoção do Comércio e do Investimento de Macau; Luo Yilong, presidente da '
+                  'Federação das Associações de Juventude de Macau; e Pang Qifu, director substituto da Direcção dos '
+                  'Serviços de Estatística e Censos da RAEM.',
+                  'O fórum contou com três oradores especialmente convidados: o professor Xu Congwei, presidente da '
+                  'Academia de Tecnologia Aeroespacial e de Veículos Não Tripulados de Pequim, antigo reitor da '
+                  'Universidade de Tecnologia de Hefei e antigo vice-presidente executivo da Universidade Beihang; o '
+                  'professor Jin Canrong, docente da Universidade Renmin da China e especialista em relações '
+                  'sino-americanas; e o professor Shan Xiufa, investigador da Academia de Ciências Militares e membro '
+                  'do conselho da Sociedade de Estudos Documentais do PCC.',
+                  'Os três especialistas debateram em profundidade o significado e os caminhos da modernização '
+                  'chinesa, bem como o papel singular de Macau nesse processo, fornecendo suporte teórico e orientação '
+                  'prática para o desenvolvimento sustentável da economia de Macau.',
+                  'No seu discurso, Vong Ka Lon, presidente da Associação de Educação Patriótica da Juventude de Macau '
+                  'e presidente honorário da MFTEDA, afirmou que a vitória da Guerra de Resistência, há 80 anos, '
+                  'lançou bases sólidas para o desenvolvimento pacífico da China, e que a modernização chinesa de hoje '
+                  'oferece aos jovens de Macau uma visão mais ampla do mundo.',
+                  'Sublinhou ainda que os jovens de Macau devem encontrar o seu sentido de responsabilidade no '
+                  'processo da modernização chinesa, tornando-se testemunhas, divulgadores e praticantes desta grande '
+                  'causa.',
+                  'O professor Xu Congwei, da Academia de Tecnologia Aeroespacial e de Veículos Não Tripulados de '
+                  'Pequim, partilhou as suas reflexões sobre «a modernização científica e tecnológica da China», '
+                  'percorrendo o caminho desde a reconstrução dos primeiros anos da República Popular da China, '
+                  'passando pelo rápido desenvolvimento após a reforma e abertura, até à actual liderança pela '
+                  'inovação, que resultou numa série de realizações de grande importância.',
+                  'Referiu que a ciência e a tecnologia da China precisam de melhorar o ambiente de investigação, '
+                  'acelerar a transferência dos resultados científicos e formar talentos inovadores. Macau, '
+                  'acrescentou, possui vantagens consideráveis no aprofundamento da cooperação científica e '
+                  'tecnológica internacional — sobretudo ao nível institucional e dos intercâmbios internacionais — '
+                  'podendo assim contribuir para o desenvolvimento tecnológico do país.',
+                  'O professor Jin Canrong, da Universidade Renmin da China, centrou a sua intervenção em «as mudanças '
+                  'nunca vistas em um século e o panorama internacional do século XXI». Assinalou que o mundo '
+                  'atravessa transformações profundas, cujo cerne é a alteração do equilíbrio de forças mundial, '
+                  'resumida na fórmula «o Oriente sobe enquanto o Ocidente desce». O domínio ocidental, mantido ao '
+                  'longo de 500 anos, está em declínio, e o sucesso da industrialização chinesa é a chave da «ascensão '
+                  'do Oriente». A rivalidade de longo prazo entre a China e os Estados Unidos é inevitável e o seu '
+                  'desfecho determinará o rumo destas transformações; Macau, defendeu, pode valer-se das suas '
+                  'vantagens geográficas para elevar a sua posição estratégica.',
+                  'O professor Shan Xiufa, investigador da Academia de Ciências Militares, proferiu uma palestra '
+                  'intitulada «A era mais brilhante da China está prestes a chegar — reflexões sobre a modernização à '
+                  'chinesa», na qual perspectivou o futuro da modernização chinesa e destacou a importância da '
+                  'influência cultural, da reunificação nacional e da competitividade das marcas na concretização da '
+                  'grande revitalização da nação chinesa.',
+                  'Assinalou que a modernização chinesa deve alcançar avanços não só nos domínios económico e '
+                  'tecnológico, mas também no reforço do soft power do país através da influência cultural. Os jovens '
+                  'de Macau, afirmou, devem aproveitar os seus próprios pontos fortes para bem contar as histórias de '
+                  'Macau e promover internacionalmente as marcas chinesas.',
+                  'Enquanto entidade realizadora, a MFTEDA assumiu o planeamento do evento, sob a responsabilidade do '
+                  'seu presidente, Dr. Yang Cheng, cabendo a coordenação geral à presidente do conselho de '
+                  'administração, Dra. Song Wei. A secretária-geral da MFTEDA, Han Jingyi, o assessor académico Li Si '
+                  'e o vice-presidente Chen Jinquan também marcaram presença como convidados.',
+                  'O êxito da realização deste fórum não só proporcionou aos jovens de Macau uma plataforma para um '
+                  'conhecimento aprofundado da modernização chinesa, como também ofereceu novas perspectivas sobre o '
+                  'posicionamento de Macau no desenvolvimento global do país.',
+                  'Através da cooperação com os países de língua portuguesa e com os países da iniciativa «Uma Faixa, '
+                  'Uma Rota», Macau pode fazer valer as suas vantagens geográficas singulares, promovendo os '
+                  'intercâmbios e a cooperação entre a China e os países em desenvolvimento nos domínios económico, '
+                  'cultural e educativo, contribuindo para a construção de uma comunidade de futuro partilhado para a '
+                  'humanidade e dando o seu contributo ao avanço da modernização chinesa.',
+                  'O fórum contou ainda com a co-organização da Associação de Jovens Talentos e Profissionais de '
+                  'Macau, da Associação Patriótica de Juventude Desportiva de Macau, da Associação de Livestreamers de '
+                  'Macau e da Associação da Indústria de Vídeos Curtos e Transmissão em Direto da Juventude de Macau.',
+                  'O evento decorreu em simultâneo em formato presencial e por transmissão em direto, reunindo um '
+                  'total de mais de 4.000 participantes oriundos de instituições de ensino superior, associações e '
+                  'instituições de investigação académica.']},
+  'images': [{'file': 'chinese-modernization-forum-macao-2025-1.webp',
+              'after': 1,
+              'caption': {'zh-TW': '論壇全體與會者合影',
+                          'zh-CN': '论坛全体与会者合影',
+                          'en': 'Group photo of all forum participants',
+                          'pt': 'Fotografia de grupo de todos os participantes do fórum'}},
+             {'file': 'chinese-modernization-forum-macao-2025-2.webp',
+              'after': 3,
+              'caption': {'zh-TW': '主禮嘉賓於開幕儀式合影',
+                          'zh-CN': '主礼嘉宾于开幕仪式合影',
+                          'en': 'Officiating guests take a group photo at the opening ceremony',
+                          'pt': 'Os convidados de honra tiram uma fotografia de grupo na cerimónia de abertura'}},
+             {'file': 'chinese-modernization-forum-macao-2025-3.webp',
+              'after': 7,
+              'caption': {'zh-TW': '澳門愛國教育青年協會主席、本會榮譽主席黃家倫致辭',
+                          'zh-CN': '澳门爱国教育青年协会主席、本会荣誉主席黄家伦致辞',
+                          'en': 'Vong Ka Lon, President of the Macao Patriotic Education Youth Association and '
+                                'Honorary President of MFTEDA, delivers his address',
+                          'pt': 'Vong Ka Lon, presidente da Associação de Educação Patriótica da Juventude de Macau e '
+                                'presidente honorário da MFTEDA, profere o seu discurso'}},
+             {'file': 'chinese-modernization-forum-macao-2025-4.webp',
+              'after': 10,
+              'caption': {'zh-TW': '中國人民大學金燦榮教授發表主旨演講',
+                          'zh-CN': '中国人民大学金灿荣教授发表主旨演讲',
+                          'en': 'Professor Jin Canrong of Renmin University of China delivers his keynote speech',
+                          'pt': 'O professor Jin Canrong, da Universidade Renmin da China, profere o seu discurso '
+                                'temático'}}]},
+ {'slug': 'macao-economic-diversification-security-seminar',
+  'date': '2025-08-07',
+  'category': {'zh-TW': '學術活動', 'zh-CN': '学术活动', 'en': 'Academic Activities', 'pt': 'Atividades Académicas'},
+  'title': {'zh-TW': '聚焦經濟安全 重塑多元發展——澳門經濟適度多元化發展及經濟安全研討會圓滿舉行',
+            'zh-CN': '聚焦经济安全 重塑多元发展——澳门经济适度多元化发展及经济安全研讨会圆满举行',
+            'en': "Focusing on Economic Security, Reshaping Diversified Development — Seminar on Macao's Adequately "
+                  'Diversified Economic Development and Economic Security Successfully Held',
+            'pt': 'Segurança Económica em Foco, Novo Impulso à Diversificação — Realizou-se o Seminário sobre o '
+                  'Desenvolvimento da Diversificação Adequada da Economia e a Segurança Económica de Macau'},
+  'excerpt': {'zh-TW': '8月7日，由經濟及科技發展局與澳門愛國教育青年協會聯合主辦、本會協辦的「紀念抗戰勝利80周年——澳門經濟適度多元化發展及經濟安全研討會」在中國與葡語國家商貿合作服務平台綜合體舉行，本會會長楊誠博士獲邀擔任主持人，與各界專家學者共商澳門經濟適度多元與經濟安全大計。',
+              'zh-CN': '8月7日，由经济及科技发展局与澳门爱国教育青年协会联合主办、本会协办的「纪念抗战胜利80周年——澳门经济适度多元化发展及经济安全研讨会」在中国与葡语国家商贸合作服务平台综合体举行，本会会长杨诚博士获邀担任主持人，与各界专家学者共商澳门经济适度多元与经济安全大计。',
+              'en': 'On 7 August, the seminar "Commemorating the 80th Anniversary of the Victory in the War of '
+                    'Resistance — Macao\'s Adequately Diversified Economic Development and Economic Security", '
+                    'co-organised by MFTEDA, was held at the Complex of Commerce and Trade Co-operation Platform for '
+                    'China and Portuguese-speaking Countries. MFTEDA President Dr. Yang Cheng chaired the seminar, '
+                    "joining officials, experts and scholars to discuss Macao's economic diversification and economic "
+                    'security.',
+              'pt': 'A 7 de Agosto, realizou-se no Complexo da Plataforma de Serviços para a Cooperação Comercial '
+                    'entre a China e os Países de Língua Portuguesa o seminário «Comemoração do 80.º Aniversário da '
+                    'Vitória da Guerra de Resistência — Desenvolvimento da Diversificação Adequada da Economia e '
+                    'Segurança Económica de Macau», coorganizado pela MFTEDA. O Presidente da MFTEDA, Dr. Yang Cheng, '
+                    'foi convidado a moderar o evento, debatendo com responsáveis, especialistas e académicos a '
+                    'diversificação adequada da economia e a segurança económica de Macau.'},
+  'source': {'name': {'zh-TW': 'MFTEDA微信公眾號',
+                      'zh-CN': 'MFTEDA微信公众号',
+                      'en': 'MFTEDA WeChat Official Account',
+                      'pt': 'Conta Oficial do WeChat da MFTEDA'},
+             'url': 'https://mp.weixin.qq.com/s/zcbkBx8HxQhSqHSjZc9zyw'},
+  'body': {'zh-TW': ['為紀念中國人民抗日戰爭暨世界反法西斯戰爭勝利80周年，由經濟及科技發展局與澳門愛國教育青年協會聯合主辦，澳門直播協會、澳門財經科技與教育發展學會協辦，招商投資促進局支持的「紀念抗戰勝利80周年——澳門經濟適度多元化發展及經濟安全研討會」，於8月7日在中國與葡語國家商貿合作服務平台綜合體舉行。',
+                     '研討會圍繞經濟適度多元發展與經濟安全的內在聯繫，深入探討產業多元對保障經濟安全的重要作用，並邀請中國社會科學院學部委員、法學所所長莫紀宏教授作為主講嘉賓，澳門特別行政區經濟財政司司長戴建業和中央人民政府駐澳門特別行政區聯絡辦公室經濟部副部長楊全州出席。',
+                     '澳門愛國教育青年協會主席、澳門財經科技與教育發展學會榮譽會長黃家倫在致辭中表示，澳門的經濟多元化發展不僅是經濟層面的需要，更是維護澳門長期繁榮穩定的重要保障，希望藉助研討的方式為澳門經濟發展提供新的思路與方向，共同為澳門的經濟安全與發展貢獻力量。',
+                     '中國社會科學院學部委員、法學所所長莫紀宏教授在主旨演講時表示，澳門經濟適度多元發展關係到社會的繁榮穩定，也是澳門的必答題。長期以來，澳門經濟結構單一，在新形勢下面臨著諸多潛在的風險與隱患，並一定程度制約了經濟適度多元發展的腳步。他又表示，澳門經濟發展應立足“一國兩制”優勢，結合自身歷史文化底蘊、區位特點等實際情況，積極探索多元發展路徑，加強與內地及周邊地區的經濟合作與協同發展，通過資源互補、優勢疊加，增強經濟發展的內生動力與抗風險能力，實現高質量的可持續發展。',
+                     '與會的專家學者在建言獻策時表示，澳門的發展應在“一國兩制”的制度保障下“分階段、有重點”地推進，服務於國家戰略與澳門定位。各界應繼續加強合作，共同應對經濟發展的挑戰，築牢經濟安全基礎，攜手為澳門長期繁榮穩定凝聚合力。',
+                     '經濟財政司司長戴建業總結時表示，在中央政府的大力支持下，澳門經濟從復甦性增長邁向高質量發展轉型的關鍵階段，今年第二季本地生產總值同比增長5.1%，經濟穩中向好態勢明顯。面對國際形勢深刻變化，推動經濟適度多元是破解經濟社會深層次問題、確保長期繁榮穩定的必然選擇。特區政府正以習近平主席提出的“四個著力”為指引，緊扣“一中心、一平台、一基地”定位，以及“1+4”多元產業發展方向，著力構建符合澳門實際且可持續發展的產業結構，提升經濟抵禦外在風險及評估風險的能力。同時，持續深化區域合作，主動對接國家“十五五”規劃，高水準推動合作區建設，強化澳琴產業聯動與規則銜接等制度建設。',
+                     '澳門財經科技與教育發展學會會長楊誠博士獲邀擔任研討會主持人。他表示，經濟安全是發展的根基，適度多元是可持續的關鍵。當前全球格局深刻變革、產業鏈加速重塑，澳門既面臨新挑戰，更孕育新機遇——如何鞏固博彩旅遊業優勢、培育新興產業動力、增強經濟韌性與抗風險能力，進而高效善用自己的工具，助力國家“一帶一路”戰略發展，已成為關乎澳門長遠繁榮的核心命題。',
+                     '研討會出席者還包括中央人民政府駐澳門特別行政區聯絡辦公室經濟部副部長楊全州，博彩監察協調局局長吳惠嫻、招商投資促進局主席謝永強、經濟及科技發展局代局長鄭曉敏、澳門金融管理局代主席黃善文、統計暨普查局代局長龐啓富、財政局代副局長郭日海，香港中國學術研究院研究部主任陳欣新、澳門城市大學商學院副院長田一輝、澳門理工大學博彩旅遊教學及研究中心副主任蕭宇寧。',
+                     '澳門財經科技與教育發展學會副會長施韻、理事長宋薇、副理事長陳錦權，以及澳門直播協會和澳門博士智庫等社團代表也參與了研討會。'],
+           'zh-CN': ['为纪念中国人民抗日战争暨世界反法西斯战争胜利80周年，由经济及科技发展局与澳门爱国教育青年协会联合主办，澳门直播协会、澳门财经科技与教育发展学会协办，招商投资促进局支持的「纪念抗战胜利80周年——澳门经济适度多元化发展及经济安全研讨会」，于8月7日在中国与葡语国家商贸合作服务平台综合体举行。',
+                     '研讨会围绕经济适度多元发展与经济安全的内在联系，深入探讨产业多元对保障经济安全的重要作用，并邀请中国社会科学院学部委员、法学所所长莫纪宏教授作为主讲嘉宾，澳门特别行政区经济财政司司长戴建业和中央人民政府驻澳门特别行政区联络办公室经济部副部长杨全州出席。',
+                     '澳门爱国教育青年协会主席、澳门财经科技与教育发展学会荣誉会长黄家伦在致辞中表示，澳门的经济多元化发展不仅是经济层面的需要，更是维护澳门长期繁荣稳定的重要保障，希望借助研讨的方式为澳门经济发展提供新的思路与方向，共同为澳门的经济安全与发展贡献力量。',
+                     '中国社会科学院学部委员、法学所所长莫纪宏教授在主旨演讲时表示，澳门经济适度多元发展关系到社会的繁荣稳定，也是澳门的必答题。长期以来，澳门经济结构单一，在新形势下面临着诸多潜在的风险与隐患，并一定程度制约了经济适度多元发展的脚步。他又表示，澳门经济发展应立足“一国两制”优势，结合自身历史文化底蕴、区位特点等实际情况，积极探索多元发展路径，加强与内地及周边地区的经济合作与协同发展，通过资源互补、优势叠加，增强经济发展的内生动力与抗风险能力，实现高质量的可持续发展。',
+                     '与会的专家学者在建言献策时表示，澳门的发展应在“一国两制”的制度保障下“分阶段、有重点”地推进，服务于国家战略与澳门定位。各界应继续加强合作，共同应对经济发展的挑战，筑牢经济安全基础，携手为澳门长期繁荣稳定凝聚合力。',
+                     '经济财政司司长戴建业总结时表示，在中央政府的大力支持下，澳门经济从复苏性增长迈向高质量发展转型的关键阶段，今年第二季本地生产总值同比增长5.1%，经济稳中向好态势明显。面对国际形势深刻变化，推动经济适度多元是破解经济社会深层次问题、确保长期繁荣稳定的必然选择。特区政府正以习近平主席提出的“四个着力”为指引，紧扣“一中心、一平台、一基地”定位，以及“1+4”多元产业发展方向，着力构建符合澳门实际且可持续发展的产业结构，提升经济抵御外在风险及评估风险的能力。同时，持续深化区域合作，主动对接国家“十五五”规划，高水准推动合作区建设，强化澳琴产业联动与规则衔接等制度建设。',
+                     '澳门财经科技与教育发展学会会长杨诚博士获邀担任研讨会主持人。他表示，经济安全是发展的根基，适度多元是可持续的关键。当前全球格局深刻变革、产业链加速重塑，澳门既面临新挑战，更孕育新机遇——如何巩固博彩旅游业优势、培育新兴产业动力、增强经济韧性与抗风险能力，进而高效善用自己的工具，助力国家“一带一路”战略发展，已成为关乎澳门长远繁荣的核心命题。',
+                     '研讨会出席者还包括中央人民政府驻澳门特别行政区联络办公室经济部副部长杨全州，博彩监察协调局局长吴惠娴、招商投资促进局主席谢永强、经济及科技发展局代局长郑晓敏、澳门金融管理局代主席黄善文、统计暨普查局代局长庞启富、财政局代副局长郭日海，香港中国学术研究院研究部主任陈欣新、澳门城市大学商学院副院长田一辉、澳门理工大学博彩旅游教学及研究中心副主任萧宇宁。',
+                     '澳门财经科技与教育发展学会副会长施韵、理事长宋薇、副理事长陈锦权，以及澳门直播协会和澳门博士智库等社团代表也参与了研讨会。'],
+           'en': ["To mark the 80th anniversary of the victory of the Chinese People's War of Resistance Against "
+                  'Japanese Aggression and the World Anti-Fascist War, the seminar "Commemorating the 80th Anniversary '
+                  "of the Victory in the War of Resistance — Macao's Adequately Diversified Economic Development and "
+                  'Economic Security", jointly organised by the Economic and Technological Development Bureau and the '
+                  'Macao Patriotic Education Youth Association, co-organised by the Macao Live Streaming Association '
+                  'and the Macao Financial Technology and Education Development Association (MFTEDA), and supported by '
+                  'the Commerce and Investment Promotion Institute, was held on 7 August at the Complex of Commerce '
+                  'and Trade Co-operation Platform for China and Portuguese-speaking Countries.',
+                  'Centred on the intrinsic connection between adequately diversified economic development and '
+                  'economic security, the seminar explored in depth the important role of industrial diversification '
+                  'in safeguarding economic security. Professor Mo Jihong, Member of the Chinese Academy of Social '
+                  'Sciences and Director of its Institute of Law, was invited as the keynote speaker, and the seminar '
+                  'was attended by Tai Kin Ip, Secretary for Economy and Finance of the Macao SAR, and Yang Quanzhou, '
+                  'Deputy Director-General of the Economic Affairs Department of the Liaison Office of the Central '
+                  "People's Government in the Macao SAR.",
+                  'In his address, Vong Ka Lon, President of the Macao Patriotic Education Youth Association and '
+                  "Honorary President of MFTEDA, said that Macao's economic diversification is not only an economic "
+                  "necessity but also an important safeguard of Macao's long-term prosperity and stability. He "
+                  "expressed the hope that the seminar would provide new ideas and directions for Macao's economic "
+                  "development, with all parties jointly contributing to the city's economic security and development.",
+                  'In his keynote speech, Professor Mo Jihong said that the adequately diversified development of '
+                  "Macao's economy bears on the prosperity and stability of society and is a question Macao must "
+                  "answer. For a long time, Macao's economic structure has been undiversified, and under new "
+                  'circumstances it faces numerous potential risks and hidden dangers, which have to a certain extent '
+                  "constrained the pace of adequately diversified development. He added that Macao's economic "
+                  'development should build on the advantages of "One Country, Two Systems", take into account its own '
+                  'historical and cultural heritage and geographical characteristics, actively explore paths of '
+                  'diversified development, and strengthen economic cooperation and coordinated development with the '
+                  'mainland and neighbouring regions. Through complementary resources and combined strengths, Macao '
+                  'can enhance the endogenous dynamism and risk resilience of its economy and achieve high-quality, '
+                  'sustainable development.',
+                  "Experts and scholars attending the seminar offered their suggestions, noting that Macao's "
+                  'development should proceed "in phases and with clear priorities" under the institutional guarantee '
+                  'of "One Country, Two Systems", serving national strategies and Macao\'s positioning. All sectors '
+                  'should continue to strengthen cooperation, jointly respond to the challenges of economic '
+                  'development, consolidate the foundations of economic security, and work together to build synergy '
+                  "for Macao's long-term prosperity and stability.",
+                  'In his concluding remarks, Secretary for Economy and Finance Tai Kin Ip said that, with the strong '
+                  "support of the Central Government, Macao's economy has moved from recovery growth into a key stage "
+                  'of transition towards high-quality development, with GDP growing 5.1% year-on-year in the second '
+                  'quarter of this year and a clear trend of stability with improvement. In the face of profound '
+                  'changes in the international landscape, promoting adequate diversification is an inevitable choice '
+                  'for resolving deep-seated economic and social problems and ensuring long-term prosperity and '
+                  'stability. Guided by the "four areas of focus" put forward by President Xi Jinping, and adhering to '
+                  'the positioning of "one centre, one platform, one base" and the "1+4" diversified industrial '
+                  'development strategy, the SAR Government is striving to build an industrial structure that suits '
+                  "Macao's reality and is sustainable, enhancing the economy's ability to withstand and assess "
+                  'external risks. At the same time, it will continue to deepen regional cooperation, proactively '
+                  'align with the national 15th Five-Year Plan, advance the development of the Cooperation Zone to a '
+                  'high standard, and strengthen institutional building such as industrial coordination between Macao '
+                  'and Hengqin and the alignment of rules.',
+                  'Dr. Yang Cheng, President of MFTEDA, was invited to chair the seminar. He said that economic '
+                  'security is the foundation of development, and adequate diversification is the key to '
+                  'sustainability. As the global landscape undergoes profound change and industrial chains are rapidly '
+                  'reshaped, Macao faces new challenges but also new opportunities — how to consolidate the advantages '
+                  'of the gaming and tourism industry, cultivate momentum in emerging industries, and enhance economic '
+                  'resilience and risk resistance, so as to make effective use of its own instruments and support the '
+                  "national Belt and Road strategy, has become a core question bearing on Macao's long-term "
+                  'prosperity.',
+                  'The seminar was also attended by Yang Quanzhou, Deputy Director-General of the Economic Affairs '
+                  "Department of the Liaison Office of the Central People's Government in the Macao SAR; Wu Huixian, "
+                  'Director of the Gaming Inspection and Coordination Bureau; Xie Yongqiang, Chairman of the Commerce '
+                  'and Investment Promotion Institute; Zheng Xiaomin, Acting Director of the Economic and '
+                  'Technological Development Bureau; Huang Shanwen, Acting Chairman of the Monetary Authority of '
+                  'Macao; Pang Qifu, Acting Director of the Statistics and Census Service; Guo Rihai, Acting Deputy '
+                  'Director of the Financial Services Bureau; Chen Xinxin, Director of the Research Department of the '
+                  'Hong Kong Institute of Chinese Studies; Tian Yihui, Associate Dean of the Faculty of Business of '
+                  'the City University of Macao; and Xiao Yuning, Deputy Director of the Gaming and Tourism Teaching '
+                  'and Research Centre of the Macao Polytechnic University.',
+                  'Si Yun, Vice-President of MFTEDA, Song Wei, Chairperson of the MFTEDA Council, and Chen Jinquan, '
+                  'Deputy Chairperson of the Council, as well as representatives of organisations including the Macao '
+                  'Live Streaming Association and the Macao Doctors Think Tank, also participated in the seminar.'],
+           'pt': ['Para assinalar o 80.º aniversário da vitória da Guerra de Resistência do Povo Chinês contra a '
+                  'Agressão Japonesa e da Guerra Mundial Antifascista, o seminário «Comemoração do 80.º Aniversário da '
+                  'Vitória da Guerra de Resistência — Desenvolvimento da Diversificação Adequada da Economia e '
+                  'Segurança Económica de Macau», organizado conjuntamente pela Direcção dos Serviços de Economia e '
+                  'Desenvolvimento Tecnológico e pela Associação de Educação Patriótica da Juventude de Macau, '
+                  'coorganizado pela Associação de Transmissão em Directo de Macau e pela Associação de '
+                  'Desenvolvimento de Finanças, Tecnologia e Educação de Macau (MFTEDA), e apoiado pelo Instituto de '
+                  'Promoção do Comércio e do Investimento, realizou-se a 7 de Agosto no Complexo da Plataforma de '
+                  'Serviços para a Cooperação Comercial entre a China e os Países de Língua Portuguesa.',
+                  'Centrado na ligação intrínseca entre o desenvolvimento da diversificação adequada da economia e a '
+                  'segurança económica, o seminário aprofundou o debate sobre o importante papel da diversificação '
+                  'industrial na garantia da segurança económica. O Professor Mo Jihong, membro da Academia Chinesa de '
+                  'Ciências Sociais e director do respectivo Instituto de Direito, foi convidado como orador '
+                  'principal, tendo o seminário contado com a presença de Tai Kin Ip, Secretário para a Economia e '
+                  'Finanças da RAEM, e de Yang Quanzhou, subdirector do Departamento de Assuntos Económicos do '
+                  'Gabinete de Ligação do Governo Popular Central na RAEM.',
+                  'No seu discurso, Vong Ka Lon, presidente da Associação de Educação Patriótica da Juventude de Macau '
+                  'e Presidente Honorário da MFTEDA, afirmou que a diversificação da economia de Macau não é apenas '
+                  'uma necessidade do ponto de vista económico, mas também uma garantia importante da prosperidade e '
+                  'da estabilidade duradouras de Macau. Manifestou a esperança de que o seminário trouxesse novas '
+                  'ideias e orientações para o desenvolvimento económico de Macau, contribuindo todos em conjunto para '
+                  'a segurança económica e o desenvolvimento da cidade.',
+                  'Na sua intervenção principal, o Professor Mo Jihong referiu que o desenvolvimento da diversificação '
+                  'adequada da economia de Macau está ligado à prosperidade e à estabilidade da sociedade e constitui '
+                  'uma questão a que Macau tem obrigatoriamente de responder. Há muito que a estrutura económica de '
+                  'Macau é pouco diversificada e, nas novas circunstâncias, enfrenta numerosos riscos potenciais e '
+                  'perigos ocultos, o que, em certa medida, tem travado o ritmo da diversificação adequada. '
+                  'Acrescentou que o desenvolvimento económico de Macau deve assentar nas vantagens do princípio «Um '
+                  'País, Dois Sistemas», ter em conta a sua herança histórica e cultural e as suas características '
+                  'geográficas, explorar activamente vias de desenvolvimento diversificado e reforçar a cooperação '
+                  'económica e o desenvolvimento sinérgico com o Interior da China e as regiões vizinhas. Através da '
+                  'complementaridade de recursos e da sobreposição de vantagens, Macau pode reforçar a dinâmica '
+                  'endógena e a capacidade de resistência aos riscos do seu desenvolvimento económico, alcançando um '
+                  'desenvolvimento sustentável de alta qualidade.',
+                  'Os especialistas e académicos presentes, nas suas propostas e sugestões, consideraram que o '
+                  'desenvolvimento de Macau deve avançar «por fases e com prioridades definidas», sob a garantia '
+                  'institucional do princípio «Um País, Dois Sistemas», ao serviço das estratégias nacionais e do '
+                  'posicionamento de Macau. Todos os sectores devem continuar a reforçar a cooperação, enfrentar em '
+                  'conjunto os desafios do desenvolvimento económico, consolidar as bases da segurança económica e '
+                  'unir forças pela prosperidade e estabilidade duradouras de Macau.',
+                  'Nas suas conclusões, o Secretário para a Economia e Finanças, Tai Kin Ip, referiu que, com o forte '
+                  'apoio do Governo Central, a economia de Macau passou de um crescimento de recuperação para uma fase '
+                  'crucial de transição para um desenvolvimento de alta qualidade, tendo o produto interno bruto '
+                  'registado, no segundo trimestre deste ano, um crescimento homólogo de 5,1%, evidenciando uma '
+                  'tendência clara de estabilidade com melhoria. Perante as profundas mudanças no panorama '
+                  'internacional, promover a diversificação adequada é uma escolha inevitável para resolver os '
+                  'problemas económicos e sociais profundos e assegurar a prosperidade e a estabilidade duradouras. '
+                  'Orientado pelas «quatro áreas de empenho» apontadas pelo Presidente Xi Jinping, e em consonância '
+                  'com o posicionamento de «um centro, uma plataforma, uma base» e com a orientação de desenvolvimento '
+                  'industrial diversificado «1+4», o Governo da RAEM esforça-se por construir uma estrutura industrial '
+                  'adequada à realidade de Macau e sustentável, elevando a capacidade da economia de resistir aos '
+                  'riscos externos e de os avaliar. Paralelamente, continuará a aprofundar a cooperação regional, a '
+                  'articular-se activamente com o 15.º Plano Quinquenal nacional, a promover a construção da Zona de '
+                  'Cooperação a um nível elevado e a reforçar a construção institucional, nomeadamente a articulação '
+                  'industrial entre Macau e Hengqin e a harmonização de regras.',
+                  'O Dr. Yang Cheng, Presidente da MFTEDA, foi convidado a moderar o seminário. Afirmou que a '
+                  'segurança económica é a base do desenvolvimento e que a diversificação adequada é a chave da '
+                  'sustentabilidade. Numa altura em que o panorama global sofre mudanças profundas e as cadeias '
+                  'industriais se reconfiguram a ritmo acelerado, Macau enfrenta novos desafios, mas também novas '
+                  'oportunidades — a forma de consolidar as vantagens da indústria do jogo e do turismo, de cultivar o '
+                  'dinamismo das indústrias emergentes e de reforçar a resiliência económica e a capacidade de '
+                  'resistência aos riscos, utilizando eficazmente os seus próprios instrumentos e apoiando a '
+                  'estratégia nacional «Uma Faixa, Uma Rota», tornou-se uma questão central para a prosperidade de '
+                  'Macau a longo prazo.',
+                  'Estiveram igualmente presentes no seminário Yang Quanzhou, subdirector do Departamento de Assuntos '
+                  'Económicos do Gabinete de Ligação do Governo Popular Central na RAEM; Wu Huixian, directora da '
+                  'Direcção de Inspecção e Coordenação de Jogos; Xie Yongqiang, presidente do Instituto de Promoção do '
+                  'Comércio e do Investimento; Zheng Xiaomin, directora substituta da Direcção dos Serviços de '
+                  'Economia e Desenvolvimento Tecnológico; Huang Shanwen, presidente substituto da Autoridade '
+                  'Monetária de Macau; Pang Qifu, director substituto da Direcção dos Serviços de Estatística e '
+                  'Censos; Guo Rihai, subdirector substituto da Direcção dos Serviços de Finanças; Chen Xinxin, '
+                  'directora do Departamento de Investigação do Instituto Chinês de Estudos Académicos de Hong Kong; '
+                  'Tian Yihui, subdirector da Faculdade de Gestão da Universidade da Cidade de Macau; e Xiao Yuning, '
+                  'subdirector do Centro de Ensino e Investigação de Jogo e Turismo da Universidade Politécnica de '
+                  'Macau.',
+                  'Si Yun, Vice-Presidente da MFTEDA, Song Wei, presidente do Conselho da MFTEDA, e Chen Jinquan, '
+                  'vice-presidente do Conselho, bem como representantes de associações como a Associação de '
+                  'Transmissão em Directo de Macau e o grupo de reflexão Macao Doctors Think Tank, também participaram '
+                  'no seminário.']},
+  'images': [{'file': 'macao-economic-diversification-security-seminar-1.webp',
+              'after': 1,
+              'caption': {'zh-TW': '「紀念抗戰勝利80周年——澳門經濟適度多元化發展及經濟安全研討會」嘉賓合影',
+                          'zh-CN': '「纪念抗战胜利80周年——澳门经济适度多元化发展及经济安全研讨会」嘉宾合影',
+                          'en': 'Group photo of guests at the seminar "Commemorating the 80th Anniversary of the '
+                                "Victory in the War of Resistance — Macao's Adequately Diversified Economic "
+                                'Development and Economic Security"',
+                          'pt': 'Fotografia de grupo dos convidados do seminário «Comemoração do 80.º Aniversário da '
+                                'Vitória da Guerra de Resistência — Desenvolvimento da Diversificação Adequada da '
+                                'Economia e Segurança Económica de Macau»'}},
+             {'file': 'macao-economic-diversification-security-seminar-2.webp',
+              'after': 3,
+              'caption': {'zh-TW': '澳門愛國教育青年協會主席、本會榮譽會長黃家倫致辭',
+                          'zh-CN': '澳门爱国教育青年协会主席、本会荣誉会长黄家伦致辞',
+                          'en': 'Vong Ka Lon, President of the Macao Patriotic Education Youth Association and '
+                                'Honorary President of MFTEDA, delivers an address',
+                          'pt': 'Vong Ka Lon, presidente da Associação de Educação Patriótica da Juventude de Macau e '
+                                'Presidente Honorário da MFTEDA, profere o seu discurso'}},
+             {'file': 'macao-economic-diversification-security-seminar-3.webp',
+              'after': 4,
+              'caption': {'zh-TW': '中國社會科學院學部委員、法學所所長莫紀宏教授發表主旨演講',
+                          'zh-CN': '中国社会科学院学部委员、法学所所长莫纪宏教授发表主旨演讲',
+                          'en': 'Professor Mo Jihong, Member of the Chinese Academy of Social Sciences and Director of '
+                                'its Institute of Law, delivers the keynote speech',
+                          'pt': 'O Professor Mo Jihong, membro da Academia Chinesa de Ciências Sociais e director do '
+                                'respectivo Instituto de Direito, profere a intervenção principal'}},
+             {'file': 'macao-economic-diversification-security-seminar-4.webp',
+              'after': 7,
+              'caption': {'zh-TW': '本會會長楊誠博士獲邀擔任研討會主持人',
+                          'zh-CN': '本会会长杨诚博士获邀担任研讨会主持人',
+                          'en': 'MFTEDA President Dr. Yang Cheng chairs the seminar',
+                          'pt': 'O Dr. Yang Cheng, Presidente da MFTEDA, foi convidado a moderar o seminário'}}]},
+ {'slug': 'liaison-office-education-youth-visit-2025',
+  'date': '2025-07-05',
+  'category': {'zh-TW': '交流合作', 'zh-CN': '交流合作', 'en': 'Exchanges and Cooperation', 'pt': 'Intercâmbio e Cooperação'},
+  'title': {'zh-TW': '黃家倫主席帶領我會拜訪中聯辦教青部：共話愛國教育新未來',
+            'zh-CN': '黄家伦主席带领我会拜访中联办教青部：共话爱国教育新未来',
+            'en': 'President Vong Ka Lon Leads MFTEDA Delegation to the Education and Youth Affairs Department of the '
+                  'Liaison Office: Charting a New Future for Patriotic Education',
+            'pt': 'Presidente Vong Ka Lon lidera delegação da MFTEDA em visita ao Departamento de Educação e Assuntos '
+                  'da Juventude do Gabinete de Ligação: um novo futuro para a educação patriótica'},
+  'excerpt': {'zh-TW': '澳門愛國教育青年協會主席、本會榮譽主席黃家倫日前率團拜訪中聯辦教育與青年工作部，獲李雪飛部長熱情接待，雙方圍繞國家安全與愛國主義教育系列活動深入交流，共商提升澳門愛國教育水準、增強青年國家認同。',
+              'zh-CN': '澳门爱国教育青年协会主席、本会荣誉主席黄家伦日前率团拜访中联办教育与青年工作部，获李雪飞部长热情接待，双方围绕国家安全与爱国主义教育系列活动深入交流，共商提升澳门爱国教育水平、增强青年国家认同。',
+              'en': 'Vong Ka Lon, President of the Macao Patriotic Education Youth Association and Honorary President '
+                    'of MFTEDA, recently led a delegation to the Education and Youth Affairs Department of the Liaison '
+                    "Office of the Central People's Government in the Macao SAR, where the delegation was warmly "
+                    'received by Department Director Li Xuefei. The two sides held in-depth exchanges on the series of '
+                    'national security and patriotic education activities, discussing ways to raise the standard of '
+                    "patriotic education in Macao and strengthen young people's sense of national identity.",
+              'pt': 'Vong Ka Lon, presidente da Associação de Educação Patriótica da Juventude de Macau e Presidente '
+                    'Honorário da MFTEDA, liderou recentemente uma delegação em visita ao Departamento de Educação e '
+                    'Assuntos da Juventude do Gabinete de Ligação do Governo Popular Central na RAEM, tendo a comitiva '
+                    'sido calorosamente recebida pelo director do Departamento, Li Xuefei. As duas partes mantiveram '
+                    'intercâmbios aprofundados sobre a série de actividades de educação sobre a segurança nacional e '
+                    'de educação patriótica, discutindo formas de elevar o nível da educação patriótica em Macau e de '
+                    'reforçar o sentido de identidade nacional dos jovens.'},
+  'source': {'name': {'zh-TW': 'MFTEDA微信公眾號',
+                      'zh-CN': 'MFTEDA微信公众号',
+                      'en': 'MFTEDA WeChat Official Account',
+                      'pt': 'Conta Oficial do WeChat da MFTEDA'},
+             'url': 'https://mp.weixin.qq.com/s/73u8_Ojqh0QC6ClcT1Lblg'},
+  'body': {'zh-TW': ['澳門愛國教育青年協會（下稱愛國會）主席、澳門財經科技與教育發展學會（下稱財經學會）榮譽主席黃家倫一行於日前拜訪了中央人民政府駐澳門特別行政區聯絡辦公室教育與青年工作部（下稱中聯辦教青部），得到了中聯辦教青部李雪飛部長熱情接待。',
+                     '此次拜訪圍繞紀念中國人民抗日戰爭暨世界反法西斯戰爭勝利80周年、慶祝中華人民共和國成立72周年而舉行的國家安全與愛國主義教育系列活動進行深入探討和廣泛交流，旨在進一步提升澳門愛國教育的水準，加強澳門青年對國家認同感的建立。',
+                     '在交流中，黃家倫主席首先對中聯辦教青部長期以來對愛國會在愛國教育工作上的支持表示衷心感謝。他指出，澳門愛國教育青年協會一直以來致力於推動澳門青年的愛國教育工作，通過舉辦各類活動，增強澳門青年對國家的認同感和歸屬感。此次拜訪冀通過組織論壇、外出交流、社區活動和學術研討等多種方式進一步加強與中聯辦教青部的合作，共同推動澳門愛國教育事業的發展。',
+                     '李雪飛部長在交流中對澳門愛國教育青年協會長期以來在愛國教育中的重要作用給予了高度評價。他指出，愛國教育是培養澳門青年國家認同感的重要途徑，也是澳門社會穩定和繁榮的重要保障。中聯辦教青部一直以來都非常重視愛國教育工作，並通過多種方式支持愛國會等愛國社團開展相關活動。',
+                     '李雪飛部長還特別提到愛國教育「薪火相傳」的重要性。他表示，愛國精神需要一代又一代的傳承，而澳門愛國教育青年協會一直以來「負薪前行」，在傳承愛國精神上堅韌不拔、勇於承擔，發揮了重要作用。他讚揚愛國會勇於創新，積極探索新的教育模式和方法，使愛國教育更加貼近澳門青年的實際需求。同時，他也肯定了愛國會落地實幹的工作作風，通過舉辦各類活動，將愛國教育落到實處，取得了顯著成效。李雪飛部長對澳門愛國教育青年協會今年的活動計劃表示了濃厚興趣，並表示中聯辦教青部將全力支持愛國會的相關工作，共同推動澳門愛國教育事業的發展。',
+                     '拜訪團成員還有愛國會副主席傅騰龍，愛國會副理事長高明，愛國會副理事長、財經學會會長楊誠，愛國會副監事長馬志容，愛國會秘書長容甄甄以及愛國會副秘書長、財經學會理事長宋薇等。'],
+           'zh-CN': ['澳门爱国教育青年协会（下称爱国会）主席、澳门财经科技与教育发展学会（下称财经学会）荣誉主席黄家伦一行于日前拜访了中央人民政府驻澳门特别行政区联络办公室教育与青年工作部（下称中联办教青部），得到了中联办教青部李雪飞部长热情接待。',
+                     '此次拜访围绕纪念中国人民抗日战争暨世界反法西斯战争胜利80周年、庆祝中华人民共和国成立72周年而举行的国家安全与爱国主义教育系列活动进行深入探讨和广泛交流，旨在进一步提升澳门爱国教育的水平，加强澳门青年对国家认同感的建立。',
+                     '在交流中，黄家伦主席首先对中联办教青部长期以来对爱国会在爱国教育工作上的支持表示衷心感谢。他指出，澳门爱国教育青年协会一直以来致力于推动澳门青年的爱国教育工作，通过举办各类活动，增强澳门青年对国家的认同感和归属感。此次拜访冀通过组织论坛、外出交流、社区活动和学术研讨等多种方式进一步加强与中联办教青部的合作，共同推动澳门爱国教育事业的发展。',
+                     '李雪飞部长在交流中对澳门爱国教育青年协会长期以来在爱国教育中的重要作用给予了高度评价。他指出，爱国教育是培养澳门青年国家认同感的重要途径，也是澳门社会稳定和繁荣的重要保障。中联办教青部一直以来都非常重视爱国教育工作，并通过多种方式支持爱国会等爱国社团开展相关活动。',
+                     '李雪飞部长还特别提到爱国教育“薪火相传”的重要性。他表示，爱国精神需要一代又一代的传承，而澳门爱国教育青年协会一直以来“负薪前行”，在传承爱国精神上坚韧不拔、勇于承担，发挥了重要作用。他赞扬爱国会勇于创新，积极探索新的教育模式和方法，使爱国教育更加贴近澳门青年的实际需求。同时，他也肯定了爱国会落地实干的工作作风，通过举办各类活动，将爱国教育落到实处，取得了显著成效。李雪飞部长对澳门爱国教育青年协会今年的活动计划表示了浓厚兴趣，并表示中联办教青部将全力支持爱国会的相关工作，共同推动澳门爱国教育事业的发展。',
+                     '拜访团成员还有爱国会副主席傅腾龙，爱国会副理事长高明，爱国会副理事长、财经学会会长杨诚，爱国会副监事长马志容，爱国会秘书长容甄甄以及爱国会副秘书长、财经学会理事长宋薇等。'],
+           'en': ['A delegation led by Vong Ka Lon, President of the Macao Patriotic Education Youth Association ("the '
+                  'Association") and Honorary President of the Macao Financial Technology and Education Development '
+                  'Association (MFTEDA), recently paid a visit to the Education and Youth Affairs Department of the '
+                  'Liaison Office of the Central People\'s Government in the Macao Special Administrative Region ("the '
+                  'Department"), where the delegation was warmly received by Department Director Li Xuefei.',
+                  'The visit centred on the series of national security and patriotic education activities held to '
+                  "mark the 80th anniversary of the victory of the Chinese People's War of Resistance Against Japanese "
+                  'Aggression and the World Anti-Fascist War and to celebrate the 72nd anniversary of the founding of '
+                  "the People's Republic of China. The two sides engaged in in-depth discussion and extensive "
+                  'exchanges, with the aim of further raising the standard of patriotic education in Macao and '
+                  "strengthening the sense of national identity among Macao's youth.",
+                  'During the meeting, President Vong Ka Lon began by expressing heartfelt gratitude for the '
+                  "Department's long-standing support for the Association's patriotic education work. He noted that "
+                  'the Macao Patriotic Education Youth Association has always been committed to advancing patriotic '
+                  "education among Macao's young people, enhancing their sense of national identity and belonging "
+                  'through a wide range of activities. Through this visit, he hopes to further strengthen cooperation '
+                  'with the Department by organising forums, outbound exchange programmes, community events and '
+                  'academic seminars, so as to jointly promote the development of patriotic education in Macao.',
+                  'Director Li Xuefei spoke highly of the important role the Macao Patriotic Education Youth '
+                  'Association has long played in patriotic education. He pointed out that patriotic education is a '
+                  "vital pathway for cultivating a sense of national identity among Macao's youth, as well as an "
+                  'important safeguard for the stability and prosperity of Macao society. The Department has always '
+                  'attached great importance to patriotic education and has supported patriotic organisations such as '
+                  'the Association in carrying out related activities through a variety of means.',
+                  'Director Li Xuefei also highlighted the importance of passing on patriotic education "from '
+                  'generation to generation, like a torch relay". He remarked that the patriotic spirit must be '
+                  'carried forward by successive generations, and that the Macao Patriotic Education Youth Association '
+                  'has long "carried the firewood forward", playing an important role with perseverance and a strong '
+                  "sense of responsibility in keeping the patriotic spirit alive. He praised the Association's courage "
+                  'to innovate and its active exploration of new educational models and methods, which have brought '
+                  "patriotic education closer to the real needs of Macao's young people. He also commended the "
+                  "Association's pragmatic, down-to-earth working style, which has translated patriotic education into "
+                  'concrete action through a variety of activities and achieved remarkable results. Director Li '
+                  "expressed keen interest in the Association's activity plans for this year, and pledged that the "
+                  "Department will fully support the Association's work in jointly advancing the cause of patriotic "
+                  'education in Macao.',
+                  'Members of the visiting delegation also included Fu Tenglong, Vice-President of the Association; '
+                  "Gao Ming, Vice-Chairman of the Association's Council; Yang Cheng, Vice-Chairman of the "
+                  "Association's Council and President of MFTEDA; Ma Zhirong, Vice-Chairwoman of the Association's "
+                  'Supervisory Board; Iong Chan Chan, Secretary-General of the Association; and Song Wei, Deputy '
+                  "Secretary-General of the Association and Chairwoman of MFTEDA's Council."],
+           'pt': ['Uma delegação chefiada por Vong Ka Lon, presidente da Associação de Educação Patriótica da '
+                  'Juventude de Macau («a Associação») e Presidente Honorário da Associação de Desenvolvimento de '
+                  'Finanças, Tecnologia e Educação de Macau (MFTEDA), efectuou recentemente uma visita ao Departamento '
+                  'de Educação e Assuntos da Juventude do Gabinete de Ligação do Governo Popular Central na Região '
+                  'Administrativa Especial de Macau («o Departamento»), tendo sido calorosamente recebida pelo '
+                  'director do Departamento, Li Xuefei.',
+                  'A visita centrou-se na série de actividades de educação sobre a segurança nacional e de educação '
+                  'patriótica realizadas por ocasião do 80.º aniversário da vitória da Guerra de Resistência do Povo '
+                  'Chinês contra a Agressão Japonesa e da Guerra Mundial Antifascista e da celebração do 72.º '
+                  'aniversário da fundação da República Popular da China. As duas partes travaram discussões '
+                  'aprofundadas e intercâmbios abrangentes, com o objectivo de elevar ainda mais o nível da educação '
+                  'patriótica em Macau e reforçar a construção do sentido de identidade nacional entre os jovens de '
+                  'Macau.',
+                  'No decurso do encontro, o presidente Vong Ka Lon começou por exprimir o seu sincero agradecimento '
+                  'pelo apoio que o Departamento tem prestado, ao longo dos anos, ao trabalho da Associação no domínio '
+                  'da educação patriótica. Assinalou que a Associação de Educação Patriótica da Juventude de Macau se '
+                  'tem dedicado constantemente à promoção da educação patriótica junto dos jovens de Macau, '
+                  'reforçando, através da organização de diversas actividades, o seu sentido de identidade e de '
+                  'pertença à nação. Com esta visita, espera reforçar a cooperação com o Departamento através de '
+                  'múltiplas modalidades, como a organização de fóruns, intercâmbios no exterior, actividades '
+                  'comunitárias e seminários académicos, promovendo em conjunto o desenvolvimento da causa da educação '
+                  'patriótica em Macau.',
+                  'O director Li Xuefei teceu, no encontro, elevados elogios ao importante papel que a Associação de '
+                  'Educação Patriótica da Juventude de Macau tem desempenhado, ao longo do tempo, na educação '
+                  'patriótica. Salientou que a educação patriótica constitui uma via essencial para cultivar o sentido '
+                  'de identidade nacional dos jovens de Macau, bem como uma garantia importante para a estabilidade e '
+                  'a prosperidade da sociedade de Macau. O Departamento sempre atribuiu grande importância ao trabalho '
+                  'de educação patriótica, apoiando, por diversos meios, associações patrióticas como a Associação na '
+                  'realização de actividades conexas.',
+                  'O director Li Xuefei destacou ainda a importância da transmissão da educação patriótica «de geração '
+                  'em geração, como uma chama que se renova». Referiu que o espírito patriótico precisa de ser '
+                  'transmitido de geração em geração, e que a Associação de Educação Patriótica da Juventude de Macau '
+                  'tem vindo, desde sempre, a «carregar a lenha às costas, avançando com determinação», desempenhando '
+                  'um papel relevante na transmissão do espírito patriótico com tenacidade e sentido de '
+                  'responsabilidade. Elogiou a coragem da Associação na inovação e a sua exploração activa de novos '
+                  'modelos e métodos educativos, que tornam a educação patriótica mais próxima das necessidades reais '
+                  'dos jovens de Macau. Reconheceu igualmente o estilo de trabalho pragmático e empreendedor da '
+                  'Associação, que, através de diversas actividades, tem concretizado a educação patriótica na '
+                  'prática, alcançando resultados notáveis. O director Li Xuefei manifestou grande interesse pelo '
+                  'plano de actividades da Associação para o corrente ano e afirmou que o Departamento apoiará '
+                  'plenamente os trabalhos da Associação, impulsionando em conjunto o desenvolvimento da causa da '
+                  'educação patriótica em Macau.',
+                  'Integraram ainda a delegação visitante Fu Tenglong, vice-presidente da Associação; Gao Ming, '
+                  'vice-presidente da direcção da Associação; Yang Cheng, vice-presidente da direcção da Associação e '
+                  'Presidente da MFTEDA; Ma Zhirong, vice-presidente do conselho fiscal da Associação; Iong Chan Chan, '
+                  'secretária-geral da Associação; e Song Wei, secretária-geral adjunta da Associação e presidente da '
+                  'direcção da MFTEDA, entre outros.']},
+  'images': [{'file': 'liaison-office-education-youth-visit-2025-1.webp',
+              'after': 1,
+              'caption': {'zh-TW': '中聯辦教青部李雪飛部長熱情接待拜訪團一行',
+                          'zh-CN': '中联办教青部李雪飞部长热情接待拜访团一行',
+                          'en': "Li Xuefei, Director of the Liaison Office's Education and Youth Affairs Department, "
+                                'warmly receives the visiting delegation',
+                          'pt': 'Li Xuefei, director do Departamento de Educação e Assuntos da Juventude do Gabinete '
+                                'de Ligação, recebe calorosamente a delegação visitante'}}]},
+ {'slug': 'aiesec-youth-career-forum-2025',
+  'date': '2025-06-13',
+  'category': {'zh-TW': '青年發展', 'zh-CN': '青年发展', 'en': 'Youth Development', 'pt': 'Desenvolvimento da Juventude'},
+  'title': {'zh-TW': '財經學會與AIESEC國際青年組織合辦論壇，助力青年職業發展',
+            'zh-CN': '财经学会与AIESEC国际青年组织合办论坛，助力青年职业发展',
+            'en': 'MFTEDA and AIESEC Co-host Youth Speak Forum to Empower Youth Career Development',
+            'pt': 'MFTEDA e AIESEC organizam em conjunto o fórum Youth Speak para apoiar o desenvolvimento '
+                  'profissional dos jovens'},
+  'excerpt': {'zh-TW': '5月24日，學會與AIESEC國際青年組織在澳門聯合舉辦首場「人生餐廳——探索職業發展的多元可能」Youth Speak '
+                       'Forum青年之聲論壇，通過人生故事分享、技能提升工作坊及全球美食派對，為大灣區青年搭建交流與成長的平台。',
+              'zh-CN': '5月24日，学会与AIESEC国际青年组织在澳门联合举办首场「人生餐厅——探索职业发展的多元可能」Youth Speak '
+                       'Forum青年之声论坛，通过人生故事分享、技能提升工作坊及全球美食派对，为大湾区青年搭建交流与成长的平台。',
+              'en': 'On 24 May, MFTEDA and the international youth organisation AIESEC jointly hosted the first '
+                    '"Restaurant of Life — Exploring Diverse Possibilities for Career Development" Youth Speak Forum '
+                    'in Macao, building a platform of exchange and growth for young people in the Greater Bay Area '
+                    'through life-story sharing, skills workshops and a global food party.',
+              'pt': 'A 24 de maio, a MFTEDA e a organização internacional de juventude AIESEC organizaram '
+                    'conjuntamente, em Macau, o primeiro fórum Youth Speak «Restaurante da Vida — Explorar as Diversas '
+                    'Possibilidades do Desenvolvimento Profissional», criando, através da partilha de histórias de '
+                    'vida, de workshops de competências e de uma festa gastronómica mundial, uma plataforma de '
+                    'intercâmbio e de crescimento para os jovens da Grande Baía.'},
+  'source': {'name': {'zh-TW': 'MFTEDA微信公眾號',
+                      'zh-CN': 'MFTEDA微信公众号',
+                      'en': 'MFTEDA WeChat Official Account',
+                      'pt': 'Conta Oficial do WeChat da MFTEDA'},
+             'url': 'https://mp.weixin.qq.com/s/hcucDJhFXMgTAH9vt0DSWQ'},
+  'body': {'zh-TW': ['在這個充滿選擇與變革的時代，青年們面臨著多元且不確定的未來。為了幫助他們找到屬於自己的方向，5月24日，澳門財經科技與教育發展學會與AIESEC國際青年組織在澳門聯合舉辦了首場「人生餐廳——探索職業發展的多元可能」Youth '
+                     'Speak Forum青年之聲論壇，為大灣區青年搭建了一個交流與成長的平台。',
+                     '本次論壇以「人生餐廳」為主題，通過分享真實的人生故事、實用的技能提升工作坊以及全球美食派對等多樣化的形式，讓青年們在輕鬆愉快的氛圍中探索職業發展的多元選擇與個人成長的可能。來自金融、社創、媒體等領域的嘉賓們帶來了他們獨特的人生經歷，作為「餐廳的前菜」，為活動拉開序幕。',
+                     '論壇中，Fiona分享了她從校園到特種兵生活，再到職場打拼與人生轉折的經歷，她堅定地表達著：「哪怕走彎路，也能活出熱烈與自由。我們要勇敢做自己想成為的人。」Forest則以共益企業為路徑，用商業行動實現善意，展現了推動改變的起點。此外，技能提升工作坊邀請了社交媒體創業者兼AI領域實踐者Oscar作為講者，幫助與會者理解如何利用自媒體提升工作效率，並利用「槓桿思維」發揮個人優勢。',
+                     '論壇的「全球美食派對」環節則邀請了曾赴海外擁有國際志願經歷的同學們現場講述他們的故事，從尼泊爾到肯尼亞，從埃及到韓國，從文化衝擊到價值重構，這是一個輕鬆的交流時刻。與會者們在品嚐各國美食的同時，聽出國志願者們分享他們的故事和經驗，並互相交流對世界的看法。這個環節不僅讓「世界」變得觸手可及，也讓未來的路更有方向，讓大家期待著創造自己的故事。',
+                     '活動閉幕環節，與會者們積極分享了他們的收穫與感悟。一位與會者表示：「人生餐廳這個主題特別有意思，連議程都設計成了菜單的樣子。有一位大學四年嘗試各種兼職的嘉賓，她分享的是如何將自己的興趣點與職業結合起來進行探索和實踐的經歷，給了我很多啟示！作為一個對自己的興趣和能力還處在探索階段的人來說，先把自己的想法列出來，不管是否可行，至少都是一種選擇。」',
+                     '澳門財經科技與教育發展學會一直致力於推動澳門的財經科技與教育發展，而AIESEC則是一個國際性的青年組織，專注於為青年提供國際交流與領導力發展的機會。兩者的合作為本次論壇注入了強大的動力，讓青年們在探索職業發展的過程中，不僅獲得了實用的知識和技能，更得到了靈感與啟發。活動中，AIESEC更向學會頒發感謝函，嘉許學會對本次論壇的鼎力支持。',
+                     '通過這次論壇，澳門財經科技與教育發展學會與AIESEC國際青年組織的合作不僅為青年們提供了職業發展的啟示，更為他們的未來打開了一扇通往世界的大門。未來，雙方將繼續攜手，舉辦更多類似的活動，為青年們創造更多學習與成長的機會，讓他們在這個充滿選擇與變革的時代中，找到屬於自己的方向，實現自己的價值。',
+                     'AIESEC簡介：AIESEC是世界上最大的由大學生和青年運營的非營利國際組織，全名為國際經濟商管學生會。它致力於為青年提供領導力發展項目，並促進國際經驗和跨文化交流，以激發青年的領導才能，培養他們對世界的認識和對不同文化的包容性。AIESEC在全球125個國家設有聯絡處，擁有50000多名學生成員，完全由在校學生管理運營，提供海外實習、國際研習生交換計劃、領導力發展項目等多種發展項目，並鼓勵青年進行跨文化交流，讓來自不同國家和文化背景的人們相互認識、學習，共同面對挑戰，為全球可持續發展作出貢獻。'],
+           'zh-CN': ['在这个充满选择与变革的时代，青年们面临着多元且不确定的未来。为了帮助他们找到属于自己的方向，5月24日，澳门财经科技与教育发展学会与AIESEC国际青年组织在澳门联合举办了首场「人生餐厅——探索职业发展的多元可能」Youth '
+                     'Speak Forum青年之声论坛，为大湾区青年搭建了一个交流与成长的平台。',
+                     '本次论坛以「人生餐厅」为主题，通过分享真实的人生故事、实用的技能提升工作坊以及全球美食派对等多样化的形式，让青年们在轻松愉快的氛围中探索职业发展的多元选择与个人成长的可能。来自金融、社创、媒体等领域的嘉宾们带来了他们独特的人生经历，作为「餐厅的前菜」，为活动拉开序幕。',
+                     '论坛中，Fiona分享了她从校园到特种兵生活，再到职场打拼与人生转折的经历，她坚定地表达着：「哪怕走弯路，也能活出热烈与自由。我们要勇敢做自己想成为的人。」Forest则以共益企业为路径，用商业行动实现善意，展现了推动改变的起点。此外，技能提升工作坊邀请了社交媒体创业者兼AI领域实践者Oscar作为讲者，帮助与会者理解如何利用自媒体提升工作效率，并利用「杠杆思维」发挥个人优势。',
+                     '论坛的「全球美食派对」环节则邀请了曾赴海外拥有国际志愿经历的同学们现场讲述他们的故事，从尼泊尔到肯尼亚，从埃及到韩国，从文化冲击到价值重构，这是一个轻松的交流时刻。与会者们在品尝各国美食的同时，听出国志愿者们分享他们的故事和经验，并互相交流对世界的看法。这个环节不仅让「世界」变得触手可及，也让未来的路更有方向，让大家期待着创造自己的故事。',
+                     '活动闭幕环节，与会者们积极分享了他们的收获与感悟。一位与会者表示：「人生餐厅这个主题特别有意思，连议程都设计成了菜单的样子。有一位大学四年尝试各种兼职的嘉宾，她分享的是如何将自己的兴趣点与职业结合起来进行探索和实践的经历，给了我很多启示！作为一个对自己的兴趣和能力还处在探索阶段的人来说，先把自己的想法列出来，不管是否可行，至少都是一种选择。」',
+                     '澳门财经科技与教育发展学会一直致力于推动澳门的财经科技与教育发展，而AIESEC则是一个国际性的青年组织，专注于为青年提供国际交流与领导力发展的机会。两者的合作为本次论坛注入了强大的动力，让青年们在探索职业发展的过程中，不仅获得了实用的知识和技能，更得到了灵感与启发。活动中，AIESEC更向学会颁发感谢函，嘉许学会对本次论坛的鼎力支持。',
+                     '通过这次论坛，澳门财经科技与教育发展学会与AIESEC国际青年组织的合作不仅为青年们提供了职业发展的启示，更为他们的未来打开了一扇通往世界的大门。未来，双方将继续携手，举办更多类似的活动，为青年们创造更多学习与成长的机会，让他们在这个充满选择与变革的时代中，找到属于自己的方向，实现自己的价值。',
+                     'AIESEC简介：AIESEC是世界上最大的由大学生和青年运营的非营利国际组织，全名为国际经济商管学生会。它致力于为青年提供领导力发展项目，并促进国际经验和跨文化交流，以激发青年的领导才能，培养他们对世界的认识和对不同文化的包容性。AIESEC在全球125个国家设有联络处，拥有50000多名学生成员，完全由在校学生管理运营，提供海外实习、国际研习生交换计划、领导力发展项目等多种发展项目，并鼓励青年进行跨文化交流，让来自不同国家和文化背景的人们相互认识、学习，共同面对挑战，为全球可持续发展作出贡献。'],
+           'en': ['In an era full of choices and change, young people face a future that is both diverse and '
+                  'uncertain. To help them find their own direction, on 24 May the Macao Financial Technology and '
+                  'Education Development Association (MFTEDA) and the international youth organisation AIESEC jointly '
+                  'hosted in Macao the first "Restaurant of Life — Exploring Diverse Possibilities for Career '
+                  'Development" Youth Speak Forum, creating a platform for exchange and growth for young people across '
+                  'the Greater Bay Area.',
+                  'Under the theme "Restaurant of Life", the forum invited young people to explore diverse career '
+                  'options and possibilities for personal growth in a relaxed and enjoyable atmosphere, through the '
+                  'sharing of real-life stories, practical skills workshops and a global food party. Guest speakers '
+                  'from the fields of finance, social innovation and media shared their unique life experiences as the '
+                  '"starters" of this "restaurant", kicking off the event.',
+                  'During the forum, Fiona shared her journey from campus life, through a "special-forces" style '
+                  "chapter of intense living, to forging her career and navigating life's turning points, declaring "
+                  'with conviction: "Even if we take detours, we can still live with passion and freedom. We must be '
+                  'brave enough to become the people we want to be." Forest, for his part, took the path of a benefit '
+                  'corporation, using business as a force for good and demonstrating a starting point for driving '
+                  'change. In addition, the skills workshop featured Oscar, a social-media entrepreneur and AI '
+                  'practitioner, who helped participants understand how to use self-media to boost work efficiency and '
+                  'apply "leverage thinking" to make the most of their personal strengths.',
+                  'In the "Global Food Party" session, students with experience of international volunteering overseas '
+                  'shared their stories on site — from Nepal to Kenya, from Egypt to South Korea, from culture shock '
+                  'to the reconstruction of values — in a relaxed moment of exchange. While tasting cuisine from '
+                  "different countries, participants listened to the overseas volunteers' stories and experiences and "
+                  'exchanged views about the world. This session not only brought "the world" within reach, but also '
+                  'gave clearer direction to the road ahead, inspiring everyone to look forward to creating stories of '
+                  'their own.',
+                  'At the closing session, participants actively shared what they had gained and felt. One participant '
+                  'said: "The \'Restaurant of Life\' theme is so interesting — even the agenda was designed like a '
+                  'menu. One guest speaker had tried all kinds of part-time jobs during her four years at university, '
+                  'and she shared how she explored and practised combining her interests with her career, which gave '
+                  'me a lot of inspiration! As someone still exploring my own interests and abilities, I learned to '
+                  'list out my ideas first — feasible or not, each one is at least an option."',
+                  "MFTEDA has long been committed to advancing Macao's development in finance, technology and "
+                  'education, while AIESEC is an international youth organisation dedicated to providing young people '
+                  'with opportunities for international exchange and leadership development. The partnership between '
+                  'the two injected strong momentum into the forum, enabling young people not only to gain practical '
+                  'knowledge and skills as they explored their careers, but also to find inspiration and '
+                  'encouragement. During the event, AIESEC also presented MFTEDA with a certificate of appreciation in '
+                  "recognition of the Association's generous support for the forum.",
+                  'Through this forum, the collaboration between MFTEDA and AIESEC not only offered young people '
+                  'insights for their career development, but also opened a door to the world for their future. Going '
+                  'forward, the two sides will continue to work hand in hand to organise more events of this kind, '
+                  'creating more opportunities for young people to learn and grow, so that in this era of choices and '
+                  'change they can find their own direction and realise their own value.',
+                  "About AIESEC: AIESEC is the world's largest non-profit international organisation run by university "
+                  'students and young people; its full name is the International Association of Students in Economic '
+                  'and Commercial Sciences. It is dedicated to providing leadership development programmes for young '
+                  'people and promoting international experience and cross-cultural exchange, in order to unlock young '
+                  "people's leadership potential and cultivate their understanding of the world and their "
+                  'inclusiveness towards different cultures. AIESEC has liaison offices in 125 countries, counts more '
+                  'than 50,000 student members and is run entirely by current students. It offers a range of '
+                  'development programmes — including overseas internships, international trainee exchanges and '
+                  'leadership development programmes — and encourages young people to engage in cross-cultural '
+                  'exchange, so that people from different countries and cultural backgrounds can get to know one '
+                  'another, learn together, face challenges side by side and contribute to global sustainable '
+                  'development.'],
+           'pt': ['Numa era repleta de escolhas e de mudança, os jovens deparam-se com um futuro diversificado e '
+                  'incerto. Para os ajudar a encontrar o seu próprio rumo, a Associação de Desenvolvimento de '
+                  'Finanças, Tecnologia e Educação de Macau (MFTEDA) e a organização internacional de juventude AIESEC '
+                  'organizaram conjuntamente, a 24 de maio, em Macau, o primeiro fórum Youth Speak «Restaurante da '
+                  'Vida — Explorar as Diversas Possibilidades do Desenvolvimento Profissional», criando uma plataforma '
+                  'de intercâmbio e de crescimento para os jovens da Grande Baía.',
+                  'Sob o tema «Restaurante da Vida», o fórum convidou os jovens a explorar, num ambiente descontraído '
+                  'e agradável, as diversas opções de desenvolvimento profissional e as possibilidades de crescimento '
+                  'pessoal, através da partilha de histórias de vida reais, de workshops práticos de desenvolvimento '
+                  'de competências e de uma festa gastronómica mundial. Oradores convidados das áreas das finanças, da '
+                  'inovação social e dos media partilharam as suas experiências de vida singulares, servindo de '
+                  '«entradas» deste «restaurante» e dando assim início ao evento.',
+                  'No decorrer do fórum, Fiona partilhou o seu percurso, da vida universitária a um capítulo vivido ao '
+                  'estilo das «forças especiais», passando pela luta no mercado de trabalho e pelas reviravoltas da '
+                  'vida, afirmando com convicção: «Mesmo que façamos desvios, podemos viver com intensidade e '
+                  'liberdade. Temos de ter a coragem de ser quem queremos ser.» Forest, por sua vez, escolheu o '
+                  'caminho das empresas de benefício social, usando a acção empresarial para concretizar o bem e '
+                  'mostrando um ponto de partida para impulsionar a mudança. Além disso, o workshop de desenvolvimento '
+                  'de competências contou com a presença de Oscar, empreendedor nas redes sociais e profissional da '
+                  'área da inteligência artificial, que ajudou os participantes a compreender como utilizar os meios '
+                  'de comunicação pessoais para aumentar a eficiência no trabalho e como aplicar o «pensamento de '
+                  'alavanca» para valorizar as suas vantagens pessoais.',
+                  'Na sessão «Festa Gastronómica Mundial», estudantes com experiência de voluntariado internacional no '
+                  'estrangeiro contaram presencialmente as suas histórias — do Nepal ao Quénia, do Egipto à Coreia do '
+                  'Sul, do choque cultural à reconstrução de valores — num descontraído momento de intercâmbio. '
+                  'Enquanto provavam iguarias de vários países, os participantes ouviam os voluntários partilharem as '
+                  'suas histórias e experiências e trocavam opiniões sobre o mundo. Esta sessão não só tornou o '
+                  '«mundo» mais próximo e palpável, como deu um rumo mais claro ao caminho que têm pela frente, '
+                  'deixando todos com vontade de escrever as suas próprias histórias.',
+                  'Na sessão de encerramento, os participantes partilharam activamente os seus ganhos e reflexões. Um '
+                  'participante afirmou: «O tema Restaurante da Vida é muito interessante — até o programa foi '
+                  'desenhado em forma de ementa. Uma das oradoras experimentou todo o tipo de trabalhos a tempo '
+                  'parcial durante os quatro anos de universidade e partilhou a sua experiência de como explorar e pôr '
+                  'em prática a combinação dos seus interesses com a carreira, o que me deu muita inspiração! Para '
+                  'alguém que, como eu, ainda está numa fase de exploração dos seus interesses e capacidades, o '
+                  'primeiro passo é anotar as próprias ideias — sejam ou não viáveis, cada uma delas é, pelo menos, '
+                  'uma opção.»',
+                  'A MFTEDA tem-se dedicado a impulsionar o desenvolvimento de Macau nos domínios das finanças, da '
+                  'tecnologia e da educação, enquanto a AIESEC é uma organização internacional de juventude que se '
+                  'concentra em proporcionar aos jovens oportunidades de intercâmbio internacional e de '
+                  'desenvolvimento de liderança. A colaboração entre as duas instituições imprimiu um forte impulso ao '
+                  'fórum, permitindo que os jovens, no processo de exploração do seu desenvolvimento profissional, '
+                  'adquirissem não só conhecimentos e competências práticas, mas também inspiração e estímulo. No '
+                  'decurso do evento, a AIESEC atribuiu ainda à MFTEDA um certificado de apreço, em reconhecimento '
+                  'pelo generoso apoio da associação ao fórum.',
+                  'Através deste fórum, a cooperação entre a MFTEDA e a AIESEC não só proporcionou aos jovens '
+                  'orientação para o seu desenvolvimento profissional, como também lhes abriu uma porta para o mundo. '
+                  'No futuro, as duas partes continuarão a trabalhar em conjunto na organização de mais actividades '
+                  'semelhantes, criando mais oportunidades de aprendizagem e de crescimento para os jovens, para que, '
+                  'nesta era de escolhas e de mudança, encontrem o seu próprio rumo e realizem o seu valor.',
+                  'Sobre a AIESEC: a AIESEC é a maior organização internacional sem fins lucrativos do mundo gerida '
+                  'por estudantes universitários e jovens; o seu nome completo é Associação Internacional de '
+                  'Estudantes de Ciências Económicas e Empresariais. Dedica-se a oferecer programas de desenvolvimento '
+                  'de liderança aos jovens e a promover a experiência internacional e o intercâmbio intercultural, de '
+                  'modo a desenvolver o talento de liderança dos jovens e a cultivar o seu conhecimento do mundo e a '
+                  'sua tolerância face às diferentes culturas. A AIESEC dispõe de representações em 125 países, conta '
+                  'com mais de 50 000 membros estudantes e é totalmente gerida por estudantes no activo. Oferece '
+                  'diversos programas de desenvolvimento — incluindo estágios no estrangeiro, programas internacionais '
+                  'de intercâmbio de estagiários e programas de desenvolvimento de liderança — e incentiva os jovens a '
+                  'participar no intercâmbio intercultural, permitindo que pessoas de diferentes países e culturas se '
+                  'conheçam, aprendam em conjunto, enfrentem desafios lado a lado e contribuam para o desenvolvimento '
+                  'sustentável a nível mundial.']},
+  'images': [{'file': 'aiesec-youth-career-forum-2025-1.webp',
+              'after': 1,
+              'caption': {'zh-TW': '「人生餐廳」Youth Speak Forum青年之聲論壇與會者合影',
+                          'zh-CN': '「人生餐厅」Youth Speak Forum青年之声论坛与会者合影',
+                          'en': 'Participants of the "Restaurant of Life" Youth Speak Forum pose for a group photo',
+                          'pt': 'Fotografia de grupo dos participantes do fórum Youth Speak «Restaurante da Vida»'}},
+             {'file': 'aiesec-youth-career-forum-2025-2.webp',
+              'after': 3,
+              'caption': {'zh-TW': '與會青年在交流環節踴躍發言',
+                          'zh-CN': '与会青年在交流环节踊跃发言',
+                          'en': 'A young participant speaks during the exchange session',
+                          'pt': 'Uma jovem participante intervém durante a sessão de intercâmbio'}},
+             {'file': 'aiesec-youth-career-forum-2025-3.webp',
+              'after': 5,
+              'caption': {'zh-TW': '與會青年在互動環節同心協力，凝聚團隊力量',
+                          'zh-CN': '与会青年在互动环节同心协力，凝聚团队力量',
+                          'en': 'Participants join hands in a team-building activity',
+                          'pt': 'Participantes unem as mãos numa actividade de espírito de equipa'}},
+             {'file': 'aiesec-youth-career-forum-2025-4.webp',
+              'after': 6,
+              'caption': {'zh-TW': 'AIESEC向學會頒發感謝函',
+                          'zh-CN': 'AIESEC向学会颁发感谢函',
+                          'en': 'AIESEC presents MFTEDA with a certificate of appreciation',
+                          'pt': 'A AIESEC atribui à MFTEDA um certificado de apreço'}}]},
+ {'slug': 'jixing-master-lecture-2-community-governance',
+  'date': '2025-06-05',
+  'category': {'zh-TW': '學術活動', 'zh-CN': '学术活动', 'en': 'Academic Activities', 'pt': 'Actividades Académicas'},
+  'title': {'zh-TW': '澳門吉星工程「大師系列講座」之二：共探社區與義工治理新路徑',
+            'zh-CN': '澳门吉星工程“大师系列讲座”之二：共探社区与义工治理新路径',
+            'en': 'Macao Lucky Star Project “Master Lecture Series” Session Two: Exploring New Pathways in Community '
+                  'and Volunteer Governance',
+            'pt': 'Projeto «Estrela da Sorte» de Macau — Segunda Palestra da «Série de Palestras de Mestres»: Explorar '
+                  'Novos Caminhos para a Governação Comunitária e o Voluntariado'},
+  'excerpt': {'zh-TW': '5月29日，由澳門財經科技與教育發展學會與吉林外國語大學聯合舉辦的澳門吉星工程「大師系列講座」第二場成功舉行，澳門聖若瑟大學社會工作碩士課程主任盧子健博士主講「社區與義工治理協作」，近百名師生通過線上線下方式參與交流。',
+              'zh-CN': '5月29日，由澳门财经科技与教育发展学会与吉林外国语大学联合举办的澳门吉星工程“大师系列讲座”第二场成功举行，澳门圣若瑟大学社会工作硕士课程主任卢子健博士主讲“社区与义工治理协作”，近百名师生通过线上线下方式参与交流。',
+              'en': "On 29 May, the second session of the Macao Lucky Star Project's “Master Lecture Series”, "
+                    'co-hosted by MFTEDA and Jilin International Studies University, was successfully held. Dr. Jayson '
+                    'Lou, Director of the Master of Social Work Programme at the University of Saint Joseph, Macao, '
+                    'lectured on collaboration between community and volunteer governance, with nearly a hundred '
+                    'teachers and students joining the exchange both on site and online.',
+              'pt': 'No dia 29 de maio, realizou-se com êxito a segunda palestra da «Série de Palestras de Mestres» do '
+                    'Projeto «Estrela da Sorte» de Macau, coorganizada pela MFTEDA e pela Universidade de Estudos '
+                    'Internacionais de Jilin. O Dr. Jayson Lou, director do Mestrado em Serviço Social da Universidade '
+                    'São José, de Macau, proferiu uma palestra sobre a articulação entre a governação comunitária e o '
+                    'voluntariado, com a participação, presencial e em linha, de perto de uma centena de docentes e '
+                    'estudantes.'},
+  'source': {'name': {'zh-TW': 'MFTEDA微信公眾號',
+                      'zh-CN': 'MFTEDA微信公众号',
+                      'en': 'MFTEDA WeChat Official Account',
+                      'pt': 'Conta Oficial do WeChat da MFTEDA'},
+             'url': 'https://mp.weixin.qq.com/s/OaYM6b39eAu451sWv5Il_Q'},
+  'body': {'zh-TW': ['5月29日，澳門吉星工程「大師系列講座」第二場拉開帷幕，一場聚焦「社區與義工治理協作」的講座在吉林外國語大學成功舉辦。此次講座由澳門財經科技與教育發展學會與吉林外國語大學聯合舉辦，旨在搭建跨區域交流平台，深入探討社區與義工治理協作的創新模式、實踐路徑與前沿理念，推動兩地在社區治理與志願服務領域的深度合作。',
+                     '澳門吉星工程執委會主席、澳門財經科技與教育發展學會會長楊誠，澳門博士智庫吉林聯絡辦主任韓婧怡博士，澳門聖若瑟大學社會工作碩士課程主任盧子健博士，澳門財經科技與教育發展學會理事長宋薇受邀參與本次講座，吉林外國語大學王志國副校長，國際處宋丹丹處長，吉林志願服務管理學院張俊姝院長，吉林志願服務管理學院李明麗副院長，校團委範夢楠老師，各學院團委書記，青年志願服務聯合會負責人，大學生進社區社會實踐項目負責人以及《志願者與專業志願服務》課程學生近百人通過線上線下同步直播的方式進行了交流。',
+                     '張俊姝院長在致辭中表示：社區治理與義工服務在社會建設中具有重要地位，《「十四五」民政事業發展規劃》也著重強調培育發展社區社會組織和社區工作者隊伍，推動志願服務制度化常態化。在此背景下展開的本次講座不僅是學院社區治理與義工服務理論與實踐結合的探討，同時在推動兩地資源共用、優勢互補上具有積極深遠的意義。',
+                     '本次講座特邀澳門聖若瑟大學社會工作碩士課程主任盧子健擔任主講嘉賓。盧子健博士是澳門特別行政區社會工作者專業委員會委員，擁有30多年的義務工作經驗，在社區及青少年社會工作領域深耕18年，為澳門政府多部門開展培訓課程，並參與多個社會事務單位工作，培訓了超過1000名義務工作者為社區服務。',
+                     '盧子健博士的講座內容豐富、深入淺出。他從義工發展的不同階段切入，深入解析了義工活動設計的SMART原則與評價體系，並結合社區諮詢推廣與宣傳實務，全方位展現了澳門社區與義工治理協作的創新模式和實踐路徑。他的分享不僅為吉林外國語大學的師生們帶來了澳門地區在社區服務體系建設、義工管理等方面的先進經驗，也為內地社區治理的實際需求提供了有益的參考和借鑑。',
+                     '講座中同學們就社會組織在社區治理中的角色定位、高校與社會組織的長期合作、青少年參與志願服務的動機轉變等問題進行了積極提問。盧子健博士憑藉其深厚的理論基礎和豐富的實踐經驗，分別依據同學們的要求使用中英雙語進行了解答，得到了與會師生的高度評價。',
+                     '本次講座的成功舉辦，不僅為吉林外國語大學的學生們科學化開展社區服務活動、完善志願服務體系提供了寶貴的智力支持與實踐參照，同時也為吉林外國語大學與澳門財經科技與教育發展學會的深度合作奠定了堅實基礎。',
+                     '未來，雙方將繼續探索社區治理與志願服務融合發展的創新路徑，通過資源互通、經驗共用，培養更多具有社會責任感和實踐能力的複合型人才。澳門財經科技與教育發展學會將繼續發揮其在學術研究、資源整合、實踐指導等方面的優勢，為推動兩地在社區與義工治理領域的合作與發展貢獻更多智慧和力量。以專業賦能公益，用行動踐行擔當，共同書寫社會治理現代化的新篇章。'],
+           'zh-CN': ['5月29日，澳门吉星工程“大师系列讲座”第二场拉开帷幕，一场聚焦“社区与义工治理协作”的讲座在吉林外国语大学成功举办。此次讲座由澳门财经科技与教育发展学会与吉林外国语大学联合举办，旨在搭建跨区域交流平台，深入探讨社区与义工治理协作的创新模式、实践路径与前沿理念，推动两地在社区治理与志愿服务领域的深度合作。',
+                     '澳门吉星工程执委会主席、澳门财经科技与教育发展学会会长杨诚，澳门博士智库吉林联络办主任韩婧怡博士，澳门圣若瑟大学社会工作硕士课程主任卢子健博士，澳门财经科技与教育发展学会理事长宋薇受邀参与本次讲座，吉林外国语大学王志国副校长，国际处宋丹丹处长，吉林志愿服务管理学院张俊姝院长，吉林志愿服务管理学院李明丽副院长，校团委范梦楠老师，各学院团委书记，青年志愿服务联合会负责人，大学生进社区社会实践项目负责人以及《志愿者与专业志愿服务》课程学生近百人通过线上线下同步直播的方式进行了交流。',
+                     '张俊姝院长在致辞中表示：社区治理与义工服务在社会建设中具有重要地位，《“十四五”民政事业发展规划》也着重强调培育发展社区社会组织和社区工作者队伍，推动志愿服务制度化常态化。在此背景下展开的本次讲座不仅是学院社区治理与义工服务理论与实践结合的探讨，同时在推动两地资源共用、优势互补上具有积极深远的意义。',
+                     '本次讲座特邀澳门圣若瑟大学社会工作硕士课程主任卢子健担任主讲嘉宾。卢子健博士是澳门特别行政区社会工作者专业委员会委员，拥有30多年的义务工作经验，在社区及青少年社会工作领域深耕18年，为澳门政府多部门开展培训课程，并参与多个社会事务单位工作，培训了超过1000名义务工作者为社区服务。',
+                     '卢子健博士的讲座内容丰富、深入浅出。他从义工发展的不同阶段切入，深入解析了义工活动设计的SMART原则与评价体系，并结合社区咨询推广与宣传实务，全方位展现了澳门社区与义工治理协作的创新模式和实践路径。他的分享不仅为吉林外国语大学的师生们带来了澳门地区在社区服务体系建设、义工管理等方面的先进经验，也为内地社区治理的实际需求提供了有益的参考和借鉴。',
+                     '讲座中同学们就社会组织在社区治理中的角色定位、高校与社会组织的长期合作、青少年参与志愿服务的动机转变等问题进行了积极提问。卢子健博士凭借其深厚的理论基础和丰富的实践经验，分别依据同学们的要求使用中英双语进行了解答，得到了与会师生的高度评价。',
+                     '本次讲座的成功举办，不仅为吉林外国语大学的学生们科学化开展社区服务活动、完善志愿服务体系提供了宝贵的智力支持与实践参照，同时也为吉林外国语大学与澳门财经科技与教育发展学会的深度合作奠定了坚实基础。',
+                     '未来，双方将继续探索社区治理与志愿服务融合发展的创新路径，通过资源互通、经验共用，培养更多具有社会责任感和实践能力的复合型人才。澳门财经科技与教育发展学会将继续发挥其在学术研究、资源整合、实践指导等方面的优势，为推动两地在社区与义工治理领域的合作与发展贡献更多智慧和力量。以专业赋能公益，用行动践行担当，共同书写社会治理现代化的新篇章。'],
+           'en': ["On 29 May, the second session of the Macao Lucky Star Project's “Master Lecture Series” opened with "
+                  'a lecture on collaboration between community and volunteer governance, successfully held at Jilin '
+                  'International Studies University. Co-hosted by the Macao Financial Technology and Education '
+                  'Development Association (MFTEDA) and Jilin International Studies University, the lecture aimed to '
+                  'build a platform for cross-regional exchange, exploring in depth innovative models, practical '
+                  'pathways and forward-looking ideas for community–volunteer governance collaboration, and promoting '
+                  'deeper cooperation between the two regions in community governance and volunteer services.',
+                  'Guests attending the lecture included Yang Cheng, Chairman of the Executive Committee of the Macao '
+                  'Lucky Star Project and President of MFTEDA; Dr. Han Jingyi, Director of the Jilin Liaison Office of '
+                  'the Macao Doctoral Think Tank; Dr. Jayson Lou, Director of the Master of Social Work Programme at '
+                  'the University of Saint Joseph, Macao; and Song Wei, Chairman of the Executive Board of MFTEDA. '
+                  'From Jilin International Studies University, participants included Vice President Wang Zhiguo, '
+                  'Director of the International Office Song Dandan, Dean of the Jilin Volunteer Service Management '
+                  "College Zhang Junshu, the College's Vice Dean Li Mingli, Youth League Committee teacher Fan "
+                  'Mengnan, the Youth League secretaries of the various schools, the head of the Youth Volunteer '
+                  "Service Federation and the coordinators of the university students' community social practice "
+                  'programme. Nearly a hundred people, including students of the course “Volunteers and Professional '
+                  'Volunteer Service”, joined the exchange through a simultaneous online-and-on-site live broadcast.',
+                  'In her address, Dean Zhang Junshu noted that community governance and volunteer service occupy an '
+                  'important place in social development, and that the 14th Five-Year Plan for the Development of '
+                  'Civil Affairs also places particular emphasis on cultivating community social organisations and '
+                  'community workers, and on making volunteer services institutional and regular. Held against this '
+                  'backdrop, the lecture was not only an exploration of integrating theory with practice in community '
+                  'governance and volunteer service, but also carried positive and far-reaching significance for '
+                  'sharing resources and complementing strengths between the two regions.',
+                  'The lecture featured Dr. Jayson Lou, Director of the Master of Social Work Programme at the '
+                  'University of Saint Joseph, Macao, as the keynote speaker. Dr. Lou is a member of the Social '
+                  'Workers Professional Committee of the Macao Special Administrative Region, with more than 30 years '
+                  'of experience in volunteer work and 18 years of dedication to community and youth social work. He '
+                  'has delivered training courses for multiple Macao government departments, served in various social '
+                  'affairs bodies, and trained over 1,000 volunteers in service of the community.',
+                  "Dr. Lou's lecture was rich in content yet readily accessible. Starting from the different stages of "
+                  'volunteer development, he offered an in-depth analysis of the SMART principles and evaluation '
+                  'systems for designing volunteer activities, and, drawing on community consultation, outreach and '
+                  "publicity practice, presented a comprehensive picture of Macao's innovative models and practical "
+                  'pathways in community–volunteer governance collaboration. His sharing not only brought the teachers '
+                  "and students of Jilin International Studies University Macao's advanced experience in building "
+                  'community service systems and managing volunteers, but also provided useful references for the '
+                  'practical needs of community governance in the mainland.',
+                  'During the lecture, students actively raised questions on topics such as the role of social '
+                  'organisations in community governance, long-term cooperation between universities and social '
+                  'organisations, and the shifting motivations of young people taking part in volunteer service. '
+                  'Drawing on his solid theoretical foundation and extensive practical experience, Dr. Lou answered in '
+                  'both Chinese and English as requested by the students, earning high praise from the teachers and '
+                  'students in attendance.',
+                  'The success of this lecture not only provided valuable intellectual support and practical reference '
+                  'for students of Jilin International Studies University to carry out community service activities in '
+                  'a more systematic way and to improve the volunteer service system, but also laid a solid foundation '
+                  'for deeper cooperation between the University and MFTEDA.',
+                  'Looking ahead, the two sides will continue to explore innovative pathways for the integrated '
+                  'development of community governance and volunteer service, cultivating more well-rounded talent '
+                  'with a sense of social responsibility and practical ability through resource sharing and mutual '
+                  'learning. MFTEDA will continue to leverage its strengths in academic research, resource integration '
+                  'and practical guidance, contributing further wisdom and strength to cooperation and development '
+                  'between the two regions in community and volunteer governance — empowering public welfare with '
+                  'professionalism, honouring responsibility through action, and jointly writing a new chapter in the '
+                  'modernisation of social governance.'],
+           'pt': ['No dia 29 de maio, teve início a segunda palestra da «Série de Palestras de Mestres» do Projeto '
+                  '«Estrela da Sorte» de Macau, dedicada ao tema da articulação entre a governação comunitária e o '
+                  'voluntariado e realizada com êxito na Universidade de Estudos Internacionais de Jilin. Coorganizada '
+                  'pela Associação de Desenvolvimento de Finanças, Tecnologia e Educação de Macau (MFTEDA) e pela '
+                  'Universidade de Estudos Internacionais de Jilin, a palestra teve como objectivo criar uma '
+                  'plataforma de intercâmbio inter-regional, debatendo em profundidade modelos inovadores, percursos '
+                  'práticos e conceitos de vanguarda dessa articulação, e promovendo uma cooperação mais profunda '
+                  'entre as duas regiões nos domínios da governação comunitária e do serviço voluntário.',
+                  'Estiveram presentes Yang Cheng, presidente da Comissão Executiva do Projeto «Estrela da Sorte» de '
+                  'Macau e Presidente da MFTEDA; a Dr.ª Han Jingyi, directora do Gabinete de Ligação de Jilin do Think '
+                  'Tank dos Doutorados de Macau; o Dr. Jayson Lou, director do Mestrado em Serviço Social da '
+                  'Universidade São José, de Macau; e Song Wei, presidente do Conselho de Administração da MFTEDA. Da '
+                  'parte da Universidade de Estudos Internacionais de Jilin, participaram o vice-reitor Wang Zhiguo, a '
+                  'directora do Departamento Internacional Song Dandan, a directora do Instituto de Gestão do Serviço '
+                  'Voluntário de Jilin Zhang Junshu, a subdirectora do mesmo instituto Li Mingli, a professora Fan '
+                  'Mengnan, do Comité da Liga da Juventude, os secretários dos comités da Liga da Juventude das várias '
+                  'faculdades, o responsável da Federação de Jovens Voluntários e os responsáveis dos projectos de '
+                  'prática social dos estudantes na comunidade. Perto de uma centena de pessoas, incluindo os '
+                  'estudantes da disciplina «Voluntários e Serviço Voluntário Profissional», participaram no '
+                  'intercâmbio através de transmissão simultânea presencial e em linha.',
+                  'No seu discurso, a directora Zhang Junshu salientou que a governação comunitária e o serviço '
+                  'voluntário ocupam um lugar importante na construção da sociedade, e que o XIV Plano Quinquenal para '
+                  'o Desenvolvimento dos Assuntos Civis sublinha igualmente a necessidade de cultivar e desenvolver '
+                  'organizações sociais comunitárias e equipas de trabalhadores comunitários, promovendo a '
+                  'institucionalização e a regularização do serviço voluntário. Realizada neste contexto, a palestra '
+                  'constituiu não só uma reflexão sobre a articulação entre a teoria e a prática da governação '
+                  'comunitária e do serviço voluntário, como também assumiu um significado positivo e de longo alcance '
+                  'para a partilha de recursos e a complementaridade de vantagens entre as duas regiões.',
+                  'A palestra contou com o Dr. Jayson Lou, director do Mestrado em Serviço Social da Universidade São '
+                  'José, de Macau, como orador principal. O Dr. Lou é membro da Comissão de Trabalhadores Sociais da '
+                  'Região Administrativa Especial de Macau, acumula mais de 30 anos de experiência em trabalho '
+                  'voluntário e dedica-se há 18 anos ao serviço social comunitário e juvenil. Ministrou cursos de '
+                  'formação para diversos serviços do Governo de Macau, colaborou com várias entidades de assuntos '
+                  'sociais e formou mais de 1.000 voluntários ao serviço da comunidade.',
+                  'A palestra do Dr. Lou foi rica em conteúdo e apresentada de forma acessível. Partindo das '
+                  'diferentes fases do desenvolvimento do voluntariado, analisou em profundidade os princípios SMART e '
+                  'os sistemas de avaliação na concepção de actividades de voluntariado e, articulando-os com práticas '
+                  'de consulta, divulgação e promoção comunitárias, apresentou um panorama completo dos modelos '
+                  'inovadores e dos percursos práticos de Macau na articulação entre a governação comunitária e o '
+                  'voluntariado. A sua partilha trouxe aos docentes e estudantes da Universidade de Estudos '
+                  'Internacionais de Jilin a experiência avançada de Macau na construção de sistemas de serviços '
+                  'comunitários e na gestão de voluntários, oferecendo também referências úteis para as necessidades '
+                  'práticas da governação comunitária no Interior da China.',
+                  'Durante a palestra, os estudantes colocaram activamente questões sobre temas como o posicionamento '
+                  'das organizações sociais na governação comunitária, a cooperação de longo prazo entre as '
+                  'instituições de ensino superior e as organizações sociais, e a evolução das motivações dos jovens '
+                  'para a participação no serviço voluntário. Com base na sua sólida formação teórica e na sua vasta '
+                  'experiência prática, o Dr. Lou respondeu em chinês e em inglês, consoante os pedidos dos '
+                  'estudantes, merecendo elevados elogios dos docentes e estudantes presentes.',
+                  'O êxito desta palestra não só proporcionou aos estudantes da Universidade de Estudos Internacionais '
+                  'de Jilin um valioso apoio intelectual e referências práticas para a realização criteriosa de '
+                  'actividades de serviço comunitário e para o aperfeiçoamento do sistema de serviço voluntário, como '
+                  'também lançou bases sólidas para uma cooperação mais profunda entre a Universidade e a MFTEDA.',
+                  'No futuro, as duas partes continuarão a explorar percursos inovadores para o desenvolvimento '
+                  'integrado da governação comunitária e do serviço voluntário, formando, através da partilha de '
+                  'recursos e de experiências, mais talentos versáteis com sentido de responsabilidade social e '
+                  'capacidade prática. A MFTEDA continuará a dar pleno jogo às suas vantagens na investigação '
+                  'académica, na integração de recursos e na orientação prática, contribuindo com mais sabedoria e '
+                  'força para a cooperação e o desenvolvimento das duas regiões nos domínios da governação comunitária '
+                  'e do voluntariado — colocando o profissionalismo ao serviço da causa pública, assumindo '
+                  'responsabilidades através da acção e escrevendo, em conjunto, um novo capítulo na modernização da '
+                  'governação social.']},
+  'images': [{'file': 'jixing-master-lecture-2-community-governance-1.webp',
+              'after': 1,
+              'caption': {'zh-TW': '「社區與義工治理協作」講座在吉林外國語大學舉行',
+                          'zh-CN': '“社区与义工治理协作”讲座在吉林外国语大学举行',
+                          'en': 'The lecture on collaboration between community and volunteer governance takes place '
+                                'at Jilin International Studies University',
+                          'pt': 'A palestra sobre a articulação entre a governação comunitária e o voluntariado '
+                                'decorre na Universidade de Estudos Internacionais de Jilin'}},
+             {'file': 'jixing-master-lecture-2-community-governance-2.webp',
+              'after': 5,
+              'caption': {'zh-TW': '盧子健博士線上主講「社區與義工治理的協作」',
+                          'zh-CN': '卢子健博士线上主讲“社区与义工治理的协作”',
+                          'en': 'Dr. Jayson Lou delivers his lecture “Collaboration between Community and Volunteer '
+                                'Governance” online',
+                          'pt': 'O Dr. Jayson Lou profere, em linha, a palestra «Articulação entre a Governação '
+                                'Comunitária e o Voluntariado»'}},
+             {'file': 'jixing-master-lecture-2-community-governance-3.webp',
+              'after': 6,
+              'caption': {'zh-TW': '吉林外國語大學師生出席講座',
+                          'zh-CN': '吉林外国语大学师生出席讲座',
+                          'en': 'Teachers and students of Jilin International Studies University attend the lecture',
+                          'pt': 'Docentes e estudantes da Universidade de Estudos Internacionais de Jilin participam '
+                                'na palestra'}}]},
+ {'slug': 'jixing-master-lecture-jisu-gaoming',
+  'date': '2025-05-20',
+  'category': {'zh-TW': '學術活動', 'zh-CN': '学术活动', 'en': 'Academic Activities', 'pt': 'Actividades Académicas'},
+  'title': {'zh-TW': '吉星工程再添落地項目——高明博士「商業翻譯市場中的譯者職業發展」大師講座在吉林外國語大學舉行',
+            'zh-CN': '吉星工程再添落地项目——高明博士“商业翻译市场中的译者职业发展”大师讲座在吉林外国语大学举行',
+            'en': 'Jixing Project Delivers New Milestone: Dr. Gao Ming Gives Master Lecture on "Career Development for '
+                  'Translators in the Business Translation Market" at Jilin International Studies University',
+            'pt': 'Projecto Jixing concretiza novo resultado: Dr. Gao Ming profere palestra magistral sobre «O '
+                  'Desenvolvimento da Carreira de Tradutor no Mercado da Tradução Comercial» na Universidade de '
+                  'Estudos Internacionais de Jilin'},
+  'excerpt': {'zh-TW': '作為「澳門吉星工程」首個產學研橫向課題交流項目，澳門財經科技與教育發展學會與吉林外國語大學於5月14日聯合舉辦「商業翻譯市場中的譯者職業發展」講座，由澳門博士翻譯有限公司董事總經理高明博士主講，雙方代表及高級翻譯學院師生80餘人線上線下參與交流。',
+              'zh-CN': '作为“澳门吉星工程”首个产学研横向课题交流项目，澳门财经科技与教育发展学会与吉林外国语大学于5月14日联合举办“商业翻译市场中的译者职业发展”讲座，由澳门博士翻译有限公司董事总经理高明博士主讲，双方代表及高级翻译学院师生80余人线上线下参与交流。',
+              'en': 'As the first industry-academia-research horizontal project exchange under the Macao Jixing '
+                    'Project, MFTEDA and Jilin International Studies University jointly held a lecture on "Career '
+                    'Development for Translators in the Business Translation Market" on 14 May, delivered by Dr. Gao '
+                    'Ming, Managing Director of Macao Boss Translation Co., Ltd., with representatives from both sides '
+                    'and more than 80 faculty members and students of the School of Translation and Interpretation '
+                    'participating online and on site.',
+              'pt': 'Enquanto primeiro projecto horizontal de intercâmbio indústria-academia-investigação do «Projecto '
+                    'Jixing de Macau», a MFTEDA e a Universidade de Estudos Internacionais de Jilin organizaram '
+                    'conjuntamente, no dia 14 de maio, uma palestra sobre «O Desenvolvimento da Carreira de Tradutor '
+                    'no Mercado da Tradução Comercial», proferida pelo Dr. Gao Ming, administrador-geral da empresa de '
+                    'tradução Boss de Macau, com a participação, presencial e em linha, de representantes de ambas as '
+                    'partes e de mais de 80 docentes e estudantes do Instituto Superior de Tradução e Interpretação.'},
+  'source': {'name': {'zh-TW': 'MFTEDA微信公眾號',
+                      'zh-CN': 'MFTEDA微信公众号',
+                      'en': 'MFTEDA WeChat Official Account',
+                      'pt': 'Conta Oficial do WeChat da MFTEDA'},
+             'url': 'https://mp.weixin.qq.com/s/E-gZywgGvZgqBwj75OwzuQ'},
+  'body': {'zh-TW': ['作為「澳門吉星工程」首個產學研橫向課題交流項目，5月14日受吉林外國語大學邀請，澳門財經科技與教育發展學會與吉林外國語大學聯合舉辦了「商業翻譯市場中的譯者職業發展」講座。',
+                     '澳門吉星工程執委會主席、澳門財經科技與教育發展學會楊誠會長，澳門博士智庫吉林聯絡辦韓婧怡主任，澳門博士翻譯有限公司董事總經理高明博士，澳門財經科技與教育發展學會宋薇理事長受邀與吉林外國語大學王志國副校長、國際處宋丹丹處長、高級翻譯學院潘衛民院長、國際處擺克成副處長、高級翻譯學院院長助理馬瀟瀟以及來自高級翻譯學院師生80餘人通過線上線下相結合的方式進行了交流。',
+                     '在活動中，澳門博士翻譯有限公司董事總經理高明博士做了《商業翻譯市場中的譯者職業發展》為主題的講座，結合內地與澳門翻譯市場近十年的變化，以商業視角和翻譯視角相結合的方式，通過「翻譯+IT」「翻譯+商科知識」和「翻譯+職業素養」多個板塊深入淺出地進行了講解，得到了吉林外國語大學師生的高度評價。',
+                     '吉林外國語大學高級翻譯學院潘衛民院長表示，從2024年1月8日吉林外國語大學與澳門博士智庫、澳門財經科技與教育發展學會簽訂戰略合作協議以來，一直致力於在學術研究、人才培養、校際合作、國際組織人才聯合培養等方面開展深入合作。作為本次講座的主講人，高明博士具有極高的專業素養和深厚的商業經驗，將市場和職業環境分層剖析擺在師生面前，具有極強的指導性。本次講座作為橫向課題落地合作的項目，是雙方向縱深合作邁出的堅實一步。澳門作為中葡文化及商貿交流的平台在對外交流合作上具有絕對優勢，吉林外國語大學作為多語言人才培養基地具有國家級翻譯類認證，雙方在翻譯和商業合作的內容廣泛，希望在未來能夠形成更多多元合作。',
+                     '澳門吉星工程執委會主席、澳門財經科技與教育發展學會楊誠會長表示，非常感謝吉林外國語大學的邀請，本次與高級翻譯學院的對接交流是雙方精準實踐、精誠合作的良好開端。澳門吉星工程一直以來致力於吉林與澳門的「共贏」發展，通過以點帶面、多點落實的方式，為吉林外國語大學的師生提供優質交流平台，同時打造澳門與吉林高校跨區域產學研的樣板。雙方未來合作空間廣闊，希望打造更多澳門優質項目平台，為擴大吉林高校的海外影響力做貢獻。',
+                     '講座結束後，吉林外國語大學王志國副校長出席了由雙方核心人員召開的內部專項交流會。在專項交流會上，吉林外國語大學高級翻譯學院向澳門吉星工程執委會發出學術邀請合作，希望特聘執委會澳門專家組相關專業人員為碩士生導師。雙方初步達成互相提供專業培訓及線上線下實習機會等相關決議。'],
+           'zh-CN': ['作为“澳门吉星工程”首个产学研横向课题交流项目，5月14日受吉林外国语大学邀请，澳门财经科技与教育发展学会与吉林外国语大学联合举办了“商业翻译市场中的译者职业发展”讲座。',
+                     '澳门吉星工程执委会主席、澳门财经科技与教育发展学会杨诚会长，澳门博士智库吉林联络办韩婧怡主任，澳门博士翻译有限公司董事总经理高明博士，澳门财经科技与教育发展学会宋薇理事长受邀与吉林外国语大学王志国副校长、国际处宋丹丹处长、高级翻译学院潘卫民院长、国际处摆克成副处长、高级翻译学院院长助理马潇潇以及来自高级翻译学院师生80余人通过线上线下相结合的方式进行了交流。',
+                     '在活动中，澳门博士翻译有限公司董事总经理高明博士做了《商业翻译市场中的译者职业发展》为主题的讲座，结合内地与澳门翻译市场近十年的变化，以商业视角和翻译视角相结合的方式，通过“翻译+IT”“翻译+商科知识”和“翻译+职业素养”多个板块深入浅出地进行了讲解，得到了吉林外国语大学师生的高度评价。',
+                     '吉林外国语大学高级翻译学院潘卫民院长表示，从2024年1月8日吉林外国语大学与澳门博士智库、澳门财经科技与教育发展学会签订战略合作协议以来，一直致力于在学术研究、人才培养、校际合作、国际组织人才联合培养等方面开展深入合作。作为本次讲座的主讲人，高明博士具有极高的专业素养和深厚的商业经验，将市场和职业环境分层剖析摆在师生面前，具有极强的指导性。本次讲座作为横向课题落地合作的项目，是双方向纵深合作迈出的坚实一步。澳门作为中葡文化及商贸交流的平台在对外交流合作上具有绝对优势，吉林外国语大学作为多语言人才培养基地具有国家级翻译类认证，双方在翻译和商业合作的内容广泛，希望在未来能够形成更多多元合作。',
+                     '澳门吉星工程执委会主席、澳门财经科技与教育发展学会杨诚会长表示，非常感谢吉林外国语大学的邀请，本次与高级翻译学院的对接交流是双方精准实践、精诚合作的良好开端。澳门吉星工程一直以来致力于吉林与澳门的“共赢”发展，通过以点带面、多点落实的方式，为吉林外国语大学的师生提供优质交流平台，同时打造澳门与吉林高校跨区域产学研的样板。双方未来合作空间广阔，希望打造更多澳门优质项目平台，为扩大吉林高校的海外影响力做贡献。',
+                     '讲座结束后，吉林外国语大学王志国副校长出席了由双方核心人员召开的内部专项交流会。在专项交流会上，吉林外国语大学高级翻译学院向澳门吉星工程执委会发出学术邀请合作，希望特聘执委会澳门专家组相关专业人员为硕士生导师。双方初步达成互相提供专业培训及线上线下实习机会等相关决议。'],
+           'en': ['As the first industry-academia-research horizontal project exchange under the Macao Jixing Project, '
+                  "MFTEDA and Jilin International Studies University (JISU), at the latter's invitation, jointly held "
+                  'a lecture titled "Career Development for Translators in the Business Translation Market" on 14 May.',
+                  'Mr. Yang Cheng, Chairman of the Executive Committee of the Macao Jixing Project and President of '
+                  'MFTEDA; Ms. Han Jingyi, Director of the Jilin Liaison Office of the Macao Doctoral Think Tank; Dr. '
+                  'Gao Ming, Managing Director of Macao Boss Translation Co., Ltd.; and Ms. Song Wei, '
+                  'Secretary-General of MFTEDA, were invited to exchange views — in a hybrid online and on-site format '
+                  '— with JISU Vice President Wang Zhiguo, Director of the International Office Song Dandan, Dean of '
+                  'the School of Translation and Interpretation Pan Weimin, Deputy Director of the International '
+                  'Office Bai Kecheng, Assistant to the Dean Ma Xiaoxiao, and more than 80 faculty members and '
+                  'students of the School of Translation and Interpretation.',
+                  'At the event, Dr. Gao Ming, Managing Director of Macao Boss Translation Co., Ltd., delivered a '
+                  'lecture on "Career Development for Translators in the Business Translation Market". Drawing on the '
+                  'changes in the translation markets of the mainland and Macao over the past decade, and combining a '
+                  'business perspective with a translation perspective, he presented in accessible terms several '
+                  'modules including "Translation + IT", "Translation + Business Knowledge" and "Translation + '
+                  'Professionalism", earning high praise from JISU faculty and students.',
+                  'Pan Weimin, Dean of the School of Translation and Interpretation at JISU, noted that since the '
+                  'university signed a strategic cooperation agreement with the Macao Doctoral Think Tank and MFTEDA '
+                  'on 8 January 2024, the two sides have been committed to in-depth cooperation in academic research, '
+                  'talent cultivation, inter-university cooperation and the joint training of talent for international '
+                  'organisations. As the keynote speaker of this lecture, Dr. Gao Ming, with his outstanding '
+                  'professional competence and extensive business experience, dissected the market and professional '
+                  'environment layer by layer for the audience, providing highly instructive guidance. As a horizontal '
+                  'project delivered through cooperation, this lecture marks a solid step towards deeper collaboration '
+                  'between the two sides. Macao, as a platform for Sino-Portuguese cultural and commercial exchange, '
+                  'enjoys absolute advantages in international cooperation, while JISU, as a base for cultivating '
+                  'multilingual talent, holds national-level translation accreditation. The two sides share broad '
+                  'prospects for cooperation in translation and business, and both hope to develop more diversified '
+                  'forms of collaboration in the future.',
+                  'Yang Cheng, Chairman of the Executive Committee of the Macao Jixing Project and President of '
+                  "MFTEDA, expressed his sincere gratitude for JISU's invitation, describing this engagement with the "
+                  'School of Translation and Interpretation as a promising start to precise practice and sincere '
+                  'cooperation between the two sides. The Macao Jixing Project has long been committed to the '
+                  '"win-win" development of Jilin and Macao. By setting examples at individual points and rolling out '
+                  'initiatives across multiple fronts, it provides a quality exchange platform for JISU faculty and '
+                  'students, while building a model for cross-regional industry-academia-research collaboration '
+                  'between Macao and Jilin universities. With vast room for future cooperation, he hopes to build more '
+                  "high-quality Macao project platforms and contribute to expanding the overseas influence of Jilin's "
+                  'universities.',
+                  'After the lecture, JISU Vice President Wang Zhiguo attended an internal special exchange meeting '
+                  'held by core members of both sides. At the meeting, the School of Translation and Interpretation '
+                  'extended an academic cooperation invitation to the Executive Committee of the Macao Jixing Project, '
+                  "hoping to specially appoint relevant professionals from the Committee's Macao expert panel as "
+                  "master's degree supervisors. The two sides reached preliminary resolutions on mutually providing "
+                  'professional training and internship opportunities, both online and on site.'],
+           'pt': ['Enquanto primeiro projecto horizontal de intercâmbio indústria-academia-investigação do «Projecto '
+                  'Jixing de Macau», a MFTEDA e a Universidade de Estudos Internacionais de Jilin (JISU), a convite '
+                  'desta última, organizaram conjuntamente, no dia 14 de maio, a palestra intitulada «O '
+                  'Desenvolvimento da Carreira de Tradutor no Mercado da Tradução Comercial».',
+                  'Yang Cheng, presidente da Comissão Executiva do Projecto Jixing de Macau e Presidente da MFTEDA; '
+                  'Han Jingyi, directora do Gabinete de Ligação em Jilin do Think Tank de Doutorados de Macau; o Dr. '
+                  'Gao Ming, administrador-geral da empresa de tradução Boss de Macau; e Song Wei, secretária-geral da '
+                  'MFTEDA, foram convidados a trocar impressões — num formato misto, presencial e em linha — com Wang '
+                  'Zhiguo, vice-presidente da JISU, Song Dandan, directora do Departamento Internacional, Pan Weimin, '
+                  'director do Instituto Superior de Tradução e Interpretação, Bai Kecheng, subdirector do '
+                  'Departamento Internacional, Ma Xiaoxiao, assistente do director do Instituto, bem como com mais de '
+                  '80 docentes e estudantes do Instituto Superior de Tradução e Interpretação.',
+                  'No decorrer do evento, o Dr. Gao Ming, administrador-geral da empresa de tradução Boss de Macau, '
+                  'proferiu uma palestra subordinada ao tema «O Desenvolvimento da Carreira de Tradutor no Mercado da '
+                  'Tradução Comercial». Tendo por base as transformações dos mercados de tradução do Interior da China '
+                  'e de Macau na última década, e conjugando as perspectivas comercial e tradutológica, apresentou de '
+                  'forma acessível vários módulos, entre os quais «Tradução + TI», «Tradução + Conhecimentos de '
+                  'Gestão» e «Tradução + Profissionalismo», merecendo elevado apreço por parte dos docentes e '
+                  'estudantes da JISU.',
+                  'Pan Weimin, director do Instituto Superior de Tradução e Interpretação da JISU, referiu que, desde '
+                  'a assinatura, em 8 de Janeiro de 2024, do acordo de cooperação estratégica entre a universidade, o '
+                  'Think Tank de Doutorados de Macau e a MFTEDA, as partes se têm empenhado numa cooperação '
+                  'aprofundada nos domínios da investigação académica, da formação de talentos, da cooperação '
+                  'inter-universitária e da formação conjunta de quadros para organizações internacionais. Enquanto '
+                  'orador principal desta palestra, o Dr. Gao Ming, com a sua elevada competência profissional e '
+                  'sólida experiência empresarial, analisou de forma estratificada o mercado e o ambiente profissional '
+                  'perante os presentes, revelando-se de grande valor orientador. Na qualidade de projecto horizontal '
+                  'concretizado em cooperação, esta palestra representa um passo firme rumo ao aprofundamento da '
+                  'colaboração entre ambas as partes. Macau, enquanto plataforma de intercâmbio cultural e comercial '
+                  'sino-português, detém vantagens inequívocas na cooperação externa, ao passo que a JISU, enquanto '
+                  'base de formação de talentos multilingues, possui certificação nacional na área da tradução. As '
+                  'duas partes partilham amplas possibilidades de cooperação nos domínios da tradução e dos negócios, '
+                  'esperando vir a desenvolver formas de colaboração ainda mais diversificadas no futuro.',
+                  'Yang Cheng, presidente da Comissão Executiva do Projecto Jixing de Macau e Presidente da MFTEDA, '
+                  'agradeceu sinceramente o convite da JISU, qualificando este intercâmbio com o Instituto Superior de '
+                  'Tradução e Interpretação como um bom começo de prática rigorosa e de cooperação sincera entre ambas '
+                  'as partes. O Projecto Jixing de Macau tem-se dedicado, desde sempre, ao desenvolvimento '
+                  '«ganha-ganha» de Jilin e de Macau, proporcionando, através da criação de exemplos pontuais e da '
+                  'implementação em múltiplas frentes, uma plataforma de intercâmbio de qualidade aos docentes e '
+                  'estudantes da JISU, construindo simultaneamente um modelo de colaboração '
+                  'indústria-academia-investigação trans-regional entre as instituições de ensino superior de Macau e '
+                  'de Jilin. Com um vasto espaço para cooperação futura, manifestou a esperança de criar mais '
+                  'plataformas de projectos de qualidade de Macau, contribuindo para ampliar a projecção internacional '
+                  'das instituições de ensino superior de Jilin.',
+                  'Após o termo da palestra, Wang Zhiguo, vice-presidente da JISU, participou numa reunião interna de '
+                  'intercâmbio especializado convocada pelos membros principais de ambas as partes. Nessa reunião, o '
+                  'Instituto Superior de Tradução e Interpretação da JISU dirigiu à Comissão Executiva do Projecto '
+                  'Jixing de Macau um convite de cooperação académica, manifestando a intenção de contratar '
+                  'especialmente profissionais do painel de peritos de Macau da Comissão como orientadores de '
+                  'estudantes de mestrado. As duas partes chegaram ainda a deliberações preliminares sobre a '
+                  'disponibilização recíproca de formação profissional e de oportunidades de estágio, presenciais e em '
+                  'linha.']},
+  'images': [{'file': 'jixing-master-lecture-jisu-gaoming-1.webp',
+              'after': 2,
+              'caption': {'zh-TW': '澳門吉星工程執委會與吉林外國語大學代表線上線下交流',
+                          'zh-CN': '澳门吉星工程执委会与吉林外国语大学代表线上线下交流',
+                          'en': 'The Executive Committee of the Macao Jixing Project and JISU representatives exchange '
+                                'views online and on site',
+                          'pt': 'A Comissão Executiva do Projecto Jixing de Macau e os representantes da JISU trocam '
+                                'impressões em linha e presencialmente'}},
+             {'file': 'jixing-master-lecture-jisu-gaoming-2.webp',
+              'after': 3,
+              'caption': {'zh-TW': '高明博士主講「商業翻譯市場中的譯者職業發展」講座',
+                          'zh-CN': '高明博士主讲“商业翻译市场中的译者职业发展”讲座',
+                          'en': 'Dr. Gao Ming delivers the lecture on "Career Development for Translators in the '
+                                'Business Translation Market"',
+                          'pt': 'O Dr. Gao Ming profere a palestra «O Desenvolvimento da Carreira de Tradutor no '
+                                'Mercado da Tradução Comercial»'}},
+             {'file': 'jixing-master-lecture-jisu-gaoming-3.webp',
+              'after': 6,
+              'caption': {'zh-TW': '講座結束後雙方核心人員召開內部專項交流會，王志國副校長出席',
+                          'zh-CN': '讲座结束后双方核心人员召开内部专项交流会，王志国副校长出席',
+                          'en': 'Core members of both sides hold an internal special exchange meeting after the '
+                                'lecture, attended by Vice President Wang Zhiguo',
+                          'pt': 'Os membros principais de ambas as partes realizam, após a palestra, uma reunião '
+                                'interna de intercâmbio especializado, com a presença do vice-presidente Wang '
+                                'Zhiguo'}}]},
+ {'slug': 'super-bamboo-soe-innovation-award',
+  'date': '2025-03-13',
+  'category': {'zh-TW': '項目成果', 'zh-CN': '项目成果', 'en': 'Project Achievement', 'pt': 'Resultado de Projecto'},
+  'title': {'zh-TW': '「超級蘆竹」項目首屆國有企業創新創意大賽創佳績',
+            'zh-CN': '“超级芦竹”项目首届国有企业创新创意大赛创佳绩',
+            'en': '“Super Bamboo” Project Scores Success at First Jilin Provincial State-Owned Enterprise Innovation '
+                  'and Creativity Competition',
+            'pt': 'Projecto «Super Bambu» alcança excelente resultado no 1.º Concurso de Inovação e Criatividade das '
+                  'Empresas Estatais da Província de Jilin'},
+  'excerpt': {'zh-TW': '近日，吉林省首屆國有企業創新創意大賽暨東北「三省一區」國有企業「星火」創新創意大賽（吉林賽區）圓滿落幕。本會韓婧怡秘書長憑藉「鹽鹼地上的綠色經濟——超級蘆竹」項目，在未來產業賽道榮獲二等獎。',
+              'zh-CN': '近日，吉林省首届国有企业创新创意大赛暨东北“三省一区”国有企业“星火”创新创意大赛（吉林赛区）圆满落幕。本会韩婧怡秘书长凭借“盐碱地上的绿色经济——超级芦竹”项目，在未来产业赛道荣获二等奖。',
+              'en': 'The first Jilin Provincial State-Owned Enterprise Innovation and Creativity Competition — the '
+                    'Jilin regional round of the “Spark” competition for state-owned enterprises across the three '
+                    'northeastern provinces and one region — recently concluded successfully. MFTEDA Secretary-General '
+                    'Han Jingyi won second prize in the future industries track with the project “Green Economy on '
+                    'Saline-Alkali Land — Super Bamboo.”',
+              'pt': 'O 1.º Concurso de Inovação e Criatividade das Empresas Estatais da Província de Jilin — etapa de '
+                    'Jilin do concurso «Faísca» destinado às empresas estatais das «três províncias e uma região» do '
+                    'Nordeste — terminou recentemente com êxito. Han Jingyi, secretária-geral da MFTEDA, conquistou o '
+                    'segundo prémio na categoria «indústrias do futuro» com o projecto «Economia Verde em Solos '
+                    'Salino-Alcalinos — Super Bambu».'},
+  'source': {'name': {'zh-TW': 'MFTEDA微信公眾號',
+                      'zh-CN': 'MFTEDA微信公众号',
+                      'en': 'MFTEDA WeChat Official Account',
+                      'pt': 'Conta Oficial do WeChat da MFTEDA'},
+             'url': 'https://mp.weixin.qq.com/s/Irk31jF2VBwaCdz-f6_Zfw'},
+  'body': {'zh-TW': ['近日，吉林省首屆國有企業創新創意大賽暨東北「三省一區」國有企業「星火」創新創意大賽（吉林賽區）圓滿落幕。',
+                     '本次大賽由吉林省國資委、吉林省發展改革委、吉林省教育廳、吉林省科技廳、吉林省工業和資訊化廳、吉林省人力資源社會保障廳聯合主辦。',
+                     '大賽旨在貫徹落實黨的二十大和二十屆三中全會精神，深入實施創新驅動發展戰略，充分發揮國有企業在科技創新中的主體作用，大力培育與發展新質生產力。',
+                     '大賽吸引了眾多國有企業及多所知名高校團隊踴躍參與。歷經多輪激烈角逐，246個項目突出重圍進入複賽，其中100個項目成功晉級決賽，展現出極高的創新水準與創意實力。',
+                     '本次大賽不僅匯聚了省內諸多優秀國有企業項目，還吸引了高等學府和科研院所積極投身。比賽中，各參賽團隊充分展示了科技創新方面的卓越成果與前瞻性思維，涵蓋大數據、新材料、新能源、新醫藥、光電資訊等前沿領域。',
+                     '澳門財經科技與教育發展學會韓婧怡秘書長以參賽者身份，憑藉「鹽鹼地上的綠色經濟——超級蘆竹」項目，在未來產業賽道榮獲二等獎。',
+                     '該項目是澳門財經科技與教育發展學會在配合國家碳中和「3060」目標孵化的重要新型科技項目，是澳門「吉星工程」的首個科技能源型產品。由韓婧怡博士、楊誠博士進行項目統籌，經過科研單位、企業調研、實地考察等多方驗證，得到了包括吉林省在內的多級政府部門的支持。',
+                     '超級蘆竹這一特殊植物，致力於在鹽鹼地上實現綠色經濟可持續發展，兼具創新性與實用價值。種植和開發利用超級蘆竹植物能源，是投資少、易推行、改善生態的最佳減碳路線之一，具有替代燃煤發電機組煤炭的可能性。',
+                     '韓婧怡秘書長作為創業導師，曾指導學生多次在「互聯網+」「挑戰杯」「中國創翼」等創業賽事中斬獲省級金獎、國家級銅獎。',
+                     '超級蘆竹是可實現「零碳發電」的植物能源。在雙碳背景下，超級蘆竹是重要的零碳或負碳的能源植物。能源植物是指通過光合作用把二氧化碳和水快速轉化成有機物，並產生高生物量的植物。',
+                     '中國能源研究會副秘書長、節能減排工作委員會主任王凡表示：超級蘆竹是第五代植物能源。它不需要良田，荒地、灘塗地、鹽鹼地、重金屬污染地都可以種植，只要年降雨量達到300毫米以上就可以生長，適應性非常強，而且在生長期間，超級蘆竹也不需要很多田間管理，種植一次可以連續收穫20年以上，比目前任何一種植物的生長量都大。',
+                     '超級蘆竹每生長1噸，就要吸收空氣中1.7噸二氧化碳，碳匯能力是熱帶森林的5倍、玉米秸稈的7倍、水稻秸稈的15倍，是我國森林平均碳匯能力的25—50倍。',
+                     '用超級蘆竹熱解生產氫和甲烷，發展綠色氫能，既是能源生產革命，也會帶動能源消費革命，將成為實現碳中和的關鍵，意義極其深遠。'],
+           'zh-CN': ['近日，吉林省首届国有企业创新创意大赛暨东北“三省一区”国有企业“星火”创新创意大赛（吉林赛区）圆满落幕。',
+                     '本次大赛由吉林省国资委、吉林省发展改革委、吉林省教育厅、吉林省科技厅、吉林省工业和信息化厅、吉林省人力资源社会保障厅联合主办。',
+                     '大赛旨在贯彻落实党的二十大和二十届三中全会精神，深入实施创新驱动发展战略，充分发挥国有企业在科技创新中的主体作用，大力培育与发展新质生产力。',
+                     '大赛吸引了众多国有企业及多所知名高校团队踊跃参与。历经多轮激烈角逐，246个项目突出重围进入复赛，其中100个项目成功晋级决赛，展现出极高的创新水准与创意实力。',
+                     '本次大赛不仅汇聚了省内诸多优秀国有企业项目，还吸引了高等学府和科研院所积极投身。比赛中，各参赛团队充分展示了科技创新方面的卓越成果与前瞻性思维，涵盖大数据、新材料、新能源、新医药、光电信息等前沿领域。',
+                     '澳门财经科技与教育发展学会韩婧怡秘书长以参赛者身份，凭借“盐碱地上的绿色经济——超级芦竹”项目，在未来产业赛道荣获二等奖。',
+                     '该项目是澳门财经科技与教育发展学会在配合国家碳中和“3060”目标孵化的重要新型科技项目，是澳门“吉星工程”的首个科技能源型产品。由韩婧怡博士、杨诚博士进行项目统筹，经过科研单位、企业调研、实地考察等多方验证，得到了包括吉林省在内的多级政府部门的支持。',
+                     '超级芦竹这一特殊植物，致力于在盐碱地上实现绿色经济可持续发展，兼具创新性与实用价值。种植和开发利用超级芦竹植物能源，是投资少、易推行、改善生态的最佳减碳路线之一，具有替代燃煤发电机组煤炭的可能性。',
+                     '韩婧怡秘书长作为创业导师，曾指导学生多次在“互联网+”“挑战杯”“中国创翼”等创业赛事中斩获省级金奖、国家级铜奖。',
+                     '超级芦竹是可实现“零碳发电”的植物能源。在双碳背景下，超级芦竹是重要的零碳或负碳的能源植物。能源植物是指通过光合作用把二氧化碳和水快速转化成有机物，并产生高生物量的植物。',
+                     '中国能源研究会副秘书长、节能减排工作委员会主任王凡表示：超级芦竹是第五代植物能源。它不需要良田，荒地、滩涂地、盐碱地、重金属污染地都可以种植，只要年降雨量达到300毫米以上就可以生长，适应性非常强，而且在生长期间，超级芦竹也不需要很多田间管理，种植一次可以连续收获20年以上，比目前任何一种植物的生长量都大。',
+                     '超级芦竹每生长1吨，就要吸收空气中1.7吨二氧化碳，碳汇能力是热带森林的5倍、玉米秸秆的7倍、水稻秸秆的15倍，是我国森林平均碳汇能力的25—50倍。',
+                     '用超级芦竹热解生产氢和甲烷，发展绿色氢能，既是能源生产革命，也会带动能源消费革命，将成为实现碳中和的关键，意义极其深远。'],
+           'en': ['The first Jilin Provincial State-Owned Enterprise Innovation and Creativity Competition — the Jilin '
+                  'regional round of the “Spark” Innovation and Creativity Competition for state-owned enterprises '
+                  'across the three northeastern provinces and one region — recently concluded successfully.',
+                  'The competition was jointly hosted by the Jilin Provincial State-owned Assets Supervision and '
+                  'Administration Commission, the Jilin Provincial Development and Reform Commission, the Jilin '
+                  'Provincial Department of Education, the Jilin Provincial Department of Science and Technology, the '
+                  'Jilin Provincial Department of Industry and Information Technology, and the Jilin Provincial '
+                  'Department of Human Resources and Social Security.',
+                  'The competition was designed to implement the guiding principles of the 20th National Congress of '
+                  'the Communist Party of China and the Third Plenary Session of the 20th CPC Central Committee, '
+                  'deepen the innovation-driven development strategy, give full play to the principal role of '
+                  'state-owned enterprises in scientific and technological innovation, and vigorously foster and '
+                  'develop new quality productive forces.',
+                  'The competition drew enthusiastic participation from numerous state-owned enterprises and teams '
+                  'from many renowned universities. After multiple rounds of intense competition, 246 projects stood '
+                  'out from the field to enter the semi-finals, of which 100 advanced to the final — a showcase of '
+                  'exceptional innovation and creativity.',
+                  'The event brought together outstanding projects from state-owned enterprises across the province, '
+                  'while also attracting the active involvement of higher education institutions and research '
+                  'institutes. During the competition, participating teams presented remarkable achievements and '
+                  'forward-looking thinking in technological innovation, spanning frontier fields such as big data, '
+                  'new materials, new energy, new medicine and optoelectronic information.',
+                  'Han Jingyi, Secretary-General of the Macao Financial Technology and Education Development '
+                  'Association (MFTEDA), took part as a contestant and won second prize in the future industries track '
+                  'with the project “Green Economy on Saline-Alkali Land — Super Bamboo.”',
+                  'The project is a significant new technology initiative incubated by MFTEDA in support of the '
+                  "nation's “3060” carbon neutrality goals, and the first technology-energy product of Macao's “Jixing "
+                  'Project.” Coordinated by Dr. Han Jingyi and Dr. Yang Cheng, it was validated through research '
+                  'institutes, corporate studies and field investigations, and has received support from multiple '
+                  'levels of government, including Jilin Province.',
+                  'Super Bamboo, a remarkable plant, is dedicated to realising a sustainable green economy on '
+                  'saline-alkali land, combining innovation with practical value. Cultivating and harnessing Super '
+                  'Bamboo as plant-based energy is one of the best pathways for cutting carbon — low-cost, easy to '
+                  'implement and ecology-improving — with the potential to replace coal in coal-fired power generation '
+                  'units.',
+                  'As an entrepreneurship mentor, Secretary-General Han Jingyi has guided students to repeated '
+                  'provincial gold awards and national bronze awards in entrepreneurship competitions such as '
+                  '“Internet Plus,” the “Challenge Cup” and “China Chuangyi.”',
+                  'Super Bamboo is a plant energy source capable of delivering “zero-carbon power generation.” Against '
+                  'the backdrop of the dual-carbon goals, Super Bamboo is an important zero-carbon — and potentially '
+                  'carbon-negative — energy plant. Energy plants are plants that, through photosynthesis, rapidly '
+                  'convert carbon dioxide and water into organic matter and produce high biomass.',
+                  'Wang Fan, Deputy Secretary-General of the China Energy Research Society and Director of its Energy '
+                  'Conservation and Emission Reduction Working Committee, said that Super Bamboo represents the fifth '
+                  'generation of plant-based energy. It requires no fertile farmland — it can be grown on wasteland, '
+                  'tidal flats, saline-alkali land and even heavy-metal-contaminated soil — and it grows wherever '
+                  'annual rainfall reaches 300 millimetres, making it extraordinarily adaptable. Moreover, Super '
+                  'Bamboo needs little field management during its growth period; a single planting yields continuous '
+                  'harvests for more than 20 years, producing more biomass than any plant currently known.',
+                  'For every tonne of Super Bamboo grown, 1.7 tonnes of carbon dioxide are absorbed from the air. Its '
+                  'carbon sink capacity is five times that of tropical forests, seven times that of corn straw and 15 '
+                  "times that of rice straw — 25 to 50 times the average carbon sink capacity of China's forests.",
+                  'Pyrolysing Super Bamboo to produce hydrogen and methane and developing green hydrogen energy '
+                  'represent not only a revolution in energy production but will also drive a revolution in energy '
+                  'consumption — a key to achieving carbon neutrality, with profoundly far-reaching significance.'],
+           'pt': ['O 1.º Concurso de Inovação e Criatividade das Empresas Estatais da Província de Jilin — etapa de '
+                  'Jilin do Concurso «Faísca» de Inovação e Criatividade das Empresas Estatais das «três províncias e '
+                  'uma região» do Nordeste da China — chegou recentemente a bom termo.',
+                  'O concurso foi coorganizado pela Comissão de Supervisão e Administração dos Activos Estatais da '
+                  'Província de Jilin, pela Comissão de Desenvolvimento e Reforma da Província de Jilin, pelo '
+                  'Departamento de Educação da Província de Jilin, pelo Departamento de Ciência e Tecnologia da '
+                  'Província de Jilin, pelo Departamento da Indústria e das Tecnologias de Informação da Província de '
+                  'Jilin e pelo Departamento de Recursos Humanos e Segurança Social da Província de Jilin.',
+                  'O concurso tem por objectivo implementar o espírito do XX Congresso Nacional do Partido Comunista '
+                  'da China e da 3.ª Sessão Plenária do XX Comité Central do PCC, aprofundar a estratégia de '
+                  'desenvolvimento impulsionado pela inovação, dar plena expressão ao papel principal das empresas '
+                  'estatais na inovação científica e tecnológica e cultivar e desenvolver vigorosamente forças '
+                  'produtivas de nova qualidade.',
+                  'O concurso suscitou a participação entusiástica de numerosas empresas estatais e de equipas de '
+                  'várias universidades de renome. Após múltiplas eliminatórias de intensa competição, 246 projectos '
+                  'destacaram-se e passaram às meias-finais, dos quais 100 chegaram à final, revelando um elevadíssimo '
+                  'nível de inovação e criatividade.',
+                  'O concurso reuniu não só excelentes projectos de empresas estatais da província, como atraiu ainda '
+                  'a participação activa de instituições de ensino superior e de institutos de investigação '
+                  'científica. Nas provas, as equipas participantes apresentaram de forma plena resultados notáveis e '
+                  'uma visão prospetiva em matéria de inovação científica e tecnológica, abrangendo domínios de '
+                  'vanguarda como os macrodados, os novos materiais, as novas energias, a nova medicina e a informação '
+                  'optoelectrónica.',
+                  'Han Jingyi, secretária-geral da Associação de Desenvolvimento de Finanças, Tecnologia e Educação de '
+                  'Macau (MFTEDA), participou na qualidade de concorrente e conquistou o segundo prémio na categoria '
+                  '«indústrias do futuro» com o projecto «Economia Verde em Solos Salino-Alcalinos — Super Bambu».',
+                  'Trata-se de um importante projecto tecnológico de novo tipo, incubado pela MFTEDA em articulação '
+                  'com a meta nacional de neutralidade carbónica «3060», e do primeiro produto tecnológico-energético '
+                  'do «Projecto Jixing» de Macau. Coordenado pela Dr.ª Han Jingyi e pelo Dr. Yang Cheng, o projecto '
+                  'foi validado através de instituições de investigação científica, estudos junto de empresas e '
+                  'visitas de terreno, contando com o apoio de vários níveis da administração pública, incluindo os da '
+                  'Província de Jilin.',
+                  'O Super Bambu, planta de características especiais, dedica-se a concretizar o desenvolvimento '
+                  'sustentável de uma economia verde em solos salino-alcalinos, aliando inovação e valor prático. O '
+                  'cultivo e o aproveitamento energético do Super Bambu constituem uma das melhores vias de redução de '
+                  'carbono — de baixo investimento, fácil execução e melhoria do ecossistema —, com a possibilidade de '
+                  'substituir o carvão utilizado pelos grupos geradores termoeléctricos.',
+                  'Enquanto mentora de empreendedorismo, a secretária-geral Han Jingyi orientou estudantes que '
+                  'conquistaram, por diversas ocasiões, prémios de ouro a nível provincial e prémios de bronze a nível '
+                  'nacional em competições de empreendedorismo como «Internet Plus», «Challenge Cup» e «China '
+                  'Chuangyi».',
+                  'O Super Bambu é uma energia vegetal que permite concretizar a «produção de electricidade com zero '
+                  'emissões de carbono». No contexto das duplas metas de carbono, o Super Bambu é uma importante '
+                  'planta energética de carbono zero, ou mesmo negativo. As plantas energéticas são plantas que, por '
+                  'via da fotossíntese, transformam rapidamente o dióxido de carbono e a água em matéria orgânica e '
+                  'produzem biomassa em grande quantidade.',
+                  'Wang Fan, secretário-geral adjunto da Sociedade Chinesa de Investigação em Energia e director da '
+                  'respectiva Comissão de Trabalho de Poupança de Energia e Redução de Emissões, afirmou que o Super '
+                  'Bambu é a quinta geração da energia vegetal. Não necessita de terras de cultivo férteis: terrenos '
+                  'incultos, zonas de estuário, solos salino-alcalinos e terras contaminadas por metais pesados servem '
+                  'igualmente para o plantar; cresce desde que a precipitação anual ultrapasse os 300 milímetros, '
+                  'revelando uma capacidade de adaptação muito forte. Além disso, durante o período de crescimento, o '
+                  'Super Bambu dispensa grande parte dos trabalhos agrícolas; uma única plantação permite colheitas '
+                  'contínuas durante mais de 20 anos, com um crescimento superior ao de qualquer outra planta '
+                  'actualmente conhecida.',
+                  'Por cada tonelada de crescimento, o Super Bambu absorve 1,7 toneladas de dióxido de carbono da '
+                  'atmosfera. A sua capacidade de sequestro de carbono é cinco vezes superior à das florestas '
+                  'tropicais, sete vezes superior à da palha de milho e 15 vezes superior à da palha de arroz, '
+                  'equivalendo a 25 a 50 vezes a capacidade média de sequestro de carbono das florestas da China.',
+                  'A pirólise do Super Bambu para produzir hidrogénio e metano e o desenvolvimento da energia verde do '
+                  'hidrogénio representam não apenas uma revolução na produção de energia, mas irão igualmente '
+                  'impulsionar uma revolução no consumo de energia, constituindo uma chave para a concretização da '
+                  'neutralidade carbónica, com um alcance de significado profundíssimo.']},
+  'images': [{'file': 'super-bamboo-soe-innovation-award-1.webp',
+              'after': 5,
+              'caption': {'zh-TW': '韓婧怡秘書長在比賽路演中展示「超級蘆竹」項目',
+                          'zh-CN': '韩婧怡秘书长在比赛路演中展示“超级芦竹”项目',
+                          'en': 'Secretary-General Han Jingyi presents the “Super Bamboo” project during the '
+                                'competition roadshow',
+                          'pt': 'A secretária-geral Han Jingyi apresenta o projecto «Super Bambu» durante a sessão de '
+                                'apresentação de projectos do concurso'}},
+             {'file': 'super-bamboo-soe-innovation-award-2.webp',
+              'after': 6,
+              'caption': {'zh-TW': '韓婧怡秘書長手持二等獎獎牌於頒獎典禮留影',
+                          'zh-CN': '韩婧怡秘书长手持二等奖奖牌于颁奖典礼留影',
+                          'en': 'Secretary-General Han Jingyi with the second prize plaque at the award ceremony',
+                          'pt': 'A secretária-geral Han Jingyi com a placa do segundo prémio na cerimónia de entrega '
+                                'de prémios'}},
+             {'file': 'super-bamboo-soe-innovation-award-3.webp',
+              'after': 8,
+              'caption': {'zh-TW': '韓婧怡秘書長（右）與項目團隊成員在大賽現場合影',
+                          'zh-CN': '韩婧怡秘书长（右）与项目团队成员在大赛现场合影',
+                          'en': 'Secretary-General Han Jingyi (right) with a project team member at the competition '
+                                'venue',
+                          'pt': 'A secretária-geral Han Jingyi (à direita) com um membro da equipa do projecto no '
+                                'local do concurso'}},
+             {'file': 'super-bamboo-soe-innovation-award-4.webp',
+              'after': 9,
+              'caption': {'zh-TW': '「星火」大賽二等獎獎盃',
+                          'zh-CN': '“星火”大赛二等奖奖杯',
+                          'en': 'The second prize trophy of the “Spark” competition',
+                          'pt': 'O troféu do segundo prémio do concurso «Faísca»'}}]}]
 
 OPED_HUMANITIES = {'slug': 'humanities-economy-macao-culture-business',
  'date': '2026-09-10',
