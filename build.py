@@ -42,7 +42,7 @@ def asset(path, current_lang):
     prefix = '../' if current_lang != DEFAULT else ''
     return prefix + 'assets/' + path
 
-ASSET_V = '?v=20261017b'
+ASSET_V = '?v=20261109'
 BUILD_DATE = date.today().isoformat()
 
 _IMG_SIZE_CACHE = {}
@@ -445,8 +445,16 @@ def render_index(lang):
       </div>'''
     latest_news = ''
     for a in sorted(C['news'], key=lambda x: x['date'], reverse=True)[:3]:
+        thumb = ''
+        if a.get('images'):
+            im_src = 'img/news/' + a['images'][0]['file']
+        else:
+            im_src = 'img/og-cover.jpg'
+        thumb = (f'<a class="news-thumb" href="news/{a["slug"]}.html" tabindex="-1" aria-hidden="true">'
+                 f'<img src="{asset(im_src, lang)}" alt="{esc(a["title"][lang])}" loading="lazy" decoding="async"{img_wh_attrs(im_src)}></a>')
         latest_news += f'''
       <div class="institutional-card insight-card reveal">
+        {thumb}
         <div class="insight-meta">
           <span class="badge">{esc(a['category'][lang])}</span>
           <span class="date">{icon('calendar')}{a['date']}</span>
@@ -472,6 +480,15 @@ def render_index(lang):
     </div>
   </div>
 </section>
+<section class="section-spacing bg-muted-50">
+  <div class="container-institutional">
+    <div class="text-center mb-16 reveal">
+      <h2 class="institutional-subheading mb-4">{esc({'zh-TW': '最新動態', 'zh-CN': '最新动态', 'en': 'Latest News', 'pt': 'Últimas Notícias', 'fr': 'Dernières actualités'}[lang])}</h2>
+      <a class="read-more" href="{page_href('news', lang, lang)}">{esc({'zh-TW': '查看全部', 'zh-CN': '查看全部', 'en': 'View All', 'pt': 'Ver Tudo', 'fr': 'Voir tout'}[lang])}{icon('arrow')}</a>
+    </div>
+    <div class="grid grid-3">{latest_news}</div>
+  </div>
+</section>
 <section class="section-spacing">
   <div class="container-institutional">
     <div class="text-center mb-16 reveal">
@@ -488,15 +505,6 @@ def render_index(lang):
       <a class="read-more" href="{page_href('insights', lang, lang)}">{esc({'zh-TW': '查看全部', 'zh-CN': '查看全部', 'en': 'View All', 'pt': 'Ver Tudo', 'fr': 'Voir tout'}[lang])}{icon('arrow')}</a>
     </div>
     <div class="grid grid-3">{latest_insights}</div>
-  </div>
-</section>
-<section class="section-spacing">
-  <div class="container-institutional">
-    <div class="text-center mb-16 reveal">
-      <h2 class="institutional-subheading mb-4">{esc({'zh-TW': '最新動態', 'zh-CN': '最新动态', 'en': 'Latest News', 'pt': 'Últimas Notícias', 'fr': 'Dernières actualités'}[lang])}</h2>
-      <a class="read-more" href="{page_href('news', lang, lang)}">{esc({'zh-TW': '查看全部', 'zh-CN': '查看全部', 'en': 'View All', 'pt': 'Ver Tudo', 'fr': 'Voir tout'}[lang])}{icon('arrow')}</a>
-    </div>
-    <div class="grid grid-3">{latest_news}</div>
   </div>
 </section>
 <section class="section-spacing cta-band">
@@ -813,8 +821,15 @@ def render_news(lang):
                 'en': "Latest news, event coverage and media reports from MFTEDA, Macao's think tank for financial technology and education",
                 'pt': 'Últimas notícias, reportagens de eventos e cobertura mediática da MFTEDA, think tank de Macau',
                 'fr': "Dernières nouvelles, comptes rendus d'événements et couverture médiatique de la MFTEDA, think tank de Macao"}[lang]
-    cards = ''.join(f'''
+    def _card(a):
+        thumb = ''
+        if a.get('images'):
+            im = a['images'][0]
+            thumb = (f'<a class="news-thumb" href="news/{a["slug"]}.html" tabindex="-1" aria-hidden="true">'
+                     f'<img src="{asset("img/news/" + im["file"], lang)}" alt="{esc(a["title"][lang])}" loading="lazy" decoding="async"{img_wh_attrs("img/news/" + im["file"])}></a>')
+        return f'''
       <div class="institutional-card insight-card reveal">
+        {thumb}
         <div class="insight-meta">
           <span class="badge">{esc(a['category'][lang])}</span>
           <span class="date">{icon('calendar')}{a['date']}</span>
@@ -823,7 +838,8 @@ def render_news(lang):
         <h2>{esc(a['title'][lang])}</h2>
         <p>{esc(a['excerpt'][lang])}</p>
         <a class="read-more" href="news/{a['slug']}.html">{esc(ins['readMore'])}{icon('arrow')}</a>
-      </div>''' for a in sorted(C['news'], key=lambda x: x['date'], reverse=True))
+      </div>'''
+    cards = ''.join(_card(a) for a in sorted(C['news'], key=lambda x: x['date'], reverse=True))
     body = f'''
 <section class="page-hero">
   <div class="container-institutional">
