@@ -1,15 +1,15 @@
 # MFTEDA 官網（mfteda.org）
 
-澳門財經科技與教育發展學會官方網站，靜態多語言站（繁中/简中/en/pt/**fr**，2026-10-17 起 5 語言），托管於 GitHub Pages，域名 DNS 在 Hostinger。
+澳門財經科技與教育發展學會官方網站，靜態多語言站（繁中/简中/en/pt/fr/**es**，2026-10-17 起 5 語言、2026-11-10 起 6 語言），托管於 GitHub Pages，域名 DNS 在 Hostinger。
 
 ## 結構
 
-- `content.json` — 全部網站內容的**生成物**（5 語言、研究洞察文章、新聞、焦點卡片、夥伴鏈接）。**不要直接手改**：它由 `make_content.py` 重新生成，手改會在下次生成時丟失。
+- `content.json` — 全部網站內容的**生成物**（6 語言、研究洞察文章、新聞、焦點卡片、夥伴鏈接）。**不要直接手改**：它由 `make_content.py` 重新生成，手改會在下次生成時丟失。
 - `make_content.py` — 生成 `content.json` 的腳本：以 `.scrape/i18n.json`（UI 文案母本）+ `news_data.py`（公眾號新聞/社評正文）+ 內嵌數組（focus_cards/policies/languages/partners_href）為源，**最後自動合併 `translations/*.json` 覆寫層**（見下）。改內容後照舊跑 `python3 make_content.py && python3 build.py`。
-- `translations/*.json` — 譯文覆寫層（2026-10-17 法語化時引入）：每文件按 `{"i18n"/"news"/"insights"/"policies"/"focus_cards": {鍵: {語言: {字段: 值}}}}` 組織，鍵為 slug 或索引；字段除 title/excerpt/category/body 等外，支持 `source_name`/`author_name`/`author_title`/`image_captions{file:caption}`。**新增 en/pt/fr 譯文或修譯一律走這裡**（zh-TW/zh-CN 原文仍改上游源文件）。
-- `build.py` — 讀 `content.json` 生成全部靜態頁面到 `dist/`（現 137 個文件，含 `dist/CNAME`）。語言目錄：繁中在根目錄，其他在 `zh-CN/`、`en/`、`pt/`、`fr/`。
+- `translations/*.json` — 譯文覆寫層（2026-10-17 法語化時引入）：每文件按 `{"i18n"/"news"/"insights"/"policies"/"focus_cards": {鍵: {語言: {字段: 值}}}}` 組織，鍵為 slug 或索引；字段除 title/excerpt/category/body 等外，支持 `source_name`/`author_name`/`author_title`/`image_captions{file:caption}` 及 policies 的 `year`。**新增 en/pt/fr/es 譯文或修譯一律走這裡**（zh-TW/zh-CN 原文仍改上游源文件）。西語整樹集中在 `translations/es.json`（i18n 178 鍵、news 25 篇、insights 8 條、policies 12 條、focus_cards 6 條）。
+- `build.py` — 讀 `content.json` 生成全部靜態頁面到 `dist/`（現 224 個生成文件，含 `dist/CNAME`）。語言目錄：繁中在根目錄，其他在 `zh-CN/`、`en/`、`pt/`、`fr/`、`es/`。
 - `assets/` — 源頭樣式/腳本/圖片，`build.py` 會拷貝進 `dist/`。圖片一律用 webp（已壓縮）；`og-cover.jpg` 是社交分享圖（1200×630）。學會 LOGO 原圖為 `assets/img/logo.png`（2026-10-16 起為正確版海豚標識：海豚+綠浪+中英文會名，透明底 776×640，僅供 JSON-LD/og-cover 使用）；**頁頭/頁尾/favicon 用 `assets/img/logo-sm.png`**（155×128 透明底，21KB，由原圖 `sips -z 128 155` 生成，換 LOGO 時需同步重新生成小圖並重繪 og-cover）。
-- `dist/` — 生成物，**不要手改**，已被 .gitignore 忽略。182 個文件：180 個頁面（36×5 語言：10 主頁面 + 2 洞察詳情 + 24 新聞詳情）外還自動生成 `robots.txt`、`sitemap.xml`（含 5 語言 hreflang）、`404.html`。
+- `dist/` — 生成物，**不要手改**，已被 .gitignore 忽略。224 個文件：222 個頁面（37×6 語言：10 主頁面 + 2 洞察詳情 + 25 新聞詳情）外還自動生成 `robots.txt`、`sitemap.xml`（含 6 語言 hreflang）、`llms.txt`、`404.html`。
 - `game/` — 「濠江財富大亨」財經教育遊戲（index.html/style.css/game.js/manifest.json，獨立純前端應用），`build.py` 會拷貝進 `dist/game/`。研究領域頁「現代金融」卡片（area8）點擊彈出。
 - `game2/` — 「濠港雙城大亨」港澳文化大富翁 v2（index.html/style.css/game.js/online.js；99 格 ×10 種走勢地圖、CSS 3D 等軸測棋盤、70 地標、15 位歷史人物、56 題文脈卡、道具/連排加倍/加蓋建築；單機人機/本機 2–5 人/PeerJS 房間碼聯機最多 5 人，聯機依賴 unpkg CDN 加載 PeerJS，失敗時優雅降級為純單機），`build.py` 會拷貝進 `dist/game2/`。研究領域頁「文化與科技」卡片（area9）點擊彈出。遊戲自身資源引用帶 `?v=N` 版本參數（遊戲文件不走主站 ASSET_V），改動遊戲後遞增 index.html 中的版本號。
 - 教育遊戲整合：卡片→遊戲映射在 `build.py` 常量 `RESEARCH_GAME_ATTRS`（輸出 `data-mft-game="遊戲URL"` 屬性）；`assets/js/game-launcher.js` 統一處理所有帶該屬性的卡片（iframe 彈窗、ESC/遮罩/✕ 關閉、徽章文案 4 語言在 `render_research`）。新增遊戲：建 `gameN/` 目錄 + `build()` 加 copytree + `RESEARCH_GAME_ATTRS` 加映射。改動遊戲文件後照舊跑 `build.py` 並更新 `ASSET_V`。
@@ -17,7 +17,7 @@
 
 ## 更新流程
 
-1. 改上游源文件（洞察/新聞中文原文在 `make_content.py` / `news_data.py` 對應數組加一條，帶 `slug` 和 `body`（每語言是段落數組）會自動生成詳情頁；配圖放 `assets/img/news/` 並設 `image`/`images` 字段）；**en/pt/fr 譯文寫進 `translations/` 覆寫層**。
+1. 改上游源文件（洞察/新聞中文原文在 `make_content.py` / `news_data.py` 對應數組加一條，帶 `slug` 和 `body`（每語言是段落數組）會自動生成詳情頁；配圖放 `assets/img/news/` 並設 `image`/`images` 字段）；**en/pt/fr/es 譯文寫進 `translations/` 覆寫層**。
 2. `python3 make_content.py && python3 build.py && python3 scan_tcsc.py`（須 CLEAN）。
 3. `git add -A && git commit -m "..." && git push`（注意並發會話：只 add 自己改的文件，遊戲文件 game/game2/ 歸另一會話）。
 4. GitHub Actions 自動構建部署（`.github/workflows/deploy.yml`），約 1 分鐘後線上生效。
@@ -44,6 +44,8 @@
 - 新聞動態（2026-10）：第 10 個頁面 `news`（PAGES 中在 insights 之後；導航鍵 `nav.news` 由 make_content.py 注入）。新聞 = 在 make_content.py 的 `news` 數組加一條（`date/slug/category/title/excerpt/source/body` 4語言，`source.url` 為原文媒體鏈接），build.py 自動生成列表頁 `news.html`（按 date 降序，卡片 meta 含來源媒體名）與詳情頁 `news/{slug}.html`（末尾「原文出處」鏈接）。新聞支持 `images` 配圖（語法同 insights 文章：`{"file","after","caption"{4語言}}`，file 對應 `assets/img/news/*.webp`，有配圖時 OG 圖取第一張；無配圖用默認 og-cover）。首頁「最新動態」section 自動取 date 降序前 3。錄入後照舊跑 `make_content.py && build.py`。繁簡校對白名單在 scan_tcsc.py 的 DIFF_WHITELIST（含港澳正字 秘/峰/周/局、人名 范/杰 等 OpenCC 異體或詞組級誤報）。
 - 公眾號稿件整合：16 篇微信公眾號新聞 + 1 篇社評（田一輝《人文經濟學促澳文商融合》，insights 第 2 篇 column）+ 就業培訓條目換官方稿，四語言（zh-TW/zh-CN/en/pt）正文集中放在 `news_data.py`（`NEWS_WX`/`OPED_HUMANITIES`/`YOUTH_OFFICIAL`，由 make_content.py 引用合併），**fr 譯文走 `translations/news.json` 覆寫層**（含 image_captions）；配圖共 53 張 webp（sips -Z 1600 + cwebp -q 82，等比不拉伸、每張 <200KB）在 `assets/img/news/{slug}-{序號}.webp`。原始素材在 `.news-src/`（已 gitignore，勿提交），其中 `.news-src/drafts/` 為五語言草稿 JSON。社評專欄現有 2 篇。
 - 新聞錄入流程（2026-11 起）：素材（docx+圖）→ 五語言草稿 JSON（`.news-src/drafts/{slug}.json`，格式見既有草稿，語言對象含 fr）→ `python3 integrate_drafts.py`（校驗段落對齊/圖片存在後，zh-TW/zh-CN/en/pt 併入 `news_data.py`、fr 併入 `translations/news.json`，**用前先把要錄的 slug 填進腳本 NEW_SLUGS**）→ `make_content.py && build.py && scan_tcsc.py`（須 CLEAN；注意港澳正字「藉助」非「借助」）。
-- 法語語種（2026-10-17）：第 5 語言 `fr`（Français 🇫🇷，languages 數組在 make_content.py）；build.py 全部內聯多語言字典（SKIP_LINK/MENU_LABEL/CLOSE_LABEL/og_locale/各頁標題副標題）已含 fr 鍵——**往後新增內聯字典必須一次寫齊 5 語言，否則 KeyError**。同次以母語標準校正全站 en/pt 譯文（pt-PT 規範，清除巴西葡語）。已知遺留：pt 在個別文章間 AO90 新舊正字法混用（均合法，待統一）；遊戲 game/game2 僅中文。
+- 法語語種（2026-10-17）：第 5 語言 `fr`（Français 🇫🇷，languages 數組在 make_content.py）；同次以母語標準校正全站 en/pt 譯文（pt-PT 規範，清除巴西葡語）。
+- 西班牙語種（2026-11-10）：第 6 語言 `es`（Español 🇪🇸）。譯文整樹在 `translations/es.json` 覆寫層；固定譯名：MFTEDA=«Asociación de Macao para el Desarrollo de las Tecnologías Financieras y la Educación (MFTEDA)»、一帶一路=la Franja y la Ruta、澳門元=patacas、引號用 «»。build.py 全部內聯多語言字典已含 es 鍵——**往後新增內聯字典必須一次寫齊 6 語言，否則 KeyError**。已知遺留：pt 在個別文章間 AO90 新舊正字法混用（均合法，待統一）；遊戲 game/game2 僅中文。
+- GEO/SEO 海外優化（2026-11-10）：每頁 head 含 geo meta（geo.region=MO、geo.placename=Macao、geo.position/ICBM 坐標常量 GEO_LAT/GEO_LNG）與 og:locale:alternate（OG_LOCALES 常量，輸出其餘 5 語言 locale）；首頁 JSON-LD 增強為 Organization（@id、6 語言 alternateName、knowsLanguage、knowsAbout、areaServed、contactPoint）+ WebSite 雙 schema；robots.txt 顯式 Allow 8 個 AI/LLM 爬蟲（GPTBot/OAI-SearchBot/ChatGPT-User/ClaudeBot/PerplexityBot/Google-Extended/Bingbot/Applebot）；新增 `dist/llms.txt`（llmstxt.org 規範，英/葡/西/法四段簡介 + 6 語言首頁與主欄目 URL）。首頁 title 模板對 orgName 已含「MFTEDA」的語言（es）自動去重。
 - 死鏈備注（2026-11 月度體檢）：partner10 長春電子科技學院官網（changdian2001.com）屏蔽境外 IP（澳門訪問 ERR_CONNECTION_CLOSED），域名為官方正確地址、境內正常，鏈接保留；Facebook 合作夥伴鏈接對 curl 返回 400 屬反爬，瀏覽器正常。
 - Pages 部署故障（2026-11 兩次）：deploy job 卡在 `syncing_files` 直至 actions/deploy-pages 超時失敗（GitHub 後端問題，與站點內容無關）。處理辦法：`gh run rerun <run-id> --repo workworkxiaosan/mfteda --failed` 重跑失敗 job 即可恢復；重跑前可用 `gh run view <id> --log-failed | tail` 確認是 `syncing_files` 超時而非構建錯誤。

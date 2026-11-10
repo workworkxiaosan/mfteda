@@ -45,6 +45,11 @@ def asset(path, current_lang):
 ASSET_V = '?v=20261109'
 BUILD_DATE = date.today().isoformat()
 
+# Open Graph locale 對照（og:locale 僅支援 underscore 格式）
+OG_LOCALES = {'zh-TW': 'zh_TW', 'zh-CN': 'zh_CN', 'en': 'en_US', 'pt': 'pt_PT', 'fr': 'fr_FR', 'es': 'es_ES'}
+# 學會地理坐標（澳門），供 geo meta 與 JSON-LD 使用
+GEO_LAT, GEO_LNG = '22.1987', '113.5439'
+
 _IMG_SIZE_CACHE = {}
 def img_size(relpath):
     """讀取 assets/ 下圖片的真實尺寸（供 <img> width/height 屬性防 CLS）。
@@ -153,9 +158,9 @@ ABOUT_INITIATIVE_ICONS = ['trending', 'handshake', 'book', 'cpu', 'dollar', 'use
 SOCIAL = [('facebook', 'Facebook'), ('linkedin', 'LinkedIn'), ('twitter', 'Twitter')]
 
 # ---------------- 頁頭 / 頁尾 ----------------
-SKIP_LINK = {'zh-TW': '跳至主要內容', 'zh-CN': '跳至主要内容', 'en': 'Skip to main content', 'pt': 'Pular para o conteúdo principal', 'fr': 'Aller au contenu principal'}
-MENU_LABEL = {'zh-TW': '菜單', 'zh-CN': '菜单', 'en': 'Menu', 'pt': 'Menu', 'fr': 'Menu'}
-CLOSE_LABEL = {'zh-TW': '關閉', 'zh-CN': '关闭', 'en': 'Close', 'pt': 'Fechar', 'fr': 'Fermer'}
+SKIP_LINK = {'zh-TW': '跳至主要內容', 'zh-CN': '跳至主要内容', 'en': 'Skip to main content', 'pt': 'Pular para o conteúdo principal', 'fr': 'Aller au contenu principal', 'es': 'Ir al contenido principal'}
+MENU_LABEL = {'zh-TW': '菜單', 'zh-CN': '菜单', 'en': 'Menu', 'pt': 'Menu', 'fr': 'Menu', 'es': 'Menú'}
+CLOSE_LABEL = {'zh-TW': '關閉', 'zh-CN': '关闭', 'en': 'Close', 'pt': 'Fechar', 'fr': 'Fermer', 'es': 'Cerrar'}
 
 def header(page, lang, pre=''):
     nav = I18N[lang]['nav']
@@ -263,13 +268,20 @@ def page_shell(page, lang, title, description, body, depth=0, url_path=None, og_
     og_image = og_image or default_og
     if og_image_dims is None and og_image == default_og:
         og_image_dims = (1200, 630)
-    og_locale = {'zh-TW': 'zh_TW', 'zh-CN': 'zh_CN', 'en': 'en_US', 'pt': 'pt_PT', 'fr': 'fr_FR'}[lang]
+    og_locale = OG_LOCALES[lang]
+    og_locale_alt = '\n'.join(
+        f'  <meta property="og:locale:alternate" content="{v}">'
+        for k, v in OG_LOCALES.items() if k != lang)
+    geo_meta = (f'  <meta name="geo.region" content="MO">\n'
+                f'  <meta name="geo.placename" content="Macao">\n'
+                f'  <meta name="geo.position" content="{GEO_LAT};{GEO_LNG}">\n'
+                f'  <meta name="ICBM" content="{GEO_LAT}, {GEO_LNG}">\n')
     # 機構名按各自語言版本書寫（簡體頁用簡體學會名）
     site_name = '澳门财经科技与教育发展学会' if lang == 'zh-CN' else C['site_name']
     full_name = I18N[lang]['contact']['orgName']
     # <title>：首頁用「學會全稱 MFTEDA」品牌格式；文章標題顯示寬度超過 ≈30 個全角字符時截斷；其餘維持「標題 - MFTEDA」
     if page == 'index' and not noindex:
-        title_tag = f'{full_name} MFTEDA'
+        title_tag = full_name if 'MFTEDA' in full_name else f'{full_name} MFTEDA'
     else:
         tt = truncate_title(title) if article_meta else title
         title_tag = f'{tt} - MFTEDA'
@@ -285,13 +297,34 @@ def page_shell(page, lang, title, description, body, depth=0, url_path=None, og_
     robots_meta = '  <meta name="robots" content="noindex">\n' if noindex else ''
     jsonld = ''
     if page == 'index' and not noindex:
+        # 6 語言學會全稱（當前語言用 name，其餘入 alternateName，去重保持順序）
+        all_names = [I18N[l]['contact']['orgName'] for l in LANGS] + [C['site_name_en'], 'MFTEDA']
+        alt_names = list(dict.fromkeys(n for n in all_names if n != site_name))
         org = {"@context": "https://schema.org", "@type": "Organization",
-               "name": site_name, "alternateName": C['site_name_en'], "url": base,
+               "@id": f"{base}/#organization",
+               "name": site_name, "alternateName": alt_names, "url": base,
                "logo": f"{base}/assets/img/logo.png", "email": C['email'],
+               "knowsLanguage": ["zh-Hant", "zh-Hans", "en", "pt", "fr", "es"],
+               "knowsAbout": ["financial technology", "fintech", "education development",
+                              "Macao economy", "Guangdong-Macao In-Depth Cooperation Zone in Hengqin",
+                              "Belt and Road Initiative", "China-PSCs platform",
+                              "trust transmission cost", "technology transfer"],
+               "areaServed": [{"@type": "Country", "name": "Macao SAR"},
+                              {"@type": "Country", "name": "China"},
+                              "Portuguese-speaking countries", "Spanish-speaking countries",
+                              "French-speaking countries", "Belt and Road partner countries"],
+               "contactPoint": {"@type": "ContactPoint", "email": C['email'],
+                                "contactType": "customer service",
+                                "availableLanguage": ["zh-Hant", "zh-Hans", "en", "pt", "fr", "es"]},
                "address": {"@type": "PostalAddress",
                            "streetAddress": I18N[lang]['contact']['addressValue'],
                            "addressLocality": "Macao", "addressCountry": "MO"}}
-        jsonld = '  <script type="application/ld+json">\n  ' + json.dumps(org, ensure_ascii=False) + '\n  </script>'
+        website = {"@context": "https://schema.org", "@type": "WebSite",
+                   "@id": f"{base}/#website", "url": base, "name": site_name,
+                   "publisher": {"@id": f"{base}/#organization"},
+                   "inLanguage": LANGS}
+        jsonld = ('  <script type="application/ld+json">\n  ' + json.dumps(org, ensure_ascii=False) + '\n  </script>\n'
+                  '  <script type="application/ld+json">\n  ' + json.dumps(website, ensure_ascii=False) + '\n  </script>')
     elif article_meta:
         if article_meta.get('author'):
             author_obj = {"@type": "Person", "name": article_meta['author']}
@@ -329,10 +362,11 @@ def page_shell(page, lang, title, description, body, depth=0, url_path=None, og_
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
 {robots_meta}  <title>{esc(title_tag)}</title>
   <meta name="description" content="{esc(description)}">
-{meta_links}
+{geo_meta}{meta_links}
   <meta property="og:type" content="{og_type}">
   <meta property="og:site_name" content="MFTEDA {esc(site_name)}">
   <meta property="og:locale" content="{og_locale}">
+{og_locale_alt}
   <meta property="og:title" content="{esc(og_title)}">
   <meta property="og:description" content="{esc(description)}">
   <meta property="og:url" content="{canonical}">
@@ -483,8 +517,8 @@ def render_index(lang):
 <section class="section-spacing bg-muted-50">
   <div class="container-institutional">
     <div class="text-center mb-16 reveal">
-      <h2 class="institutional-subheading mb-4">{esc({'zh-TW': '最新動態', 'zh-CN': '最新动态', 'en': 'Latest News', 'pt': 'Últimas Notícias', 'fr': 'Dernières actualités'}[lang])}</h2>
-      <a class="read-more" href="{page_href('news', lang, lang)}">{esc({'zh-TW': '查看全部', 'zh-CN': '查看全部', 'en': 'View All', 'pt': 'Ver Tudo', 'fr': 'Voir tout'}[lang])}{icon('arrow')}</a>
+      <h2 class="institutional-subheading mb-4">{esc({'zh-TW': '最新動態', 'zh-CN': '最新动态', 'en': 'Latest News', 'pt': 'Últimas Notícias', 'fr': 'Dernières actualités', 'es': 'Últimas Noticias'}[lang])}</h2>
+      <a class="read-more" href="{page_href('news', lang, lang)}">{esc({'zh-TW': '查看全部', 'zh-CN': '查看全部', 'en': 'View All', 'pt': 'Ver Tudo', 'fr': 'Voir tout', 'es': 'Ver todo'}[lang])}{icon('arrow')}</a>
     </div>
     <div class="grid grid-3">{latest_news}</div>
   </div>
@@ -492,8 +526,8 @@ def render_index(lang):
 <section class="section-spacing">
   <div class="container-institutional">
     <div class="text-center mb-16 reveal">
-      <h2 class="institutional-subheading mb-4">{esc({'zh-TW': '我們的重點領域', 'zh-CN': '我们的重点领域', 'en': 'Our Focus Areas', 'pt': 'Nossas Áreas de Foco', 'fr': 'Nos domaines prioritaires'}[lang])}</h2>
-      <p class="text-lg text-muted-foreground max-w-2 mx-auto">{esc({'zh-TW': '通過戰略研究與政策創新推動澳門發展', 'zh-CN': '通过战略研究与政策创新推动澳门发展', 'en': "Driving Macao's development through strategic research and policy innovation", 'pt': 'Impulsionando o desenvolvimento de Macau através de pesquisa estratégica e inovação política', 'fr': "Stimuler le développement de Macao par la recherche stratégique et l'innovation politique"}[lang])}</p>
+      <h2 class="institutional-subheading mb-4">{esc({'zh-TW': '我們的重點領域', 'zh-CN': '我们的重点领域', 'en': 'Our Focus Areas', 'pt': 'Nossas Áreas de Foco', 'fr': 'Nos domaines prioritaires', 'es': 'Nuestras Áreas de Enfoque'}[lang])}</h2>
+      <p class="text-lg text-muted-foreground max-w-2 mx-auto">{esc({'zh-TW': '通過戰略研究與政策創新推動澳門發展', 'zh-CN': '通过战略研究与政策创新推动澳门发展', 'en': "Driving Macao's development through strategic research and policy innovation", 'pt': 'Impulsionando o desenvolvimento de Macau através de pesquisa estratégica e inovação política', 'fr': "Stimuler le développement de Macao par la recherche stratégique et l'innovation politique", 'es': "Impulsando el desarrollo de Macao a través de la investigación estratégica y la innovación en políticas"}[lang])}</p>
     </div>
     <div class="grid grid-3">{cards}</div>
   </div>
@@ -501,8 +535,8 @@ def render_index(lang):
 <section class="section-spacing bg-muted-50">
   <div class="container-institutional">
     <div class="text-center mb-16 reveal">
-      <h2 class="institutional-subheading mb-4">{esc({'zh-TW': '最新研究', 'zh-CN': '最新研究', 'en': 'Latest Research', 'pt': 'Investigação Recente', 'fr': 'Recherches récentes'}[lang])}</h2>
-      <a class="read-more" href="{page_href('insights', lang, lang)}">{esc({'zh-TW': '查看全部', 'zh-CN': '查看全部', 'en': 'View All', 'pt': 'Ver Tudo', 'fr': 'Voir tout'}[lang])}{icon('arrow')}</a>
+      <h2 class="institutional-subheading mb-4">{esc({'zh-TW': '最新研究', 'zh-CN': '最新研究', 'en': 'Latest Research', 'pt': 'Investigação Recente', 'fr': 'Recherches récentes', 'es': 'Investigación Reciente'}[lang])}</h2>
+      <a class="read-more" href="{page_href('insights', lang, lang)}">{esc({'zh-TW': '查看全部', 'zh-CN': '查看全部', 'en': 'View All', 'pt': 'Ver Tudo', 'fr': 'Voir tout', 'es': 'Ver todo'}[lang])}{icon('arrow')}</a>
     </div>
     <div class="grid grid-3">{latest_insights}</div>
   </div>
@@ -510,8 +544,8 @@ def render_index(lang):
 <section class="section-spacing cta-band">
   <div class="container-institutional">
     <div class="reveal">
-      <h2 class="institutional-subheading mb-6">{esc({'zh-TW': '與我們一起塑造澳門的未來', 'zh-CN': '与我们一起塑造澳门的未来', 'en': "Join us in shaping Macao's future", 'pt': 'Junte-se a nós na construção do futuro de Macau', 'fr': "Construisons ensemble l'avenir de Macao"}[lang])}</h2>
-      <p class="lead">{esc({'zh-TW': '與MFTEDA合作，推動創新、研究與可持續發展', 'zh-CN': '与MFTEDA合作，推动创新、研究与可持续发展', 'en': 'Partner with MFTEDA to drive innovation, research, and sustainable development', 'pt': 'Faça parceria com a MFTEDA para impulsionar inovação, pesquisa e desenvolvimento sustentável', 'fr': "Collaborez avec la MFTEDA pour promouvoir l'innovation, la recherche et le développement durable"}[lang])}</p>
+      <h2 class="institutional-subheading mb-6">{esc({'zh-TW': '與我們一起塑造澳門的未來', 'zh-CN': '与我们一起塑造澳门的未来', 'en': "Join us in shaping Macao's future", 'pt': 'Junte-se a nós na construção do futuro de Macau', 'fr': "Construisons ensemble l'avenir de Macao", 'es': "Únase a nosotros para dar forma al futuro de Macao"}[lang])}</h2>
+      <p class="lead">{esc({'zh-TW': '與MFTEDA合作，推動創新、研究與可持續發展', 'zh-CN': '与MFTEDA合作，推动创新、研究与可持续发展', 'en': 'Partner with MFTEDA to drive innovation, research, and sustainable development', 'pt': 'Faça parceria com a MFTEDA para impulsionar inovação, pesquisa e desenvolvimento sustentável', 'fr': "Collaborez avec la MFTEDA pour promouvoir l'innovation, la recherche et le développement durable", 'es': "Asóciese con la MFTEDA para impulsar la innovación, la investigación y el desarrollo sostenible"}[lang])}</p>
       <a class="btn btn-white" href="{page_href('contact', lang, lang)}">{esc(t(lang, 'nav', 'contact'))}{icon('arrow')}</a>
     </div>
   </div>
@@ -520,7 +554,7 @@ def render_index(lang):
             'zh-CN': '澳门财经科技与教育发展学会致力于推动澳门特区多元化、可持续、高质量发展',
             'en': 'MFTEDA is committed to promoting diversified, sustainable, and high-quality development of Macao SAR',
             'pt': 'MFTEDA está comprometida em promover o desenvolvimento diversificado, sustentável e de alta qualidade da RAE de Macau',
-            'fr': "La MFTEDA s'engage à promouvoir un développement diversifié, durable et de haute qualité de la RAS de Macao"}[lang]
+            'fr': "La MFTEDA s'engage à promouvoir un développement diversifié, durable et de haute qualité de la RAS de Macao", 'es': "La MFTEDA se compromete a promover un desarrollo diversificado, sostenible y de alta calidad de la RAE de Macao"}[lang]
     return page_shell('index', lang, t(lang, 'nav', 'home'), desc, body,
                       extra_head=f'<link rel="preload" as="image" href="{hero_bg}">')
 
@@ -613,7 +647,7 @@ def render_about(lang):
             'zh-CN': '澳门财经科技与教育发展学会——推动澳门多元化发展的非营利智库',
             'en': 'A non-profit think tank driving Macao\'s diversified development',
             'pt': 'Um think tank sem fins lucrativos impulsionando o desenvolvimento diversificado de Macau',
-            'fr': 'Un think tank à but non lucratif qui favorise le développement diversifié de Macao'}[lang]
+            'fr': 'Un think tank à but non lucratif qui favorise le développement diversifié de Macao', 'es': 'Un think tank sin ánimo de lucro que promueve el desarrollo diversificado de Macao'}[lang]
     return page_shell('about', lang, ab['title'], desc, body)
 
 # ---------------- 研究領域 ----------------
@@ -633,7 +667,7 @@ def render_research(lang):
 </section>'''
     # area8/area9 卡片綁定教育遊戲彈窗（assets/js/game-launcher.js，映射見 RESEARCH_GAME_ATTRS）
     badge = {'zh-TW': '🎮 教育遊戲 · 立即試玩', 'zh-CN': '🎮 教育游戏 · 立即试玩',
-             'en': '🎮 Edu Game · Play Now', 'pt': '🎮 Jogo Educativo · Jogar Agora', 'fr': '🎮 Jeu éducatif · Jouer'}[lang]
+             'en': '🎮 Edu Game · Play Now', 'pt': '🎮 Jogo Educativo · Jogar Agora', 'fr': '🎮 Jeu éducatif · Jouer', 'es': '🎮 Juego educativo · Jugar'}[lang]
     launcher = (f'<script src="{asset("js/game-launcher.js", lang)}{ASSET_V}" defer '
                 f'data-badge="{esc(badge)}"></script>')
     return page_shell('research', lang, rs['title'], rs['subtitle'], body, extra_head=launcher)
@@ -690,7 +724,7 @@ def render_publications(lang):
 # ---------------- 研究洞察 ----------------
 def render_insights(lang):
     ins = I18N[lang]['insights']
-    column_title = {'zh-TW': '社評專欄', 'zh-CN': '社评专栏', 'en': 'Op-Ed Column', 'pt': 'Coluna de Opinião', 'fr': "Tribune d'opinion"}[lang]
+    column_title = {'zh-TW': '社評專欄', 'zh-CN': '社评专栏', 'en': 'Op-Ed Column', 'pt': 'Coluna de Opinião', 'fr': "Tribune d'opinion", 'es': "Columna de opinión"}[lang]
     all_sorted = sorted(C['insights'], key=lambda x: x['date'], reverse=True)
     column_cards = ''
     for a in (x for x in all_sorted if x.get('column')):
@@ -766,7 +800,7 @@ def render_insight_article(lang, a):
         author_html = f'<p class="article-author"><strong>{esc(a["author"]["name"][lang])}</strong>{sep}{esc(a["author"]["title"][lang])}</p>'
     source_html = ''
     if a.get('source'):
-        prefix = {'zh-TW': '原文載於', 'zh-CN': '原文载于', 'en': 'Originally published in', 'pt': 'Originalmente publicado em', 'fr': 'Publié initialement dans'}[lang]
+        prefix = {'zh-TW': '原文載於', 'zh-CN': '原文载于', 'en': 'Originally published in', 'pt': 'Originalmente publicado em', 'fr': 'Publié initialement dans', 'es': 'Publicado originalmente en'}[lang]
         src_name = a['source']['name'][lang]
         quoted = f'《{src_name}》' if lang.startswith('zh') else src_name
         source_html = f'''<div class="article-source">
@@ -792,7 +826,7 @@ def render_insight_article(lang, a):
       <div>{body_html}</div>
       {source_html}
       <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid hsl(var(--border));">
-        <a class="read-more" href="../insights.html">{icon('arrow-left')} {esc({'zh-TW': '返回研究洞察', 'zh-CN': '返回研究洞察', 'en': 'Back to Insights', 'pt': 'Voltar aos Insights', 'fr': 'Retour aux Perspectives'}[lang])}</a>
+        <a class="read-more" href="../insights.html">{icon('arrow-left')} {esc({'zh-TW': '返回研究洞察', 'zh-CN': '返回研究洞察', 'en': 'Back to Insights', 'pt': 'Voltar aos Insights', 'fr': 'Retour aux Perspectives', 'es': 'Volver a Perspectivas'}[lang])}</a>
       </div>
     </div>
   </div>
@@ -811,16 +845,16 @@ def render_insight_article(lang, a):
                       og_type='article', article_meta=meta, og_image_dims=og_dims)
 
 # ---------------- 新聞動態 ----------------
-NEWS_SOURCE_PREFIX = {'zh-TW': '原文出處', 'zh-CN': '原文出处', 'en': 'Source', 'pt': 'Fonte', 'fr': 'Source'}
+NEWS_SOURCE_PREFIX = {'zh-TW': '原文出處', 'zh-CN': '原文出处', 'en': 'Source', 'pt': 'Fonte', 'fr': 'Source', 'es': 'Fuente'}
 
 def render_news(lang):
     ins = I18N[lang]['insights']
-    hero_title = {'zh-TW': '新聞動態', 'zh-CN': '新闻动态', 'en': 'News', 'pt': 'Notícias', 'fr': 'Actualités'}[lang]
+    hero_title = {'zh-TW': '新聞動態', 'zh-CN': '新闻动态', 'en': 'News', 'pt': 'Notícias', 'fr': 'Actualités', 'es': 'Noticias'}[lang]
     hero_sub = {'zh-TW': '本會最新公開動態、活動紀實與媒體報道，見證澳門財經科技與教育智庫的實踐足跡',
                 'zh-CN': '本会最新公开动态、活动纪实与媒体报道，见证澳门财经科技与教育智库的实践足迹',
                 'en': "Latest news, event coverage and media reports from MFTEDA, Macao's think tank for financial technology and education",
                 'pt': 'Últimas notícias, reportagens de eventos e cobertura mediática da MFTEDA, think tank de Macau',
-                'fr': "Dernières nouvelles, comptes rendus d'événements et couverture médiatique de la MFTEDA, think tank de Macao"}[lang]
+                'fr': "Dernières nouvelles, comptes rendus d'événements et couverture médiatique de la MFTEDA, think tank de Macao", 'es': "Últimas noticias, crónicas de eventos y cobertura mediática de la MFTEDA, think tank de Macao"}[lang]
     def _card(a):
         thumb = ''
         if a.get('images'):
@@ -895,7 +929,7 @@ def render_news_article(lang, a):
       <div>{body_html}</div>
       {source_html}
       <div style="margin-top:2.5rem;padding-top:1.5rem;border-top:1px solid hsl(var(--border));">
-        <a class="read-more" href="../news.html">{icon('arrow-left')} {esc({'zh-TW': '返回新聞動態', 'zh-CN': '返回新闻动态', 'en': 'Back to News', 'pt': 'Voltar às Notícias', 'fr': 'Retour aux actualités'}[lang])}</a>
+        <a class="read-more" href="../news.html">{icon('arrow-left')} {esc({'zh-TW': '返回新聞動態', 'zh-CN': '返回新闻动态', 'en': 'Back to News', 'pt': 'Voltar às Notícias', 'fr': 'Retour aux actualités', 'es': 'Volver a Noticias'}[lang])}</a>
       </div>
     </div>
   </div>
@@ -940,16 +974,16 @@ def render_partners(lang):
 
 # ---------------- 招商政策 ----------------
 def render_policy(lang):
-    hero_title = {'zh-TW': '招商政策', 'zh-CN': '招商政策', 'en': 'Investment Policies', 'pt': 'Políticas de Investimento', 'fr': "Politiques d'investissement"}[lang]
+    hero_title = {'zh-TW': '招商政策', 'zh-CN': '招商政策', 'en': 'Investment Policies', 'pt': 'Políticas de Investimento', 'fr': "Politiques d'investissement", 'es': "Políticas de inversión"}[lang]
     hero_sub = {'zh-TW': '轉載澳門及橫琴最新招商引資政策，助力企業把握灣區機遇',
                 'zh-CN': '转载澳门及横琴最新招商引资政策，助力企业把握湾区机遇',
                 'en': "The latest investment promotion policies from Macao and Hengqin, helping enterprises seize Greater Bay Area opportunities",
                 'pt': 'As mais recentes políticas de promoção de investimento de Macau e Hengqin, ajudando as empresas a aproveitar as oportunidades da Grande Baía',
-                'fr': "Les dernières politiques de promotion des investissements de Macao et Hengqin, pour aider les entreprises à saisir les opportunités de la Grande Baie"}[lang]
+                'fr': "Les dernières politiques de promotion des investissements de Macao et Hengqin, pour aider les entreprises à saisir les opportunités de la Grande Baie", 'es': "Las últimas políticas de promoción de inversiones de Macao y Hengqin, para ayudar a las empresas a aprovechar las oportunidades de la Gran Bahía"}[lang]
     section_titles = {
-        'macao': {'zh-TW': '澳門特區政策', 'zh-CN': '澳门特区政策', 'en': 'Macao SAR Policies', 'pt': 'Políticas da RAE de Macau', 'fr': 'Politiques de la RAS de Macao'},
-        'hengqin': {'zh-TW': '橫琴粵澳深度合作區政策', 'zh-CN': '横琴粤澳深度合作区政策', 'en': 'Guangdong-Macao In-Depth Cooperation Zone in Hengqin Policies', 'pt': 'Políticas da Zona de Cooperação Aprofundada Guangdong-Macau em Hengqin', 'fr': "Politiques de la Zone de coopération approfondie Guangdong-Macao à Hengqin"}}
-    more = {'zh-TW': '了解詳情', 'zh-CN': '了解详情', 'en': 'Learn More', 'pt': 'Saber Mais', 'fr': 'En savoir plus'}[lang]
+        'macao': {'zh-TW': '澳門特區政策', 'zh-CN': '澳门特区政策', 'en': 'Macao SAR Policies', 'pt': 'Políticas da RAE de Macau', 'fr': 'Politiques de la RAS de Macao', 'es': 'Políticas de la RAE de Macao'},
+        'hengqin': {'zh-TW': '橫琴粵澳深度合作區政策', 'zh-CN': '横琴粤澳深度合作区政策', 'en': 'Guangdong-Macao In-Depth Cooperation Zone in Hengqin Policies', 'pt': 'Políticas da Zona de Cooperação Aprofundada Guangdong-Macau em Hengqin', 'fr': "Politiques de la Zone de coopération approfondie Guangdong-Macao à Hengqin", 'es': "Políticas de la Zona de Cooperación en Profundidad Guangdong-Macao en Hengqin"}}
+    more = {'zh-TW': '了解詳情', 'zh-CN': '了解详情', 'en': 'Learn More', 'pt': 'Saber Mais', 'fr': 'En savoir plus', 'es': 'Más información'}[lang]
     sections_html = ''
     for region in ('macao', 'hengqin'):
         cards = ''.join(f'''
@@ -982,7 +1016,7 @@ def render_policy(lang):
             'zh-CN': '澳门及横琴粤澳深度合作区最新招商引资政策汇编',
             'en': "Latest investment promotion policies from Macao SAR and the Guangdong-Macao In-Depth Cooperation Zone in Hengqin",
             'pt': 'Compilação das mais recentes políticas de promoção de investimento da RAE de Macau e da Zona de Cooperação Aprofundada Guangdong-Macau em Hengqin',
-            'fr': "Compilation des dernières politiques de promotion des investissements de la RAS de Macao et de la Zone de coopération approfondie Guangdong-Macao à Hengqin"}[lang]
+            'fr': "Compilation des dernières politiques de promotion des investissements de la RAS de Macao et de la Zone de coopération approfondie Guangdong-Macao à Hengqin", 'es': "Recopilación de las últimas políticas de promoción de inversiones de la RAE de Macao y de la Zona de Cooperación en Profundidad Guangdong-Macao en Hengqin"}[lang]
     return page_shell('policy', lang, hero_title, desc, body)
 
 # ---------------- 聯繫我們 ----------------
@@ -994,7 +1028,7 @@ def render_contact(lang):
     if social_links:
         social = ''.join(f'<a href="{C["social"][s]}" aria-label="{label}">{icon(s)}</a>' for s, label in social_links)
         social_row = f'''<div class="info-row">
-            <span style="font-weight:500;color:hsl(var(--muted-foreground));display:block;margin-bottom:.75rem;">{esc({'zh-TW': '關注我們', 'zh-CN': '关注我们', 'en': 'Follow Us', 'pt': 'Siga-nos', 'fr': 'Suivez-nous'}[lang])}</span>
+            <span style="font-weight:500;color:hsl(var(--muted-foreground));display:block;margin-bottom:.75rem;">{esc({'zh-TW': '關注我們', 'zh-CN': '关注我们', 'en': 'Follow Us', 'pt': 'Siga-nos', 'fr': 'Suivez-nous', 'es': 'Síganos'}[lang])}</span>
             <div class="social-row">{social}</div>
           </div>'''
     inquiry_opts = ''.join(f'<option value="{k}">{esc(v)}</option>' for k, v in ct['inquiryTypes'].items())
@@ -1076,7 +1110,7 @@ def render_contact(lang):
             'zh-CN': '联系澳门财经科技与教育发展学会：研究合作、咨询服务、战略合作',
             'en': 'Contact MFTEDA for research collaboration, consulting services, and strategic partnerships.',
             'pt': 'Contacte a MFTEDA para colaboração em pesquisa, serviços de consultoria e parcerias estratégicas.',
-            'fr': "Contactez la MFTEDA pour la collaboration en recherche, les services de conseil et les partenariats stratégiques."}[lang]
+            'fr': "Contactez la MFTEDA pour la collaboration en recherche, les services de conseil et les partenariats stratégiques.", 'es': "Contacte con la MFTEDA para la colaboración en investigación, los servicios de consultoría y las alianzas estratégicas."}[lang]
     return page_shell('contact', lang, ct['title'], desc, body)
 
 # ---------------- 構建 ----------------
@@ -1096,9 +1130,51 @@ def build():
     with open(os.path.join(DIST, 'CNAME'), 'w') as f:
         f.write('mfteda.org\n')
 
-    # robots.txt
+    # robots.txt（開放主流 AI/LLM 爬蟲抓取，配合 GEO 策略）
+    ai_bots = ['GPTBot', 'OAI-SearchBot', 'ChatGPT-User', 'ClaudeBot',
+               'PerplexityBot', 'Google-Extended', 'Bingbot', 'Applebot']
+    robots_txt = 'User-agent: *\nAllow: /\n\n# AI / LLM crawlers welcome (GEO)\n'
+    robots_txt += '\n\n'.join(f'User-agent: {b}\nAllow: /' for b in ai_bots)
+    robots_txt += '\n\nSitemap: https://mfteda.org/sitemap.xml\n'
     with open(os.path.join(DIST, 'robots.txt'), 'w') as f:
-        f.write('User-agent: *\nAllow: /\n\nSitemap: https://mfteda.org/sitemap.xml\n')
+        f.write(robots_txt)
+
+    # llms.txt（llmstxt.org 規範：給 LLM 的站點導覽，GEO 核心文件）
+    llms_txt = '''# 澳門財經科技與教育發展學會 (MFTEDA)
+
+> Macao Financial Technology and Education Development Association (MFTEDA) is a non-profit think tank headquartered in Macao SAR, China. It produces research-driven policy analysis on financial technology, education development, the Guangdong-Macao In-Depth Cooperation Zone in Hengqin, and Macao's role as a bridge between China and Portuguese-, Spanish-, French-speaking and Belt and Road partner countries.
+
+MFTEDA (Associação de Macao para o Desenvolvimento das Tecnologias Financeiras e da Educação) é um think tank sem fins lucrativos sediado em Macau, dedicado à investigação em tecnologias financeiras, desenvolvimento educativo e ao papel de Macau como plataforma entre a China e os países de língua portuguesa.
+
+MFTEDA (Asociación de Macao para el Desarrollo de las Tecnologías Financieras y la Educación) es un think tank sin ánimo de lucro con sede en Macao, dedicado a la investigación sobre tecnologías financieras, desarrollo educativo y el papel de Macao como puente entre China y los países hispanohablantes.
+
+La MFTEDA (Association de Macao pour le développement des technologies financières et de l'éducation) est un think tank à but non lucratif basé à Macao, consacré à la recherche sur les technologies financières, le développement de l'éducation et le rôle de Macao comme pont entre la Chine et les pays francophones.
+
+## Languages
+- 繁體中文: https://mfteda.org/
+- 简体中文: https://mfteda.org/zh-CN/
+- English: https://mfteda.org/en/
+- Português: https://mfteda.org/pt/
+- Français: https://mfteda.org/fr/
+- Español: https://mfteda.org/es/
+
+## Main sections
+- About: https://mfteda.org/en/about.html
+- Research areas: https://mfteda.org/en/research.html
+- Key projects: https://mfteda.org/en/projects.html
+- Publications: https://mfteda.org/en/publications.html
+- Research insights: https://mfteda.org/en/insights.html
+- News: https://mfteda.org/en/news.html
+- Partners: https://mfteda.org/en/partners.html
+- Investment policies (Macao & Hengqin): https://mfteda.org/en/policy.html
+- Contact: https://mfteda.org/en/contact.html
+
+## Contact
+- Email: MFTEDA@163.com
+- Address: Macao SAR, China
+'''
+    with open(os.path.join(DIST, 'llms.txt'), 'w', encoding='utf-8') as f:
+        f.write(llms_txt)
 
     # 404 頁（GitHub Pages 自動使用根目錄 404.html）
     not_found_body = f'''
