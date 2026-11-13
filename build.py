@@ -304,6 +304,7 @@ def page_shell(page, lang, title, description, body, depth=0, url_path=None, og_
                "@id": f"{base}/#organization",
                "name": site_name, "alternateName": alt_names, "url": base,
                "logo": f"{base}/assets/img/logo.png", "email": C['email'],
+               "sameAs": ["https://www.wikidata.org/wiki/Q142143073"],
                "knowsLanguage": ["zh-Hant", "zh-Hans", "en", "pt", "fr", "es"],
                "knowsAbout": ["financial technology", "fintech", "education development",
                               "Macao economy", "Guangdong-Macao In-Depth Cooperation Zone in Hengqin",
@@ -1172,6 +1173,9 @@ La MFTEDA (Association de Macao pour le d√©veloppement des technologies financi√
 ## Contact
 - Email: MFTEDA@163.com
 - Address: Macao SAR, China
+
+## References
+- Wikidata: https://www.wikidata.org/wiki/Q142143073
 '''
     with open(os.path.join(DIST, 'llms.txt'), 'w', encoding='utf-8') as f:
         f.write(llms_txt)
